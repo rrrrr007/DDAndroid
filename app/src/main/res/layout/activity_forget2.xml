@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_forget2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.diucity.dingding.activity.Forget2Activity">
+
+    <include
+        layout="@layout/notice_toolbar"
+        app:layout_heightPercent="13%"
+        app:layout_widthPercent="100%" />
+
+    <TextView
+        android:id="@+id/tv_forget2_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="我们已经发送验证码到您手机"
+        app:layout_marginTopPercent="15%" />
+    <EditText
+        android:id="@+id/edt_forget2_code"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="输入短信验证码"
+        android:inputType="phone"
+        android:maxLength="6"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_heightPercent="10%"
+        app:layout_marginLeftPercent="20%"
+        app:layout_marginTopPercent="25%"
+        app:layout_widthPercent="60%" />
+    <TextView
+        android:layout_alignRight="@id/edt_forget2_code"
+        android:id="@+id/tv_forget2_timer"
+        app:layout_marginTopPercent="25%"
+        android:text="60s"
+        android:textColor="@android:color/holo_green_dark"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        />
+    <EditText
+        android:id="@+id/edt_forget2_password"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="点击输入新密码"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_heightPercent="10%"
+        app:layout_marginLeftPercent="20%"
+        app:layout_marginTopPercent="35%"
+        app:layout_widthPercent="60%" />
+    <Button
+        android:id="@+id/btn_forget2_finish"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="完成"
+        app:layout_heightPercent="10%"
+        app:layout_marginLeftPercent="20%"
+        app:layout_marginTopPercent="50%"
+        app:layout_widthPercent="60%" />
+</com.zhy.android.percent.support.PercentRelativeLayout>

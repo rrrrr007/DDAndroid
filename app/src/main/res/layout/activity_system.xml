@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_system"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.diucity.dingding.activity.SystemActivity">
+
+    <include
+        layout="@layout/notice_toolbar"
+        app:layout_heightPercent="13%"
+        app:layout_widthPercent="100%" />
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/sv_system"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="13%">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_system"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.liaoinstan.springview.widget.SpringView>
+
+    <ProgressBar
+        android:id="@+id/progressBar_system"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

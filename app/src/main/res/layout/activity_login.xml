@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.diucity.dingding.activity.LoginActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="13%"
+        app:layout_widthPercent="100%"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="+86"
+        app:layout_heightPercent="10%"
+        app:layout_marginLeftPercent="20%"
+        app:layout_marginTopPercent="40%"
+        app:layout_widthPercent="10%" />
+
+    <EditText
+        android:id="@+id/edt_login_phone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="13990685003"
+        android:inputType="phone"
+        android:maxLength="15"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_heightPercent="10%"
+        app:layout_marginLeftPercent="20%"
+        app:layout_marginTopPercent="40%"
+        app:layout_paddingLeftPercent="10%"
+        app:layout_widthPercent="60%" />
+
+
+    <EditText
+        android:id="@+id/edt_login_code"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="点击输入密码"
+        android:inputType="numberPassword"
+        android:maxLength="10"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_heightPercent="10%"
+        app:layout_marginLeftPercent="20%"
+        app:layout_marginTopPercent="50%"
+        app:layout_widthPercent="60%" />
+
+
+    <TextView
+        android:id="@+id/tv_login_forget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="忘记密码？"
+        app:layout_marginTopPercent="62%" />
+
+    <Button
+        android:id="@+id/btn_login_enter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="登录"
+        app:layout_heightPercent="10%"
+        app:layout_marginLeftPercent="20%"
+        app:layout_marginTopPercent="70%"
+        app:layout_widthPercent="60%" />
+    <include layout="@layout/notice_small"
+        app:layout_heightPercent="8%"
+        app:layout_widthPercent="100%"
+        app:layout_marginTopPercent="13%"/>
+</com.zhy.android.percent.support.PercentRelativeLayout>
