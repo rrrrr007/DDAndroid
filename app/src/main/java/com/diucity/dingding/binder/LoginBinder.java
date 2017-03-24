@@ -32,6 +32,7 @@ public class LoginBinder implements DataBinder<LoginDelegate, MessageBack> {
             }
             @Override
             public void onError(Throwable e) {
+                e.printStackTrace();
                 viewDelegate.hideLoadingWarn();
                 viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar),2,"网络状态不佳");
             }

@@ -158,7 +158,7 @@ public class SwitchView extends View implements View.OnClickListener {
     public boolean isOpen() {
         return isOpen;
     }
-    interface Linster{
+    public interface Linster{
         void click(boolean turn);
     }
 }

@@ -29,6 +29,7 @@ public class Network {
                     .addConverterFactory(gsonConverterFactory)
                     .addCallAdapterFactory(rxJavaCallAdapterFactory)
                     .build();
+
             msgApi = retrofit.create(MsgApi.class);
         }
         return msgApi;

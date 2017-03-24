@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".app.App"
@@ -46,7 +47,9 @@
 
         <activity android:name=".activity.SystemActivity" />
         <activity android:name=".activity.OptionsActivity" />
-        <activity android:name=".activity.NotificationActivity"></activity>
+        <activity android:name=".activity.NotificationActivity" />
+        <activity android:name=".activity.ResetActivity" />
+        <activity android:name=".activity.StatisticsActivity"></activity>
     </application>
 
 </manifest>
