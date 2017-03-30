@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_capture"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.diucity.dingding.activity.CaptureActivity">
+    <FrameLayout
+        android:id="@+id/fl_my_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="13%"
+        app:layout_widthPercent="100%">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+        <ImageView
+            android:id="@+id/iv_capture_flash"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="扫二维码"
+            android:textColor="@android:color/white"/>
+        </RelativeLayout>
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="80%"
+        android:text="将二维码放入框内，即可自动扫描"
+        android:textColor="@android:color/white"
+        />
+</com.zhy.android.percent.support.PercentRelativeLayout>

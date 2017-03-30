@@ -30,7 +30,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.Holder> {
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d("ch","onCreateViewHolder");
         View view = LayoutInflater.from(activity).inflate(R.layout.adapter_home, parent, false);
         return new Holder(view);
 
@@ -39,10 +38,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        Log.d("ch","onBindViewHolder");
         holder.tv.setText(model.get(position));
-
-
     }
 
     @Override

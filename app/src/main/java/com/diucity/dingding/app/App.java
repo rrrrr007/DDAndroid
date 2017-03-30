@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatDelegate;
 
 import com.diucity.dingding.activity.BaseActivity;
 import com.squareup.leakcanary.LeakCanary;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class App extends android.app.Application {
         activities = new LinkedList<>();
         mainTid = android.os.Process.myTid();
         LeakCanary.install(this);
+        ZXingLibrary.initDisplayOpinion(this);
     }
 
 

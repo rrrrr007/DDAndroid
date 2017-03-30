@@ -10,6 +10,7 @@ import android.view.Window;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.HomeDelegate;
+import com.diucity.dingding.delegate.SellDelegate;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -31,22 +32,62 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
+        //个人中心
         RxView.clicks(viewDelegate.get(R.id.ll_home_item1)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     startActivity(new Intent(this,UserInfoActivity.class));
                 });
-        RxView.clicks(viewDelegate.get(R.id.ll_home_item2)).throttleFirst(2, TimeUnit.SECONDS)
+        //我的钱包
+        RxView.clicks(viewDelegate.get(R.id.ll_home_wallet)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    startActivity(new Intent(this,SystemActivity.class));
+                    startActivity(new Intent(this, WalletActivity.class));
                 });
-        RxView.clicks(viewDelegate.get(R.id.ll_home_item3)).throttleFirst(2, TimeUnit.SECONDS)
+        //任务列表
+        RxView.clicks(viewDelegate.get(R.id.ll_home_mission)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    startActivity(new Intent(this,MissionActivity.class));
+                });
+        //账单明细
+        RxView.clicks(viewDelegate.get(R.id.ll_home_record)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    startActivity(new Intent(this,RecordActivity.class));
+                });
+        //收益统计
+        RxView.clicks(viewDelegate.get(R.id.ll_home_statistics)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    startActivity(new Intent(this,StatisticsActivity.class));
+                });
+        //联系客服
+        RxView.clicks(viewDelegate.get(R.id.ll_home_call)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     showCallDialog();
                 });
-        RxView.clicks(viewDelegate.get(R.id.ll_home_item3)).throttleFirst(2, TimeUnit.SECONDS)
+        //设置
+        RxView.clicks(viewDelegate.get(R.id.ll_home_options)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     startActivity(new Intent(this,OptionsActivity.class));
                 });
+        //回收
+        RxView.clicks(viewDelegate.get(R.id.tv_home_collect)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    startActivity(new Intent(this, CaptureActivity.class));
+                });
+        //卖
+        RxView.clicks(viewDelegate.get(R.id.tv_home_sell)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    startActivity(new Intent(this,SellActivity.class));
+                });
+        //今天价格
+        RxView.clicks(viewDelegate.get(R.id.tv_home_price)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    startActivity(new Intent(this,PriceActivity.class));
+                });
+        //动态
+        RxView.clicks(viewDelegate.get(R.id.tv_home_dynamic)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    startActivity(new Intent(this,MissionActivity.class));
+                });
+
     }
     private void showCallDialog() {
         if (call == null) {

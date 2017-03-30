@@ -10,7 +10,50 @@
     <com.zhy.android.percent.support.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#17B384"
+            android:gravity="center_vertical"
+            app:layout_heightPercent="40%">
+            <TextView
+                android:id="@+id/tv_home_collect"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:text="回收"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_home_sell"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:text="卖废品"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_home_price"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:text="今日价格"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_home_dynamic"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:text="动态"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_home"
             android:layout_width="match_parent"
@@ -20,5 +63,6 @@
 
         </android.support.v7.widget.RecyclerView>
     </com.zhy.android.percent.support.PercentRelativeLayout>
+
     <include layout="@layout/include_home" />
 </android.support.v4.widget.DrawerLayout>

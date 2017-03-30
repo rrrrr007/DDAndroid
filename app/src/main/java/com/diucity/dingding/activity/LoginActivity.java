@@ -42,7 +42,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> {
         //忘记密码
         RxView.clicks(viewDelegate.get(R.id.tv_login_forget)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    startActivity(new Intent(this, ForgetActivity.class));
+                    startActivity(new Intent(this, PriceActivity.class));
                 });
         //登录
         RxView.clicks(viewDelegate.get(R.id.btn_login_enter)).throttleFirst(2, TimeUnit.SECONDS)

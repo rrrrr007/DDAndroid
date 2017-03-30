@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sell"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#17B384"
+    tools:context="com.diucity.dingding.activity.SellActivity">
+    <ImageView
+        android:id="@+id/iv_sell_qr"
+        android:layout_centerInParent="true"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="60%" />
+    <TextView
+        android:layout_below="@+id/iv_sell_qr"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gallery_white"
+        android:text="等待叮叮回收车，扫一扫交易"/>
+</com.zhy.android.percent.support.PercentRelativeLayout>

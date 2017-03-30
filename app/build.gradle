@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
@@ -60,9 +59,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.2.1'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
-    //butter
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
     //percent
     compile 'com.zhy:percent-support-extends:1.1.1'
     //picasso
@@ -71,5 +68,6 @@ dependencies {
     compile 'com.github.YancyYe:GalleryPick:1.2.1'
     //SpringView
     compile 'com.liaoinstan.springview:library:1.2.6'
+    compile 'cn.yipianfengye.android:zxing-library:2.1'
 
 }

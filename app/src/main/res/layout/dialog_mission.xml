@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/diolog_shape"
+    android:layout_height="match_parent">
+    <com.diucity.dingding.widget.PercentCirleView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="50%"/>
+    <TextView
+
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="当日纸皮卖出数量达到400斤"
+        app:layout_paddingPercent = "2%"/>
+    <TextView
+
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2017年1月10日—2017年2月10日"
+        app:layout_paddingPercent = "2%"/>
+    <TextView
+
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="任务完成奖励"
+        android:textColor="@android:color/black"
+        app:layout_paddingPercent = "2%"/>
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="下次平台补贴增加10%"
+        app:layout_paddingPercent = "2%"/>
+</com.zhy.android.percent.support.PercentLinearLayout>

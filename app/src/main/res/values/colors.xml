@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="gallery_blue">#14A083</color>
     <color name="background">#F5F7F6</color>
+    <color name="selector_green">#069D7C</color>
+    <color name="selector_white">#ffffff</color>
 </resources>

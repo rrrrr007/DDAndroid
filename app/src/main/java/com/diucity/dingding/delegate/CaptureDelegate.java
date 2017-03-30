@@ -1,17 +1,18 @@
 package com.diucity.dingding.delegate;
 
-
 import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
 
+
 /**
- * Created by Administrator on 2017/3/24 0024.
+ * Created by Administrator on 2017/3/28 0028.
  */
 
-public class StatisticsDelegate extends AppDelegate {
+public class CaptureDelegate extends AppDelegate {
+
     @Override
     public int getRootLayoutId() {
-        return R.layout.activity_statistics;
+        return R.layout.activity_capture;
     }
 
     @Override
@@ -22,6 +23,5 @@ public class StatisticsDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-
     }
 }

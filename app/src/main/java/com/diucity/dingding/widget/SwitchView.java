@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.diucity.dingding.R;
-import com.diucity.dingding.utils.DensityUtils;
+import com.liaoinstan.springview.utils.DensityUtil;
 
 /**
  * Created by Administrator on 2017/3/23 0023.
@@ -47,7 +47,7 @@ public class SwitchView extends View implements View.OnClickListener {
     private void init(Context context) {
         mContext = context;
         //设置宽高
-        width = DensityUtils.dip2px(mContext, 60);
+        width = DensityUtil.dip2px(mContext, 60);
         height = width / 2;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         setOnClickListener(this);
@@ -73,9 +73,9 @@ public class SwitchView extends View implements View.OnClickListener {
         mPaint.setColor(Color.WHITE);
         //根据控件当前状态判断将圆圈画在左边还是右边
         if (isOpen) {
-            canvas.drawCircle(width / 4 * 3, height / 2, height / 2 - DensityUtils.dip2px(mContext, 2), mPaint);
+            canvas.drawCircle(width / 4 * 3, height / 2, height / 2 - DensityUtil.dip2px(mContext, 2), mPaint);
         } else {
-            canvas.drawCircle(width / 4, height / 2, height / 2 - DensityUtils.dip2px(mContext, 2), mPaint);
+            canvas.drawCircle(width / 4, height / 2, height / 2 - DensityUtil.dip2px(mContext, 2), mPaint);
         }
     }
 
@@ -94,7 +94,7 @@ public class SwitchView extends View implements View.OnClickListener {
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
         } else {
-            result = (int) DensityUtils.dip2px(mContext, 60) + getPaddingLeft() + getPaddingRight();
+            result = (int) DensityUtil.dip2px(mContext, 60) + getPaddingLeft() + getPaddingRight();
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
@@ -112,7 +112,7 @@ public class SwitchView extends View implements View.OnClickListener {
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
         } else {
-            result = (int) DensityUtils.dip2px(mContext, 60) / 2 + getPaddingTop() + getPaddingBottom();
+            result = (int) DensityUtil.dip2px(mContext, 60) / 2 + getPaddingTop() + getPaddingBottom();
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
@@ -127,7 +127,8 @@ public class SwitchView extends View implements View.OnClickListener {
     public void onClick(View view) {
         isOpen = !isOpen;
         postInvalidate();
-        linster.click(isOpen);
+        if (linster != null)
+            linster.click(isOpen);
     }
 
     /**
@@ -158,7 +159,8 @@ public class SwitchView extends View implements View.OnClickListener {
     public boolean isOpen() {
         return isOpen;
     }
-    public interface Linster{
+
+    public interface Linster {
         void click(boolean turn);
     }
 }
