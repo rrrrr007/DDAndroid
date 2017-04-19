@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_home"
@@ -7,62 +7,103 @@
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.HomeActivity">
 
-    <com.zhy.android.percent.support.PercentRelativeLayout
+    <RelativeLayout
+        android:id="@+id/rl_home_ss"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="#17B384"
-            android:gravity="center_vertical"
-            app:layout_heightPercent="40%">
-            <TextView
-                android:id="@+id/tv_home_collect"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:drawableTop="@mipmap/ic_launcher"
-                android:text="回收"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_home_sell"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:drawableTop="@mipmap/ic_launcher"
-                android:text="卖废品"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_home_price"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:drawableTop="@mipmap/ic_launcher"
-                android:text="今日价格"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_home_dynamic"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:drawableTop="@mipmap/ic_launcher"
-                android:text="动态"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_home"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_heightPercent="60%"
-            app:layout_marginTopPercent="40%">
+        android:layout_height="0dp"
+        android:background="@drawable/toolbar_shape"
+        app:layout_heightPercent="18%">
+    </RelativeLayout>
 
-        </android.support.v7.widget.RecyclerView>
-    </com.zhy.android.percent.support.PercentRelativeLayout>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="叮叮回收"
+        android:textColor="@color/text_black"
+        android:textSize="17sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_widthPercent="100%" />
 
-    <include layout="@layout/include_home" />
-</android.support.v4.widget.DrawerLayout>
+    <ImageView
+        android:id="@+id/iv_home_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_home_navigation_me"
+        app:layout_marginTopPercent="3%"
+        app:layout_heightPercent="8%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
+
+    <ImageView
+        android:id="@+id/iv_home_system"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="center"
+        android:src="@mipmap/ic_home_navigation_notification"
+        app:layout_marginTopPercent="3%"
+        app:layout_heightPercent="8%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
+    <com.diucity.dingding.widget.SwitchBarView
+        android:id="@+id/sbv_home"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/iv_home_wallet"
+        android:layout_toLeftOf="@id/iv_home_system"
+        app:layout_heightPercent="5.6%"
+        app:layout_marginTopPercent="11.7%" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_home_ss" />
+    <ImageView
+        android:id="@+id/iv_home_sell"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_home_code_normal_normal"
+        app:layout_heightPercent="11%"
+        app:layout_paddingLeftPercent="2%"
+        app:layout_paddingRightPercent="2%" />
+
+    <ImageView
+        android:id="@+id/iv_home_collect"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_home_scan_normal"
+        app:layout_heightPercent="11%"
+        app:layout_paddingLeftPercent="2%"
+        app:layout_paddingRightPercent="2%" />
+    <ImageView
+        android:id="@+id/iv_home_call"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_home_service_normal"
+        app:layout_heightPercent="11%"
+        app:layout_paddingLeftPercent="2%"
+        app:layout_paddingRightPercent="2%" />
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
+</com.zhy.android.percent.support.PercentRelativeLayout>

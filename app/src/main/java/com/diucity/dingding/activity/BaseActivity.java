@@ -20,7 +20,7 @@ import rx.Subscription;
 
 public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity<T> {
     protected final String TAG = getClass().getSimpleName();
-    public static BaseActivity activity;
+    public BaseActivity activity;
     protected List<Subscription> subscriptions;
 
     @Override
@@ -31,7 +31,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         ((App) ActivityUtils.getContext()).addActivity(this);
 
     }
-    public void isNetWork(boolean is){
+    public void isShowSmallWarn(boolean is){
         if (is){
             //show
             ((AppDelegate)viewDelegate).showSmallWarn();

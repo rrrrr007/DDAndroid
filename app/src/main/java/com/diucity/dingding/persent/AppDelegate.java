@@ -1,18 +1,3 @@
-/*
- * Copyright (c) 2015, 张涛.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.diucity.dingding.persent;
 
 import android.animation.Animator;
@@ -26,15 +11,21 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DrawableUtils;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -50,6 +41,7 @@ import com.zhy.android.percent.support.PercentRelativeLayout;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -61,13 +53,19 @@ public abstract class AppDelegate implements IDelegate {
     private LayoutInflater inflater;
     protected View rootView;
     private Dialog dialog;
-    private TextView text;
+    private View view;
     private TextView small;
     private LayoutTransition mTransition;
+    private Observable<Long> observable;
+    private Subscription subscribe;
 
     public abstract int getRootLayoutId();
 
     public abstract boolean needShow();
+
+    public LayoutInflater getInflater() {
+        return inflater;
+    }
 
     @Override
     public void create(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,8 +79,8 @@ public abstract class AppDelegate implements IDelegate {
         return 0;
     }
 
-    public Toolbar getToolbar() {
-        return null;
+    @Override
+    public void initWidget() {
     }
 
     @Override
@@ -94,8 +92,8 @@ public abstract class AppDelegate implements IDelegate {
         this.rootView = rootView;
     }
 
-    @Override
-    public void initWidget() {
+    public Toolbar getToolbar() {
+        return null;
     }
 
     public <T extends View> T bindView(int id) {
@@ -120,75 +118,120 @@ public abstract class AppDelegate implements IDelegate {
         }
     }
 
-    public void toast(CharSequence msg) {
-        Toast.makeText(rootView.getContext(), msg, Toast.LENGTH_SHORT).show();
-    }
-
     public <T extends Activity> T getActivity() {
         return (T) rootView.getContext();
     }
 
-    public void showNormalWarn(ViewGroup vg, int pattern, String content) {
-        if (text == null) {
-            text = new TextView(getActivity());
-            text.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            text.setGravity(Gravity.CENTER);
+    public void setText(String str ,int id){
+        ((TextView)get(id)).setText(str);
+    }
+    public void setText(SpannableString textSpan , int id){
+        ((TextView)get(id)).setText(textSpan);
+    }
 
+
+    public void setEnable(boolean is, int id) {
+        if (is != get(id).isEnabled())
+            get(id).setEnabled(is);
+    }
+
+    public void finish() {
+        getActivity().finish();
+    }
+
+    public void startActivity(Class a) {
+        getActivity().startActivity(new Intent(getActivity(), a));
+    }
+    public void startActivity(Intent intent) {
+        getActivity().startActivity(intent);
+    }
+
+    public void startActivity(Class a, String key, String value) {
+        Intent intent = new Intent(getActivity(), a);
+        intent.putExtra(key, value);
+        getActivity().startActivity(intent);
+    }
+
+
+    public void toast(CharSequence msg) {
+        Toast.makeText(rootView.getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showNormalWarn(ViewGroup vg, int pattern, String content) {
+        if (vg.getChildCount() > 0) {
+            return;
+        }
+        vg.getHeight();
+        if (view == null) {
+            view = inflater.inflate(R.layout.view_normal, null);
+            view.setOnTouchListener((v, event) -> {
+                if (subscribe != null && !subscribe.isUnsubscribed())
+                    subscribe.unsubscribe();
+                vg.removeView(view);
+                return false;
+            });
         }
         if (mTransition == null) {
-            setupCustomAnimations();
+            setupCustomAnimations(vg.getHeight());
         }
         vg.setLayoutTransition(mTransition);
         vg.setLayoutAnimation(new LayoutAnimationController(AnimationUtils.loadAnimation(
                 getActivity(), R.anim.list_animation), 0.5f));
+        TextView tv = (TextView) view.findViewById(R.id.tv_notice_normal);
+        Drawable drawable = null;
         switch (pattern) {
             case 1:
-                text.setBackgroundColor(Color.parseColor("#009578"));
+                tv.setTextColor(Color.parseColor("#F5F8F7"));
+                drawable = ContextCompat.getDrawable(getActivity(),R.mipmap.ic_cmm_success_small_white);
+                view.setBackgroundResource(R.drawable.normal_color1);
                 break;
             case 2:
-                text.setBackgroundColor(Color.parseColor("#D8F0F0"));
+                tv.setTextColor(Color.parseColor("#031912"));
+                drawable = ContextCompat.getDrawable(getActivity(),R.mipmap.ic_cmm_remind_small);
+                view.setBackgroundResource(R.drawable.normal_color2);
+
                 break;
             case 3:
-                text.setBackgroundColor(Color.parseColor("#FFCCCB"));
+                tv.setTextColor(Color.parseColor("#031912"));
+                drawable = ContextCompat.getDrawable(getActivity(),R.mipmap.ic_cmm_error_small);
+                view.setBackgroundResource(R.drawable.normal_color3);
                 break;
         }
-        text.setText(content);
-        vg.addView(text);
-        Observable.timer(2, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    vg.removeView(text);
-                });
-
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        tv.setCompoundDrawables(drawable, null, null, null);
+        tv.setText(content);
+        vg.addView(view);
+        if (observable == null)
+            observable = Observable.timer(3, TimeUnit.SECONDS)
+                    .observeOn(AndroidSchedulers.mainThread());
+        subscribe = observable.subscribe(aLong -> {
+            vg.removeView(view);
+        });
     }
 
     public void showSmallWarn() {
-        if (!needShow()){
+        if (!needShow()) {
             return;
         }
         ViewGroup vg = get(R.id.notice);
-        if (vg.getChildCount()>0){
+        if (vg.getChildCount() > 0) {
             return;
         }
         if (small == null) {
-            small = new TextView(getActivity());
-            small.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            small.setGravity(Gravity.CENTER);
-            small.setText("网络不给力");
-            small.setBackgroundColor(Color.parseColor("#FFCCCB"));
+            small = (TextView) inflater.inflate(R.layout.view_small, null);
             small.setOnClickListener(v -> {
                 getActivity().startActivity(new Intent(ACTION_SETTINGS));
-
             });
         }
         vg.addView(small);
     }
-    public void hideSmallWarn(){
-        if (!needShow()){
+
+    public void hideSmallWarn() {
+        if (!needShow()) {
             return;
         }
         ViewGroup vg = get(R.id.notice);
-        if (small!=null){
+        if (small != null) {
             vg.removeView(small);
         }
 
@@ -215,7 +258,7 @@ public abstract class AppDelegate implements IDelegate {
             dialog.dismiss();
     }
 
-    private void setupCustomAnimations() {
+    private void setupCustomAnimations(float height) {
         // Changing while Adding
         mTransition = new LayoutTransition();
         PropertyValuesHolder pvhLeft = PropertyValuesHolder.ofInt("left", 0, 1);
@@ -238,7 +281,6 @@ public abstract class AppDelegate implements IDelegate {
                 view.setScaleY(1f);
             }
         });
-
         // 动画：CHANGE_DISAPPEARING
         // Changing while Removing
         Keyframe kf0 = Keyframe.ofFloat(0f, 0f);
@@ -263,8 +305,8 @@ public abstract class AppDelegate implements IDelegate {
 
         // 动画：APPEARING
         // Adding
-        ObjectAnimator animIn = ObjectAnimator.ofFloat(null, "rotationY", 90f,
-                0f).setDuration(
+        ObjectAnimator animIn = ObjectAnimator.ofFloat(null, "translationY", -height,
+                0).setDuration(
                 mTransition.getDuration(LayoutTransition.APPEARING));
         mTransition.setAnimator(LayoutTransition.APPEARING, animIn);
         animIn.addListener(new AnimatorListenerAdapter() {
@@ -276,8 +318,8 @@ public abstract class AppDelegate implements IDelegate {
 
         // 动画：DISAPPEARING
         // Removing
-        ObjectAnimator animOut = ObjectAnimator.ofFloat(null, "rotationX", 0f,
-                90f).setDuration(
+        ObjectAnimator animOut = ObjectAnimator.ofFloat(null, "translationY", 0,
+                -height).setDuration(
                 mTransition.getDuration(LayoutTransition.DISAPPEARING));
         mTransition.setAnimator(LayoutTransition.DISAPPEARING, animOut);
         animOut.addListener(new AnimatorListenerAdapter() {
@@ -286,7 +328,5 @@ public abstract class AppDelegate implements IDelegate {
                 view.setRotationX(0f);
             }
         });
-
     }
-
 }

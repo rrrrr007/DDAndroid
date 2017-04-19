@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        tools:targetApi="lollipop">
+
+        <TextView
+            android:id="@+id/adapter_tv_count_number"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/text_checked_shape"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="0个"
+            android:textColor="@drawable/text_selector" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        app:cardCornerRadius="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        tools:targetApi="lollipop">
+
+        <RelativeLayout
+            android:id="@+id/adapter_ll_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/linear_selector"
+            android:clickable="false"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/adapter_iv_count_src"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
+            <ImageView
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:id="@+id/adapter_iv_count_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_cmm_radio_list"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:id="@+id/adapter_tv_count_kinds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/adapter_iv_count_src"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="啤酒瓶"
+                android:textColor="@drawable/text_selector2" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

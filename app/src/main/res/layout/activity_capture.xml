@@ -14,25 +14,30 @@
         android:id="@+id/rl_toolbar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_heightPercent="13%"
-        app:layout_widthPercent="100%">
+        app:layout_marginTopPercent="3%"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="100%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%">
 
         <ImageView
+            android:id="@+id/iv_capture_back"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_buy_navigation_close"/>
         <ImageView
             android:id="@+id/iv_capture_flash"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_buy_navigation_light_off"/>
         <TextView
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="17sp"
             android:text="扫二维码"
             android:textColor="@android:color/white"/>
         </RelativeLayout>

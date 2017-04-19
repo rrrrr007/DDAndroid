@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -20,11 +21,11 @@ import static android.graphics.Paint.ANTI_ALIAS_FLAG;
  */
 
 public class InputView extends EditText {
-    private static final int defaultContMargin = 5;
-    private static final int defaultSplitLineWidth = 3;
+    private static final int defaultContMargin = 2;
+    private static final int defaultSplitLineWidth = 1;
 
     private int borderColor = 0xFFCCCCCC;
-    private float borderWidth = 5;
+    private float borderWidth = 2;
     private float borderRadius = 3;
 
     private int passwordLength = 6;
@@ -35,6 +36,7 @@ public class InputView extends EditText {
     private Paint passwordPaint = new Paint(ANTI_ALIAS_FLAG);
     private Paint borderPaint = new Paint(ANTI_ALIAS_FLAG);
     private int textLength;
+    private String content;
 
     public InputView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -64,9 +66,17 @@ public class InputView extends EditText {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         int width = getWidth();
-        int height = getHeight();
+        //int height = getHeight();
+        float height = 1f*width/6;
+
+
 
         // 外边框
         RectF rect = new RectF(0, 0, width, height);
@@ -94,12 +104,26 @@ public class InputView extends EditText {
             cx = width * i / passwordLength + half;
             canvas.drawCircle(cx, cy, passwordWidth, passwordPaint);
         }
+        //字
+      /*  Paint textPaint = new Paint();
+        textPaint.setTextSize(50);
+        float cx ;
+        for(int i = 0; i < textLength; i++) {
+            String str =String.valueOf(content.charAt(i));
+            cx = width * i / passwordLength+width/passwordLength/2;
+            Rect bounds = new Rect();
+            textPaint.getTextBounds(str, 0, str.length(), bounds);
+            Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();
+            float baseline = (height - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
+            canvas.drawText(str,cx-bounds.width() / 2,baseline,textPaint);
+        }*/
     }
 
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
         this.textLength = text.toString().length();
+        content=text.toString();
         invalidate();
     }
 

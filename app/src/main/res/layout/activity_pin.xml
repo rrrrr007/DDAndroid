@@ -7,46 +7,67 @@
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.ForgetActivity">
 
-    <include layout="@layout/notice_toolbar"
-        app:layout_heightPercent="13%"
-        app:layout_widthPercent="100%"/>
-
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="17sp"
+        android:textColor="@color/text_black"
+        android:gravity="center"
+        android:text="设置交易密码"
+        android:background="@drawable/toolbar_shape"
+        app:layout_heightPercent="11%"
+        app:layout_widthPercent="100%" />
 
     <TextView
         android:id="@+id/tv_pin_describe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="一：请设置叮叮交易密码"
-        app:layout_marginTopPercent="15%" />
+        android:textSize="17sp"
+        app:layout_marginTopPercent="16%" />
 
     <com.diucity.dingding.widget.InputView
         android:id="@+id/input_pin"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_below="@id/tv_pin_describe"
+        android:background="@null"
         android:cursorVisible="false"
         android:inputType="number"
         android:maxLength="6"
-        app:layout_heightPercent="8%"
-        app:layout_marginLeftPercent="10%"
-        app:layout_marginTopPercent="25%"
-        app:layout_widthPercent="80%"
+        app:layout_heightPercent ="10%"
+        app:layout_marginLeftPercent="5.5%"
+        app:layout_marginTopPercent="5%"
+        app:layout_widthPercent="89%"
         app:pivBorderColor="@android:color/black"
         app:pivBorderRadius="0dp"
-        app:pivBorderWidth="1dp"
         app:pivPasswordColor="@android:color/black"
         app:pivPasswordLength="6"
         app:pivPasswordWidth="10dp" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btn_pin_finish"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/holo_green_dark"
-        android:text="完成"
-        android:visibility="gone"
+        android:textSize="16sp"
+        android:layout_below="@id/input_pin"
+        android:background="@drawable/button_selector"
+        android:text="完      成"
+        android:textColor="@color/gallery_white"
         app:layout_heightPercent="8%"
-        app:layout_marginLeftPercent="10%"
-        app:layout_marginTopPercent="40%"
-        app:layout_widthPercent="80%" />
+        app:layout_marginLeftPercent="5.5%"
+        app:layout_marginTopPercent="5%"
+        app:layout_widthPercent="89%" />
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
 </com.zhy.android.percent.support.PercentRelativeLayout>

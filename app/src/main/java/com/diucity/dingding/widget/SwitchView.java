@@ -60,7 +60,7 @@ public class SwitchView extends View implements View.OnClickListener {
 
         //根据控件当前状态设置画笔颜色
         if (isOpen) {
-            mPaint.setColor(getResources().getColor(R.color.colorAccent));
+            mPaint.setColor(Color.parseColor("#FF4081"));
         } else {
             mPaint.setColor(Color.GRAY);
         }
@@ -120,9 +120,7 @@ public class SwitchView extends View implements View.OnClickListener {
         return result;
     }
 
-    /**
-     * 点击切换isOpen值，调用postInvalidate重绘view,可用于异步线程
-     */
+
     @Override
     public void onClick(View view) {
         isOpen = !isOpen;
@@ -131,9 +129,7 @@ public class SwitchView extends View implements View.OnClickListener {
             linster.click(isOpen);
     }
 
-    /**
-     * 打开控件开关
-     */
+
     public void open() {
         if (!isOpen) {
             isOpen = true;
@@ -141,9 +137,7 @@ public class SwitchView extends View implements View.OnClickListener {
         }
     }
 
-    /**
-     * 关闭控件开关
-     */
+
     public void close() {
         if (isOpen) {
             isOpen = false;
@@ -151,11 +145,7 @@ public class SwitchView extends View implements View.OnClickListener {
         }
     }
 
-    /**
-     * 获取控件状态
-     *
-     * @return
-     */
+
     public boolean isOpen() {
         return isOpen;
     }

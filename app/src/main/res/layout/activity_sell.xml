@@ -5,19 +5,96 @@
     android:id="@+id/activity_sell"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#17B384"
+    android:background="@drawable/background_shape"
     tools:context="com.diucity.dingding.activity.SellActivity">
-    <ImageView
-        android:id="@+id/iv_sell_qr"
-        android:layout_centerInParent="true"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_widthPercent="60%" />
+
     <TextView
-        android:layout_below="@+id/iv_sell_qr"
-        android:layout_centerHorizontal="true"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="卖废品"
+        android:textColor="@color/selector_white"
+        android:textSize="17sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_widthPercent="100%" />
+
+    <TextView
+        android:id="@+id/tv_sell_back"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/selector_white"
+        android:textSize="14sp"
+        app:layout_marginTopPercent="3%"
+        app:layout_heightPercent="8%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_sell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        tools:targetApi="lollipop">
+
+        <ImageView
+            android:id="@+id/iv_sell_qr"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:padding="25dp"
+            android:scaleType="centerInside" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_sell"
+        android:layout_centerHorizontal="true"
+        android:text="等待叮叮回收车，扫一扫交易"
         android:textColor="@color/gallery_white"
-        android:text="等待叮叮回收车，扫一扫交易"/>
+        android:textSize="15sp"
+        app:layout_marginTopPercent="3%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_sell"
+        android:layout_centerHorizontal="true"
+        android:text="等待交易中"
+        android:textColor="@color/gallery_white"
+        android:textSize="13sp"
+        app:layout_marginBottomPercent="6%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:drawablePadding="5dp"
+        android:drawableRight="@mipmap/ic_sell_position_white"
+        android:gravity="center"
+        android:text="成都高新区"
+        android:textColor="@color/gallery_white"
+        android:textSize="12sp"
+        app:layout_marginBottomPercent="3%"
+        app:layout_marginRightPercent="3%" />
+
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
 </com.zhy.android.percent.support.PercentRelativeLayout>

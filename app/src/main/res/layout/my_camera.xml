@@ -13,14 +13,14 @@
         android:id="@+id/viewfinder_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:inner_corner_color="@color/gallery_blue"
+        app:inner_corner_color="#F8960D"
         app:inner_corner_length="20dp"
         app:inner_corner_width="2dp"
-        app:inner_height="220dp"
+        app:inner_height="248dp"
         app:inner_margintop="180dp"
-        app:inner_scan_bitmap="@drawable/scan_light"
+        app:inner_scan_bitmap="@mipmap/ic_buy_line"
         app:inner_scan_iscircle="false"
         app:inner_scan_speed="10"
-        app:inner_width="220dp" />
+        app:inner_width="248dp" />
 
 </FrameLayout>

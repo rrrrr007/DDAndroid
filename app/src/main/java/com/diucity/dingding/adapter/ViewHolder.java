@@ -28,7 +28,6 @@ public class ViewHolder extends RecyclerView.ViewHolder
 
     public static ViewHolder get(Context context, ViewGroup parent, int layoutId)
     {
-
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
                 false);
         ViewHolder holder = new ViewHolder(context, itemView, parent);
@@ -36,12 +35,7 @@ public class ViewHolder extends RecyclerView.ViewHolder
     }
 
 
-    /**
-     * 通过viewId获取控件
-     *
-     * @param viewId
-     * @return
-     */
+
     public <T extends View> T getView(int viewId)
     {
         View view = mViews.get(viewId);

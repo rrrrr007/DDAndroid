@@ -10,16 +10,20 @@ import com.diucity.dingding.api.Network;
 import com.diucity.dingding.binder.ForgetBinder;
 import com.diucity.dingding.entity.MessageBack;
 import com.diucity.dingding.entity.MessageBean;
+import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.delegate.ForgetDelegate;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.concurrent.TimeUnit;
 
 import rx.Observer;
+import rx.functions.Action1;
 
 public class ForgetActivity extends BaseActivity<ForgetDelegate> {
+    private boolean enable;
 
 
     @Override
@@ -34,16 +38,37 @@ public class ForgetActivity extends BaseActivity<ForgetDelegate> {
 
     @Override
     protected void bindEvenListener() {
-        super.bindEvenListener();
+
+        //发送短信
         RxView.clicks(viewDelegate.get(R.id.btn_forget_enter)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     String phone = ((EditText) viewDelegate.get(R.id.edt_forget_phone)).getText().toString();
-                    if (TextUtils.isEmpty(phone)) {
-                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar),2,"请输入手机号");
-                        return;
-                    }
-                    String parms = GsonUtils.GsonString(new MessageBean(System.currentTimeMillis(), "5f61fb53-4e8d-4d99-85f8-a1e17059edf8"));
-                    binder.work(viewDelegate,parms);
+                    startActivity(new Intent(this,Forget2Activity.class));
+                    //binder.work(viewDelegate,new SmsBean(phone));
+                });
+
+        //清除Edt
+        RxView.clicks(viewDelegate.get(R.id.iv_forget_icon)).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.clearEdt();
+                });
+
+        //Edt字段监听
+        RxTextView.textChanges(viewDelegate.get(R.id.edt_forget_phone)).subscribe(charSequence -> {
+            enable = charSequence.length()>0;
+            viewDelegate.textChange(enable);
+            viewDelegate.setEnable(enable,R.id.btn_forget_enter);
+        });
+
+        //下划线
+        viewDelegate.get(R.id.edt_forget_phone).setOnFocusChangeListener((v, hasFocus) -> {
+            viewDelegate.lineChange(hasFocus);
+        });
+
+        //返回
+        RxView.clicks(viewDelegate.get(R.id.iv_forget_back)).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.finish();
                 });
     }
 }

@@ -34,23 +34,16 @@ public class SystemDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        ((TextView) get(R.id.toolbar)).setText("系统通知");
 
         sv = get(R.id.sv_system);
         sv.setFooter(new DefaultFooter(getActivity()));
         sv.setType(SpringView.Type.FOLLOW);
+        sv.setEnable(false);
 
         adapter = new SystemAdapter(getActivity(),null);
         RecyclerView rv = get(R.id.rv_system);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setAdapter(adapter);
-    }
-
-    public void showProgressBar(boolean is) {
-        if (is)
-            get(R.id.progressBar_system).setVisibility(View.VISIBLE);
-        else
-            get(R.id.progressBar_system).setVisibility(View.GONE);
     }
 
     public void notifyData(){
@@ -59,6 +52,18 @@ public class SystemDelegate extends AppDelegate {
         list.add("1");
         list.add("1");
         adapter.adapterNotify(list);
+        if (adapter.getItemCount()>0){
+            get(R.id.ll_system_empty).setVisibility(View.GONE);
+            sv.setEnable(true);
+        } else {
+            get(R.id.ll_system_empty).setVisibility(View.VISIBLE);
+            sv.setEnable(false);
+        }
+
+    }
+
+    public void isLoading(boolean is){
+        get(R.id.ll_system_loading).setVisibility(is?View.VISIBLE:View.GONE);
     }
 
     public void onFinishLoad(){

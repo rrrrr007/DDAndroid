@@ -27,7 +27,6 @@ public class PINDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        ((TextView) get(R.id.toolbar)).setText("设置交易密码");
 
     }
 

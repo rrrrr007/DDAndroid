@@ -5,181 +5,150 @@
     android:id="@+id/activity_wallet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/bg_me"
     tools:context="com.diucity.dingding.activity.WalletActivity">
 
-    <com.zhy.android.percent.support.PercentRelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#17B384"
-        app:layout_heightPercent="50%">
+        android:gravity="center"
+        android:text="钱包"
+        android:textColor="@color/selector_white"
+        android:textSize="17sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_widthPercent="100%" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="钱包"
-            android:textColor="@android:color/white"
-            app:layout_marginTopPercent="10%" />
+    <ImageView
+        android:id="@+id/iv_wallet_back"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_cmm_return_white"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="当前余额（元）"
-            android:textColor="@android:color/white"
-            app:layout_marginTopPercent="20%" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="0.00"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            app:layout_marginTopPercent="30%" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="提现"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            app:layout_marginTopPercent="50%" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="需要添加银行卡，才能使用余额进行提现"
-            android:textColor="@android:color/white"
-            app:layout_marginTopPercent="60%" />
-    </com.zhy.android.percent.support.PercentRelativeLayout>
+    <ImageView
+        android:id="@+id/iv_forget_back2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="center"
+        android:src="@mipmap/ic_me_navigation_set"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
 
     <android.support.v7.widget.CardView
+        android:id="@+id/card_wallet"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_heightPercent="40%"
-        app:layout_marginTopPercent="40%"
-        app:layout_widthPercent="90%"
+        app:layout_widthPercent="94%"
+        tools:targetApi="lollipop">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_wallet_ss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="当前余额（元）"
+                android:textColor="#606664"
+                android:textSize="14sp"
+                app:layout_marginTopPercent="14%" />
+
+            <TextView
+                android:id="@+id/tv_wallet_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="0.00"
+                android:textColor="#f9960d"
+                android:textSize="50sp"
+                app:layout_marginTopPercent="4%" />
+
+            <Button
+                android:id="@+id/btn_wallet"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_selector"
+                android:text="提现"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_heightPercent="16%"
+                app:layout_marginTopPercent="23%"
+                app:layout_widthPercent="90%" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/card_wallet"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_heightPercent="11%"
+        app:layout_marginTopPercent="1%"
+        app:layout_widthPercent="94%"
         tools:targetApi="lollipop">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:scaleType="center"
+                android:src="@mipmap/ic_me_bill" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:gravity="center_vertical"
+                android:text="账单明细\n近30天无交易"
+                android:textColor="@color/text_black" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:src="@mipmap/ic_launcher" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:textColor="@android:color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="账单明细" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="近30天内无交易" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_wallet_bankCard"
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/ic_cmm_arrows_list" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:src="@mipmap/ic_launcher" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:textColor="@android:color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="银行卡" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textColor="#EBBB74"
-                        android:gravity="center_vertical"
-                        android:text="点击绑定银行卡" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:src="@mipmap/ic_launcher" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textColor="@android:color/black"
-                        android:gravity="center_vertical"
-                        android:text="支付安全" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="点击了解详情" />
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
 </com.zhy.android.percent.support.PercentRelativeLayout>

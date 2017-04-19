@@ -1,21 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:layout_height="wrap_content">
     <TextView
         android:id="@+id/adapter_tv_system_time"
+        android:gravity="center"
+        android:textSize="13sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="今日 上午10:34"
-        android:textColor="@android:color/holo_green_dark" />
+        android:textColor="#9AA3A0"
+        android:text="今日 10 ：23"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"/>
+    <android.support.v7.widget.CardView
+        android:layout_below="@id/adapter_tv_system_time"
+        tools:targetApi="lollipop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:cardCornerRadius="5dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/adapter_tv_system_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#031912"
+                android:text="标题"
+                android:padding="15dp"/>
+            <ImageView
+                android:id="@+id/adapter_iv_system"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@color/text_green"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" />
+            <TextView
+                android:id="@+id/adapter_tv_system_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:textColor="#606664"
+                android:textSize="14sp"
+                android:text="1234内容"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/text_gray"/>
+            <TextView
+                android:id="@+id/adapter_tv_system_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="查看详情"
+                android:drawableRight="@mipmap/ic_cmm_arrows_list"
+                android:textColor="#031912"
+                android:padding="15dp"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-    <TextView
-        android:id="@+id/adapter_tv_system_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="内容ssss是aaaaaaaaaaaaaaaaaaaaaaaaa是aaaaaaaaaaaaaaaaaa是aaaaaaaaaaaaaa" />
-</LinearLayout>
+</RelativeLayout>

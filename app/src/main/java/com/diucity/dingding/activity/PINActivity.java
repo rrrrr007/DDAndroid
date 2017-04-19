@@ -1,11 +1,12 @@
 package com.diucity.dingding.activity;
 
 
-import android.content.Intent;
 import android.view.View;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.binder.PINBinder;
 import com.diucity.dingding.delegate.PINDelegate;
+import com.diucity.dingding.entity.Send.PaysetBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -17,7 +18,7 @@ public class PINActivity extends BaseActivity<PINDelegate> {
     private String first, second;
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new PINBinder();
     }
 
     @Override
@@ -32,8 +33,7 @@ public class PINActivity extends BaseActivity<PINDelegate> {
         RxView.clicks(viewDelegate.get(R.id.btn_pin_finish)).throttleFirst( 2 , TimeUnit.SECONDS )
                 .subscribe(aVoid -> {
                     if (first.equals(second)) {
-                        startActivity(new Intent(this, HomeActivity.class));
-                        finish();
+                        binder.work(viewDelegate,new PaysetBean("0","1",second));
                     }else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar),3,"2次交易密码不一致");
                         viewDelegate.setSecondPin();

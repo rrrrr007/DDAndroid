@@ -18,6 +18,7 @@ public abstract class DataBindActivity<T extends IDelegate> extends
         bindEvenListener();
 
     }
+
     protected void bindEvenListener() {
     }
 

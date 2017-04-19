@@ -22,6 +22,5 @@ public class CaptureDelegate extends AppDelegate {
 
     @Override
     public void initWidget() {
-        super.initWidget();
     }
 }

@@ -157,7 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/diolog_shape"
+            android:background="@drawable/dialog_shape"
             android:orientation="horizontal">
 
             <TextView

@@ -10,53 +10,41 @@
         android:layout_height="0dp"
         android:background="@drawable/dialog_shape_head"
         android:gravity="center"
-        android:text="客服咨询"
-        app:layout_heightPercent="5%"
-        app:layout_widthPercent="80%" />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#ffffff"
-        android:gravity="center"
-        android:text="是否拨打电话（400-8032023）联系客服？"
+        android:textColor="@color/text_gray"
+        android:text="联系客服（400-8032039）"
+        android:textSize="15sp"
         app:layout_heightPercent="10%"
-        app:layout_widthPercent="80%" />
+        app:layout_widthPercent="100%" />
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_widthPercent="80%" />
-
-    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/text_gray"/>
+    <TextView
+        android:background="@drawable/dialog_shape_head2"
+        android:id="@+id/dialog_tv_home_call"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/dialog_shape_head2"
-        android:orientation="horizontal"
-        app:layout_heightPercent="6%"
-        app:layout_widthPercent="80%">
+        android:gravity="center"
+        android:text="拨打"
+        android:textSize="17sp"
+        android:textColor="@color/text_blue"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="100%" />
 
-        <TextView
-            android:id="@+id/dialog_tv_home_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="取消" />
+    <TextView
+        android:background="@drawable/dialog_shape"
+        android:id="@+id/dialog_tv_home_cancel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="@color/text_blue"
+        android:textSize="17sp"
+        android:text="取消"
+        app:layout_marginTopPercent="2%"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="100%"
+        app:layout_marginBottomPercent="2%"/>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
 
-        <TextView
-            android:id="@+id/dialog_tv_home_call"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="拨号" />
-
-    </LinearLayout>
 </com.zhy.android.percent.support.PercentLinearLayout>

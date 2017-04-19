@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_count"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.diucity.dingding.activity.CountActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/toolbar_shape"
+        app:layout_heightPercent="18%"></RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:text="回收"
+        android:textColor="@color/text_black"
+        android:textSize="17sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_widthPercent="100%" />
+
+    <ImageView
+        android:id="@+id/iv_count_back"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_cmm_return_green"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
+
+    <TextView
+        android:id="@+id/tv_count_account"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:text="结算"
+        android:textColor="@color/text_green"
+        android:textSize="14sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
+
+    <ImageView
+        android:id="@+id/iv_count_header"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_launcher"
+        app:layout_heightPercent="7%"
+        app:layout_marginLeftPercent="8%"
+        app:layout_marginRightPercent="8%"
+        app:layout_marginTopPercent="11%" />
+
+    <TextView
+        android:id="@+id/tv_count_name"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/iv_count_header"
+        android:gravity="center"
+        android:text="和 清风的吹 交易中"
+        android:textColor="#606664"
+        android:textSize="14sp"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%" />
+
+    <TextView
+        android:id="@+id/tv_count_all"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:text="0.00元"
+        android:textColor="#f9960d"
+        android:textSize="20sp"
+        app:layout_heightPercent="7%"
+        app:layout_marginRightPercent="8%"
+        app:layout_marginTopPercent="11%" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_count"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_marginTopPercent="18%" />
+
+    <RelativeLayout
+        android:id="@+id/rl_count_edt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#eef0ef"
+        android:padding="7dp"
+        android:transcriptMode="normal">
+
+        <EditText
+            android:id="@+id/edt_count"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/edit_shape"
+            android:gravity="end|center_vertical"
+            android:hint="请输入数量"
+            android:inputType="numberDecimal"
+            android:paddingRight="7dp"
+            android:textColor="@color/text_black"
+            android:textColorHint="#c0ccc8"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_count_oneprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:gravity="center"
+            android:text="单价\n0.30/斤"
+            android:textColor="#606664"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/tv_count_oneprice"
+            android:background="#eef0ef" />
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
+</com.zhy.android.percent.support.PercentRelativeLayout>

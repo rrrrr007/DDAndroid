@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.diucity.dingding.activity.DetailActivity">
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="11%"
+        app:layout_widthPercent="100%"
+        android:background="@drawable/toolbar_shape"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="通知详情"
+        android:textColor="@color/text_black"
+        android:textSize="17sp"
+        app:layout_marginTopPercent = "3%"
+        app:layout_heightPercent="8%"
+        app:layout_widthPercent="100%" />
+
+    <ImageView
+        android:id="@+id/iv_detail_back"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_cmm_return_green"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent = "3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
+    <com.tencent.smtt.sdk.WebView
+        android:id="@+id/web_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_marginTopPercent = "11%"/>
+
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

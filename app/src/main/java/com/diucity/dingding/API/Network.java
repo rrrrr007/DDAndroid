@@ -1,9 +1,6 @@
 package com.diucity.dingding.api;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
@@ -16,28 +13,23 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class Network {
-    private static MsgApi msgApi;
+    private static Api api;
     private static OkHttpClient okHttpClient = new OkHttpClient();
     private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
     private static CallAdapter.Factory rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
 
-    public static MsgApi getApi() {
-        if (msgApi == null) {
+    public static Api getApi() {
+        if (api == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
-                    .baseUrl(MsgApi.BASEURL)
+                    .baseUrl(Api.BASEURL)
                     .addConverterFactory(gsonConverterFactory)
                     .addCallAdapterFactory(rxJavaCallAdapterFactory)
                     .build();
 
-            msgApi = retrofit.create(MsgApi.class);
+            api = retrofit.create(Api.class);
         }
-        return msgApi;
-    }
-    public static Map getMap(String key){
-        HashMap<String, String> map = new HashMap<>();
-                map.put(key,"");
-        return map;
+        return api;
     }
 
     public static Subscription subscribe(rx.Observable observable, Observer observer) {

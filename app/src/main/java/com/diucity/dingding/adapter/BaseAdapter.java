@@ -27,9 +27,14 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
 
     public abstract int getId();
 
+    public boolean kinds(){
+        return false;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return ViewHolder.get(context,parent,getId());
+            return ViewHolder.get(context,parent,getId());
+
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.diucity.dingding.R;
@@ -42,6 +43,8 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
             @Override
             public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
                 viewDelegate.toast(result);
+                viewDelegate.startActivity(CountActivity.class);
+                viewDelegate.finish();
             }
 
             @Override
@@ -52,21 +55,36 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_my_container, captureFragment).commit();
 
         //闪光灯
-        RxView.clicks(viewDelegate.get(R.id.iv_capture_flash)).throttleFirst(2, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.iv_capture_flash)).throttleFirst(1, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-
+                    if (getPackageManager().hasSystemFeature(
+                            PackageManager.FEATURE_CAMERA_FLASH)) {
+                    } else {
+                        Toast.makeText(activity, "不支持开启", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     camera = CameraManager.get().getCamera();
                     parameter = camera.getParameters();
+
                     // TODO 开灯
-                    if (isOpen) {
+                    if (!isOpen) {
                         parameter.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+
                         camera.setParameters(parameter);
-                        isOpen = false;
+                        camera.startPreview();
+                        isOpen = true;
+                        Log.d("ch","kai");
                     } else {  // 关灯
                         parameter.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                         camera.setParameters(parameter);
-                        isOpen = true;
+                        isOpen = false;
+                        Log.d("ch","guan");
                     }
+                });
+        //返回
+        RxView.clicks(viewDelegate.get(R.id.iv_capture_back)).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.finish();
                 });
     }
 

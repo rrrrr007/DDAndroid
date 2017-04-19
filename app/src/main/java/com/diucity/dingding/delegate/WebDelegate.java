@@ -37,10 +37,12 @@ public class WebDelegate extends AppDelegate {
         ((TextView) get(R.id.toolbar)).setText("绑定银行卡");
         WebView wv = get(R.id.webView_web);
         wv.getSettings().setJavaScriptEnabled(true);
-        wv.loadUrl("http://www.baidu.com/");
+        wv.loadUrl("https://www.baidu.com/");
         wv.addJavascriptInterface(WebDelegate.this, "android");
         wv.setWebViewClient(new WebViewClient());
     }
+
+
 
     @JavascriptInterface
     public void show() {

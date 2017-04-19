@@ -2,7 +2,7 @@
 <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@drawable/diolog_shape"
+    android:background="@drawable/dialog_shape"
     android:layout_height="match_parent">
     <com.diucity.dingding.widget.PercentCirleView
         android:layout_width="match_parent"

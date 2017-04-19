@@ -2,6 +2,7 @@ package com.diucity.dingding.delegate;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.diucity.dingding.R;
@@ -26,8 +27,9 @@ public class SellDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        Bitmap bitmap = CodeUtils.createImage("愿天堂没有代码", 400, 400, BitmapFactory.decodeResource(getActivity().getResources(), 0));
+        WindowManager wm = getActivity().getWindowManager();
+        int width = wm.getDefaultDisplay().getWidth();
+        Bitmap bitmap = CodeUtils.createImage("愿天堂没有代码", width, width, BitmapFactory.decodeResource(getActivity().getResources(), 0));
         ((ImageView)get(R.id.iv_sell_qr)).setImageBitmap(bitmap);
-
     }
 }

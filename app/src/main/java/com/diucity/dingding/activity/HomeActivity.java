@@ -1,23 +1,23 @@
 package com.diucity.dingding.activity;
 
-
-import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.view.Gravity;
-import android.view.View;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.view.Window;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.HomeDelegate;
-import com.diucity.dingding.delegate.SellDelegate;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.widget.SwitchBarView;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.concurrent.TimeUnit;
 
-public class HomeActivity extends BaseActivity<HomeDelegate> {
-    private Dialog call;
+public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPager.OnPageChangeListener {
+    private SwitchBarView sbv;
+    private ViewPager vp;
+    private AlertDialog alertDialog;
 
     @Override
     protected Class<HomeDelegate> getDelegateClass() {
@@ -31,82 +31,82 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
 
     @Override
     protected void bindEvenListener() {
-        super.bindEvenListener();
-        //个人中心
-        RxView.clicks(viewDelegate.get(R.id.ll_home_item1)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(new Intent(this,UserInfoActivity.class));
-                });
         //我的钱包
-        RxView.clicks(viewDelegate.get(R.id.ll_home_wallet)).throttleFirst(2, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.iv_home_wallet)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    startActivity(new Intent(this, WalletActivity.class));
+                    viewDelegate.startActivity(WalletActivity.class);
                 });
-        //任务列表
-        RxView.clicks(viewDelegate.get(R.id.ll_home_mission)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(new Intent(this,MissionActivity.class));
-                });
-        //账单明细
-        RxView.clicks(viewDelegate.get(R.id.ll_home_record)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(new Intent(this,RecordActivity.class));
-                });
-        //收益统计
-        RxView.clicks(viewDelegate.get(R.id.ll_home_statistics)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(new Intent(this,StatisticsActivity.class));
-                });
+
         //联系客服
-        RxView.clicks(viewDelegate.get(R.id.ll_home_call)).throttleFirst(2, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.iv_home_call)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     showCallDialog();
                 });
-        //设置
-        RxView.clicks(viewDelegate.get(R.id.ll_home_options)).throttleFirst(2, TimeUnit.SECONDS)
+
+        //系统消息
+        RxView.clicks(viewDelegate.get(R.id.iv_home_system)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    startActivity(new Intent(this,OptionsActivity.class));
-                });
-        //回收
-        RxView.clicks(viewDelegate.get(R.id.tv_home_collect)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(new Intent(this, CaptureActivity.class));
-                });
-        //卖
-        RxView.clicks(viewDelegate.get(R.id.tv_home_sell)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(new Intent(this,SellActivity.class));
-                });
-        //今天价格
-        RxView.clicks(viewDelegate.get(R.id.tv_home_price)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(new Intent(this,PriceActivity.class));
-                });
-        //动态
-        RxView.clicks(viewDelegate.get(R.id.tv_home_dynamic)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    startActivity(new Intent(this,MissionActivity.class));
+                    viewDelegate.startActivity(SystemActivity.class);
                 });
 
+        //回收
+        RxView.clicks(viewDelegate.get(R.id.iv_home_collect)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.startActivity(CaptureActivity.class);
+                });
+        //卖
+        RxView.clicks(viewDelegate.get(R.id.iv_home_sell)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.startActivity(SellActivity.class);
+                });
+
+        //vp滑动监听
+        vp.addOnPageChangeListener(this);
+
+        //选择器
+        sbv.setListener(i -> {
+            vp.setCurrentItem(i - 1);
+        });
+
     }
-    private void showCallDialog() {
-        if (call == null) {
-            View view = getLayoutInflater().inflate(R.layout.dialog_home_call, null);
-            RxView.clicks(view.findViewById(R.id.dialog_tv_home_cancel)).throttleFirst(2, TimeUnit.SECONDS)
-                    .subscribe(aVoid -> {
-                        call.dismiss();
-                    });
-            RxView.clicks(view.findViewById(R.id.dialog_tv_home_call)).throttleFirst(2, TimeUnit.SECONDS)
-                    .subscribe(aVoid -> {
+
+    @Override
+    public void initData() {
+        sbv = viewDelegate.get(R.id.sbv_home);
+        vp = viewDelegate.get(R.id.vp_home);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        sbv.startAnim(position + 1);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+    public void showCallDialog() {
+        if (alertDialog==null){
+            alertDialog = new AlertDialog.Builder(this)
+                    .setTitle("提示")
+                    .setMessage("联系客服（400-8032039）")
+                    .setPositiveButton("拨打", (dialog, which) -> {
+                        alertDialog.dismiss();
                         Intent intent = new Intent(Intent.ACTION_DIAL);
                         intent.setData(Uri.parse("tel:" + "400-8032023"));
                         startActivity(intent);
-                    });
-            call = new Dialog(this, R.style.dialog);
-            call.setContentView(view);
-            Window dialogWindow = call.getWindow();
-            dialogWindow.setGravity(Gravity.CENTER);
+                    })
+                    .setNegativeButton("取消", (dialog2, which) -> alertDialog.dismiss()).create();
+            Window window = alertDialog.getWindow();
+            window.setWindowAnimations(R.style.dialog_style);
         }
-        call.show();
+        alertDialog.show();
+
     }
+
 }

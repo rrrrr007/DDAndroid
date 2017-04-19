@@ -22,6 +22,7 @@ public class App extends android.app.Application {
     public final static boolean DEBUG = true;
     private static App app;
     private static int mainTid;
+    private static int height;
 
     public static List<BaseActivity> activities;
     static {
@@ -76,5 +77,12 @@ public class App extends android.app.Application {
         System.exit(0);
     }
 
+    public static int getHeight() {
+        return height;
+    }
+
+    public static void setHeight(int height) {
+        App.height = height;
+    }
 }
 

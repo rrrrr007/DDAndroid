@@ -3,13 +3,18 @@ package com.diucity.dingding.activity;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.binder.Forget2Binder;
+import com.diucity.dingding.entity.Send.ResetBean;
+import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.delegate.Forget2Delegate;
 import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,8 +22,10 @@ import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class Forget2Activity extends BaseActivity<Forget2Delegate> {
-
+public class Forget2Activity extends BaseActivity<Forget2Delegate> implements View.OnFocusChangeListener {
+    private String phone;
+    private boolean codeEnable;
+    private boolean passwordEnable;
 
     @Override
     protected Class<Forget2Delegate> getDelegateClass() {
@@ -27,43 +34,64 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> {
 
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new Forget2Binder();
     }
 
     @Override
     protected void bindEvenListener() {
-        super.bindEvenListener();
         //完成输入
         RxView.clicks(viewDelegate.get(R.id.btn_forget2_finish)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     String code = ((EditText) viewDelegate.get(R.id.edt_forget2_code)).getText().toString();
                     String password = ((EditText) viewDelegate.get(R.id.edt_forget2_password)).getText().toString();
-                    if (TextUtils.isEmpty(code) || TextUtils.isEmpty(password)) {
-                        //viewDelegate.showNormalWarn();
-                        return;
-                    }
-                    viewDelegate.showLoadingWarn("密码重设中");
-                    finish();
+                    binder.work(viewDelegate, new ResetBean(phone,code,password));
 
                 });
-        //timer
-        TextView timer = viewDelegate.get(R.id.tv_forget2_timer);
-        Subscription subscription = Observable.interval(1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .limit(60)
-                .subscribe(num -> {
-                    Log.d("ch", num.toString());
-                    if (num == 59)
-                        timer.setText("重新发送");
-                    else
-                        timer.setText((59L - num) + "s");
-                });
-        subscriptions.add(subscription);
+
+        //edt字段监听
+        RxTextView.textChanges(viewDelegate.get(R.id.edt_forget2_code)).subscribe(charSequence -> {
+            codeEnable = charSequence.length()>0;
+            viewDelegate.setEnable(codeEnable&&passwordEnable,R.id.btn_forget2_finish);
+        });
+        RxTextView.textChanges(viewDelegate.get(R.id.edt_forget2_password)).subscribe(charSequence -> {
+            passwordEnable = charSequence.length()>0;
+            viewDelegate.textChange(charSequence.length()>0);
+            viewDelegate.setEnable(codeEnable&&passwordEnable,R.id.btn_forget2_finish);
+        });
+
         //重新发送
-        RxView.clicks(timer).throttleFirst(2, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.tv_forget2_timer)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    if (!timer.getText().toString().equals("重新发送"))
-                        return;
+                    if (viewDelegate.timer())
+                        binder.work(viewDelegate,new SmsBean(phone));
                 });
+
+        //清除Edt
+        RxView.clicks(viewDelegate.get(R.id.iv_forget2_icon)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.clearEdt();
+                });
+
+        //下划线
+        viewDelegate.get(R.id.edt_forget2_code).setOnFocusChangeListener(this);
+        viewDelegate.get(R.id.edt_forget2_password).setOnFocusChangeListener(this);
+
+        //返回
+        RxView.clicks(viewDelegate.get(R.id.iv_forget2_back)).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.startActivity(ForgetActivity.class);
+                    viewDelegate.finish();
+                });
+    }
+
+    @Override
+    public void initData() {
+        phone = getIntent().getStringExtra("phone");
+        viewDelegate.timer();
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        viewDelegate.lineChange(v,hasFocus);
     }
 }

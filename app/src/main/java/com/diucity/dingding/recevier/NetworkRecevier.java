@@ -25,15 +25,13 @@ public class NetworkRecevier extends BroadcastReceiver {
         NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
             Log.i("ch", "unconnect");
-
             // unconnect network
         }else {
             Log.i("ch", "connect");
             // connect network
         }
         for (BaseActivity activity : App.activities) {
-            activity.isNetWork(!mobNetInfo.isConnected() && !wifiNetInfo.isConnected());
+            activity.isShowSmallWarn(!mobNetInfo.isConnected() && !wifiNetInfo.isConnected());
         }
-
     }
 }

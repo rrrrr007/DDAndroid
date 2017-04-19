@@ -7,7 +7,10 @@ import com.diucity.dingding.delegate.SystemDelegate;
 import com.diucity.dingding.entity.MessageBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
+import com.jakewharton.rxbinding.view.RxView;
 import com.liaoinstan.springview.widget.SpringView;
+
+import java.util.concurrent.TimeUnit;
 
 public class SystemActivity extends BaseActivity<SystemDelegate> {
 
@@ -32,16 +35,19 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
 
             @Override
             public void onLoadmore() {
-                String parms2 = GsonUtils.GsonString(new MessageBean(System.currentTimeMillis(), "5f61fb53-4e8d-4d99-85f8-a1e17059edf8"));
-                binder.work(viewDelegate, parms2);
+
+                viewDelegate.onFinishLoad();
             }
         });
+        //返回
+        RxView.clicks(viewDelegate.get(R.id.iv_system_back)).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.notifyData();
+                    //viewDelegate.finish();
+                });
     }
 
     @Override
     public void initData() {
-        super.initData();
-        String parms = GsonUtils.GsonString(new MessageBean(System.currentTimeMillis(), "5f61fb53-4e8d-4d99-85f8-a1e17059edf8"));
-        binder.work(viewDelegate, parms);
     }
 }

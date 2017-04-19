@@ -25,10 +25,15 @@ public class WalletActivity extends BaseActivity<WalletDelegate> {
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
-        //绑定银行卡
+       /* //绑定银行卡
         RxView.clicks(viewDelegate.get(R.id.ll_wallet_bankCard)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     startActivity(new Intent(this,WebActivity.class));
+                });*/
+        //返回
+        RxView.clicks(viewDelegate.get(R.id.iv_wallet_back)).throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.finish();
                 });
     }
 }

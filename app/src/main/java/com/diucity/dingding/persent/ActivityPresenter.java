@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 package com.diucity.dingding.persent;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;

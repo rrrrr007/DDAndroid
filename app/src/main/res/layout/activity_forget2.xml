@@ -5,60 +5,147 @@
     android:id="@+id/activity_forget2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/selector_white"
     tools:context="com.diucity.dingding.activity.Forget2Activity">
-
-    <include
-        layout="@layout/notice_toolbar"
-        app:layout_heightPercent="13%"
-        app:layout_widthPercent="100%" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="11%"
+        app:layout_widthPercent="100%"
+        android:background="@drawable/toolbar_shape"/>
 
     <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_marginTopPercent="3%"
+        android:gravity="center"
+        android:text="重设密码"
+        android:textColor="@color/text_black"
+        android:textSize="17sp"
+
+        app:layout_heightPercent="8%"
+        app:layout_widthPercent="100%" />
+    <ImageView
+        android:id="@+id/iv_forget2_back"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_cmm_return_green"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
+
+    <TextView
+        android:textColor="@color/text_gray2"
         android:id="@+id/tv_forget2_describe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:text="我们已经发送验证码到您手机"
-        app:layout_marginTopPercent="15%" />
+        android:textSize="15sp"
+        app:layout_marginTopPercent="18%" />
+
     <EditText
         android:id="@+id/edt_forget2_code"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_below="@id/tv_forget2_describe"
+        android:layout_centerHorizontal="true"
+        android:background="@null"
         android:hint="输入短信验证码"
-        android:inputType="phone"
+        android:inputType="number"
         android:maxLength="6"
-        android:textColorHint="@android:color/darker_gray"
-        app:layout_heightPercent="10%"
-        app:layout_marginLeftPercent="20%"
-        app:layout_marginTopPercent="25%"
-        app:layout_widthPercent="60%" />
+        android:textColor="@color/text_black"
+        android:textColorHint="@color/text_gray"
+        android:textSize="17sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="7%"
+        app:layout_widthPercent="57%" />
+
+    <View
+        android:id="@+id/view_forget2_1"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_below="@id/edt_forget2_code"
+        android:layout_centerHorizontal="true"
+        android:background="@color/text_gray"
+        app:layout_widthPercent="57%" />
+
     <TextView
-        android:layout_alignRight="@id/edt_forget2_code"
         android:id="@+id/tv_forget2_timer"
-        app:layout_marginTopPercent="25%"
-        android:text="60s"
-        android:textColor="@android:color/holo_green_dark"
-        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_heightPercent="10%"
-        />
+        android:layout_alignRight="@id/edt_forget2_code"
+        android:layout_below="@id/tv_forget2_describe"
+        android:gravity="center"
+        android:text="重新发送"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="15sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="7%" />
+
     <EditText
+        android:layout_below="@id/edt_forget2_code"
         android:id="@+id/edt_forget2_password"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:background="@null"
         android:hint="点击输入新密码"
-        android:textColorHint="@android:color/darker_gray"
-        app:layout_heightPercent="10%"
-        app:layout_marginLeftPercent="20%"
-        app:layout_marginTopPercent="35%"
-        app:layout_widthPercent="60%" />
+        android:inputType="number"
+        android:textColor="@color/text_black"
+        android:textColorHint="@color/text_gray"
+        android:textSize="17sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_widthPercent="57%" />
+
+    <View
+        android:id="@+id/view_forget2_2"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_below="@id/edt_forget2_password"
+        android:layout_centerHorizontal="true"
+        android:background="@color/text_gray"
+        app:layout_widthPercent="57%" />
+
     <Button
+        android:enabled="false"
         android:id="@+id/btn_forget2_finish"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="完成"
-        app:layout_heightPercent="10%"
-        app:layout_marginLeftPercent="20%"
-        app:layout_marginTopPercent="50%"
-        app:layout_widthPercent="60%" />
+        android:layout_below="@id/edt_forget2_password"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_selector"
+        android:text="完    成"
+        android:textColor="@drawable/text_shape"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="7%"
+        app:layout_widthPercent="57%" />
+
+    <ImageView
+        android:id="@+id/iv_forget2_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_alignTop="@id/edt_forget2_password"
+        android:layout_toRightOf="@id/tv_forget2_timer"
+        android:scaleType="center"
+        android:src="@mipmap/ic_cmm_rev_list"
+        android:visibility="gone"
+        app:layout_heightPercent="8%" />
+
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
 </com.zhy.android.percent.support.PercentRelativeLayout>
