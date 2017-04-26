@@ -10,9 +10,9 @@
         android:id="@+id/adapter_tv_price_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="3dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
         android:text="累计交易奖励"
         android:textColor="#606664"
         android:textSize="13sp" />
@@ -21,7 +21,7 @@
         android:id="@+id/adapter_cv_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         app:cardCornerRadius="5dp"
@@ -34,10 +34,10 @@
             android:layout_height="wrap_content"
             android:background="@color/selector_white"
             android:orientation="vertical"
-            android:paddingBottom="12dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="15dp"
-            android:paddingTop="12dp">
+            android:paddingTop="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -69,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="0.22"
                 android:textColor="#F9960D"
                 android:textSize="30sp" />
         </RelativeLayout>

@@ -19,7 +19,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/text_gray"/>
+        android:background="@color/line_gray"/>
     <TextView
         android:background="@drawable/dialog_shape_head2"
         android:id="@+id/dialog_tv_home_call"

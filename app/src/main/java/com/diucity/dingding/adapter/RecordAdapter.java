@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
-import com.diucity.dingding.widget.PercentCirleView;
 
 import java.util.ArrayList;
 
@@ -13,9 +12,9 @@ import java.util.ArrayList;
  * Created by Administrator on 2017/3/29 0029.
  */
 
-public class RecordAdapter<String> extends BaseAdapter<ViewHolder> {
+public class RecordAdapter extends BaseAdapter<String> {
 
-    public RecordAdapter(Context context, ArrayList model) {
+    public RecordAdapter(Context context, ArrayList<String> model) {
         super(context, model);
     }
 
@@ -33,5 +32,12 @@ public class RecordAdapter<String> extends BaseAdapter<ViewHolder> {
         }else {
             month.setVisibility(View.GONE);
         }
+    }
+
+    public void adapterNotify(ArrayList<String> model){
+        int i = getItemCount();
+        if (model!=null&&model.size()>0)
+            getModel().addAll(model);
+        notifyItemChanged(i);
     }
 }

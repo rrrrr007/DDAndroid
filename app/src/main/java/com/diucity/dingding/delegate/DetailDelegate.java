@@ -1,7 +1,12 @@
 package com.diucity.dingding.delegate;
 
+import android.graphics.Bitmap;
+import android.util.Log;
+
 import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.widget.ProgressView;
+import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -39,6 +44,25 @@ public class DetailDelegate extends AppDelegate {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
+            }
+            @Override
+            public void onPageFinished(WebView webView, String s) {
+                super.onPageFinished(webView, s);
+                ((ProgressView)get(R.id.pv_detail)).reset();
+            }
+
+            @Override
+            public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+                super.onPageStarted(webView, s, bitmap);
+                ((ProgressView)get(R.id.pv_detail)).reset();
+            }
+        });
+        webView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView webView, int i) {
+                Log.d("ch","i"+i);
+                super.onProgressChanged(webView, i);
+                ((ProgressView)get(R.id.pv_detail)).setProgress(i);
             }
         });
     }

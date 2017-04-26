@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.SystemActivity">
+
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_heightPercent="11%"
         app:layout_widthPercent="100%"
-        android:background="@drawable/toolbar_shape"/>
+        android:background="@drawable/toolbar_shape" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"

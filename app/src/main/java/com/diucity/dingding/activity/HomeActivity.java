@@ -1,14 +1,25 @@
 package com.diucity.dingding.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.binder.HomeBinder;
 import com.diucity.dingding.delegate.HomeDelegate;
+import com.diucity.dingding.entity.Send.BasketBean;
+import com.diucity.dingding.entity.Send.ScrapsBean;
+import com.diucity.dingding.entity.Send.TaskBean;
+import com.diucity.dingding.entity.Send.TodayBean;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.utils.PermissUtils;
+import com.diucity.dingding.utils.SpUtils;
+import com.diucity.dingding.utils.TimeUtils;
 import com.diucity.dingding.widget.SwitchBarView;
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -18,6 +29,22 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
     private SwitchBarView sbv;
     private ViewPager vp;
     private AlertDialog alertDialog;
+    static final String[] PERMISSION = new String[]{
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,// 写入权限
+            Manifest.permission.READ_EXTERNAL_STORAGE, //相机
+            Manifest.permission.CAMERA, //相机
+    };
+
+
+    @Override
+    public void getAllGrantedPermission() {
+        viewDelegate.startActivity(CaptureActivity.class);
+    }
+
+    @Override
+    public String[] getPermissions() {
+        return PERMISSION;
+    }
 
     @Override
     protected Class<HomeDelegate> getDelegateClass() {
@@ -26,7 +53,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
 
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new HomeBinder();
     }
 
     @Override
@@ -52,7 +79,9 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
         //回收
         RxView.clicks(viewDelegate.get(R.id.iv_home_collect)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(CaptureActivity.class);
+                    //viewDelegate.startActivity(CaptureActivity.class);
+                    permission();
+
                 });
         //卖
         RxView.clicks(viewDelegate.get(R.id.iv_home_sell)).throttleFirst(2, TimeUnit.SECONDS)
@@ -74,6 +103,12 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
     public void initData() {
         sbv = viewDelegate.get(R.id.sbv_home);
         vp = viewDelegate.get(R.id.vp_home);
+        binder.work(viewDelegate, new TodayBean("1001", 0, 0));
+        binder.work(viewDelegate, new ScrapsBean("1001"));
+        binder.work(viewDelegate, new TaskBean("1001"));
+        binder.work(viewDelegate, new BasketBean("1001", "sjsj2010A20suycxx"));
+
+
     }
 
     @Override
@@ -90,8 +125,9 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
     public void onPageScrollStateChanged(int state) {
 
     }
+
     public void showCallDialog() {
-        if (alertDialog==null){
+        if (alertDialog == null) {
             alertDialog = new AlertDialog.Builder(this)
                     .setTitle("提示")
                     .setMessage("联系客服（400-8032039）")
@@ -106,7 +142,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
             window.setWindowAnimations(R.style.dialog_style);
         }
         alertDialog.show();
-
     }
+
 
 }

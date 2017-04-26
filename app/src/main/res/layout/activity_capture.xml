@@ -6,10 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.CaptureActivity">
+
     <FrameLayout
         android:id="@+id/fl_my_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <RelativeLayout
         android:id="@+id/rl_toolbar"
         android:layout_width="0dp"
@@ -25,28 +27,43 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_buy_navigation_close"/>
+            android:src="@mipmap/ic_buy_navigation_close" />
+
         <ImageView
             android:id="@+id/iv_capture_flash"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_buy_navigation_light_off"/>
+            android:src="@mipmap/ic_buy_navigation_light_off" />
+
         <TextView
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17sp"
             android:text="扫二维码"
-            android:textColor="@android:color/white"/>
-        </RelativeLayout>
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
     <TextView
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_marginTopPercent="80%"
         android:text="将二维码放入框内，即可自动扫描"
-        android:textColor="@android:color/white"
-        />
+        android:textColor="@android:color/white" />
+
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
 </com.zhy.android.percent.support.PercentRelativeLayout>

@@ -7,14 +7,102 @@
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.RecordActivity">
 
-    <include
-        layout="@layout/notice_toolbar"
-        app:layout_heightPercent="13%"
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/toolbar_shape"
+        app:layout_heightPercent="11%"
         app:layout_widthPercent="100%" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_record"
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="账单明细"
+        android:textColor="@color/text_black"
+        android:textSize="17sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_widthPercent="100%" />
+
+    <ImageView
+        android:id="@+id/iv_record_back"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_cmm_return_green"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/sv_record"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_marginTopPercent="13%" />
+        app:layout_marginTopPercent="11%">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_record"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.liaoinstan.springview.widget.SpringView>
+
+    <LinearLayout
+        android:id="@+id/ll_record_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="加载中"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_record_empty"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="您还有没有任何交易 !"
+            android:textColor="#606664"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
 </com.zhy.android.percent.support.PercentRelativeLayout>

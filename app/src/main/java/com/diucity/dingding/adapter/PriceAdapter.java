@@ -41,4 +41,6 @@ public class PriceAdapter extends BaseAdapter<String> {
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(),15)),text.length()-1,text.length(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         tv.setText(textSpan);
     }
+
+
 }

@@ -10,9 +10,9 @@
         android:id="@+id/adapter_tv_price_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="3dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
         android:text="今日最新报价"
         android:textColor="#606664"
         android:textSize="13sp" />
@@ -21,7 +21,7 @@
         android:id="@+id/adapter_cv_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         app:cardCornerRadius="5dp"
@@ -34,10 +34,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/background_shape"
             android:orientation="vertical"
-            android:paddingBottom="17dp"
+            android:paddingBottom="15dp"
             android:paddingLeft="10dp"
             android:paddingRight="15dp"
-            android:paddingTop="17dp">
+            android:paddingTop="15dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"

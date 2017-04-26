@@ -59,7 +59,6 @@ public class SystemDelegate extends AppDelegate {
             get(R.id.ll_system_empty).setVisibility(View.VISIBLE);
             sv.setEnable(false);
         }
-
     }
 
     public void isLoading(boolean is){

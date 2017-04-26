@@ -1,7 +1,5 @@
 package com.diucity.dingding.utils;
 
-import android.util.Log;
-
 import com.diucity.dingding.entity.Send.NormalBean;
 
 import java.io.UnsupportedEncodingException;
@@ -18,6 +16,7 @@ public class SignUtils {
         NormalBean bean = GsonUtils.GsonToBean(params, NormalBean.class);
         return md5(bean.getNonce() + params + String.valueOf(bean.getTimestamp()));
     }
+
 
     public static String md5(String str) {
         MessageDigest messageDigest = null;
@@ -45,12 +44,15 @@ public class SignUtils {
     public static String getUUID() {
         UUID uuid = UUID.randomUUID();
         String uniqueId = uuid.toString();
-        Log.d("debug", "----->UUID" + uuid);
         return uniqueId;
     }
 
     public static String loginCode(long time, String code) {
-        return md5(String.valueOf(time) + "login" + code);
+        return md5(time+"login"+dbloginCode(code));
+    }
+
+    public static String dbloginCode(String code){
+        return md5("db_login" + code);
     }
 
     public static String payCode(long time, String code) {

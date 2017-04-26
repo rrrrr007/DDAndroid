@@ -2,28 +2,31 @@
 <com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_account"
+    android:id="@+id/activity_withdraw"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.diucity.dingding.activity.AccountActivity">
+    tools:context="com.diucity.dingding.activity.WithdrawActivity">
+
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_heightPercent="11%"
         app:layout_widthPercent="100%"
-        android:background="@drawable/toolbar_shape"/>
+        android:background="@drawable/toolbar_shape" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:textSize="17sp"
-        android:textColor="@color/text_black"
-        android:gravity="center"
-        android:text="结算"
         app:layout_marginTopPercent="3%"
+        android:gravity="center"
+        android:text="提现"
+        android:textColor="@color/text_black"
+        android:textSize="17sp"
         app:layout_heightPercent="8%"
         app:layout_widthPercent="100%" />
+
     <ImageView
-        android:id="@+id/iv_account_back"
+        android:id="@+id/iv_withdraw_back"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:scaleType="center"

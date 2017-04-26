@@ -33,6 +33,7 @@ public class SwitchBarView extends View {
     private BarAnimation anim;
     private Listener listener;
     private float offset;
+    private float padding;
 
     public SwitchBarView(Context context) {
         super(context);
@@ -68,16 +69,17 @@ public class SwitchBarView extends View {
         super.onDraw(canvas);
         width = getWidth();
         height = getHeight();
-        oval = new RectF(0 + 10, 0 + 10, width - 10, height - 10);
+         padding = width*0.03f;
+        oval = new RectF(0 + padding, 0 + padding, width - padding, height - padding);
         canvas.drawRoundRect(oval, height / 2, height / 2, outPaint);// 第二个参数是x半径，第三个参数是y半径
         if (type == 1) {
-            oval = new RectF(0 + 10+offset, 0 + 10, (width - 20) / 3 + 10+offset, height - 10);
+            oval = new RectF(0 + padding+offset, 0 + padding, (width - padding*2) / 3 + padding+offset, height - padding);
             canvas.drawRoundRect(oval, height / 2, height / 2, inPaint);
         } else if (type == 2) {
-            oval = new RectF((width - 20) / 3 + 10+offset, 0 + 10, (width - 20) / 3 * 2 + 10+offset, height - 10);
+            oval = new RectF((width - padding*2) / 3 + padding+offset, 0 + padding, (width - padding*2) / 3 * 2 + padding+offset, height - padding);
             canvas.drawRoundRect(oval, height / 2, height / 2, inPaint);
         } else {
-            oval = new RectF((width - 20) / 3 * 2 + 10+offset, 0 + 10, width - 10+offset, height - 10);
+            oval = new RectF((width - padding*2) / 3 * 2 + padding+offset, 0 + padding, width - padding+offset, height - padding);
             canvas.drawRoundRect(oval, height / 2, height / 2, inPaint);
         }
         Rect bounds = new Rect();
@@ -85,22 +87,22 @@ public class SwitchBarView extends View {
         Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();
         float baseline = (height - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
         textPaint.setColor(target == 1 ? Color.parseColor("#ffffff") : Color.parseColor("#009479"));
-        canvas.drawText(a, (width - 20) / 6 + 10 - bounds.width() / 2, baseline, textPaint);
+        canvas.drawText(a, (width - padding*2) / 6 + padding - bounds.width() / 2, baseline, textPaint);
         textPaint.setColor(target == 3 ? Color.parseColor("#ffffff") : Color.parseColor("#009479"));
-        canvas.drawText(c, (width - 20) / 6 * 5 + 10 - bounds.width() / 2, baseline, textPaint);
+        canvas.drawText(c, (width - padding*2) / 6 * 5 + padding - bounds.width() / 2, baseline, textPaint);
         textPaint.getTextBounds(b, 0, b.length(), bounds);
         textPaint.setColor(target == 2 ? Color.parseColor("#ffffff") : Color.parseColor("#009479"));
-        canvas.drawText(b, (width - 20) / 2 + 10 - bounds.width() / 2, baseline, textPaint);
+        canvas.drawText(b, (width - padding*2) / 2 + padding - bounds.width() / 2, baseline, textPaint);
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
             float x = event.getX();
-            if (x > 10 && x < (width - 20) / 3 + 10)
+            if (x > padding && x < (width - padding*2) / 3 + padding)
                 setType(1);
-            else if (x > (width - 20) / 3 + 10 && x < (width - 20) / 3 * 2 + 10)
+            else if (x > (width - padding*2) / 3 + padding && x < (width - padding*2) / 3 * 2 + padding)
                 setType(2);
-            else if (x > (width - 20) / 2 + 10 && x < width - 10)
+            else if (x > (width - padding*2) / 2 + padding && x < width - padding)
                 setType(3);
         }
         return true;
@@ -148,9 +150,9 @@ public class SwitchBarView extends View {
         protected void applyTransformation(float interpolatedTime, Transformation t) {
             if (interpolatedTime < 1.0f) {
                 if (target>type){
-                    offset=(width-20)/3*interpolatedTime;
+                    offset=(width-padding*2)/3*interpolatedTime;
                 }else {
-                    offset=-(width-20)/3*interpolatedTime;
+                    offset=-(width-padding*2)/3*interpolatedTime;
                 }
                 postInvalidate();
             } else {

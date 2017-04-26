@@ -33,3 +33,24 @@ public class SellDelegate extends AppDelegate {
         ((ImageView)get(R.id.iv_sell_qr)).setImageBitmap(bitmap);
     }
 }
+/*
+        *----------Dragon be here!----------/
+        * 　　　┏┓　　　┏┓
+        * 　　┏┛┻━━━┛┻┓
+        * 　　┃　　　　　　　┃
+        * 　　┃　　　━　　　┃
+        * 　　┃　┳┛　┗┳　┃
+        * 　　┃　　　　　　　┃
+        * 　　┃　　　┻　　　┃
+        * 　　┃　　　　　　　┃
+        * 　　┗━┓　　　┏━┛
+        * 　　　　┃　　　┃神兽保佑
+        * 　　　　┃　　　┃代码无BUG！
+        * 　　　　┃　　　┗━━━┓
+        * 　　　　┃　　　　　　　┣┓
+        * 　　　　┃　　　　　　　┏┛
+        * 　　　　┗┓┓┏━┳┓┏┛
+        * 　　　　　┃┫┫　┃┫┫
+        * 　　　　　┗┻┛　┗┻┛
+        * ━━━━━━神兽出没━━━━━━*/
+

@@ -125,6 +125,7 @@ public abstract class AppDelegate implements IDelegate {
     public void setText(String str ,int id){
         ((TextView)get(id)).setText(str);
     }
+
     public void setText(SpannableString textSpan , int id){
         ((TextView)get(id)).setText(textSpan);
     }

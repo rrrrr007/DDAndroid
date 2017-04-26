@@ -23,7 +23,7 @@ public class DetailActivity extends BaseActivity<DetailDelegate> {
     @Override
     protected void bindEvenListener() {
         //返回
-        RxView.clicks(viewDelegate.get(R.id.iv_detail_back)).throttleFirst(1, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.iv_detail_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     viewDelegate.finish();
                 });

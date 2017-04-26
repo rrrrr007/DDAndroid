@@ -1,69 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/adapter_tv_record_month"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:text="本月" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:text="本月"
+        android:textColor="#606664"
+        android:textSize="13sp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/toolbar_shape"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_press_selector"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp"
+        android:layout_marginBottom="5px">
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
+            android:id="@+id/adapter_ll_record_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="周四" />
+                android:id="@+id/adapter_tv_record_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周一"
+                android:textColor="@color/text_gray3"
+                android:textSize="15sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="03-01" />
+                android:id="@+id/adapter_tv_record_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="02-03"
+                android:textColor="@color/text_gray3"
+                android:textSize="12sp" />
         </LinearLayout>
-
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:src="@mipmap/ic_launcher" />
-
+            android:id="@+id/adapter_iv_record_src"
+            android:layout_toRightOf="@id/adapter_ll_record_time"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_logo_wei_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
+            android:layout_toRightOf="@id/adapter_iv_record_src"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/adapter_ll_record_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="-20" />
+                android:id="@+id/adapter_tv_record_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+1235"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="微信支付回收废品" />
+                android:id="@+id/adapter_tv_record_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="微信支付回收物品"
+                android:textColor="@color/text_gray2"
+                android:textSize="12sp" />
         </LinearLayout>
-    </LinearLayout>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:id="@+id/adapter_iv_record_icon"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_cmm_arrows_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 </LinearLayout>
+

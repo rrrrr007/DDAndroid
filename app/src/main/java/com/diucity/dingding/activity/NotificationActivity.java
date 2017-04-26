@@ -1,16 +1,16 @@
 package com.diucity.dingding.activity;
 
-import android.content.Context;
-import android.os.Vibrator;
-import android.util.Log;
+
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.NotificationDelegate;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.widget.SwitchView;
+import com.diucity.dingding.utils.SpUtils;
 import com.jakewharton.rxbinding.view.RxView;
-import com.jakewharton.rxbinding.widget.RxCheckedTextView;
-import com.jakewharton.rxbinding.widget.RxTextSwitcher;
+import com.jakewharton.rxbinding.widget.RxCompoundButton;
+
+import java.util.concurrent.TimeUnit;
+
 
 public class NotificationActivity extends BaseActivity<NotificationDelegate> {
 
@@ -27,17 +27,28 @@ public class NotificationActivity extends BaseActivity<NotificationDelegate> {
 
     @Override
     protected void bindEvenListener() {
-        super.bindEvenListener();
-        SwitchView switchView = viewDelegate.get(R.id.switch_notification_notify);
-        switchView.setLinster(turn -> {
-            Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-            boolean b = vibrator.hasVibrator();
-            Log.d("ch",b+"");
-            if (turn)
-                viewDelegate.toast("开");
-            else {
-                viewDelegate.toast("关");
-            }
-        });
+        //返回
+        RxView.clicks(viewDelegate.get(R.id.iv_notify_back)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
+                    finish();
+                });
+
+        //开关
+        RxCompoundButton.checkedChanges(viewDelegate.get(R.id.switch_notification_notify)).subscribe(aBoolean -> {
+                    SpUtils.putBoolean(this,SpUtils.NOTIFICATION,aBoolean);
+                });
+        RxCompoundButton.checkedChanges(viewDelegate.get(R.id.switch_notification_sound)).subscribe(aBoolean -> {
+                    SpUtils.putBoolean(this,SpUtils.SOUND,aBoolean);
+                });
+        RxCompoundButton.checkedChanges(viewDelegate.get(R.id.switch_notification_vibrate)).subscribe(aBoolean -> {
+                    SpUtils.putBoolean(this,SpUtils.VIBRATE,aBoolean);
+                });
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+
+
+
     }
 }

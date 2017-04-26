@@ -110,7 +110,6 @@
         android:layout_toRightOf="@+id/pll_login"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
-        android:visibility="gone"
         app:layout_heightPercent="8%"
         app:layout_marginTopPercent="10%" />
 

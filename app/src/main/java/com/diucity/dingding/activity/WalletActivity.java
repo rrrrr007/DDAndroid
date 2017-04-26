@@ -31,9 +31,26 @@ public class WalletActivity extends BaseActivity<WalletDelegate> {
                     startActivity(new Intent(this,WebActivity.class));
                 });*/
         //返回
-        RxView.clicks(viewDelegate.get(R.id.iv_wallet_back)).throttleFirst(1, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.iv_wallet_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     viewDelegate.finish();
+                });
+
+        //设置中心
+        RxView.clicks(viewDelegate.get(R.id.iv_wallet_options)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.startActivity(OptionsActivity.class);
+                });
+        //账单明细
+        RxView.clicks(viewDelegate.get(R.id.ll_wallet)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.startActivity(RecordActivity.class);
+                });
+
+        //提现
+        RxView.clicks(viewDelegate.get(R.id.btn_wallet)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.startActivity(WithdrawActivity.class);
                 });
     }
 }

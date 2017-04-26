@@ -34,6 +34,7 @@ public class LoginBinder implements DataBinder<LoginDelegate, LoginBack> {
     public void work(LoginDelegate viewDelegate, Object object) {
         if (object instanceof LoginBean){
             LoginBean bean = (LoginBean) object;
+            Log.d("ch",GsonUtils.GsonString(bean));
             viewDelegate.showLoadingWarn("正在登录中");
             Network.subscribe(Network.getApi().login(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<LoginBack>() {
                 @Override

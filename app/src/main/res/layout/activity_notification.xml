@@ -7,100 +7,142 @@
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.NotificationActivity">
 
-    <include
-        layout="@layout/notice_toolbar"
-        app:layout_heightPercent="13%"
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/toolbar_shape"
+        app:layout_heightPercent="11%"
         app:layout_widthPercent="100%" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="新消息设置"
+        android:textColor="@color/text_black"
+        android:textSize="17sp"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_widthPercent="100%" />
+
+    <ImageView
+        android:id="@+id/iv_notify_back"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_cmm_return_green"
+        app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
+        app:layout_paddingLeftPercent="3%"
+        app:layout_paddingRightPercent="3%" />
 
     <android.support.v7.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:clickable="true"
         app:cardCornerRadius="10dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_heightPercent="40%"
         app:layout_marginTopPercent="15%"
-        app:layout_widthPercent="90%"
+        app:layout_widthPercent="94%"
         tools:targetApi="lollipop">
 
         <LinearLayout
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="开启消息提醒" />
-                <com.diucity.dingding.widget.SwitchView
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp"
+                    android:text="开启消息提醒"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <Switch
                     android:id="@+id/switch_notification_notify"
-                    android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@android:color/darker_gray" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <TextView
-
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="声音" />
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp"
+                    android:text="声音"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
 
-                <com.diucity.dingding.widget.SwitchView
-                    android:id="@+id/switch_notification_voice"
-                    android:layout_gravity="center_vertical"
+                <Switch
+                    android:id="@+id/switch_notification_sound"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@android:color/darker_gray" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="震动" />
-                <com.diucity.dingding.widget.SwitchView
-                    android:id="@+id/switch_notification_vibration"
-                    android:layout_gravity="center_vertical"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp"
+                    android:text="震动"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <Switch
+                    android:id="@+id/switch_notification_vibrate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+    <FrameLayout
+        android:id="@+id/fl_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_widthPercent="100%" />
+
+    <include
+        layout="@layout/notice_small"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="11%"
+        app:layout_widthPercent="100%" />
 </com.zhy.android.percent.support.PercentRelativeLayout>

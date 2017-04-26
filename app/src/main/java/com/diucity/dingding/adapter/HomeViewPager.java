@@ -23,22 +23,21 @@ public class HomeViewPager extends PagerAdapter {
     public HomeViewPager(Context context) {
         this.context = context;
         this.model = new ArrayList<>();
-        ArrayList<String> list = new ArrayList<>();
-        list.add("!");
-        list.add("!");
-        list.add("!");
         for (int i =0;i<3;i++){
             RecyclerView rv = new RecyclerView(context);
             if (i==2){
-                list.add("a");
-                rv.setAdapter(new AwardAdapter(context,list));
+                rv.setAdapter(new AwardAdapter(context,null));
             }else {
-                rv.setAdapter(new PriceAdapter(context,list));
+                rv.setAdapter(new PriceAdapter(context,null));
             }
             rv.setLayoutManager(new LinearLayoutManager(context));
             this.model.add(rv);
         }
 
+    }
+
+    public ArrayList<RecyclerView> getModel() {
+        return model;
     }
 
     @Override

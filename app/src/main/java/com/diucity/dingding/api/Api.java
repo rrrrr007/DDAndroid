@@ -1,13 +1,7 @@
 package com.diucity.dingding.api;
 
-
-import com.diucity.dingding.entity.Back.LoginBack;
-import com.diucity.dingding.entity.Back.NormalBack;
-import com.diucity.dingding.entity.Send.LoginBean;
-import com.diucity.dingding.entity.Send.PaysetBean;
-import com.diucity.dingding.entity.Send.ResetBean;
-import com.diucity.dingding.entity.Send.ScrapsBean;
-import com.diucity.dingding.entity.Send.SmsBean;
+import com.diucity.dingding.entity.Back.*;
+import com.diucity.dingding.entity.Send.*;
 
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -20,7 +14,7 @@ import rx.Observable;
 public interface Api {
     //String BASEURL = "http://www.diucity.com:1601/api/";
     //String BASEURL = "https://api.dev.intranet/";
-    String BASEURL = "https://zhoufeng.diucity.com:4443/";
+    String BASEURL = "http://192.168.3.161:4443/";
 
     @POST("sms.send&sign={sign}")
     Observable<NormalBack> sms(@Path("sign") String sign, @Body SmsBean bean);
@@ -35,8 +29,15 @@ public interface Api {
     Observable<NormalBack> payset(@Path("sign") String sign, @Body PaysetBean bean);
 
     @POST("quotation.scraps&sign={sign}")
-    Observable<NormalBack> scraps(@Path("sign") String sign, @Body ScrapsBean bean);
+    Observable<ScrapsBack> scraps(@Path("sign") String sign, @Body ScrapsBean bean);
 
     @POST("quotation.today&sign={sign}")
-    Observable<NormalBack> today(@Path("sign") String sign, @Body ScrapsBean bean);
+    Observable<TodayBack> today(@Path("sign") String sign, @Body TodayBean bean);
+
+    @POST("task.list&sign={sign}")
+    Observable<TaskBack> task(@Path("sign") String sign, @Body TaskBean bean);
+
+    @POST("recycler.basket.info&sign={sign}")
+    Observable<BasketBack> basket(@Path("sign") String sign, @Body BasketBean bean);
+
 }

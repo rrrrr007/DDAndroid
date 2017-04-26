@@ -1,31 +1,21 @@
 package com.diucity.dingding.activity;
 
-
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.diucity.dingding.R;
-import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.LoginBinder;
 import com.diucity.dingding.delegate.LoginDelegate;
 import com.diucity.dingding.entity.Send.LoginBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.VersonUtils;
 import com.jakewharton.rxbinding.view.RxView;
-import com.jakewharton.rxbinding.widget.RxTextSwitcher;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.concurrent.TimeUnit;
-
-import rx.functions.Action1;
 
 
 public class LoginActivity extends BaseActivity<LoginDelegate> implements View.OnFocusChangeListener {
@@ -55,7 +45,6 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
                 .subscribe(aVoid -> {
                     EditText phone = viewDelegate.get(R.id.edt_login_phone);
                     EditText code = viewDelegate.get(R.id.edt_login_code);
-                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "测试");
                     startActivity(new Intent(this, HomeActivity.class));
                     //binder.work(viewDelegate, new LoginBean(phone.getText().toString(), code.getText().toString(), VersonUtils.getVersion(this)));
                 });
@@ -94,9 +83,9 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //checkNet();
+    protected void onStart() {
+        super.onStart();
+        checkNet();
     }
 
     //首次检查网络

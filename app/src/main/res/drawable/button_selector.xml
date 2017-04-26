@@ -40,12 +40,6 @@
     </item>
     <item android:state_enabled="false">
         <layer-list>
-            <item android:top="1dip" android:left="1dip">
-                <shape>
-                    <solid android:color="#98aca8" />
-                    <corners android:radius="5.0dip" />
-                </shape>
-            </item>
             <item android:bottom="1dip" android:right="1dip">
                 <shape>
                     <gradient android:angle="315" android:endColor="#AFDCD3" android:startColor="#AFDCD3" />

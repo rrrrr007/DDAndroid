@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.diucity.dingding.entity.Back.TaskBack;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,5 +50,20 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
 
     public List<T> getModel() {
         return model;
+    }
+
+    public void updateByAdd(List<T> model){
+        if (model!=null&&model.size()>0){
+            this.model.addAll(model);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void updateBySet(List<T> model){
+        if (model!=null&&model.size()>0){
+            this.model.clear();
+            this.model.addAll(model);
+        }
+        notifyDataSetChanged();
     }
 }

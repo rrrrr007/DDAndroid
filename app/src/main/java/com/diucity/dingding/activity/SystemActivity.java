@@ -4,9 +4,7 @@ package com.diucity.dingding.activity;
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.SystemBinder;
 import com.diucity.dingding.delegate.SystemDelegate;
-import com.diucity.dingding.entity.MessageBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.utils.GsonUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liaoinstan.springview.widget.SpringView;
 
@@ -40,7 +38,7 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
             }
         });
         //返回
-        RxView.clicks(viewDelegate.get(R.id.iv_system_back)).throttleFirst(1, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.iv_system_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     viewDelegate.notifyData();
                     //viewDelegate.finish();

@@ -75,7 +75,7 @@ public class CountAdapter extends BaseAdapter<String> {
                 break;
             default:
                 drawable= ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher);
-                str = "种类0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+                str = "种类";
                 break;
         }
         ((ImageView)holder.getView(R.id.adapter_iv_count_src)).setImageDrawable(drawable);

@@ -77,7 +77,7 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> implements Vi
         viewDelegate.get(R.id.edt_forget2_password).setOnFocusChangeListener(this);
 
         //返回
-        RxView.clicks(viewDelegate.get(R.id.iv_forget2_back)).throttleFirst(1, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.iv_forget2_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     viewDelegate.startActivity(ForgetActivity.class);
                     viewDelegate.finish();

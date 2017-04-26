@@ -1,16 +1,12 @@
 package com.diucity.dingding.binder;
 
-import android.content.Intent;
 import android.util.Log;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.activity.Forget2Activity;
-import com.diucity.dingding.activity.HomeActivity;
-import com.diucity.dingding.activity.PINActivity;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.ForgetDelegate;
 import com.diucity.dingding.entity.Back.NormalBack;
-import com.diucity.dingding.entity.MessageBack;
 import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
