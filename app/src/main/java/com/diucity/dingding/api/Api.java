@@ -14,7 +14,7 @@ import rx.Observable;
 public interface Api {
     //String BASEURL = "http://www.diucity.com:1601/api/";
     //String BASEURL = "https://api.dev.intranet/";
-    String BASEURL = "http://192.168.3.161:4443/";
+    String BASEURL = "https://recycleapi.dev.local:3030/";
 
     @POST("sms.send&sign={sign}")
     Observable<NormalBack> sms(@Path("sign") String sign, @Body SmsBean bean);
