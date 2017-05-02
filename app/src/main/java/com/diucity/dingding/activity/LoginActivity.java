@@ -52,13 +52,11 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         //Edt字段监听
         RxTextView.textChanges(viewDelegate.get(R.id.edt_login_phone)).subscribe(charSequence -> {
             phoneEnable = charSequence.length() > 0;
-            viewDelegate.textChange(1, phoneEnable);
             viewDelegate.setEnable(phoneEnable && codeEnable, R.id.btn_login_enter);
 
         });
         RxTextView.textChanges(viewDelegate.get(R.id.edt_login_code)).subscribe(charSequence -> {
             codeEnable = charSequence.length() > 0;
-            viewDelegate.textChange(2, codeEnable);
             viewDelegate.setEnable(phoneEnable && codeEnable, R.id.btn_login_enter);
         });
 
@@ -80,6 +78,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         viewDelegate.lineChange(v, hasFocus);
+        viewDelegate.textChange(v, hasFocus);
     }
 
     @Override

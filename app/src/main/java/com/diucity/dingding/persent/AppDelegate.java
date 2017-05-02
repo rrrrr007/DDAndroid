@@ -31,6 +31,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -120,6 +121,10 @@ public abstract class AppDelegate implements IDelegate {
 
     public <T extends Activity> T getActivity() {
         return (T) rootView.getContext();
+    }
+
+    public void setSrc(Drawable src,int id){
+        ((ImageView)get(id)).setImageDrawable(src);
     }
 
     public void setText(String str ,int id){

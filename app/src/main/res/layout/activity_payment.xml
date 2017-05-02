@@ -155,7 +155,7 @@
                     android:id="@+id/iv_payment_wx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_oayment_selector"
+                    android:src="@drawable/icon_hook_selector"
                     android:padding="15dp"/>
             </LinearLayout>
             <View
@@ -186,7 +186,7 @@
                     android:id="@+id/iv_payment_ywt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_oayment_selector"
+                    android:src="@drawable/icon_hook_selector"
                     android:padding="15dp"/>
             </LinearLayout>
             <View
@@ -217,7 +217,7 @@
                     android:id="@+id/iv_payment_zfb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_oayment_selector"
+                    android:src="@drawable/icon_hook_selector"
                     android:padding="15dp"/>
             </LinearLayout>
         </LinearLayout>

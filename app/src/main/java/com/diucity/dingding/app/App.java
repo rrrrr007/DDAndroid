@@ -1,10 +1,14 @@
 package com.diucity.dingding.app;
 
 import android.content.Context;
+import android.os.Environment;
+import android.support.v4.os.EnvironmentCompat;
 import android.support.v7.app.AppCompatDelegate;
 
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.activity.BaseActivity;
+import com.diucity.dingding.utils.FontUtils.CalligraphyConfig;
 import com.squareup.leakcanary.LeakCanary;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
@@ -25,6 +29,7 @@ public class App extends android.app.Application {
     private static int height;
 
     public static List<BaseActivity> activities;
+
     static {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
     }
@@ -41,8 +46,12 @@ public class App extends android.app.Application {
         mainTid = android.os.Process.myTid();
         LeakCanary.install(this);
         ZXingLibrary.initDisplayOpinion(this);
-    }
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                //.setDefaultFontPath(Environment.getRootDirectory().getPath() + "/fonts/NotoSansOriyaUI-Bold.ttf")//指定字体
 
+                .setFontAttrId(R.attr.fontPath)
+                .build());
+    }
 
 
     public static Context getApplication() {

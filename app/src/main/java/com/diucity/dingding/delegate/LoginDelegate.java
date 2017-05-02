@@ -47,13 +47,13 @@ public class LoginDelegate extends AppDelegate {
         view.setLayoutParams(params);
     }
 
-    public void textChange(int i,boolean has){
+    public void textChange(View v,boolean has){
         View view = null;
-        switch (i){
-            case 1:
+        switch (v.getId()){
+            case R.id.edt_login_phone:
                 view = get(R.id.iv_login_icon1);
                 break;
-            case 2:
+            case R.id.edt_login_code:
                 view = get(R.id.iv_login_icon2);
                 break;
         }

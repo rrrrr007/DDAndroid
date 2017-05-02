@@ -1,5 +1,6 @@
 package com.diucity.dingding.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.persent.DataBindActivity;
 import com.diucity.dingding.persent.IDelegate;
 import com.diucity.dingding.utils.ActivityUtils;
+import com.diucity.dingding.utils.FontUtils.CalligraphyContextWrapper;
 import com.diucity.dingding.utils.PermissUtils;
 
 import java.util.ArrayList;
@@ -151,5 +153,8 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         }
     }
 
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 }

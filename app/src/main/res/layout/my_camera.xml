@@ -20,7 +20,8 @@
         app:inner_margintop="180dp"
         app:inner_scan_bitmap="@mipmap/ic_buy_line"
         app:inner_scan_iscircle="false"
-        app:inner_scan_speed="10"
+        app:inner_scan_speed="30"
         app:inner_width="248dp" />
+
 
 </FrameLayout>

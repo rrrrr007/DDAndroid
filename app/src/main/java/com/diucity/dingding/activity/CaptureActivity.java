@@ -3,6 +3,7 @@ package com.diucity.dingding.activity;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -80,11 +81,13 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
             parameter.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             camera.setParameters(parameter);
             isOpen = true;
+            viewDelegate.setSrc(ContextCompat.getDrawable(this,R.mipmap.ic_buy_navigation_light_on),R.id.iv_capture_flash);
             Log.d("ch","kai");
         } else {  // 关灯
             parameter.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             camera.setParameters(parameter);
             isOpen = false;
+            viewDelegate.setSrc(ContextCompat.getDrawable(this,R.mipmap.ic_buy_navigation_light_off),R.id.iv_capture_flash);
             Log.d("ch","guan");
         }
     }

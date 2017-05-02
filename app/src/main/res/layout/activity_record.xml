@@ -81,7 +81,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:src="@color/colorAccent" />
+            android:src="@mipmap/ic_me_default" />
 
         <TextView
             android:layout_width="match_parent"
