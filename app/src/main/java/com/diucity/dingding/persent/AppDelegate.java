@@ -135,6 +135,10 @@ public abstract class AppDelegate implements IDelegate {
         ((TextView)get(id)).setText(textSpan);
     }
 
+    public String getText(int id){
+        return ((TextView)get(id)).getText().toString();
+    }
+
 
     public void setEnable(boolean is, int id) {
         if (is != get(id).isEnabled())

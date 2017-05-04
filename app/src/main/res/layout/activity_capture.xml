@@ -22,14 +22,14 @@
         app:layout_paddingLeftPercent="3%"
         app:layout_paddingRightPercent="3%">
 
-        <ImageView
+        <com.diucity.dingding.widget.LightImage
             android:id="@+id/iv_capture_back"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_buy_navigation_close" />
 
-        <ImageView
+        <com.diucity.dingding.widget.LightImage
             android:id="@+id/iv_capture_flash"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

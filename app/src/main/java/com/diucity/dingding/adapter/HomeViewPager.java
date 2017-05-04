@@ -25,10 +25,12 @@ public class HomeViewPager extends PagerAdapter {
         this.model = new ArrayList<>();
         for (int i =0;i<3;i++){
             RecyclerView rv = new RecyclerView(context);
-            if (i==2){
-                rv.setAdapter(new AwardAdapter(context,null));
-            }else {
+            if (i==0){
                 rv.setAdapter(new PriceAdapter(context,null));
+            }else if (i==1){
+                rv.setAdapter(new BasketAdapter(context,null));
+            }else {
+                rv.setAdapter(new AwardAdapter(context,null));
             }
             rv.setLayoutManager(new LinearLayoutManager(context));
             this.model.add(rv);

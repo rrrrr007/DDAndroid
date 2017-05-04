@@ -28,7 +28,7 @@
         app:layout_marginTopPercent="3%"
         app:layout_widthPercent="100%" />
 
-    <TextView
+    <com.diucity.dingding.widget.LightText
         android:id="@+id/tv_reset_back"
         android:layout_width="wrap_content"
         android:layout_height="0dp"

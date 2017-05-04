@@ -26,7 +26,7 @@
         app:layout_marginTopPercent="3%"
         app:layout_widthPercent="100%" />
 
-    <ImageView
+    <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_home_wallet"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -37,7 +37,7 @@
         app:layout_paddingLeftPercent="3%"
         app:layout_paddingRightPercent="3%" />
 
-    <ImageView
+    <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_home_system"
         android:layout_width="wrap_content"
         android:layout_height="0dp"

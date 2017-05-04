@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
                     EditText phone = viewDelegate.get(R.id.edt_login_phone);
                     EditText code = viewDelegate.get(R.id.edt_login_code);
                     startActivity(new Intent(this, HomeActivity.class));
-                    //binder.work(viewDelegate, new LoginBean(phone.getText().toString(), code.getText().toString(), VersonUtils.getVersion(this)));
+                    binder.work(viewDelegate, new LoginBean(phone.getText().toString(), code.getText().toString(), VersonUtils.getVersion(this)));
                 });
 
         //Edt字段监听

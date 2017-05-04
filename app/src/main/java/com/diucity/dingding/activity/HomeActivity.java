@@ -10,6 +10,7 @@ import android.view.Window;
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.HomeBinder;
 import com.diucity.dingding.delegate.HomeDelegate;
+import com.diucity.dingding.entity.Send.TodayBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.widget.SwitchBarView;
 import com.jakewharton.rxbinding.view.RxView;
@@ -24,8 +25,6 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
             Manifest.permission.WRITE_EXTERNAL_STORAGE,// 写入权限
             Manifest.permission.READ_EXTERNAL_STORAGE, //相机
             Manifest.permission.CAMERA, //相机
-            Manifest.permission.ACCESS_COARSE_LOCATION,//位置
-            Manifest.permission.ACCESS_FINE_LOCATION,//位置
     };
 
 
@@ -96,10 +95,8 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
     public void initData() {
         sbv = viewDelegate.get(R.id.sbv_home);
         vp = viewDelegate.get(R.id.vp_home);
-        /*binder.work(viewDelegate, new TodayBean("1001", 0, 0));
-        binder.work(viewDelegate, new ScrapsBean("1001"));
-        binder.work(viewDelegate, new TaskBean("1001"));
-        binder.work(viewDelegate, new BasketBean("1001", "sjsj2010A20suycxx"));*/
+        binder.work(viewDelegate, new TodayBean("1001", 0, 0));
+
 
 
     }

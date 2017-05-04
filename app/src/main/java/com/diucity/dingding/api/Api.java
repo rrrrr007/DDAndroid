@@ -25,6 +25,9 @@ public interface Api {
     @POST("password.login.reset&sign={sign}")
     Observable<NormalBack> reset(@Path("sign") String sign, @Body ResetBean bean);
 
+    @POST("password.login.change&sign={sign}")
+    Observable<NormalBack> change(@Path("sign") String sign, @Body ChangeBean bean);
+
     @POST("password.pay.set&sign={sign}")
     Observable<NormalBack> payset(@Path("sign") String sign, @Body PaysetBean bean);
 
@@ -39,5 +42,14 @@ public interface Api {
 
     @POST("recycler.basket.info&sign={sign}")
     Observable<BasketBack> basket(@Path("sign") String sign, @Body BasketBean bean);
+
+    @POST("wallet.summary&sign={sign}")
+    Observable<SummaryBack> summary(@Path("sign") String sign, @Body SummaryBean bean);
+
+    @POST("bill.list&sign={sign}")
+    Observable<Object> list(@Path("sign") String sign, @Body ListBean bean);
+
+    @POST("recycler.notices&sign={sign}")
+    Observable<Object> notices(@Path("sign") String sign, @Body ListBean bean);
 
 }

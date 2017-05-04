@@ -2,6 +2,7 @@ package com.diucity.dingding.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 /**
  * Created by Administrator on 2016/12/6 0006.
@@ -13,6 +14,7 @@ public class SpUtils {
     public static final String VIBRATE = "vibrate";
     public static final String SOUND = "sound";
     public static final String UPDATE = "update";
+    public static final String TODAY = "today";
 
 
 
@@ -97,6 +99,7 @@ public class SpUtils {
         SharedPreferences setPreferences = context.getSharedPreferences(
                 spFileName, Context.MODE_PRIVATE);
         long result = setPreferences.getLong(strKey, strDefault);
+        Log.d("ch",result+"");
         return result;
     }
 

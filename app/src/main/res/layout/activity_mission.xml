@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.MissionActivity">
 
-    <include
-        layout="@layout/notice_toolbar"
-        app:layout_heightPercent="13%"
-        app:layout_widthPercent="100%" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_mission"

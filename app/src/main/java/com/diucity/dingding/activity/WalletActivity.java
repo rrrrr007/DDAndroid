@@ -3,7 +3,9 @@ package com.diucity.dingding.activity;
 import android.content.Intent;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.binder.WalletBinder;
 import com.diucity.dingding.delegate.WalletDelegate;
+import com.diucity.dingding.entity.Send.SummaryBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -19,7 +21,7 @@ public class WalletActivity extends BaseActivity<WalletDelegate> {
 
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new WalletBinder();
     }
 
     @Override
@@ -52,5 +54,10 @@ public class WalletActivity extends BaseActivity<WalletDelegate> {
                 .subscribe(aVoid -> {
                     viewDelegate.startActivity(WithdrawActivity.class);
                 });
+    }
+
+    @Override
+    public void initData() {
+        binder.work(viewDelegate,new SummaryBean("1001","993jal-2lakd2sj"));
     }
 }

@@ -31,7 +31,7 @@
             app:layout_marginTopPercent="3%"
             app:layout_widthPercent="100%" />
 
-        <ImageView
+        <com.diucity.dingding.widget.LightImage
             android:id="@+id/iv_count_back"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -46,13 +46,15 @@
             android:id="@+id/tv_count_payment"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:background="@drawable/btn_title_press_selector"
             android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:text="结算"
-            android:textColor="@color/text_green"
-            android:textSize="14sp"
-            app:layout_heightPercent="8%"
-            app:layout_marginTopPercent="3%"
+            android:textColor="@color/selector_white"
+            android:textSize="12sp"
+            app:layout_heightPercent="4%"
+            app:layout_marginTopPercent="5%"
+            app:layout_marginRightPercent="3%"
             app:layout_paddingLeftPercent="3%"
             app:layout_paddingRightPercent="3%" />
 

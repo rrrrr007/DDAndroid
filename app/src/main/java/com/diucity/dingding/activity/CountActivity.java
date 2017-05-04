@@ -2,12 +2,16 @@ package com.diucity.dingding.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
@@ -16,6 +20,7 @@ import com.diucity.dingding.adapter.CountAdapter;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.CountDelegate;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.utils.KeyboardUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -24,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class CountActivity extends BaseActivity<CountDelegate> {
+    private AlertDialog alertDialog;
     private boolean first = true;
     private RecyclerView rv;
     private GridLayoutManager manager;
@@ -55,14 +61,14 @@ public class CountActivity extends BaseActivity<CountDelegate> {
             if (!first) {
                 adapter.setText(textChangeEvent.editable().toString());
                 edt.setSelection(edt.getText().length());
+
             } else
                 first = false;
 
         });
-        //光标滞后
+        //结算
         RxView.clicks(viewDelegate.get(R.id.tv_count_payment)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-            Intent intent = new Intent(this, PaymentActivity.class);
-            viewDelegate.startActivity(intent);
+            showCallDialog();
         });
 
         //返回
@@ -94,5 +100,34 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         manager = (GridLayoutManager) rv.getLayoutManager();
         adapter = (CountAdapter) rv.getAdapter();
         edt = viewDelegate.get(R.id.edt_count);
+    }
+
+    public void showCallDialog() {
+        if (alertDialog == null) {
+            alertDialog = new AlertDialog.Builder(this)
+                    .setTitle("提示")
+                    .setMessage("是否生成订单，进行结算")
+                    .setPositiveButton("结算", (dialog, which) -> {
+                        alertDialog.dismiss();
+                        Intent intent = new Intent(this, PaymentActivity.class);
+                        viewDelegate.startActivity(intent);
+                    })
+                    .setNegativeButton("取消", (dialog2, which) -> alertDialog.dismiss())
+                    .create();
+            Window window = alertDialog.getWindow();
+            window.setWindowAnimations(R.style.dialog_style);
+        }
+        alertDialog.show();
+    }
+
+    public void getall(){
+
+    }
+
+    public SpannableString textSpan(Double d){
+        String text = String.format("%.2f",d)+"元";
+        SpannableString textSpan = new SpannableString(text);
+        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(this, 12)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        return textSpan;
     }
 }

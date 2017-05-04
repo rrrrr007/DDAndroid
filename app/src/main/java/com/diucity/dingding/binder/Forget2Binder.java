@@ -1,6 +1,7 @@
 package com.diucity.dingding.binder;
 
 import android.util.Log;
+import android.view.View;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.api.Network;
@@ -76,6 +77,10 @@ public class Forget2Binder implements DataBinder<Forget2Delegate, NormalBack> {
                     viewDelegate.hideLoadingWarn();
                     if (normalBack.getCode()==0){
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "重置成功");
+                        viewDelegate.setText("返回",R.id.btn_forget2_finish);
+                        viewDelegate.setOnClickListener(v -> {
+                             viewDelegate.finish();
+                        },R.id.btn_forget2_finish);
                     }else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, normalBack.getMessage());
                     }

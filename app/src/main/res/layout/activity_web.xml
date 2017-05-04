@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.WebActivity">
 
-    <include
-        layout="@layout/notice_toolbar"
-        app:layout_heightPercent="13%"
-        app:layout_widthPercent="100%" />
 
     <WebView
         android:id="@+id/webView_web"

@@ -27,7 +27,7 @@
         app:layout_heightPercent="8%"
         app:layout_widthPercent="100%" />
 
-    <ImageView
+    <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_forget2_back"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -75,7 +75,7 @@
         android:background="@color/text_gray"
         app:layout_widthPercent="57%" />
 
-    <TextView
+    <com.diucity.dingding.widget.LightText
         android:id="@+id/tv_forget2_timer"
         android:layout_width="wrap_content"
         android:layout_height="0dp"

@@ -54,7 +54,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 }
             });
-        }else if (object instanceof TodayBean && TimeUtils.yesterday(SpUtils.getLong(viewDelegate.getActivity(),SpUtils.UPDATE,1492267583142l))){
+        }else if (object instanceof TodayBean ){
             TodayBean bean = (TodayBean) object;
             Network.subscribe(Network.getApi().today(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<TodayBack>() {
 
@@ -74,6 +74,13 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                     /*if (s.getCode()==0){
                         SpUtils.putLong(viewDelegate.getActivity(),SpUtils.UPDATE,System.currentTimeMillis());
                     }*/
+                    if (s.getCode()==0){
+                        SpUtils.putString(viewDelegate.getActivity(),SpUtils.TODAY,GsonUtils.GsonString(s));
+                        viewDelegate.getInsideAdapterNotify(0,s.getData().getScraps());
+                        work(viewDelegate,new ScrapsBean(bean.getRecycler_id()));
+                        work(viewDelegate,new TaskBean(bean.getRecycler_id()));
+                        work(viewDelegate,new BasketBean(bean.getRecycler_id(), "sjsj2010A20suycxx"));
+                    }
                     Log.d("ch",GsonUtils.GsonString(s));
 
                 }
@@ -116,6 +123,9 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 @Override
                 public void onNext(BasketBack s) {
+                    if (s.getCode()==0){
+                        viewDelegate.getInsideAdapterNotify(1,s.getData().getData());
+                    }
                     Log.d("ch",GsonUtils.GsonString(s));
                 }
             });
