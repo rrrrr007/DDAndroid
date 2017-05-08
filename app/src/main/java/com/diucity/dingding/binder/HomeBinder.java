@@ -34,6 +34,8 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
     @Override
     public void work(HomeDelegate viewDelegate, Object object) {
+        viewDelegate.setText("更新中...",R.id.tv_home_title);
+        viewDelegate.setVisiable(true,R.id.progress_home);
         if (object instanceof ScrapsBean){
             ScrapsBean bean = (ScrapsBean) object;
             Network.subscribe(Network.getApi().scraps(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<ScrapsBack>() {
@@ -66,6 +68,8 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                 @Override
                 public void onError(Throwable e) {
                     viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接出错");
+                    viewDelegate.setText("叮叮回收",R.id.tv_home_title);
+                    viewDelegate.setVisiable(false,R.id.progress_home);
                     e.printStackTrace();
                 }
 
@@ -82,7 +86,8 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                         work(viewDelegate,new BasketBean(bean.getRecycler_id(), "sjsj2010A20suycxx"));
                     }
                     Log.d("ch",GsonUtils.GsonString(s));
-
+                    viewDelegate.setText("叮叮回收",R.id.tv_home_title);
+                    viewDelegate.setVisiable(false,R.id.progress_home);
                 }
             });
         }else if (object instanceof TaskBean){

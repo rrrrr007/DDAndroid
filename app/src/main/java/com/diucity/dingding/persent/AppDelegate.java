@@ -139,6 +139,10 @@ public abstract class AppDelegate implements IDelegate {
         return ((TextView)get(id)).getText().toString();
     }
 
+    public void setVisiable(boolean is,int id){
+        get(id).setVisibility(is?View.VISIBLE:View.GONE);
+    }
+
 
     public void setEnable(boolean is, int id) {
         if (is != get(id).isEnabled())

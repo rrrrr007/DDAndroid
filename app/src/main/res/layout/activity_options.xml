@@ -198,6 +198,13 @@
                     android:paddingTop="20dp"
                     android:textColor="@color/text_gray"
                     android:textSize="16sp" />
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/progress_options"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/tv_options_cache"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
             </RelativeLayout>
 
             <View

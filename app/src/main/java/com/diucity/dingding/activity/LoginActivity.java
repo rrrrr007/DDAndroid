@@ -1,8 +1,10 @@
 package com.diucity.dingding.activity;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -11,6 +13,7 @@ import com.diucity.dingding.binder.LoginBinder;
 import com.diucity.dingding.delegate.LoginDelegate;
 import com.diucity.dingding.entity.Send.LoginBean;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.utils.KeyboardChangeListener;
 import com.diucity.dingding.utils.VersonUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -73,13 +76,22 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         //下划线
         viewDelegate.get(R.id.edt_login_phone).setOnFocusChangeListener(this);
         viewDelegate.get(R.id.edt_login_code).setOnFocusChangeListener(this);
+
+        viewDelegate.getRootView().addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+                    Log.d("ch", "1111");
+                    viewDelegate.setWidgetHeight();
+                });
+
     }
+
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         viewDelegate.lineChange(v, hasFocus);
         viewDelegate.textChange(v, hasFocus);
+
     }
+
 
     @Override
     protected void onStart() {
@@ -97,4 +109,6 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
             viewDelegate.showSmallWarn();
         }
     }
+
+
 }

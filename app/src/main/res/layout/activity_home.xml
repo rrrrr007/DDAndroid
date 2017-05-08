@@ -12,19 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/toolbar_shape"
-        app:layout_heightPercent="18%">
-    </RelativeLayout>
+        app:layout_heightPercent="18%"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:id="@+id/tv_home_title"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="叮叮回收"
         android:textColor="@color/text_black"
         android:textSize="17sp"
         app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progress_home"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        android:layout_toLeftOf="@id/tv_home_title"
+        app:layout_marginRightPercent="1%"
         app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="100%" />
+        app:layout_heightPercent="8%"/>
 
     <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_home_wallet"
@@ -32,8 +42,8 @@
         android:layout_height="0dp"
         android:scaleType="center"
         android:src="@mipmap/ic_home_navigation_me"
-        app:layout_marginTopPercent="3%"
         app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
         app:layout_paddingLeftPercent="3%"
         app:layout_paddingRightPercent="3%" />
 
@@ -44,28 +54,31 @@
         android:layout_alignParentRight="true"
         android:scaleType="center"
         android:src="@mipmap/ic_home_navigation_notification"
-        app:layout_marginTopPercent="3%"
         app:layout_heightPercent="8%"
+        app:layout_marginTopPercent="3%"
         app:layout_paddingLeftPercent="3%"
         app:layout_paddingRightPercent="3%" />
+
     <com.diucity.dingding.widget.SwitchBarView
         android:id="@+id/sbv_home"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_toRightOf="@id/iv_home_wallet"
         android:layout_toLeftOf="@id/iv_home_system"
+        android:layout_toRightOf="@id/iv_home_wallet"
         app:layout_heightPercent="7%"
         app:layout_marginTopPercent="11%" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rl_home_ss" />
+
     <ImageView
         android:id="@+id/iv_home_sell"
-        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
         android:scaleType="center"
         android:src="@drawable/icon_sell_selector"
         app:layout_heightPercent="11%"
@@ -74,26 +87,28 @@
 
     <ImageView
         android:id="@+id/iv_home_collect"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:scaleType="center"
         android:src="@drawable/icon_scan_selector"
         app:layout_heightPercent="11%"
         app:layout_paddingLeftPercent="2%"
         app:layout_paddingRightPercent="2%" />
+
     <ImageView
         android:id="@+id/iv_home_call"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:scaleType="center"
         android:src="@drawable/icon_call_selector"
         app:layout_heightPercent="11%"
         app:layout_paddingLeftPercent="2%"
         app:layout_paddingRightPercent="2%" />
+
     <FrameLayout
         android:id="@+id/fl_toolbar"
         android:layout_width="0dp"

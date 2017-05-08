@@ -8,15 +8,26 @@
     android:background="@color/selector_white"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context="com.diucity.dingding.activity.LoginActivity">
+
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/iv_login_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:src="@mipmap/ic_notice_default_list"
+        app:layout_heightPercent="35%"
+        app:layout_marginTopPercent="3%" />
 
     <com.zhy.android.percent.support.PercentLinearLayout
         android:id="@+id/pll_login"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_alignLeft="@+id/btn_login_enter"
-        android:layout_alignStart="@+id/btn_login_enter"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/iv_login_logo"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical"
         app:layout_heightPercent="24%"
         app:layout_widthPercent="57%">
@@ -28,19 +39,22 @@
             app:layout_heightPercent="33%">
 
             <TextView
-                android:typeface="serif"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="+86"
-                android:textSize="17sp"
                 android:textColor="@color/text_black"
+                android:textSize="17sp"
+                android:typeface="serif"
                 app:layout_marginLeftPercent="9%" />
 
             <EditText
                 android:id="@+id/edt_login_phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="@null"
                 android:hint="10000000000"
                 android:inputType="number"
@@ -48,10 +62,7 @@
                 android:textColor="@color/text_black"
                 android:textColorHint="@color/text_gray"
                 android:textSize="17sp"
-                app:layout_paddingLeftPercent="25%"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                app:layout_paddingLeftPercent="25%" />
 
 
         </com.zhy.android.percent.support.PercentRelativeLayout>
@@ -108,7 +119,6 @@
         app:layout_heightPercent="8%" />
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/iv_login_icon2"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -116,21 +126,9 @@
         android:layout_toRightOf="@+id/pll_login"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
+        android:visibility="gone"
         app:layout_heightPercent="8%"
         app:layout_marginTopPercent="10%" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/pll_login">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/ic_launcher" />
-    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_login_enter"

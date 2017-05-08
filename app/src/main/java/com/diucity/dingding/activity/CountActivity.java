@@ -2,7 +2,6 @@ package com.diucity.dingding.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,18 +9,14 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
-import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.CountAdapter;
-import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.CountDelegate;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.ActivityUtils;
-import com.diucity.dingding.utils.KeyboardUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 

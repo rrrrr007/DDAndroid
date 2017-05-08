@@ -14,6 +14,10 @@ import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.concurrent.TimeUnit;
 
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 
 public class OptionsActivity extends BaseActivity<OptionsDelegate> {
     private AlertDialog alertDialog;
@@ -45,8 +49,7 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
         });
         //清空缓存
         RxView.clicks(viewDelegate.get(R.id.rl_options_clearCache)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-            ClearUtils.clearAppCache(this);
-            viewDelegate.setText(ClearUtils.caculateCacheSize(this),R.id.tv_options_cache);
+            clearCache();
         });
         //版本升级
         RxView.clicks(viewDelegate.get(R.id.rl_options_version)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
@@ -86,6 +89,18 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
             window.setWindowAnimations(R.style.dialog_style);
         }
         alertDialog.show();
+    }
+
+    private void clearCache(){
+        viewDelegate.setVisiable(true,R.id.progress_options);
+        ClearUtils.clearAppCache(this);
+        viewDelegate.setText(ClearUtils.caculateCacheSize(this),R.id.tv_options_cache);
+        Observable.timer(2, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    viewDelegate.setVisiable(false,R.id.progress_options);
+                });
     }
 
     @Override
