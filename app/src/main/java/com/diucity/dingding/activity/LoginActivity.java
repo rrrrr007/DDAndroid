@@ -1,5 +1,7 @@
 package com.diucity.dingding.activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
@@ -48,7 +50,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
                 .subscribe(aVoid -> {
                     EditText phone = viewDelegate.get(R.id.edt_login_phone);
                     EditText code = viewDelegate.get(R.id.edt_login_code);
-                    startActivity(new Intent(this, HomeActivity.class));
+                    //startActivity(new Intent(this, HomeActivity.class));
                     binder.work(viewDelegate, new LoginBean(phone.getText().toString(), code.getText().toString(), VersonUtils.getVersion(this)));
                 });
 
@@ -91,7 +93,6 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         viewDelegate.textChange(v, hasFocus);
 
     }
-
 
     @Override
     protected void onStart() {

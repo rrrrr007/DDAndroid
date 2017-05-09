@@ -1,5 +1,8 @@
 package com.diucity.dingding.delegate;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -25,6 +28,7 @@ import com.liaoinstan.springview.utils.DensityUtil;
 
 public class LoginDelegate extends AppDelegate {
     private boolean needshow;
+    private int height;
 
     @Override
     public int getRootLayoutId() {
@@ -85,53 +89,12 @@ public class LoginDelegate extends AppDelegate {
     }
 
     public void setWidgetHeight() {
-        View view = get(R.id.iv_login_logo);
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) view.getLayoutParams();
-
         if (isSoftShowing()) {
             if (needshow) return;
-            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.home_icon_hide);
-            animation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, lp.height /= 2);
-                    params.topMargin = lp.topMargin;
-                    view.setLayoutParams(params);
-                    needshow = true;
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
-            view.startAnimation(animation);
+            zoomIn(get(R.id.iv_login_logo),get(R.id.activity_main));
         } else {
             if (!needshow) return;
-            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.home_icon_show);
-            animation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, lp.height *= 2);
-                    params.topMargin = lp.topMargin;
-                    view.setLayoutParams(params);
-                    needshow = false;
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-            view.startAnimation(animation);
+            zoomOut(get(R.id.iv_login_logo),get(R.id.activity_main));
         }
     }
 
@@ -139,6 +102,43 @@ public class LoginDelegate extends AppDelegate {
         int screenHeight = getActivity().getWindow().getDecorView().getHeight();
         Rect rect = new Rect();
         getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        return screenHeight - rect.bottom > screenHeight/3;
+        height = screenHeight - rect.bottom;
+        return height > screenHeight/3;
+    }
+
+    /**
+     * 缩小
+     * @param view
+     */
+    public void zoomIn(final View view,final View viewGroup) {
+        view.setPivotY(view.getHeight());
+        view.setPivotX(view.getWidth() / 2);
+        AnimatorSet mAnimatorSet = new AnimatorSet();
+        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 0.6f);
+        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 0.6f);
+        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", 0.0f, -height/3);
+        mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
+        mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
+        mAnimatorSet.setDuration(300);
+        mAnimatorSet.start();
+        needshow = true;
+    }
+
+    /**
+     * f放大
+     * @param view
+     */
+    public void zoomOut(final View view,final View viewGroup) {
+        view.setPivotY(0);
+        view.setPivotX(view.getWidth() / 2);
+        AnimatorSet mAnimatorSet = new AnimatorSet();
+        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 0.6f, 1.0f);
+        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 0.6f, 1.0f);
+        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", view.getTranslationY(), 0);
+        mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
+        mAnimatorSet.play(mAnimatorScaleY).with(mAnimatorTranslateY);
+        mAnimatorSet.setDuration(300);
+        mAnimatorSet.start();
+        needshow = false;
     }
 }

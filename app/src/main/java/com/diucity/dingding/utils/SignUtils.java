@@ -52,7 +52,7 @@ public class SignUtils {
     }
 
     public static String dbloginCode(String code){
-        return md5("db_login" + code);
+        return md5(code);
     }
 
     public static String payCode(long time, String code) {

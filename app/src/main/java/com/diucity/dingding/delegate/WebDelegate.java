@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -36,12 +37,12 @@ public class WebDelegate extends AppDelegate {
         super.initWidget();
         ((TextView) get(R.id.toolbar)).setText("绑定银行卡");
         WebView wv = get(R.id.webView_web);
-        wv.getSettings().setJavaScriptEnabled(true);
+        WebSettings set = wv.getSettings();
         wv.loadUrl("https://www.baidu.com/");
         wv.addJavascriptInterface(WebDelegate.this, "android");
+        set.setJavaScriptEnabled(true);
         wv.setWebViewClient(new WebViewClient());
     }
-
 
 
     @JavascriptInterface
