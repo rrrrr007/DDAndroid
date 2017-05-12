@@ -10,6 +10,7 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.utils.FontUtils.CalligraphyConfig;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.smtt.sdk.QbSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import java.util.LinkedList;
@@ -44,11 +45,11 @@ public class App extends android.app.Application {
         app = this;
         activities = new LinkedList<>();
         mainTid = android.os.Process.myTid();
+        QbSdk.initX5Environment(this,null);
         LeakCanary.install(this);
         ZXingLibrary.initDisplayOpinion(this);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 //.setDefaultFontPath(Environment.getRootDirectory().getPath() + "/fonts/NotoSansOriyaUI-Bold.ttf")//指定字体
-
                 .setFontAttrId(R.attr.fontPath)
                 .build());
     }

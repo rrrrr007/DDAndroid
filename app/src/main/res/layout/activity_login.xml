@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerInside"
-        android:src="@mipmap/ic_notice_default_list"
+        android:src="@mipmap/login_logo"
         app:layout_heightPercent="35%"
         app:layout_marginTopPercent="3%" />
 

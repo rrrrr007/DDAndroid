@@ -25,16 +25,6 @@ public class AboutActivity extends BaseActivity<AboutDelegate> {
 
     @Override
     protected void bindEvenListener() {
-        //评分
-        RxView.clicks(viewDelegate.get(R.id.rl_about_raise)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    Toast.makeText(this, "评分", Toast.LENGTH_SHORT).show();
-                });
-        //分享
-        RxView.clicks(viewDelegate.get(R.id.rl_about_share)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();
-                });
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_about_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {

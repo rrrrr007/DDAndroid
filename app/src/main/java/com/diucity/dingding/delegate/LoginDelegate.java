@@ -1,25 +1,17 @@
 package com.diucity.dingding.delegate;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.Transformation;
+
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
-import com.diucity.dingding.utils.KeyboardChangeListener;
-import com.liaoinstan.springview.utils.DensityUtil;
+
 
 
 /**
@@ -43,7 +35,7 @@ public class LoginDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-
+        setText("18244233734",R.id.edt_login_phone);
     }
 
     public void lineChange(View v, boolean hasFocus) {

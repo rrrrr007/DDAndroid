@@ -16,7 +16,6 @@ import com.tencent.smtt.sdk.WebViewClient;
  */
 
 public class DetailDelegate extends AppDelegate {
-    private WebView webView;
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_detail;
@@ -29,7 +28,7 @@ public class DetailDelegate extends AppDelegate {
 
     @Override
     public void initWidget() {
-        webView = get(R.id.web_detail);
+        WebView webView = get(R.id.web_detail);
         WebSettings settings = webView.getSettings();
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
@@ -67,7 +66,5 @@ public class DetailDelegate extends AppDelegate {
         });
     }
 
-    public void setNull(){
-        webView = null;
-    }
+
 }
