@@ -19,6 +19,7 @@ import com.diucity.dingding.utils.KeyboardChangeListener;
 import com.diucity.dingding.utils.VersonUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
+import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.util.concurrent.TimeUnit;
 

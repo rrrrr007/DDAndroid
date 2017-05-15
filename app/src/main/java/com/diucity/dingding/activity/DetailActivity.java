@@ -26,11 +26,7 @@ public class DetailActivity extends BaseActivity<DetailDelegate> {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_detail_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    if (webView.canGoBack()) {
-                        webView.goBack();
-                    } else {
-                        viewDelegate.finish();
-                    }
+                    finish();
                 });
     }
 
@@ -46,7 +42,6 @@ public class DetailActivity extends BaseActivity<DetailDelegate> {
         } else {
             super.onBackPressed();
         }
-
     }
 
     @Override

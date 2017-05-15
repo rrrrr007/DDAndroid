@@ -1,6 +1,9 @@
 package com.diucity.dingding.activity;
 
 
+import android.view.View;
+import android.widget.Toast;
+
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.SystemBinder;
 import com.diucity.dingding.delegate.SystemDelegate;
@@ -9,6 +12,7 @@ import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liaoinstan.springview.widget.SpringView;
 
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class SystemActivity extends BaseActivity<SystemDelegate> {
@@ -27,21 +31,28 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
-        ((SpringView) viewDelegate.get(R.id.sv_system)).setListener(new SpringView.OnFreshListener() {
+        MySpringView springView = viewDelegate.get(R.id.sv_system);
+
+        ((MySpringView) viewDelegate.get(R.id.sv_system)).setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
+                viewDelegate.onFinishLoad();
             }
 
             @Override
             public void onLoadmore() {
+                Toast.makeText(activity, "a", Toast.LENGTH_SHORT).show();
                 viewDelegate.onFinishLoad();
             }
+
         });
+
+
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_system_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     viewDelegate.notifyData();
-                    //viewDelegate.finish();
+                    springView.setHeadEnable(false);
                 });
     }
 

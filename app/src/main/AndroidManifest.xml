@@ -55,7 +55,7 @@
         -->
         <activity
             android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".activity.ForgetActivity"
             android:screenOrientation="portrait" />
@@ -113,6 +113,12 @@
         <activity
             android:name=".activity.PaymentActivity"
             android:screenOrientation="portrait" />
+        <meta-data
+            android:name="design_width"
+            android:value="720" />
+        <meta-data
+            android:name="design_height"
+            android:value="1280" />
     </application>
 
 </manifest>

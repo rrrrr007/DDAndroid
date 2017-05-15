@@ -1,7 +1,6 @@
 package com.diucity.dingding.activity;
 
 
-import android.widget.Toast;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.AboutDelegate;

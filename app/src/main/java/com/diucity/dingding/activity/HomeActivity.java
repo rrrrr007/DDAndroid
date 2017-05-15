@@ -25,6 +25,8 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
             Manifest.permission.WRITE_EXTERNAL_STORAGE,// 写入权限
             Manifest.permission.READ_EXTERNAL_STORAGE, //相机
             Manifest.permission.CAMERA, //相机
+           /* Manifest.permission.ACCESS_COARSE_LOCATION,//位置
+            Manifest.permission.ACCESS_FINE_LOCATION,//位置*/
     };
 
 
@@ -96,9 +98,6 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
         sbv = viewDelegate.get(R.id.sbv_home);
         vp = viewDelegate.get(R.id.vp_home);
         binder.work(viewDelegate, new TodayBean("1001", 0, 0));
-
-
-
     }
 
     @Override

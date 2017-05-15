@@ -36,6 +36,7 @@ public class SystemDelegate extends AppDelegate {
         super.initWidget();
 
         sv = get(R.id.sv_system);
+        sv.setHeader(new DefaultFooter(getActivity()));
         sv.setFooter(new DefaultFooter(getActivity()));
         sv.setType(SpringView.Type.FOLLOW);
         sv.setEnable(false);
