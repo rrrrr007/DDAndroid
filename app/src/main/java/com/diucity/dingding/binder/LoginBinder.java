@@ -1,21 +1,17 @@
 package com.diucity.dingding.binder;
 
-import android.content.Intent;
 import android.util.Log;
-import android.widget.TextView;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.activity.HomeActivity;
 import com.diucity.dingding.activity.PINActivity;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.LoginDelegate;
 import com.diucity.dingding.entity.Back.LoginBack;
-import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Send.LoginBean;
-import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
+import com.diucity.dingding.R;
 
 import rx.Observer;
 
@@ -34,7 +30,7 @@ public class LoginBinder implements DataBinder<LoginDelegate, LoginBack> {
     public void work(LoginDelegate viewDelegate, Object object) {
         if (object instanceof LoginBean){
             LoginBean bean = (LoginBean) object;
-            Log.d("ch",GsonUtils.GsonString(bean));
+            Log.d("ch", GsonUtils.GsonString(bean));
             viewDelegate.showLoadingWarn("正在登录中");
             Network.subscribe(Network.getApi().login(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<LoginBack>() {
                 @Override

@@ -2,8 +2,6 @@ package com.diucity.dingding.persent;
 
 import android.os.Bundle;
 
-import rx.Subscription;
-
 
 //集成数据-视图绑定的Activity基类(Presenter层)
 public abstract class DataBindActivity<T extends IDelegate> extends

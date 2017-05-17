@@ -2,6 +2,8 @@ package com.diucity.dingding.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +14,9 @@ import android.text.style.ForegroundColorSpan;
 import android.view.Window;
 import android.widget.EditText;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.CountAdapter;
 import com.diucity.dingding.delegate.CountDelegate;
+import com.diucity.dingding.R;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.ActivityUtils;
 import com.jakewharton.rxbinding.view.RxView;
@@ -49,12 +51,13 @@ public class CountActivity extends BaseActivity<CountDelegate> {
             smoothMoveToPosition(position);
             viewDelegate.setText((spite("单价\n0." + position + "0/斤")), R.id.tv_count_oneprice);
             viewDelegate.setText(adapter.getText(), R.id.edt_count);
-
+            viewDelegate.showSoft();
         });
         //edt内容改变item内容
         RxTextView.afterTextChangeEvents(edt).subscribe(textChangeEvent -> {
             if (!first) {
                 adapter.setText(textChangeEvent.editable().toString());
+                viewDelegate.setVisiable(textChangeEvent.editable().toString().length()==0,R.id.tv_count_hint);
                 edt.setSelection(edt.getText().length());
 
             } else
@@ -72,6 +75,21 @@ public class CountActivity extends BaseActivity<CountDelegate> {
                     viewDelegate.startActivity(CaptureActivity.class);
                     viewDelegate.finish();
                 });
+
+        viewDelegate.getRootView().addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+            viewDelegate.setWidgetHeight();
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        edt.requestFocus();
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     public SpannableString spite(String str) {

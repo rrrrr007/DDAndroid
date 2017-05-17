@@ -5,8 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.utils.ActivityUtils;
+import com.diucity.dingding.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             startActivity(new Intent(SplashActivity.this,LoginActivity.class));
             finish();
-        }, 1000 * 3);
+        }, 1000 * 1);
     }
 
     @Override

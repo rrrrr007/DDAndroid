@@ -7,11 +7,10 @@ import android.graphics.Rect;
 import android.view.View;
 
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
-
+import com.diucity.dingding.R;
 
 
 /**
@@ -35,7 +34,7 @@ public class LoginDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        setText("18244233734",R.id.edt_login_phone);
+        setText("182 4423 3734",R.id.edt_login_phone);
     }
 
     public void lineChange(View v, boolean hasFocus) {
@@ -49,7 +48,7 @@ public class LoginDelegate extends AppDelegate {
                 break;
         }
         view.setBackgroundColor(hasFocus ? Color.parseColor("#009479") : Color.parseColor("#C0CCC8"));
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
         params.height = (hasFocus ? 2 : 1);
         view.setLayoutParams(params);
     }
@@ -106,8 +105,8 @@ public class LoginDelegate extends AppDelegate {
         view.setPivotY(view.getHeight());
         view.setPivotX(view.getWidth() / 2);
         AnimatorSet mAnimatorSet = new AnimatorSet();
-        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 0.6f);
-        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 0.6f);
+        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 0.0f);
+        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 0.0f);
         ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", 0.0f, -height/3);
         mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
         mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
@@ -124,11 +123,11 @@ public class LoginDelegate extends AppDelegate {
         view.setPivotY(0);
         view.setPivotX(view.getWidth() / 2);
         AnimatorSet mAnimatorSet = new AnimatorSet();
-        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 0.6f, 1.0f);
-        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 0.6f, 1.0f);
-        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", view.getTranslationY(), 0);
+        ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 0.0f, 1.0f);
+        ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 0.0f, 1.0f);
+        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", -height/3, 0.0f);
+        mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
         mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
-        mAnimatorSet.play(mAnimatorScaleY).with(mAnimatorTranslateY);
         mAnimatorSet.setDuration(300);
         mAnimatorSet.start();
         needshow = false;

@@ -1,38 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_withdraw"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.WithdrawActivity">
-
     <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="11%"
-        app:layout_widthPercent="100%"
+        android:layout_width="match_parent"
+        android:layout_height="148px"
         android:background="@drawable/toolbar_shape" />
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_marginTopPercent="3%"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingTop="60px"
         android:text="提现"
         android:textColor="@color/text_black"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_widthPercent="100%" />
+        android:textSize="17sp" />
 
     <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_withdraw_back"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="148px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
         android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_green"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
-</com.zhy.android.percent.support.PercentRelativeLayout>
+        android:src="@mipmap/ic_cmm_return_green" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

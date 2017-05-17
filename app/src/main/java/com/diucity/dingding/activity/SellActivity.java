@@ -12,9 +12,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.SellDelegate;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.R;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.io.IOException;

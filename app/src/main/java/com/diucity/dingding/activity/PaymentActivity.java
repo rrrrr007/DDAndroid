@@ -1,8 +1,8 @@
 package com.diucity.dingding.activity;
 
+import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.PaymentDelegate;
-import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.concurrent.TimeUnit;

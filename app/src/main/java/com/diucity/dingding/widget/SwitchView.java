@@ -8,7 +8,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.diucity.dingding.R;
 import com.liaoinstan.springview.utils.DensityUtil;
 
 /**

@@ -2,9 +2,9 @@ package com.diucity.dingding.activity;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.diucity.dingding.delegate.MissionDelegate;
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.MissionAdapter;
-import com.diucity.dingding.delegate.MissionDelegate;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 

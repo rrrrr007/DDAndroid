@@ -2,10 +2,10 @@ package com.diucity.dingding.activity;
 
 
 
-import com.diucity.dingding.R;
-import com.diucity.dingding.delegate.NotificationDelegate;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.SpUtils;
+import com.diucity.dingding.R;
+import com.diucity.dingding.delegate.NotificationDelegate;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 

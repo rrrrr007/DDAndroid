@@ -1,7 +1,6 @@
 package com.diucity.dingding.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -18,7 +17,6 @@ import com.diucity.dingding.utils.ActivityUtils;
 import com.liaoinstan.springview.utils.DensityUtil;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/13 0013.

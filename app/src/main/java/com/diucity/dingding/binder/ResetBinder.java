@@ -7,8 +7,6 @@ import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.ResetDelegate;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Send.ChangeBean;
-import com.diucity.dingding.entity.Send.PaysetBean;
-import com.diucity.dingding.entity.Send.ResetBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;

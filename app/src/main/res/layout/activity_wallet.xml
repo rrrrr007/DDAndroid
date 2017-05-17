@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_wallet"
@@ -9,138 +9,143 @@
     tools:context="com.diucity.dingding.activity.WalletActivity">
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingTop="60px"
         android:text="钱包"
         android:textColor="@color/selector_white"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="100%" />
+        android:textSize="17sp" />
 
     <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_wallet_back"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="148px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
         android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_white"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
+        android:src="@mipmap/ic_cmm_return_white" />
+
 
     <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_wallet_options"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="148px"
         android:layout_alignParentRight="true"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
         android:scaleType="center"
-        android:src="@mipmap/ic_me_navigation_set"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
+        android:src="@mipmap/ic_me_navigation_set" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_wallet"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="690px"
+        android:layout_height="500px"
         android:layout_centerInParent="true"
         app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_heightPercent="40%"
-        app:layout_widthPercent="94%"
         tools:targetApi="lollipop">
 
-        <com.zhy.android.percent.support.PercentRelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
-                android:layout_centerHorizontal="true"
                 android:id="@+id/tv_wallet_ss"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70px"
                 android:text="当前余额（元）"
                 android:textColor="#606664"
-                android:textSize="14sp"
-                app:layout_marginTopPercent="14%" />
+                android:textSize="14sp" />
 
             <TextView
-
-                android:layout_below="@id/tv_wallet_ss"
-                android:layout_centerHorizontal="true"
                 android:id="@+id/tv_wallet_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/tv_wallet_ss"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20px"
                 android:text="0.00"
                 android:textColor="#f9960d"
-                android:textSize="50sp"
-                app:layout_marginTopPercent="4%" />
+                android:textSize="50sp" />
 
             <Button
+                android:id="@+id/btn_wallet"
+                android:layout_width="610px"
+                android:layout_height="80px"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/btn_wallet"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40px"
                 android:background="@drawable/button_selector"
-                android:text="提现"
+                android:text="提  现"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
-                app:layout_marginBottomPercent="6%"
-                app:layout_heightPercent="18%"
-                app:layout_widthPercent="90%" />
-        </com.zhy.android.percent.support.PercentRelativeLayout>
+                android:textSize="16sp" />
+        </com.zhy.autolayout.AutoRelativeLayout>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="690px"
+        android:layout_height="150px"
         android:layout_below="@id/card_wallet"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="30px"
         app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_heightPercent="11%"
-        app:layout_marginTopPercent="1%"
-        app:layout_widthPercent="94%"
         tools:targetApi="lollipop">
 
         <LinearLayout
-            android:background="@drawable/btn_press_selector"
             android:id="@+id/ll_wallet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/btn_press_selector"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
                 android:scaleType="center"
                 android:src="@mipmap/ic_me_bill" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <LinearLayout
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="账单明细\n近30天无交易"
-                android:textColor="@color/text_black" />
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:text="账单明细"
+                    android:textColor="@color/text_black" />
+                <TextView
+                    android:layout_marginTop="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="近30天无交易"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_gray2" />
+            </LinearLayout>
+
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
                 android:src="@mipmap/ic_cmm_arrows_list" />
 
         </LinearLayout>
@@ -148,14 +153,12 @@
 
     <FrameLayout
         android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
 
     <include
         layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
-</com.zhy.android.percent.support.PercentRelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginTop="150px" />
+</com.zhy.autolayout.AutoRelativeLayout>

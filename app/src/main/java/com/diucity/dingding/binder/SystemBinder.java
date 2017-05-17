@@ -2,11 +2,11 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
-import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.SystemDelegate;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.api.Network;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
 

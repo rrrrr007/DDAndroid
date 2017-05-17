@@ -7,10 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.Window;
 
+import com.diucity.dingding.entity.Send.TodayBean;
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.HomeBinder;
 import com.diucity.dingding.delegate.HomeDelegate;
-import com.diucity.dingding.entity.Send.TodayBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.widget.SwitchBarView;
 import com.jakewharton.rxbinding.view.RxView;

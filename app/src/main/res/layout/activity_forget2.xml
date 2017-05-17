@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_forget2"
@@ -9,145 +9,128 @@
     tools:context="com.diucity.dingding.activity.Forget2Activity">
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="11%"
-        app:layout_widthPercent="100%"
+        android:layout_width="match_parent"
+        android:layout_height="148px"
         android:background="@drawable/toolbar_shape" />
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_marginTopPercent="3%"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingTop="60px"
         android:text="重设密码"
         android:textColor="@color/text_black"
-        android:textSize="17sp"
-
-        app:layout_heightPercent="8%"
-        app:layout_widthPercent="100%" />
+        android:textSize="17sp" />
 
     <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_forget2_back"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="148px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
         android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_green"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
+        android:src="@mipmap/ic_cmm_return_green" />
 
     <TextView
-        android:textColor="@color/text_gray2"
         android:id="@+id/tv_forget2_describe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="208px"
         android:gravity="center"
         android:text="我们已经发送验证码到您手机"
-        android:textSize="15sp"
-        app:layout_marginTopPercent="18%" />
+        android:textColor="@color/text_gray2"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/edt_forget2_code"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410px"
+        android:layout_height="100px"
         android:layout_below="@id/tv_forget2_describe"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="90px"
         android:background="@null"
         android:hint="输入短信验证码"
         android:inputType="number"
         android:maxLength="6"
         android:textColor="@color/text_black"
         android:textColorHint="@color/text_gray"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="7%"
-        app:layout_widthPercent="57%" />
+        android:textSize="17sp" />
 
     <View
         android:id="@+id/view_forget2_1"
-        android:layout_width="0dp"
+        android:layout_width="410px"
         android:layout_height="1px"
         android:layout_below="@id/edt_forget2_code"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray"
-        app:layout_widthPercent="57%" />
+        android:background="@color/text_gray" />
 
     <com.diucity.dingding.widget.LightText
         android:id="@+id/tv_forget2_timer"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="100px"
         android:layout_alignRight="@id/edt_forget2_code"
         android:layout_below="@id/tv_forget2_describe"
+        android:layout_marginTop="90px"
         android:gravity="center"
         android:text="重新发送"
         android:textColor="@android:color/holo_green_dark"
-        android:textSize="15sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="7%" />
+        android:textSize="15sp" />
 
     <EditText
-        android:layout_below="@id/edt_forget2_code"
         android:id="@+id/edt_forget2_password"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410px"
+        android:layout_height="100px"
+        android:layout_below="@id/edt_forget2_code"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="30px"
         android:background="@null"
         android:hint="点击输入新密码"
         android:inputType="number"
         android:textColor="@color/text_black"
         android:textColorHint="@color/text_gray"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="57%" />
+        android:textSize="17sp" />
 
     <View
         android:id="@+id/view_forget2_2"
-        android:layout_width="0dp"
+        android:layout_width="410px"
         android:layout_height="1px"
         android:layout_below="@id/edt_forget2_password"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray"
-        app:layout_widthPercent="57%" />
+        android:background="@color/text_gray" />
 
     <Button
-        android:enabled="false"
         android:id="@+id/btn_forget2_finish"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410px"
+        android:layout_height="88px"
         android:layout_below="@id/edt_forget2_password"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="70px"
         android:background="@drawable/button_selector"
+        android:enabled="false"
         android:text="完    成"
-        android:textColor="@drawable/text_shape"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="7%"
-        app:layout_widthPercent="57%" />
+        android:textColor="@drawable/text_shape" />
 
     <ImageView
         android:id="@+id/iv_forget2_icon"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="100px"
         android:layout_alignTop="@id/edt_forget2_password"
         android:layout_toRightOf="@id/tv_forget2_timer"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
-        android:visibility="gone"
-        app:layout_heightPercent="8%" />
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
 
     <include
         layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
-</com.zhy.android.percent.support.PercentRelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginTop="150px" />
+</com.zhy.autolayout.AutoRelativeLayout>

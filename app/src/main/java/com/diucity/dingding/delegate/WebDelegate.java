@@ -7,13 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.R;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 /**
  * Created by Administrator on 2017/3/29 0029.
@@ -35,15 +35,19 @@ public class WebDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        ((TextView) get(R.id.toolbar)).setText("绑定银行卡");
         WebView wv = get(R.id.webView_web);
         WebSettings set = wv.getSettings();
-        wv.loadUrl("https://www.baidu.com/");
+        wv.loadUrl("http://192.168.3.18:8080/#/billing-details");
         wv.addJavascriptInterface(WebDelegate.this, "android");
         set.setJavaScriptEnabled(true);
         wv.setWebViewClient(new WebViewClient());
     }
 
+
+    @JavascriptInterface
+    public String getId(){
+        return "123";
+    }
 
     @JavascriptInterface
     public void show() {

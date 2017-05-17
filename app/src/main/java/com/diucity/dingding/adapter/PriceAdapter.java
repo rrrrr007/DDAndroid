@@ -1,21 +1,17 @@
 package com.diucity.dingding.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.R;
 import com.diucity.dingding.entity.Back.TodayBack;
-import com.diucity.dingding.utils.ActivityUtils;
 
 import java.util.ArrayList;
-import java.util.StringJoiner;
 
 /**
  * Created by Administrator on 2017/4/13 0013.

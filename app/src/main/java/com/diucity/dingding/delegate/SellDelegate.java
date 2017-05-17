@@ -5,8 +5,8 @@ import android.graphics.BitmapFactory;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.R;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 /**

@@ -1,75 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.diucity.dingding.activity.AboutActivity">
+    tools:context="com.diucity.dingding..activity.AboutActivity">
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/toolbar_shape"
-        app:layout_heightPercent="11%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="148px"
+        android:background="@drawable/toolbar_shape" />
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingTop="60px"
         android:text="关于"
         android:textColor="@color/text_black"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="100%" />
+        android:textSize="17sp" />
 
     <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_about_back"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="148px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
         android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_green"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
+        android:src="@mipmap/ic_cmm_return_green" />
 
     <ImageView
-        android:layout_centerInParent="true"
+        android:id="@+id/iv_about_logo"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/logo_set"
-        app:layout_heightPercent="24%" />
-
-
-
-
+        android:layout_marginTop="550px"
+        android:src="@mipmap/logo_set" />
+    <TextView
+        android:id="@+id/tv_about_version"
+        android:textSize="14sp"
+        android:textColor="#606664"
+        android:layout_below="@id/iv_about_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20px"
         android:text="我是版权声明我是版权声明我是版权声明"
         android:textColor="#606664"
-        android:textSize="13sp"
-        app:layout_marginBottomPercent="2%" />
+        android:textSize="13sp" />
 
     <FrameLayout
         android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
 
     <include
         layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginTop="150px" />
 
-</com.zhy.android.percent.support.PercentRelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.SplashActivity"
+            android:theme="@style/No"
+            android:name="com.diucity.dingding.activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +37,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".recevier.NetworkRecevier">
+        <receiver android:name="com.diucity.dingding.recevier.NetworkRecevier">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
@@ -54,71 +55,73 @@
          </provider>
         -->
         <activity
-            android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing"/>
-        <activity
-            android:name=".activity.ForgetActivity"
+            android:name="com.diucity.dingding.activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.PINActivity"
+            android:name="com.diucity.dingding.activity.ForgetActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeActivity"
+            android:name="com.diucity.dingding.activity.PINActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Forget2Activity"
+            android:name="com.diucity.dingding.activity.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SystemActivity"
+            android:name="com.diucity.dingding.activity.Forget2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.OptionsActivity"
+            android:name="com.diucity.dingding.activity.SystemActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.NotificationActivity"
+            android:name="com.diucity.dingding.activity.OptionsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MissionActivity"
+            android:name="com.diucity.dingding.activity.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.CaptureActivity"
+            android:name="com.diucity.dingding.activity.MissionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RecordActivity"
+            android:name="com.diucity.dingding.activity.CaptureActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WalletActivity"
+            android:name="com.diucity.dingding.activity.RecordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WebActivity"
+            android:name="com.diucity.dingding.activity.WalletActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SellActivity"
+            android:name="com.diucity.dingding.activity.WebActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DetailActivity"
+            android:name="com.diucity.dingding.activity.SellActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.CountActivity"
+            android:name="com.diucity.dingding.activity.DetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AboutActivity"
+            android:name="com.diucity.dingding.activity.CountActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:theme="@style/NoTitle"/>
+        <activity
+            android:name="com.diucity.dingding.activity.AboutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ResetActivity"
+            android:name="com.diucity.dingding.activity.ResetActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WithdrawActivity"
+            android:name="com.diucity.dingding.activity.WithdrawActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.PaymentActivity"
+            android:name="com.diucity.dingding.activity.PaymentActivity"
             android:screenOrientation="portrait" />
         <meta-data
             android:name="design_width"
-            android:value="720" />
+            android:value="750" />
         <meta-data
             android:name="design_height"
-            android:value="1280" />
+            android:value="1334" />
     </application>
 
 </manifest>

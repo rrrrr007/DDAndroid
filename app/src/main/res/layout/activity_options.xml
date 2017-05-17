@@ -1,363 +1,360 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_options"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.diucity.dingding.activity.OptionsActivity">
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/toolbar_shape"
-        app:layout_heightPercent="11%"
-        app:layout_widthPercent="100%" />
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/activity_options"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="设置"
-        android:textColor="@color/text_black"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="100%" />
-
-    <com.diucity.dingding.widget.LightImage
-        android:id="@+id/iv_options_back"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_green"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_options"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_options_back"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:layout_marginTopPercent="2%"
-        app:layout_widthPercent="94%"
-        tools:targetApi="lollipop">
-
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/rl_options_notification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_press_selector"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:text="新消息通知"
-                    android:textColor="#031912"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tv_options_isNotification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@mipmap/ic_cmm_arrows_list"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:text="未开启"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/line_gray" />
-
-            <RelativeLayout
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/rl_options_resetPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_press_selector"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:text="修改登录密码"
-                    android:textColor="#031912"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@mipmap/ic_cmm_arrows_list"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/line_gray" />
-
-
-            <RelativeLayout
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/rl_options_forgetPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_press_selector"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:text="忘记登录密码"
-                    android:textColor="#031912"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@mipmap/ic_cmm_arrows_list"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/line_gray" />
-
-            <RelativeLayout
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/rl_options_clearCache"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_press_selector"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:text="清理缓存"
-                    android:textColor="#031912"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tv_options_cache"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@mipmap/ic_cmm_arrows_list"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-                <ProgressBar
-                    android:visibility="gone"
-                    android:id="@+id/progress_options"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/tv_options_cache"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
-            </RelativeLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/line_gray" />
-
-
-            <RelativeLayout
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/rl_options_version"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_press_selector"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:text="版本升级"
-                    android:textColor="#031912"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@mipmap/ic_cmm_arrows_list"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/line_gray" />
-
-            <RelativeLayout
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/rl_options_about"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_press_selector"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:text="关于我们"
-                    android:textColor="#031912"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@mipmap/ic_cmm_arrows_list"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/line_gray" />
-
-
-            <RelativeLayout
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/rl_options_function"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_press_selector"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:text="功能介绍"
-                    android:textColor="#031912"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawablePadding="10dp"
-                    android:drawableRight="@mipmap/ic_cmm_arrows_list"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/card_options"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="94%"
-        tools:targetApi="lollipop">
+            android:layout_height="148px"
+            android:background="@drawable/toolbar_shape" />
 
         <TextView
-            android:id="@+id/tv_options_change"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/btn_press_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="148px"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="更换登录账号"
-            android:textColor="#031912"
-            android:textSize="16sp" />
-    </android.support.v7.widget.CardView>
+            android:paddingTop="60px"
+            android:text="设置"
+            android:textColor="@color/text_black"
+            android:textSize="17sp" />
 
-    <FrameLayout
-        android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        <com.diucity.dingding.widget.LightImage
+            android:id="@+id/iv_options_back"
+            android:layout_width="wrap_content"
+            android:layout_height="148px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:paddingTop="60px"
+            android:scaleType="center"
+            android:src="@mipmap/ic_cmm_return_green" />
 
-    <include
-        layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_options"
+            android:layout_width="690px"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="178px"
+            app:cardCornerRadius="5dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            tools:targetApi="lollipop">
 
-</com.zhy.android.percent.support.PercentRelativeLayout>
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/rl_options_notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_press_selector"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="新消息通知"
+                        android:textColor="#031912"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_options_isNotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="20px"
+                        android:drawableRight="@mipmap/ic_cmm_arrows_list"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="未开启"
+                        android:textColor="#606664"
+                        android:textSize="16sp" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="@drawable/toolbar_shape" />
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/rl_options_resetPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_press_selector"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="修改登录密码"
+                        android:textColor="#031912"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="20px"
+                        android:drawableRight="@mipmap/ic_cmm_arrows_list"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:textColor="#606664"
+                        android:textSize="16sp" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="@drawable/toolbar_shape" />
+
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/rl_options_forgetPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_press_selector"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="忘记登录密码"
+                        android:textColor="#031912"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="20px"
+                        android:drawableRight="@mipmap/ic_cmm_arrows_list"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:textColor="#606664"
+                        android:textSize="16sp" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="@drawable/toolbar_shape" />
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/rl_options_clearCache"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_press_selector"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="清理缓存"
+                        android:textColor="#031912"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_options_cache"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="20px"
+                        android:drawableRight="@mipmap/ic_cmm_arrows_list"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:textColor="#606664"
+                        android:textSize="16sp" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_options"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/tv_options_cache"
+                        android:visibility="gone" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="@drawable/toolbar_shape" />
+
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/rl_options_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_press_selector"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="版本升级"
+                        android:textColor="#031912"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="20px"
+                        android:drawableRight="@mipmap/ic_cmm_arrows_list"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:textColor="#606664"
+                        android:textSize="16sp" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="@drawable/toolbar_shape" />
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/rl_options_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_press_selector"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="关于我们"
+                        android:textColor="#031912"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="20px"
+                        android:drawableRight="@mipmap/ic_cmm_arrows_list"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:textColor="#606664"
+                        android:textSize="16sp" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="@drawable/toolbar_shape" />
+
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/rl_options_function"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_press_selector"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="功能介绍"
+                        android:textColor="#031912"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="20px"
+                        android:drawableRight="@mipmap/ic_cmm_arrows_list"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:textColor="#606664"
+                        android:textSize="16sp" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="690px"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_options"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="70px"
+            app:cardCornerRadius="5dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            tools:targetApi="lollipop">
+
+            <TextView
+                android:id="@+id/tv_options_change"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_press_selector"
+                android:gravity="center"
+                android:paddingBottom="40px"
+                android:paddingTop="40px"
+                android:text="更换登录账号"
+                android:textColor="#031912"
+                android:textSize="16sp" />
+        </android.support.v7.widget.CardView>
+
+        <FrameLayout
+            android:id="@+id/fl_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="150px" />
+
+        <include
+            layout="@layout/notice_small"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:layout_marginTop="150px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+</ScrollView>

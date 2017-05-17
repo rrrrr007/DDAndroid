@@ -1,14 +1,14 @@
 package com.diucity.dingding.app;
 
 import android.content.Context;
-import android.os.Environment;
-import android.support.v4.os.EnvironmentCompat;
 import android.support.v7.app.AppCompatDelegate;
 
 
-import com.diucity.dingding.R;
+import com.bugtags.library.Bugtags;
+import com.bugtags.library.BugtagsOptions;
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.utils.FontUtils.CalligraphyConfig;
+import com.diucity.dingding.R;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.smtt.sdk.QbSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
@@ -48,6 +48,14 @@ public class App extends android.app.Application {
         QbSdk.initX5Environment(this,null);
         LeakCanary.install(this);
         ZXingLibrary.initDisplayOpinion(this);
+        BugtagsOptions options = new BugtagsOptions.Builder().
+                trackingLocation(true).//是否获取位置，默认 true
+                trackingCrashLog(false).//是否收集crash，默认 true
+                trackingConsoleLog(true).//是否收集console log，默认 true
+                trackingUserSteps(true).//是否收集用户操作步骤，默认 true
+                trackingNetworkURLFilter("(.*)").//自定义网络请求跟踪的 url 规则，默认 null
+                build();
+        Bugtags.start("43592f597541e3b9b5a900d734aaab66", this, Bugtags.BTGInvocationEventBubble);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 //.setDefaultFontPath(Environment.getRootDirectory().getPath() + "/fonts/NotoSansOriyaUI-Bold.ttf")//指定字体
                 .setFontAttrId(R.attr.fontPath)

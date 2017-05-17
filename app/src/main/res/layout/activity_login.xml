@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -8,157 +7,131 @@
     android:background="@color/selector_white"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical"
     tools:context="com.diucity.dingding.activity.LoginActivity">
 
 
     <ImageView
-        android:layout_centerHorizontal="true"
         android:id="@+id/iv_login_logo"
+        android:layout_width="160px"
+        android:layout_height="160px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="178px"
+        android:src="@mipmap/login_logo" />
+
+    <!--517 170-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="100px"
+        android:layout_marginLeft="206px"
+        android:layout_marginTop="517px"
+        android:gravity="center"
+        android:text="+86"
+        android:textColor="@color/text_black"
+        android:textSize="17sp" />
+
+    <EditText
+        android:id="@+id/edt_login_phone"
+        android:layout_width="410px"
+        android:layout_height="100px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="517px"
+        android:background="@null"
+        android:hint="10000000000"
+        android:inputType="number"
+        android:maxLength="15"
+        android:paddingLeft="120px"
+        android:textColor="@color/text_black"
+        android:textColorHint="@color/text_gray"
+        android:textSize="17sp" />
+
+
+    <View
+        android:id="@+id/view_login_1"
+        android:layout_width="410px"
+        android:layout_height="1px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="616px"
+        android:background="@color/text_gray" />
+
+    <EditText
+        android:id="@+id/edt_login_code"
+        android:layout_width="410px"
+        android:layout_height="100px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="647px"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="点击输入密码"
+        android:inputType="numberPassword"
+        android:maxLength="10"
+        android:textColor="@color/text_black"
+        android:textColorHint="@color/text_gray"
+        android:textSize="17sp"
+        android:theme="@style/MyEditText" />
+
+    <View
+        android:id="@+id/view_login_2"
+        android:layout_width="410px"
+        android:layout_height="1px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="746px"
+        android:background="@color/text_gray" />
+
+    <com.diucity.dingding.widget.LightText
+        android:id="@+id/tv_login_forget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerInside"
-        android:src="@mipmap/login_logo"
-        app:layout_heightPercent="35%"
-        app:layout_marginTopPercent="3%" />
-
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:id="@+id/pll_login"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_below="@id/iv_login_logo"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        app:layout_heightPercent="24%"
-        app:layout_widthPercent="57%">
-
-        <com.zhy.android.percent.support.PercentRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            app:layout_heightPercent="33%">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="+86"
-                android:textColor="@color/text_black"
-                android:textSize="17sp"
-                android:typeface="serif"
-                app:layout_marginLeftPercent="9%" />
-
-            <EditText
-                android:id="@+id/edt_login_phone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:background="@null"
-                android:hint="10000000000"
-                android:inputType="number"
-                android:maxLength="15"
-                android:textColor="@color/text_black"
-                android:textColorHint="@color/text_gray"
-                android:textSize="17sp"
-                app:layout_paddingLeftPercent="25%" />
-
-
-        </com.zhy.android.percent.support.PercentRelativeLayout>
-
-        <View
-            android:id="@+id/view_login_1"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/text_gray" />
-
-        <EditText
-            android:id="@+id/edt_login_code"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@null"
-            android:gravity="center"
-            android:hint="点击输入密码"
-            android:inputType="numberPassword"
-            android:maxLength="10"
-            android:textColor="@color/text_black"
-            android:textColorHint="@color/text_gray"
-            android:textSize="17sp"
-            android:theme="@style/MyEditText"
-            app:layout_heightPercent="33%"
-            app:layout_marginTopPercent="10%" />
-
-        <View
-            android:id="@+id/view_login_2"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/text_gray" />
-
-        <com.diucity.dingding.widget.LightText
-            android:id="@+id/tv_login_forget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="忘记密码？"
-            android:textColor="@color/text_green"
-            android:textSize="14sp"
-            app:layout_marginTopPercent="10%" />
-    </com.zhy.android.percent.support.PercentLinearLayout>
+        android:layout_marginTop="777px"
+        android:gravity="center"
+        android:text="忘记密码？"
+        android:textColor="@color/text_green"
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/iv_login_icon1"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_alignTop="@id/pll_login"
-        android:layout_toRightOf="@id/pll_login"
+        android:layout_height="100px"
+        android:layout_marginTop="517px"
+        android:layout_toRightOf="@id/edt_login_phone"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
-        android:visibility="gone"
-        app:layout_heightPercent="8%" />
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/iv_login_icon2"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_alignTop="@id/pll_login"
-        android:layout_toRightOf="@+id/pll_login"
+        android:layout_height="100px"
+        android:layout_marginTop="647px"
+        android:layout_toRightOf="@id/edt_login_code"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
-        android:visibility="gone"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="10%" />
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_login_enter"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_below="@id/pll_login"
+        android:layout_width="410px"
+        android:layout_height="88px"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="887px"
         android:background="@drawable/button_selector"
         android:enabled="false"
         android:text="登    录"
         android:textColor="@drawable/text_shape"
-        android:textSize="16sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="5.4%"
-        app:layout_widthPercent="57%" />
+        android:textSize="16sp" />
 
     <FrameLayout
         android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
 
     <include
         layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginTop="150px" />
 
 
-</com.zhy.android.percent.support.PercentRelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>
 
 

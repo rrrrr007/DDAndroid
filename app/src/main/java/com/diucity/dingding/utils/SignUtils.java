@@ -14,7 +14,7 @@ import java.util.UUID;
 public class SignUtils {
     public static String sign(String params) {
         NormalBean bean = GsonUtils.GsonToBean(params, NormalBean.class);
-        return md5(bean.getNonce() + params + String.valueOf(bean.getTimestamp()));
+        return md5(bean.getNonce() + params + String.valueOf(bean.getTimestamp())).toUpperCase();
     }
 
 

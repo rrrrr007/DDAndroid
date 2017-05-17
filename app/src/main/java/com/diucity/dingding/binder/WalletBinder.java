@@ -2,18 +2,16 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
-import com.diucity.dingding.R;
-import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.WalletDelegate;
 import com.diucity.dingding.entity.Back.NormalBack;
-import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.SummaryBack;
 import com.diucity.dingding.entity.Send.ListBean;
-import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.entity.Send.SummaryBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
+import com.diucity.dingding.R;
+import com.diucity.dingding.api.Network;
 
 import rx.Observer;
 

@@ -3,7 +3,6 @@ package com.diucity.dingding.delegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.SystemAdapter;

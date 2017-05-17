@@ -4,10 +4,9 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.R;
 
 /**
  * Created by Administrator on 2017/3/16 0016.

@@ -3,8 +3,8 @@ package com.diucity.dingding.delegate;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.R;
 import com.diucity.dingding.widget.ProgressView;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;

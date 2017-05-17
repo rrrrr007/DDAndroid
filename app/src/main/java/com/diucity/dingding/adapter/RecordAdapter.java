@@ -1,10 +1,12 @@
 package com.diucity.dingding.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.activity.WebActivity;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,9 @@ public class RecordAdapter extends BaseAdapter<String> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.itemView.setOnClickListener(v -> {
+            getContext().startActivity(new Intent(getContext(), WebActivity.class));
+        });
         TextView month =holder.getView(R.id.adapter_tv_record_month);
         if (position==0){
             month.setVisibility(View.VISIBLE);

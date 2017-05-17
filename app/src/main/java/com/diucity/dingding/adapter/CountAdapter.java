@@ -88,6 +88,8 @@ public class CountAdapter extends BaseAdapter<String> {
         holder.getView(R.id.adapter_ll_count).setEnabled(is);
         holder.getView(R.id.adapter_tv_count_kinds).setEnabled(is);
         holder.getView(R.id.adapter_iv_count_icon).setVisibility(is? View.GONE:View.VISIBLE);
+        TextView kind = holder.getView(R.id.adapter_tv_count_kinds);
+        kind.getPaint().setFakeBoldText(!is);
     }
 
     public void setListener(Listener listener) {

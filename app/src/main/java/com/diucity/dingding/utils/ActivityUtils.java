@@ -3,14 +3,12 @@ package com.diucity.dingding.utils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.app.App;
 
 import java.lang.reflect.Field;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_reset"
@@ -9,44 +9,39 @@
     android:focusableInTouchMode="true"
     android:background="@color/selector_white"
     tools:context="com.diucity.dingding.activity.ResetActivity">
-
     <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/toolbar_shape"
-        app:layout_heightPercent="11%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="148px"
+        android:background="@drawable/toolbar_shape" />
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingTop="60px"
         android:text="修改登录密码"
         android:textColor="@color/text_black"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="100%" />
+        android:textSize="17sp" />
+
 
     <com.diucity.dingding.widget.LightText
+        android:layout_height="148px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
         android:id="@+id/tv_reset_back"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
         android:gravity="center"
         android:text="取消"
         android:textColor="@color/text_green"
-        android:textSize="14sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
+        android:textSize="14sp" />
 
     <EditText
-
+        android:layout_marginTop="178px"
         android:id="@+id/edt_reset_old"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_below="@id/tv_reset_back"
+        android:layout_width="410px"
+        android:layout_height="100px"
         android:layout_centerHorizontal="true"
         android:background="@null"
         android:gravity="center"
@@ -54,24 +49,20 @@
         android:inputType="number"
         android:textColor="@color/text_black"
         android:textColorHint="@color/text_gray"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="57%" />
+        android:textSize="17sp" />
 
     <View
         android:id="@+id/view_reset_1"
-        android:layout_width="0dp"
+        android:layout_width="410px"
         android:layout_height="1px"
         android:layout_below="@id/edt_reset_old"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray"
-        app:layout_widthPercent="57%" />
+        android:background="@color/text_gray" />
 
     <EditText
         android:id="@+id/edt_reset_new"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410px"
+        android:layout_height="100px"
         android:layout_below="@id/edt_reset_old"
         android:layout_centerHorizontal="true"
         android:background="@null"
@@ -82,23 +73,20 @@
         android:textColor="@color/text_black"
         android:textColorHint="@color/text_gray"
         android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="57%" />
+        android:layout_marginTop="30px"/>
 
     <View
         android:id="@+id/view_reset_2"
-        android:layout_width="0dp"
+        android:layout_width="410px"
         android:layout_height="1px"
         android:layout_below="@id/edt_reset_new"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray"
-        app:layout_widthPercent="57%" />
+        android:background="@color/text_gray" />
 
     <EditText
         android:id="@+id/edt_reset_affirm"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410px"
+        android:layout_height="100px"
         android:layout_below="@id/edt_reset_new"
         android:layout_centerHorizontal="true"
         android:background="@null"
@@ -109,76 +97,66 @@
         android:textColor="@color/text_black"
         android:textColorHint="@color/text_gray"
         android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="57%" />
+        android:layout_marginTop="30px" />
 
     <View
         android:id="@+id/view_reset_3"
-        android:layout_width="0dp"
+        android:layout_width="410px"
         android:layout_height="1px"
         android:layout_below="@id/edt_reset_affirm"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray"
-        app:layout_widthPercent="57%" />
+        android:background="@color/text_gray" />
 
     <ImageView
         android:id="@+id/iv_reset_icon1"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="100px"
         android:layout_alignTop="@id/edt_reset_old"
         android:layout_toRightOf="@id/edt_reset_old"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
-        android:visibility="gone"
-        app:layout_heightPercent="8%" />
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/iv_reset_icon2"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="100px"
         android:layout_alignTop="@id/edt_reset_new"
         android:layout_toRightOf="@id/edt_reset_new"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
-        android:visibility="gone"
-        app:layout_heightPercent="8%" />
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/iv_reset_icon3"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="100px"
         android:layout_alignTop="@id/edt_reset_affirm"
         android:layout_toRightOf="@id/edt_reset_affirm"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
-        android:visibility="gone"
-        app:layout_heightPercent="8%" />
+        android:visibility="gone" />
 
     <Button
+        android:layout_marginTop="70px"
         android:id="@+id/btn_reset_finish"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410px"
+        android:layout_height="88px"
         android:layout_below="@id/edt_reset_affirm"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_selector"
         android:enabled="false"
         android:text="完    成"
-        android:textColor="@drawable/text_shape"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="7%"
-        app:layout_widthPercent="57%" />
+        android:textColor="@drawable/text_shape" />
     <FrameLayout
         android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
 
     <include
         layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginTop="150px" />
 
-</com.zhy.android.percent.support.PercentRelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

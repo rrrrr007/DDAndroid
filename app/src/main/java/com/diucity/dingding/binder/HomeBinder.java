@@ -2,9 +2,6 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
-import com.diucity.dingding.R;
-import com.diucity.dingding.api.Network;
-import com.diucity.dingding.delegate.HomeDelegate;
 import com.diucity.dingding.entity.Back.BasketBack;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.ScrapsBack;
@@ -18,7 +15,9 @@ import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
 import com.diucity.dingding.utils.SpUtils;
-import com.diucity.dingding.utils.TimeUtils;
+import com.diucity.dingding.R;
+import com.diucity.dingding.api.Network;
+import com.diucity.dingding.delegate.HomeDelegate;
 
 import rx.Observer;
 
@@ -56,7 +55,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 }
             });
-        }else if (object instanceof TodayBean ){
+        }else if (object instanceof TodayBean){
             TodayBean bean = (TodayBean) object;
             Network.subscribe(Network.getApi().today(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<TodayBack>() {
 

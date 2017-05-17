@@ -1,9 +1,9 @@
 package com.diucity.dingding.activity;
 
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.RecordDelegate;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.R;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liaoinstan.springview.widget.SpringView;
 

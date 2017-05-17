@@ -1,18 +1,16 @@
 package com.diucity.dingding.activity;
 
 
-import android.view.View;
 import android.widget.Toast;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.binder.SystemBinder;
 import com.diucity.dingding.delegate.SystemDelegate;
 import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.R;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liaoinstan.springview.widget.SpringView;
 
-import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class SystemActivity extends BaseActivity<SystemDelegate> {

@@ -55,7 +55,7 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_my_container, captureFragment).commit();
 
         //闪光灯
-        RxView.clicks(viewDelegate.get(R.id.iv_capture_flash)).throttleFirst(2, TimeUnit.SECONDS)
+        RxView.clicks(viewDelegate.get(R.id.iv_capture_flash))
                 .subscribe(aVoid -> {
                     flash();
                 });

@@ -5,14 +5,13 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.R;
 import com.diucity.dingding.entity.Back.BasketBack;
 import com.diucity.dingding.entity.Back.TodayBack;
-import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
 

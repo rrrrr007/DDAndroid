@@ -21,6 +21,7 @@
             android:id="@+id/adapter_tv_count_number"
             android:layout_width="match_parent"
             android:layout_height="25dp"
+            android:textSize="13sp"
             android:background="@drawable/text_checked_shape"
             android:clickable="false"
             android:gravity="center"
@@ -38,6 +39,7 @@
         tools:targetApi="lollipop">
 
         <RelativeLayout
+
             android:id="@+id/adapter_ll_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,20 +55,23 @@
                 android:layout_marginTop="5dp" />
 
             <ImageView
-                android:visibility="gone"
-                android:layout_marginTop="5dp"
                 android:id="@+id/adapter_iv_count_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_cmm_radio_list"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
-                android:layout_alignParentRight="true" />
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/ic_cmm_radio_list"
+                android:visibility="gone" />
 
             <TextView
+                android:textSize="15sp"
                 android:id="@+id/adapter_tv_count_kinds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/adapter_iv_count_src"
+                android:layout_margin="3px"
+                android:background="@drawable/count_shape"
                 android:gravity="center"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"

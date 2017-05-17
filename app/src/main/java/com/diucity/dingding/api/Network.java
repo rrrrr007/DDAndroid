@@ -8,14 +8,11 @@ import java.security.cert.CertificateException;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import javax.security.cert.X509Certificate;
 
 
 import okhttp3.OkHttpClient;
-import okhttp3.internal.http.CallServerInterceptor;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -75,8 +72,8 @@ public class Network {
                     .build();
             api = retrofit.create(Api.class);
 
-        }
 
+        }
         return api;
     }
 

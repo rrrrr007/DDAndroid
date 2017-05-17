@@ -13,8 +13,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.utils.ActivityUtils;
+import com.diucity.dingding.R;
 import com.liaoinstan.springview.utils.DensityUtil;
 
 /**
@@ -69,7 +69,7 @@ public class SwitchBarView extends View {
         super.onDraw(canvas);
         width = getWidth();
         height = getHeight();
-         padding = width*0.03f;
+         padding = width*0.02f;
         oval = new RectF(0 + padding, 0 + padding, width - padding, height - padding);
         canvas.drawRoundRect(oval, height / 2, height / 2, outPaint);// 第二个参数是x半径，第三个参数是y半径
         if (type == 1) {
@@ -87,11 +87,14 @@ public class SwitchBarView extends View {
         Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();
         float baseline = (height - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
         textPaint.setColor(target == 1 ? Color.parseColor("#ffffff") : Color.parseColor("#009479"));
+        textPaint.setFakeBoldText(target==1);
         canvas.drawText(a, (width - padding*2) / 6 + padding - bounds.width() / 2, baseline, textPaint);
         textPaint.setColor(target == 3 ? Color.parseColor("#ffffff") : Color.parseColor("#009479"));
+        textPaint.setFakeBoldText(target==3);
         canvas.drawText(c, (width - padding*2) / 6 * 5 + padding - bounds.width() / 2, baseline, textPaint);
         textPaint.getTextBounds(b, 0, b.length(), bounds);
         textPaint.setColor(target == 2 ? Color.parseColor("#ffffff") : Color.parseColor("#009479"));
+        textPaint.setFakeBoldText(target==2);
         canvas.drawText(b, (width - padding*2) / 2 + padding - bounds.width() / 2, baseline, textPaint);
     }
     @Override

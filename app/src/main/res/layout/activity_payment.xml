@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_payment"
@@ -8,241 +8,257 @@
     tools:context="com.diucity.dingding.activity.PaymentActivity">
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/toolbar_shape"
-        app:layout_heightPercent="11%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="148px"
+        android:background="@drawable/toolbar_shape" />
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingTop="60px"
         android:text="结算"
         android:textColor="@color/text_black"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="100%" />
+        android:textSize="17sp" />
 
     <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_payment_back"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="148px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
         android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_green"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
+        android:src="@mipmap/ic_cmm_return_green" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="550px"
+        android:src="@mipmap/logo_set" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_payment"
-        android:layout_below="@id/iv_payment_back"
-        android:layout_width="0dp"
+        android:layout_width="690px"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="178px"
         app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_marginTopPercent="3%"
-        app:layout_widthPercent="94%"
         tools:targetApi="lollipop">
-        <LinearLayout
+
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/ll_payment_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/selector_white"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <com.zhy.autolayout.AutoRelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp">
+                android:layout_height="144px">
 
                 <ImageView
-                    android:layout_centerVertical="true"
                     android:id="@+id/iv_payment_head"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="10px"
                     android:src="@drawable/ic_launcher" />
 
                 <TextView
                     android:id="@+id/tv_payment_pay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="30px"
                     android:layout_toRightOf="@id/iv_payment_head"
                     android:text="支付 1111.72元"
                     android:textColor="@color/text_black"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:gravity="center_vertical"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_below="@id/tv_payment_pay"
+                    android:layout_marginBottom="30px"
                     android:layout_toRightOf="@id/iv_payment_head"
+                    android:gravity="center_vertical"
                     android:text="订单号: 151564584215466"
                     android:textColor="@color/text_gray2" />
-            </RelativeLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/line_gray"/>
+                android:background="@color/line_gray" />
+
             <com.diucity.dingding.widget.LightText
-                android:textColor="@color/text_gray2"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:drawablePadding="5dp"
+                android:layout_height="80px"
+                android:layout_gravity="center"
+                android:drawablePadding="10px"
                 android:drawableRight="@mipmap/ic_buy_arrows_list"
-                android:text="查看交易详情"/>
-        </LinearLayout>
+                android:gravity="center"
+                android:text="查看交易详情"
+                android:textColor="@color/text_gray2"
+                android:textSize="14sp" />
+        </com.zhy.autolayout.AutoLinearLayout>
     </android.support.v7.widget.CardView>
 
     <TextView
         android:id="@+id/tv_payment_ss"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@id/card_payment"
-        android:textColor="@color/text_gray2"
         android:layout_width="wrap_content"
-        android:textSize="13sp"
         android:layout_height="wrap_content"
-        android:text="请选择支付方式"/>
+        android:layout_below="@id/card_payment"
+        android:layout_marginBottom="10px"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="30px"
+        android:text="请选择支付方式"
+        android:textColor="@color/text_gray2"
+        android:textSize="13sp" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_payment_ss2"
-        android:layout_below="@id/tv_payment_ss"
-        android:layout_width="0dp"
+        android:layout_width="690px"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_payment_ss"
         android:layout_centerHorizontal="true"
         app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_widthPercent="94%"
         tools:targetApi="lollipop">
-        <LinearLayout
-            android:orientation="vertical"
+
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <ImageView
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@mipmap/ic_logo_wei_30"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="20px"
+                    android:src="@mipmap/ic_logo_wei_30" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_black"
-                    android:textSize="16sp"
                     android:layout_weight="1"
-                    android:text="微信支付"/>
+                    android:text="微信支付"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
                 <ImageView
                     android:id="@+id/iv_payment_wx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_hook_selector"
-                    android:padding="15dp"/>
-            </LinearLayout>
+                    android:padding="30px"
+                    android:src="@drawable/icon_hook_selector" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/line_gray"/>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:background="@color/line_gray" />
+
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <ImageView
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@mipmap/ic_logo_yi_30"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="20px"
+                    android:src="@mipmap/ic_logo_yi_30" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_black"
-                    android:textSize="16sp"
                     android:layout_weight="1"
-                    android:text="一网通支付"/>
+                    android:text="一网通支付"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
                 <ImageView
                     android:id="@+id/iv_payment_ywt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_hook_selector"
-                    android:padding="15dp"/>
-            </LinearLayout>
+                    android:padding="30px"
+                    android:src="@drawable/icon_hook_selector" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/line_gray"/>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:background="@color/line_gray" />
+
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <ImageView
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@mipmap/ic_logo_zhi_30"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="20px"
+                    android:src="@mipmap/ic_logo_zhi_30" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_black"
-                    android:textSize="16sp"
                     android:layout_weight="1"
-                    android:text="支付宝支付"/>
+                    android:text="支付宝支付"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
                 <ImageView
                     android:id="@+id/iv_payment_zfb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_hook_selector"
-                    android:padding="15dp"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:padding="30px"
+                    android:src="@drawable/icon_hook_selector" />
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
     </android.support.v7.widget.CardView>
+
     <Button
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_heightPercent="8%"
-        android:background="@drawable/button_selector"/>
+        android:layout_height="88px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:background="@drawable/button_selector" />
 
     <FrameLayout
         android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
 
     <include
         layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
-</com.zhy.android.percent.support.PercentRelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginTop="150px" />
+</com.zhy.autolayout.AutoRelativeLayout>

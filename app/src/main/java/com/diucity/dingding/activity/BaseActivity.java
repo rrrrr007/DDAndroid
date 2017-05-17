@@ -1,7 +1,6 @@
 package com.diucity.dingding.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -10,8 +9,9 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import android.view.MotionEvent;
 
+import com.bugtags.library.Bugtags;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.persent.DataBindActivity;
@@ -62,12 +62,20 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     protected void onResume() {
         super.onResume();
         activity = this;
+        Bugtags.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         activity = null;
+        Bugtags.onPause(this);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Bugtags.onDispatchTouchEvent(this, ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override

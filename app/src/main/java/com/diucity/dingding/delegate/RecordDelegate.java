@@ -4,10 +4,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.diucity.dingding.R;
-import com.diucity.dingding.adapter.MissionAdapter;
 import com.diucity.dingding.adapter.RecordAdapter;
 import com.diucity.dingding.persent.AppDelegate;
 import com.liaoinstan.springview.container.DefaultFooter;

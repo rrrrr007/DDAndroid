@@ -9,11 +9,6 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 
-import java.util.concurrent.TimeUnit;
-
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 
 /**

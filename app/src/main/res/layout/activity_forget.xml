@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_forget"
@@ -11,119 +11,105 @@
     tools:context="com.diucity.dingding.activity.PINActivity">
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="11%"
-        app:layout_widthPercent="100%"
+        android:layout_width="match_parent"
+        android:layout_height="148px"
         android:background="@drawable/toolbar_shape" />
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:textSize="17sp"
-        android:textColor="@color/text_black"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingTop="60px"
         android:text="验证手机号"
-        app:layout_marginTopPercent="3%"
-        app:layout_heightPercent="8%"
-        app:layout_widthPercent="100%" />
+        android:textColor="@color/text_black"
+        android:textSize="17sp" />
 
     <com.diucity.dingding.widget.LightImage
         android:id="@+id/iv_forget_back"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="148px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
         android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_green"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="3%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%" />
+        android:src="@mipmap/ic_cmm_return_green" />
 
     <TextView
-        android:textColor="@color/text_gray2"
         android:id="@+id/tv_forget_describe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="208px"
         android:text="请输入您得手机号完成验证"
-        android:textSize="15sp"
-        app:layout_marginTopPercent="18%" />
+        android:textColor="@color/text_gray2"
+        android:textSize="15sp" />
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100px"
         android:layout_below="@id/tv_forget_describe"
+        android:layout_marginLeft="206px"
+        android:layout_marginTop="90px"
         android:gravity="center"
         android:text="+86"
         android:textColor="@color/text_black"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginLeftPercent="26.5%"
-        app:layout_marginTopPercent="7%"
-        app:layout_widthPercent="10%" />
+        android:textSize="17sp" />
 
     <EditText
         android:id="@+id/edt_forget_phone"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410px"
+        android:layout_height="100px"
         android:layout_below="@id/tv_forget_describe"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="90px"
         android:background="@null"
         android:hint="10000000000"
         android:inputType="number"
         android:maxLength="15"
+        android:paddingLeft="120px"
         android:textColor="@color/text_black"
         android:textColorHint="@color/text_gray"
-        android:textSize="17sp"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="7%"
-        app:layout_paddingLeftPercent="17%"
-        app:layout_widthPercent="57%" />
+        android:textSize="17sp" />
 
     <ImageView
         android:id="@+id/iv_forget_icon"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="100px"
         android:layout_alignTop="@id/edt_forget_phone"
         android:layout_toRightOf="@id/edt_forget_phone"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_rev_list"
-        android:visibility="gone"
-        app:layout_heightPercent="8%" />
+        android:visibility="gone" />
 
     <View
         android:id="@+id/view_forget"
-        android:layout_width="0dp"
+        android:layout_width="410px"
         android:layout_height="1px"
         android:layout_below="@id/edt_forget_phone"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray"
-        app:layout_widthPercent="57%" />
+        android:background="@color/text_gray" />
 
     <Button
-        android:enabled="false"
         android:id="@+id/btn_forget_enter"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410px"
+        android:layout_height="88px"
         android:layout_below="@id/edt_forget_phone"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="70px"
         android:background="@drawable/button_selector"
+        android:enabled="false"
         android:text="下一步"
-        android:textColor="@drawable/text_shape"
-        app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="7.5%"
-        app:layout_widthPercent="57%" />
+        android:textColor="@drawable/text_shape" />
 
     <FrameLayout
         android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
 
     <include
         layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
-</com.zhy.android.percent.support.PercentRelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginTop="150px" />
+</com.zhy.autolayout.AutoRelativeLayout>

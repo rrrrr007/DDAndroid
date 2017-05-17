@@ -1,26 +1,19 @@
 package com.diucity.dingding.activity;
 
 
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.diucity.dingding.delegate.Forget2Delegate;
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.Forget2Binder;
 import com.diucity.dingding.entity.Send.ResetBean;
 import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.delegate.Forget2Delegate;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.concurrent.TimeUnit;
-
-import rx.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
 
 public class Forget2Activity extends BaseActivity<Forget2Delegate> implements View.OnFocusChangeListener {
     private String phone;

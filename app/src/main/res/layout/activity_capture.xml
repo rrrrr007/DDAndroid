@@ -1,69 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_capture"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.diucity.dingding.activity.CaptureActivity">
+    tools:context="com.diucity.dingding..activity.CaptureActivity">
 
     <FrameLayout
         android:id="@+id/fl_my_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <RelativeLayout
-        android:id="@+id/rl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_marginTopPercent="3%"
-        app:layout_heightPercent="10%"
-        app:layout_widthPercent="100%"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_paddingRightPercent="3%">
+    <com.diucity.dingding.widget.LightImage
+        android:id="@+id/iv_capture_back"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
+        android:scaleType="center"
+        android:src="@mipmap/ic_buy_navigation_close" />
 
-        <com.diucity.dingding.widget.LightImage
-            android:id="@+id/iv_capture_back"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_buy_navigation_close" />
-
-        <com.diucity.dingding.widget.LightImage
-            android:id="@+id/iv_capture_flash"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_buy_navigation_light_off" />
-
-        <TextView
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="扫二维码"
-            android:textColor="@android:color/white" />
-    </RelativeLayout>
+    <com.diucity.dingding.widget.LightImage
+        android:id="@+id/iv_capture_flash"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="60px"
+        android:scaleType="center"
+        android:src="@mipmap/ic_buy_navigation_light_off" />
 
     <TextView
+        android:id="@+id/tv_home_title"
+        android:layout_width="wrap_content"
+        android:layout_height="148px"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop="60px"
+        android:text="扫二维码"
+        android:textColor="@android:color/white"
+        android:textSize="17sp" />
+
+
+    <TextView
+        android:layout_marginBottom="200px"
+        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_marginTopPercent="80%"
+        android:layout_centerHorizontal="true"
         android:text="将二维码放入框内，即可自动扫描"
         android:textColor="@android:color/white" />
 
     <FrameLayout
         android:id="@+id/fl_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="12%"
-        app:layout_widthPercent="100%" />
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
 
     <include
         layout="@layout/notice_small"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="11%"
-        app:layout_widthPercent="100%" />
-</com.zhy.android.percent.support.PercentRelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginTop="150px" />
+</com.zhy.autolayout.AutoRelativeLayout>

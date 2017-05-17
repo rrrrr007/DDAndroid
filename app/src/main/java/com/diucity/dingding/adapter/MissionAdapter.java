@@ -11,8 +11,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.widget.PercentCirleView;
+import com.diucity.dingding.R;
 
 import java.util.ArrayList;
 
