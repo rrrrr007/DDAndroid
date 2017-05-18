@@ -1,5 +1,6 @@
 package com.diucity.dingding.activity;
 
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.WalletBinder;
 import com.diucity.dingding.delegate.WalletDelegate;
 import com.diucity.dingding.entity.Send.SummaryBean;
@@ -56,6 +57,6 @@ public class WalletActivity extends BaseActivity<WalletDelegate> {
 
     @Override
     public void initData() {
-        binder.work(viewDelegate,new SummaryBean("1001","993jal-2lakd2sj"));
+        binder.work(viewDelegate,new SummaryBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token()));
     }
 }

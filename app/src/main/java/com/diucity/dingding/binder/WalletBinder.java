@@ -2,7 +2,9 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.WalletDelegate;
+import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.SummaryBack;
 import com.diucity.dingding.entity.Send.ListBean;
@@ -12,6 +14,7 @@ import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
 import com.diucity.dingding.R;
 import com.diucity.dingding.api.Network;
+import com.diucity.dingding.utils.TimeUtils;
 
 import rx.Observer;
 
@@ -46,13 +49,13 @@ public class WalletBinder implements DataBinder<WalletDelegate,NormalBack> {
                     Log.d("ch", GsonUtils.GsonString(s));
                     if (s.getCode()==0){
                         viewDelegate.setText(String.valueOf(s.getData().getIncome()), R.id.tv_wallet_money);
-                        work(viewDelegate,new ListBean(bean.getRecycler_id(),bean.getAuth_code(),0,10));
+                        work(viewDelegate,new ListBean(bean.getRecycler_id(), App.user.getData().getAuth_token(),0,10));
                     }
                 }
             });
         }else if (object instanceof ListBean){
             ListBean bean = (ListBean) object;
-            Network.subscribe(Network.getApi().list(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<Object>() {
+            Network.subscribe(Network.getApi().list(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<ListBack>() {
 
                 @Override
                 public void onCompleted() {
@@ -65,9 +68,12 @@ public class WalletBinder implements DataBinder<WalletDelegate,NormalBack> {
                 }
 
                 @Override
-                public void onNext(Object s) {
+                public void onNext(ListBack s) {
+                    if (s.getCode()==0){
+                        if (s.getData().getItems().size()>0)
+                        viewDelegate.setText((TimeUtils.getTime(s.getData().getItems().get(0).getTime())+" 收入 ￥"+s.getData().getItems().get(0).getAmount()),R.id.tv_wallet_time);
+                    }
                     Log.d("ch", GsonUtils.GsonString(s));
-
                 }
             });
         }

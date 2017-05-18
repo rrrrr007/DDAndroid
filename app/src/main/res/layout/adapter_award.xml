@@ -58,12 +58,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="买 ￥0.22  卖 ￥0.60"
                     android:textColor="#606664"
                     android:textSize="12sp" />
             </LinearLayout>
 
             <TextView
+                android:maxLines="1"
+                android:maxEms="3"
+                android:ellipsize="end"
                 android:id="@+id/adapter_tv_price_difference"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -242,6 +242,7 @@
     </android.support.v7.widget.CardView>
 
     <Button
+        android:id="@+id/btn_payment_pay"
         android:layout_width="match_parent"
         android:layout_height="88px"
         android:layout_alignParentBottom="true"

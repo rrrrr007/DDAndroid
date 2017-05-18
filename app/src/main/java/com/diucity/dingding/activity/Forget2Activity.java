@@ -15,7 +15,7 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.concurrent.TimeUnit;
 
-public class Forget2Activity extends BaseActivity<Forget2Delegate> implements View.OnFocusChangeListener {
+public class Forget2Activity extends BaseActivity<Forget2Delegate> {
     private String phone;
     private boolean codeEnable;
     private boolean passwordEnable;
@@ -66,8 +66,12 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> implements Vi
                 });
 
         //下划线
-        viewDelegate.get(R.id.edt_forget2_code).setOnFocusChangeListener(this);
-        viewDelegate.get(R.id.edt_forget2_password).setOnFocusChangeListener(this);
+        viewDelegate.get(R.id.edt_forget2_code).setOnFocusChangeListener((v, hasFocus) -> {
+            viewDelegate.setEnable(!hasFocus,R.id.view_forget2_1);
+        });
+        viewDelegate.get(R.id.edt_forget2_password).setOnFocusChangeListener((v, hasFocus) -> {
+            viewDelegate.setEnable(!hasFocus,R.id.view_forget2_2);
+        });
 
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_forget2_back)).throttleFirst(2, TimeUnit.SECONDS)
@@ -83,8 +87,4 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> implements Vi
         viewDelegate.timer();
     }
 
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        viewDelegate.lineChange(v,hasFocus);
-    }
 }

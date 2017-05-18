@@ -1,7 +1,10 @@
 package com.diucity.dingding.activity;
 
 
+import com.diucity.dingding.app.App;
+import com.diucity.dingding.binder.RecordBinder;
 import com.diucity.dingding.delegate.RecordDelegate;
+import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.R;
 import com.jakewharton.rxbinding.view.RxView;
@@ -14,7 +17,7 @@ public class RecordActivity extends BaseActivity<RecordDelegate> {
 
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new RecordBinder();
     }
 
     @Override
@@ -39,9 +42,13 @@ public class RecordActivity extends BaseActivity<RecordDelegate> {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_record_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.notifyData();
-                    //finish();
+                    finish();
                 });
 
+    }
+
+    @Override
+    public void initData() {
+        binder.work(viewDelegate,new ListBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),0,10));
     }
 }

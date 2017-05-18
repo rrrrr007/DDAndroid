@@ -10,11 +10,11 @@ public class TodayBean {
 
     private long timestamp;
     private String nonce;
-    private String recycler_id;
+    private int recycler_id;
     private double longitude;
     private double latitude;
 
-    public TodayBean(String recycler_id, double longitude, double latitude) {
+    public TodayBean(int recycler_id, double longitude, double latitude) {
         this.timestamp = System.currentTimeMillis();
         this.nonce =  SignUtils.getUUID();
         this.recycler_id = recycler_id;
@@ -38,11 +38,11 @@ public class TodayBean {
         this.nonce = nonce;
     }
 
-    public String getRecycler_id() {
+    public int getRecycler_id() {
         return recycler_id;
     }
 
-    public void setRecycler_id(String recycler_id) {
+    public void setRecycler_id(int recycler_id) {
         this.recycler_id = recycler_id;
     }
 

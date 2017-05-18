@@ -32,14 +32,6 @@ public class ForgetDelegate extends AppDelegate {
         ((EditText)get(R.id.edt_forget_phone)).setText("");
     }
 
-    public void lineChange(boolean hasFocus){
-        View view = get(R.id.view_forget);
-        view.setBackgroundColor(hasFocus? Color.parseColor("#009479"):Color.parseColor("#C0CCC8"));
-        RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) view.getLayoutParams();
-        params.height=(hasFocus?2:1);
-        view.setLayoutParams(params);
-    }
-
     public void textChange(boolean has){
         get(R.id.iv_forget_icon).setVisibility(has?View.VISIBLE: View.GONE);
     }

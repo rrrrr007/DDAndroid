@@ -15,6 +15,8 @@ public class SpUtils {
     public static final String SOUND = "sound";
     public static final String UPDATE = "update";
     public static final String TODAY = "today";
+    public static final String SCRAPS = "scraps";
+    public static final String USER = "loginBack";
 
 
 

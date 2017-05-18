@@ -7,6 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.Window;
 
+import com.diucity.dingding.app.App;
+import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.entity.Send.TodayBean;
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.HomeBinder;
@@ -97,7 +99,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
     public void initData() {
         sbv = viewDelegate.get(R.id.sbv_home);
         vp = viewDelegate.get(R.id.vp_home);
-        binder.work(viewDelegate, new TodayBean("1001", 0, 0));
+        binder.work(viewDelegate, new ScrapsBean(App.user.getData().getRecycler_id()));
     }
 
     @Override

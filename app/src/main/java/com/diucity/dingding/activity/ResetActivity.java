@@ -40,7 +40,7 @@ public class ResetActivity extends BaseActivity<ResetDelegate> implements View.O
                     if (!nnew.equals(affirm)){
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "2次密码不一致");
                     }else {
-                        binder.work(viewDelegate ,new ChangeBean("1001",old,nnew));
+                        binder.work(viewDelegate ,new ChangeBean(1001,old,nnew));
                     }
 
 

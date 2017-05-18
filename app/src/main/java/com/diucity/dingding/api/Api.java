@@ -1,13 +1,13 @@
 package com.diucity.dingding.api;
 
 import com.diucity.dingding.entity.Back.BasketBack;
+import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.entity.Back.LoginBack;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.SummaryBack;
 import com.diucity.dingding.entity.Back.TaskBack;
 import com.diucity.dingding.entity.Back.TodayBack;
-import com.diucity.dingding.entity.Back.XXBack;
 import com.diucity.dingding.entity.Send.BasketBean;
 import com.diucity.dingding.entity.Send.ChangeBean;
 import com.diucity.dingding.entity.Send.ListBean;
@@ -19,7 +19,6 @@ import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.entity.Send.SummaryBean;
 import com.diucity.dingding.entity.Send.TaskBean;
 import com.diucity.dingding.entity.Send.TodayBean;
-import com.diucity.dingding.entity.Send.XXBean;
 
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -33,43 +32,44 @@ import rx.Observable;
 public interface Api {
     //String BASEURL = "http://www.diucity.com:1601/api/";
     //String BASEURL = "https://api.dev.intranet/";
-    String BASEURL = "https://recycleapi.dev.local:3030/";
+    //String BASEURL = "https://recycleapi.dev.local:3030/";
+    String BASEURL = "http://192.168.3.161:4443/recycler/";
 
 
-    @POST("sms.send&sign={sign}")
-    Observable<NormalBack> sms(@Path("sign") String sign, @Body SmsBean bean);
+    @POST("sms.send")
+    Observable<NormalBack> sms(@Query("sign") String sign, @Body SmsBean bean);
 
-    @POST("login&sign={sign}")
-    Observable<LoginBack> login(@Path("sign") String sign, @Body LoginBean bean);
+    @POST("login")
+    Observable<LoginBack> login(@Query("sign") String sign, @Body LoginBean bean);
 
-    @POST("password.login.reset&sign={sign}")
-    Observable<NormalBack> reset(@Path("sign") String sign, @Body ResetBean bean);
+    @POST("password.login.reset")
+    Observable<NormalBack> reset(@Query("sign") String sign, @Body ResetBean bean);
 
-    @POST("password.login.change&sign={sign}")
-    Observable<NormalBack> change(@Path("sign") String sign, @Body ChangeBean bean);
+    @POST("password.login.change")
+    Observable<NormalBack> change(@Query("sign") String sign, @Body ChangeBean bean);
 
-    @POST("password.pay.set&sign={sign}")
-    Observable<NormalBack> payset(@Path("sign") String sign, @Body PaysetBean bean);
+    @POST("password.pay.set")
+    Observable<NormalBack> payset(@Query("sign") String sign, @Body PaysetBean bean);
 
-    @POST("quotation.scraps&sign={sign}")
-    Observable<ScrapsBack> scraps(@Path("sign") String sign, @Body ScrapsBean bean);
+    @POST("quotation.scraps")
+    Observable<ScrapsBack> scraps(@Query("sign") String sign, @Body ScrapsBean bean);
 
-    @POST("quotation.today&sign={sign}")
-    Observable<TodayBack> today(@Path("sign") String sign, @Body TodayBean bean);
+    @POST("quotation.today")
+    Observable<TodayBack> today(@Query("sign") String sign, @Body TodayBean bean);
 
-    @POST("task.list&sign={sign}")
-    Observable<TaskBack> task(@Path("sign") String sign, @Body TaskBean bean);
+    @POST("task.list")
+    Observable<TaskBack> task(@Query("sign") String sign, @Body TaskBean bean);
 
-    @POST("recycler.basket.info&sign={sign}")
-    Observable<BasketBack> basket(@Path("sign") String sign, @Body BasketBean bean);
+    @POST("recycler.basket.info")
+    Observable<BasketBack> basket(@Query("sign") String sign, @Body BasketBean bean);
 
-    @POST("wallet.summary&sign={sign}")
-    Observable<SummaryBack> summary(@Path("sign") String sign, @Body SummaryBean bean);
+    @POST("wallet.summary")
+    Observable<SummaryBack> summary(@Query("sign") String sign, @Body SummaryBean bean);
 
-    @POST("bill.list&sign={sign}")
-    Observable<Object> list(@Path("sign") String sign, @Body ListBean bean);
+    @POST("bill.list")
+    Observable<ListBack> list(@Query("sign") String sign, @Body ListBean bean);
 
-    @POST("recycler.notices&sign={sign}")
-    Observable<Object> notices(@Path("sign") String sign, @Body ListBean bean);
+    @POST("recycler.notices")
+    Observable<Object> notices(@Query("sign") String sign, @Body ListBean bean);
 
 }

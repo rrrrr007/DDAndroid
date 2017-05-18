@@ -3,18 +3,12 @@ package com.diucity.dingding.activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.diucity.dingding.entity.Back.XXBack;
 import com.diucity.dingding.entity.Send.LoginBean;
-import com.diucity.dingding.entity.Send.XXBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.utils.GsonUtils;
-import com.diucity.dingding.utils.SignUtils;
 import com.diucity.dingding.R;
-import com.diucity.dingding.api.Network;
 import com.diucity.dingding.binder.LoginBinder;
 import com.diucity.dingding.delegate.LoginDelegate;
 import com.diucity.dingding.utils.VersonUtils;
@@ -22,8 +16,6 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
 import java.util.concurrent.TimeUnit;
-
-import rx.Observer;
 
 
 public class LoginActivity extends BaseActivity<LoginDelegate> implements View.OnFocusChangeListener {
@@ -46,14 +38,13 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         //忘记密码
         RxView.clicks(viewDelegate.get(R.id.tv_login_forget)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(HomeActivity.class);
+                    viewDelegate.startActivity(PaymentActivity.class);
                 });
 
         //登录
         RxView.clicks(viewDelegate.get(R.id.btn_login_enter)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    Log.d("ch",getPhoneText());
-                    //binder.work(viewDelegate, new LoginBean(phone.getText().toString(), code.getText().toString(), VersonUtils.getVersion(this)));
+                    binder.work(viewDelegate, new LoginBean(getPhoneText(), code.getText().toString(), VersonUtils.getVersion(this)));
                 });
 
         //Edt字段监听
@@ -92,12 +83,13 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        viewDelegate.lineChange(v, hasFocus);
         switch (v.getId()){
             case R.id.edt_login_phone:
+                viewDelegate.setEnable(!hasFocus,R.id.view_login_1);
                 viewDelegate.textChange(v,hasFocus&&phoneEnable);
                 break;
             case R.id.edt_login_code:
+                viewDelegate.setEnable(!hasFocus,R.id.view_login_2);
                 viewDelegate.textChange(v,hasFocus&&codeEnable);
                 break;
         }
@@ -110,22 +102,6 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         code = viewDelegate.get(R.id.edt_login_code);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        checkNet();
-    }
-
-    //首次检查网络
-    public void checkNet() {
-        ConnectivityManager connectMgr = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
-            // unconnect network
-            viewDelegate.showSmallWarn();
-        }
-    }
 
     private String getPhoneText(){
         return phone.getText().toString().replaceAll(" ","");

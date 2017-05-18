@@ -1,4 +1,4 @@
-package com.diucity.dingding.activity;
+package com.diucity.dingding.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

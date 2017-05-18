@@ -33,7 +33,7 @@ public class PINActivity extends BaseActivity<PINDelegate> {
         RxView.clicks(viewDelegate.get(R.id.btn_pin_finish)).throttleFirst( 2 , TimeUnit.SECONDS )
                 .subscribe(aVoid -> {
                     if (first.equals(second)) {
-                        binder.work(viewDelegate,new PaysetBean("0","1",second));
+                        binder.work(viewDelegate,new PaysetBean(0,"1",second));
                     }else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar),3,"2次交易密码不一致");
                         viewDelegate.setSecondPin();

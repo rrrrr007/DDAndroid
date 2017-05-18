@@ -5,9 +5,11 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.R;
 import com.diucity.dingding.entity.Back.BasketBack;
@@ -23,13 +25,11 @@ import java.util.List;
  */
 
 public class BasketAdapter extends BaseAdapter<BasketBack.Data.DataBean> {
-
-
-    private List<TodayBack.DataBean.ScrapsBean> price;
+    private ScrapsBack scraps;
+    private TodayBack today;
 
     public BasketAdapter(Context context, ArrayList<BasketBack.Data.DataBean> model) {
         super(context, model);
-        getPrice();
     }
 
     @Override
@@ -39,19 +39,51 @@ public class BasketAdapter extends BaseAdapter<BasketBack.Data.DataBean> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (price == null) return;
-        TodayBack.DataBean.ScrapsBean bean = getBean(getModel().get(position).getScrap_id());
-        if (bean == null) return;
         holder.getView(R.id.adapter_tv_price_title).setVisibility(position == 0 ? View.VISIBLE : View.GONE);
         TextView name = holder.getView(R.id.adapter_tv_price_name);
-        name.setText(bean.getName());
+        name.setText(getScrapItem(position).getName());
         TextView content = holder.getView(R.id.adapter_tv_price_content);
-        content.setText("预估收益" + String.format("%.2f", (getModel().get(position).getQuantity() * bean.getSell_price())));
+        double price = 0;
+        price = getTodayItem(position)==null?0:getTodayItem(position).getSell_price();
+        content.setText("预估收益" + String.format("%.2f", (getModel().get(position).getQuantity() * price)));
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
-        tv.setText(textSpan(getModel().get(position).getQuantity() + bean.getUnit()));
+        tv.setText(textSpan(getModel().get(position).getQuantity() + getScrapItem(position).getUnit()));
         TextView title = holder.getView(R.id.adapter_tv_price_title);
         title.setText("预估总收益：" + getAll() + "元");
     }
+
+    public void getScraps() {
+        String str = SpUtils.getString(getContext(), SpUtils.SCRAPS);
+        if (TextUtils.isEmpty(str)) return;
+        scraps = GsonUtils.GsonToBean(str, ScrapsBack.class);
+    }
+
+    private void getToday() {
+        String str = SpUtils.getString(getContext(), SpUtils.TODAY);
+        if (TextUtils.isEmpty(str)) return;
+        today = GsonUtils.GsonToBean(str, TodayBack.class);
+        Log.d("ch","gettodayaaaa"+str);
+    }
+
+    public ScrapsBack.Data.Scraps getScrapItem(int position) {
+        if (scraps == null) getScraps();
+        List<ScrapsBack.Data.Scraps> list = this.scraps.getData().getScraps();
+        for (ScrapsBack.Data.Scraps scrap : list) {
+            if (scrap.getScrap_id() == getModel().get(position).getScrap_id()) return scrap;
+        }
+        return null;
+    }
+
+    public TodayBack.DataBean.ScrapsBean getTodayItem(int position) {
+        if (today == null) getToday();
+        List<TodayBack.DataBean.ScrapsBean> list = this.today.getData().getScraps();
+        for (TodayBack.DataBean.ScrapsBean scrap : list) {
+            if (scrap.getScrap_id() == getModel().get(position).getScrap_id()) return scrap;
+        }
+        return null;
+    }
+
+
 
     private SpannableString textSpan(String str) {
         String text = str;
@@ -61,39 +93,28 @@ public class BasketAdapter extends BaseAdapter<BasketBack.Data.DataBean> {
         return textSpan;
     }
 
-    private TodayBack.DataBean.ScrapsBean getBean(int id) {
-        for (TodayBack.DataBean.ScrapsBean bean : price) {
-            if (bean.getScrap_id() == id) {
-                return bean;
-            }
-        }
-        return null;
-    }
 
     private String getAll() {
         double all = 0;
-        for (BasketBack.Data.DataBean bean : getModel()) {
-            if (getBean(bean.getScrap_id())==null)break;
-            all += bean.getQuantity() * getBean(bean.getScrap_id()).getSell_price();
+        for (int i = 0; i < getModel().size(); i++) {
+            double price =0;
+            price = getTodayItem(i)==null?0:getTodayItem(i).getSell_price();
+            all+=getModel().get(0).getQuantity()*price;
         }
         return String.format("%.2f", all);
     }
 
-    public void getPrice() {
-        String today = SpUtils.getString(getContext(), SpUtils.TODAY);
-        if (TextUtils.isEmpty(today)) return;
-        price = GsonUtils.GsonToBean(today, TodayBack.class).getData().getScraps();
-    }
-
     @Override
     public void updateBySet(List<BasketBack.Data.DataBean> model) {
-        getPrice();
+        getToday();
+        getScraps();
         super.updateBySet(model);
     }
 
     @Override
     public void updateByAdd(List<BasketBack.Data.DataBean> model) {
-        getPrice();
+        getToday();
+        getScraps();
         super.updateByAdd(model);
     }
 }

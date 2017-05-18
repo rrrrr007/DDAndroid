@@ -5,11 +5,11 @@
         android:right="-2dp"
         android:top="-2dp">
         <shape android:dither="true">
-            <gradient
-                android:angle="315"
-                android:endColor="#FFB8B8"
-                android:startColor="#FECFCF" />
+
+            <stroke
+                android:width="2px"
+                android:color="@color/text_green" />
+            <solid android:color="@color/selector_white" />
         </shape>
     </item>
-
 </layer-list>

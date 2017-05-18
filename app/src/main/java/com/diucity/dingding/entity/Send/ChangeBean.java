@@ -10,11 +10,11 @@ public class ChangeBean {
 
     private long timestamp;
     private String nonce;
-    private String recycler_id;
+    private int recycler_id;
     private String auth_login_code;
     private String login_code;
 
-    public ChangeBean(String recycler_id, String auth_login_code, String login_code) {
+    public ChangeBean(int recycler_id, String auth_login_code, String login_code) {
         this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
@@ -38,11 +38,11 @@ public class ChangeBean {
         this.nonce = nonce;
     }
 
-    public String getRecycler_id() {
+    public int getRecycler_id() {
         return recycler_id;
     }
 
-    public void setRecycler_id(String recycler_id) {
+    public void setRecycler_id(int recycler_id) {
         this.recycler_id = recycler_id;
     }
 

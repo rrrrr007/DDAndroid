@@ -9,6 +9,7 @@ import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.widget.TextView;
 
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.R;
 import com.tencent.smtt.sdk.WebSettings;
@@ -37,7 +38,7 @@ public class WebDelegate extends AppDelegate {
         super.initWidget();
         WebView wv = get(R.id.webView_web);
         WebSettings set = wv.getSettings();
-        wv.loadUrl("http://192.168.3.18:8080/#/billing-details");
+        wv.loadUrl("http://192.168.3.18:8080/#/withdraw");
         wv.addJavascriptInterface(WebDelegate.this, "android");
         set.setJavaScriptEnabled(true);
         wv.setWebViewClient(new WebViewClient());
@@ -45,8 +46,8 @@ public class WebDelegate extends AppDelegate {
 
 
     @JavascriptInterface
-    public String getId(){
-        return "123";
+    public String getToken(){
+        return App.user.getData().getAuth_token();
     }
 
     @JavascriptInterface

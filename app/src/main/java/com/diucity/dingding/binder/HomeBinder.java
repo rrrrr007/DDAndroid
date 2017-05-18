@@ -2,6 +2,7 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.entity.Back.BasketBack;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.ScrapsBack;
@@ -46,12 +47,26 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 @Override
                 public void onError(Throwable e) {
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接出错");
+                    viewDelegate.setText("叮叮回收",R.id.tv_home_title);
+                    viewDelegate.setVisiable(false,R.id.progress_home);
                     e.printStackTrace();
+
                 }
 
                 @Override
                 public void onNext(ScrapsBack s) {
+                    if (s.getCode()==0){
+                        SpUtils.putString(viewDelegate.getActivity(),SpUtils.SCRAPS,GsonUtils.GsonString(s));
+                        work(viewDelegate,new TodayBean(bean.getRecycler_id(),0,0));
+                        work(viewDelegate,new TaskBean(bean.getRecycler_id()));
+                        long time = System.currentTimeMillis();
+                        work(viewDelegate,new BasketBean(time,bean.getRecycler_id(),SignUtils.authCode(time, App.user.getData().getAuth_token())));
+                    }
                     Log.d("ch",GsonUtils.GsonString(s));
+                    viewDelegate.setText("叮叮回收",R.id.tv_home_title);
+                    viewDelegate.setVisiable(false,R.id.progress_home);
+
 
                 }
             });
@@ -66,27 +81,19 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 @Override
                 public void onError(Throwable e) {
-                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接出错");
-                    viewDelegate.setText("叮叮回收",R.id.tv_home_title);
-                    viewDelegate.setVisiable(false,R.id.progress_home);
                     e.printStackTrace();
                 }
 
                 @Override
                 public void onNext(TodayBack s) {
-                    /*if (s.getCode()==0){
+                   /* if (s.getCode()==0){
                         SpUtils.putLong(viewDelegate.getActivity(),SpUtils.UPDATE,System.currentTimeMillis());
                     }*/
                     if (s.getCode()==0){
-                        SpUtils.putString(viewDelegate.getActivity(),SpUtils.TODAY,GsonUtils.GsonString(s));
                         viewDelegate.getInsideAdapterNotify(0,s.getData().getScraps());
-                        work(viewDelegate,new ScrapsBean(bean.getRecycler_id()));
-                        work(viewDelegate,new TaskBean(bean.getRecycler_id()));
-                        work(viewDelegate,new BasketBean(bean.getRecycler_id(), "sjsj2010A20suycxx"));
+                        SpUtils.putString(viewDelegate.getActivity(),SpUtils.TODAY,GsonUtils.GsonString(s));
                     }
                     Log.d("ch",GsonUtils.GsonString(s));
-                    viewDelegate.setText("叮叮回收",R.id.tv_home_title);
-                    viewDelegate.setVisiable(false,R.id.progress_home);
                 }
             });
         }else if (object instanceof TaskBean){
@@ -113,6 +120,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
             });
         }else if (object instanceof BasketBean){
             BasketBean bean = (BasketBean) object;
+            Log.d("ch",""+GsonUtils.GsonString(bean));
             Network.subscribe(Network.getApi().basket(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<BasketBack>() {
 
                 @Override

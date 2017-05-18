@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ForgetActivity extends BaseActivity<ForgetDelegate> {
     private boolean enable;
+    private EditText phone;
+    private int index = 0;
 
 
     @Override
@@ -34,9 +36,8 @@ public class ForgetActivity extends BaseActivity<ForgetDelegate> {
         //发送短信
         RxView.clicks(viewDelegate.get(R.id.btn_forget_enter)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    String phone = ((EditText) viewDelegate.get(R.id.edt_forget_phone)).getText().toString();
-                    //startActivity(new Intent(this,Forget2Activity.class));
-                    binder.work(viewDelegate,new SmsBean(phone));
+
+                    binder.work(viewDelegate,new SmsBean(getPhoneText()));
                 });
 
         //清除Edt
@@ -50,11 +51,12 @@ public class ForgetActivity extends BaseActivity<ForgetDelegate> {
             enable = charSequence.length()>0;
             viewDelegate.textChange(enable);
             viewDelegate.setEnable(enable,R.id.btn_forget_enter);
+            setPhoneText();
         });
 
         //下划线
         viewDelegate.get(R.id.edt_forget_phone).setOnFocusChangeListener((v, hasFocus) -> {
-            viewDelegate.lineChange(hasFocus);
+            viewDelegate.setEnable(!hasFocus,R.id.view_forget);
         });
 
         //返回
@@ -62,5 +64,26 @@ public class ForgetActivity extends BaseActivity<ForgetDelegate> {
                 .subscribe(aVoid -> {
                     viewDelegate.finish();
                 });
+    }
+
+    @Override
+    public void initData() {
+        phone = viewDelegate.get(R.id.edt_forget_phone);
+    }
+
+    private String getPhoneText(){
+        return phone.getText().toString().replaceAll(" ","");
+    }
+
+    private void setPhoneText(){
+        if (phone.getText().length()<index){
+            index = phone.getText().length();
+            return;
+        }
+        index = phone.getText().length();
+        if (phone.getText().length()==3||phone.getText().length()==8){
+            phone.setText(phone.getText()+" ");
+            phone.setSelection(phone.getText().length());
+        }
     }
 }

@@ -60,6 +60,6 @@ public class SignUtils {
     }
 
     public static String authCode(long time, String taken) {
-        return md5(String.valueOf(time) + "#auth#" + taken);
+        return md5(String.valueOf(time) + "#auth#" + taken).toUpperCase();
     }
 }

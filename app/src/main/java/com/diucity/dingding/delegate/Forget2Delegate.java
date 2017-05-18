@@ -1,9 +1,7 @@
 package com.diucity.dingding.delegate;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
@@ -36,22 +34,6 @@ public class Forget2Delegate extends AppDelegate {
         String phone = getActivity().getIntent().getStringExtra("phone");
         TextView describe = get(R.id.tv_forget2_describe);
         describe.setText(describe.getText().toString()+"\n"+phone);
-    }
-
-    public void lineChange(View v, boolean hasFocus){
-        View view = null;
-        switch (v.getId()){
-            case R.id.edt_forget2_code:
-                view = get(R.id.view_forget2_1);
-                break;
-            case R.id.edt_forget2_password:
-                view = get(R.id.view_forget2_2);
-                break;
-        }
-        view.setBackgroundColor(hasFocus? Color.parseColor("#009479"):Color.parseColor("#C0CCC8"));
-        RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) view.getLayoutParams();
-        params.height=(hasFocus?2:1);
-        view.setLayoutParams(params);
     }
 
     public void textChange(boolean has){

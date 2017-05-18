@@ -37,22 +37,6 @@ public class LoginDelegate extends AppDelegate {
         setText("182 4423 3734",R.id.edt_login_phone);
     }
 
-    public void lineChange(View v, boolean hasFocus) {
-        View view = null;
-        switch (v.getId()) {
-            case R.id.edt_login_phone:
-                view = get(R.id.view_login_1);
-                break;
-            case R.id.edt_login_code:
-                view = get(R.id.view_login_2);
-                break;
-        }
-        view.setBackgroundColor(hasFocus ? Color.parseColor("#009479") : Color.parseColor("#C0CCC8"));
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
-        params.height = (hasFocus ? 2 : 1);
-        view.setLayoutParams(params);
-    }
-
     public void textChange(View v, boolean has) {
         View view = null;
         switch (v.getId()) {

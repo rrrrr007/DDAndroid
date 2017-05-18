@@ -3,6 +3,8 @@ package com.diucity.dingding.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -45,7 +47,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         subscriptions = new ArrayList<>();
         activity = this;
         ((App) ActivityUtils.getContext()).addActivity(this);
-
+        checkNet();
     }
 
     public void isShowSmallWarn(boolean is) {
@@ -164,5 +166,14 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    public void checkNet() {
+        ConnectivityManager connectMgr = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
+            ((AppDelegate) viewDelegate).showSmallWarn();
+        }
     }
 }

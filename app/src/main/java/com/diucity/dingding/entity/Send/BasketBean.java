@@ -9,11 +9,11 @@ import com.diucity.dingding.utils.SignUtils;
 public class BasketBean {
     private long timestamp;
     private String nonce;
-    private String recycler_id;
+    private int recycler_id;
     private String auth_code;
 
-    public BasketBean(String recycler_id, String auth_code) {
-        this.timestamp = System.currentTimeMillis();
+    public BasketBean(long timestamp, int recycler_id, String auth_code) {
+        this.timestamp = timestamp;
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
         this.auth_code = auth_code;
@@ -35,11 +35,11 @@ public class BasketBean {
         this.nonce = nonce;
     }
 
-    public String getRecycler_id() {
+    public int getRecycler_id() {
         return recycler_id;
     }
 
-    public void setRecycler_id(String recycler_id) {
+    public void setRecycler_id(int recycler_id) {
         this.recycler_id = recycler_id;
     }
 

@@ -54,8 +54,6 @@ public class TodayBack {
 
 
             private int scrap_id;
-            private String name;
-            private String unit;
             private double buy_price;
             private double sell_price;
 
@@ -65,22 +63,6 @@ public class TodayBack {
 
             public void setScrap_id(int scrap_id) {
                 this.scrap_id = scrap_id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getUnit() {
-                return unit;
-            }
-
-            public void setUnit(String unit) {
-                this.unit = unit;
             }
 
             public double getBuy_price() {

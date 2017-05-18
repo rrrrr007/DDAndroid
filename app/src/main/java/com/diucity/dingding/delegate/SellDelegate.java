@@ -29,7 +29,7 @@ public class SellDelegate extends AppDelegate {
         super.initWidget();
         WindowManager wm = getActivity().getWindowManager();
         int width = wm.getDefaultDisplay().getWidth();
-        Bitmap bitmap = CodeUtils.createImage("愿天堂没有代码", width, width, BitmapFactory.decodeResource(getActivity().getResources(), 0));
+        Bitmap bitmap = CodeUtils.createImage("愿天堂没有代码", width-60, width-60, BitmapFactory.decodeResource(getActivity().getResources(), 0));
         ((ImageView)get(R.id.iv_sell_qr)).setImageBitmap(bitmap);
     }
 }

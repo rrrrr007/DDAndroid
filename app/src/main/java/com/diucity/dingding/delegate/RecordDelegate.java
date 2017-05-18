@@ -7,11 +7,13 @@ import android.view.View;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.RecordAdapter;
+import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.persent.AppDelegate;
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/28 0028.
@@ -43,15 +45,11 @@ public class RecordDelegate extends AppDelegate {
         adapter = new RecordAdapter(getActivity(),null);
         rv.setAdapter(adapter);
         DefaultItemAnimator animator = new DefaultItemAnimator();
-        animator.setAddDuration(2000);
+        animator.setAddDuration(500);
         rv.setItemAnimator(animator);
     }
 
-    public void notifyData(){
-        ArrayList<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("1");
-        list.add("1");
+    public void notifyData(List<ListBack.DataBean.ItemsBean> list){
         adapter.adapterNotify(list);
         if (adapter.getItemCount()>0){
             get(R.id.ll_record_empty).setVisibility(View.GONE);

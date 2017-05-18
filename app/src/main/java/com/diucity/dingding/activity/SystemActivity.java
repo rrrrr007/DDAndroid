@@ -8,6 +8,7 @@ import com.diucity.dingding.delegate.SystemDelegate;
 import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.R;
+import com.diucity.dingding.widget.MySpringView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liaoinstan.springview.widget.SpringView;
 
@@ -56,6 +57,6 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
 
     @Override
     public void initData() {
-        binder.work(viewDelegate,new ListBean("1001","993jal-2lakd2sj",1,10));
+        binder.work(viewDelegate,new ListBean(1001,"993jal-2lakd2sj",1,10));
     }
 }

@@ -3,22 +3,27 @@ package com.diucity.dingding.adapter;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.R;
 import com.diucity.dingding.entity.Back.TodayBack;
+import com.diucity.dingding.utils.GsonUtils;
+import com.diucity.dingding.utils.SpUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/13 0013.
  */
 
 public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
-
+    private ScrapsBack scraps;
     public PriceAdapter(Context context, ArrayList<TodayBack.DataBean.ScrapsBean> model) {
         super(context, model);
     }
@@ -30,11 +35,12 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
         holder.getView(R.id.adapter_tv_price_title).setVisibility(position == 0 ? View.VISIBLE : View.GONE);
         TextView title = holder.getView(R.id.adapter_tv_price_title);
         title.setText("今日最新报价");
         TextView name = holder.getView(R.id.adapter_tv_price_name);
-        name.setText(getModel().get(position).getName() + "/" + getModel().get(position).getUnit());
+        name.setText(getScrapItem(position).getName() + "/" + getScrapItem(position).getUnit());
         TextView content = holder.getView(R.id.adapter_tv_price_content);
         content.setText("买 ￥" + getModel().get(position).getBuy_price() + "/  卖 ￥" + getModel().get(position).getSell_price());
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
@@ -48,6 +54,21 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         return textSpan;
+    }
+
+    public void getScraps() {
+        String today = SpUtils.getString(getContext(), SpUtils.SCRAPS);
+        if (TextUtils.isEmpty(today)) return;
+        scraps = GsonUtils.GsonToBean(today, ScrapsBack.class);
+    }
+
+    public ScrapsBack.Data.Scraps getScrapItem(int position){
+        if (scraps==null) getScraps();
+        List<ScrapsBack.Data.Scraps> list = this.scraps.getData().getScraps();
+        for (ScrapsBack.Data.Scraps scrap : list) {
+            if (scrap.getScrap_id()==getModel().get(position).getScrap_id()) return scrap;
+        }
+        return null;
     }
 
 

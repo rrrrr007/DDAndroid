@@ -10,9 +10,9 @@ import com.diucity.dingding.utils.SignUtils;
 public class ScrapsBean {
     private long timestamp;
     private String nonce;
-    private String recycler_id;
+    private int recycler_id;
 
-    public ScrapsBean(String recycler_id) {
+    public ScrapsBean(int recycler_id) {
         this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
@@ -34,11 +34,11 @@ public class ScrapsBean {
         this.nonce = nonce;
     }
 
-    public String getRecycler_id() {
+    public int getRecycler_id() {
         return recycler_id;
     }
 
-    public void setRecycler_id(String recycler_id) {
+    public void setRecycler_id(int recycler_id) {
         this.recycler_id = recycler_id;
     }
 }
