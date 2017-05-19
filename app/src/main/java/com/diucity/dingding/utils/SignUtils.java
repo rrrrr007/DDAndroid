@@ -1,5 +1,7 @@
 package com.diucity.dingding.utils;
 
+import android.util.Log;
+
 import com.diucity.dingding.entity.Send.NormalBean;
 
 import java.io.UnsupportedEncodingException;
@@ -48,15 +50,16 @@ public class SignUtils {
     }
 
     public static String loginCode(long time, String code) {
-        return md5(time+"login"+dbloginCode(code));
+        Log.d("ch",""+time);
+        return md5(time+"login"+dbloginCode(code)).toUpperCase();
     }
 
     public static String dbloginCode(String code){
-        return md5(code);
+        return md5(code).toUpperCase();
     }
 
     public static String payCode(long time, String code) {
-        return md5(String.valueOf(time) + "pay" + code);
+        return md5(String.valueOf(time) + "pay" + code).toUpperCase();
     }
 
     public static String authCode(long time, String taken) {

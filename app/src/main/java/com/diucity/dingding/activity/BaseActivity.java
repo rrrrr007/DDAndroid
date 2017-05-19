@@ -1,5 +1,6 @@
 package com.diucity.dingding.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -38,8 +39,6 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     public static final int PERMISSION_DENIEG = 1;//权限不足，权限被拒绝的时候
     public static final int PERMISSION_REQUEST_CODE = 0;//系统授权管理页面时的结果参数
     public static final String PACKAGE_URL_SCHEME = "package:";//权限方案
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,6 +123,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     }
 
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -153,6 +153,8 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         return null;
     }
 
+
+
     protected void permission() {
         if (getPermissions() != null) {
             if (PermissUtils.permissionSet(this, getPermissions())) {
@@ -162,6 +164,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
             }
         }
     }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {

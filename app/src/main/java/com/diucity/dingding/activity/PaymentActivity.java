@@ -1,39 +1,38 @@
 package com.diucity.dingding.activity;
 
+
 import android.util.Log;
+import android.widget.Toast;
 
 import com.diucity.dingding.app.App;
+import com.diucity.dingding.binder.PaymentBinder;
+import com.diucity.dingding.entity.Back.WXBack;
+import com.diucity.dingding.entity.Send.RequestBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.PaymentDelegate;
-import com.diucity.dingding.wxapi.WXPayEntryActivity;
+import com.diucity.dingding.utils.GsonUtils;
 import com.jakewharton.rxbinding.view.RxView;
-import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
-import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
-import com.tencent.mm.opensdk.modelmsg.WXTextObject;
 import com.tencent.mm.opensdk.modelpay.PayReq;
-import com.tencent.mm.opensdk.modelpay.PayResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-import org.json.JSONException;
 
 import java.util.concurrent.TimeUnit;
-
-import rx.functions.Action1;
 
 public class PaymentActivity extends BaseActivity<PaymentDelegate> {
     private final int WXPAY =101;
     private final int YWTPAY =102;
     private final int ZFBPAY =103;
     private int choice =WXPAY;
-    private static final String APP_ID ="wxd930ea5d5a258f4f";
+    private static final String APP_ID ="wx2920e5b3cf5c3b39";
+
     private IWXAPI api;
 
 
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new PaymentBinder();
     }
 
     @Override
@@ -43,10 +42,13 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
 
     @Override
     protected void bindEvenListener() {
+
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_payment_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.finish();
+
+                    binder.work(viewDelegate,new RequestBean(278,1,"192.168.1.20"));
+                    //viewDelegate.finish();
                 });
         //支付选择
         RxView.clicks(viewDelegate.get(R.id.iv_payment_wx)).subscribe(aVoid -> {
@@ -64,23 +66,39 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         RxView.clicks(viewDelegate.get(R.id.btn_payment_pay)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     if (choice==WXPAY) {
-                        WXTextObject textObject = new WXTextObject();
-                        textObject.text ="";
-                        WXMediaMessage msg =new WXMediaMessage();
-                        msg.mediaObject = textObject;
-                        msg.description = "";
-                        SendMessageToWX.Req req = new SendMessageToWX.Req();
-                        req.transaction = String.valueOf(System.currentTimeMillis());
-                        req.message = msg;
-                        api.sendReq(req);
+                        api= WXAPIFactory.createWXAPI(this,APP_ID,false);
+                        if (!api.isWXAppInstalled()){
+                            Toast.makeText(this, "未安装微信", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        boolean b = api.registerApp(APP_ID);
+                        Toast.makeText(this, "isssss"+b, Toast.LENGTH_SHORT).show();
+                        WXBack bean = GsonUtils.GsonToBean(App.request.getData(), WXBack.class);
+                        Log.d("ch","解析参数"+GsonUtils.GsonString(bean));
+                        PayReq pay =new PayReq();
+                        pay.appId = bean.getAppid();
+                        Log.d("ch","getAppid"+bean.getAppid());
+                        pay.partnerId =bean.getPartnerid();
+                        Log.d("ch","partnerId"+bean.getPartnerid());
+                        pay.prepayId =bean.getPrepayid();
+                        Log.d("ch","prepayId"+bean.getPrepayid());
+                        pay.packageValue = bean.getPackageX();
+                        Log.d("ch","packageValue"+bean.getPackageX());
+                        pay.nonceStr = bean.getNoncestr();
+                        Log.d("ch","nonceStr"+bean.getNoncestr());
+                        pay.timeStamp = bean.getTimestamp();
+                        Log.d("ch","timeStamp"+bean.getTimestamp());
+                        pay.sign = bean.getSign();
+                        Log.d("ch","sign"+bean.getSign());
+                        api.sendReq(pay);
                     }
                 });
     }
 
     @Override
     public void initData() {
-        api= WXAPIFactory.createWXAPI(this,APP_ID,true);
-        api.registerApp(APP_ID);
+
+
     }
 
     private void setPayIcon(){

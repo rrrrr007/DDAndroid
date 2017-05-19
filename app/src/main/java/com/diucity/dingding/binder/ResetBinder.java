@@ -43,6 +43,10 @@ public class ResetBinder implements DataBinder<ResetDelegate, NormalBack> {
 
                 @Override
                 public void onNext(NormalBack o) {
+                    viewDelegate.hideLoadingWarn();
+                    if (o.getCode()==0){
+                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "修改密码成功");
+                    }
                     Log.d("ch", GsonUtils.GsonString(o));
                 }
             });

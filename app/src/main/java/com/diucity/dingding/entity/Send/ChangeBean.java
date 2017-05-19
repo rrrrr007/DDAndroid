@@ -1,5 +1,7 @@
 package com.diucity.dingding.entity.Send;
 
+import android.util.Log;
+
 import com.diucity.dingding.utils.SignUtils;
 
 /**
@@ -13,13 +15,24 @@ public class ChangeBean {
     private int recycler_id;
     private String auth_login_code;
     private String login_code;
+    private String auth_code;
 
-    public ChangeBean(int recycler_id, String auth_login_code, String login_code) {
+    public ChangeBean(int recycler_id, String auth_login_code, String login_code ,String taken) {
         this.timestamp = System.currentTimeMillis();
+        Log.d("ch",""+getTimestamp());
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
         this.auth_login_code = SignUtils.loginCode(getTimestamp(),auth_login_code);
         this.login_code = login_code;
+        this.auth_code = SignUtils.authCode(getTimestamp(),taken);
+    }
+
+    public String getAuth_code() {
+        return auth_code;
+    }
+
+    public void setAuth_code(String auth_code) {
+        this.auth_code = auth_code;
     }
 
     public long getTimestamp() {

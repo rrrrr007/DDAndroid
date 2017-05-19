@@ -42,7 +42,7 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
         TextView name = holder.getView(R.id.adapter_tv_price_name);
         name.setText(getScrapItem(position).getName() + "/" + getScrapItem(position).getUnit());
         TextView content = holder.getView(R.id.adapter_tv_price_content);
-        content.setText("买 ￥" + getModel().get(position).getBuy_price() + "/  卖 ￥" + getModel().get(position).getSell_price());
+        content.setText("买 ￥" + getModel().get(position).getBuy_price() + "  卖 ￥" + getModel().get(position).getSell_price());
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
         tv.setText(textSpan(String.format("%.2f", getModel().get(position).getSell_price() - getModel().get(position).getBuy_price())+"元"));
 

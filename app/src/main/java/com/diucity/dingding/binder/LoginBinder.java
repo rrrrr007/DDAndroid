@@ -79,7 +79,6 @@ public class LoginBinder implements DataBinder<LoginDelegate, LoginBack> {
                 public void onNext(TodayBack o) {
                     if (o.getCode()==0){
                         SpUtils.putString(viewDelegate.getActivity(),SpUtils.TODAY,GsonUtils.GsonString(o));
-                        Log.d("ch","存了");
                     }
                 }
             });

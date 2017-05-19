@@ -9,6 +9,7 @@ import com.bugtags.library.Bugtags;
 import com.bugtags.library.BugtagsOptions;
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.entity.Back.LoginBack;
+import com.diucity.dingding.entity.Back.RequestBack;
 import com.diucity.dingding.utils.FontUtils.CalligraphyConfig;
 import com.diucity.dingding.R;
 import com.diucity.dingding.utils.SpUtils;
@@ -23,6 +24,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * Created by Administrator on 2017/3/8 0008.
@@ -34,8 +37,9 @@ public class App extends android.app.Application {
     private static App app;
     private static int mainTid;
     public static LoginBack user;
-
     public static List<BaseActivity> activities;
+
+    public static RequestBack request;
 
     static {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
@@ -59,14 +63,15 @@ public class App extends android.app.Application {
                 trackingCrashLog(false).//是否收集crash，默认 true
                 trackingConsoleLog(true).//是否收集console log，默认 true
                 trackingUserSteps(true).//是否收集用户操作步骤，默认 true
-                trackingNetworkURLFilter("(.*)").//自定义网络请求跟踪的 url 规则，默认 null
                 build();
-        Bugtags.start("50138096331774a7804fb33c216e6a71", this, Bugtags.BTGInvocationEventBubble);
+
+        Bugtags.start("50138096331774a7804fb33c216e6a71", this, Bugtags.BTGInvocationEventBubble,options);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 //.setDefaultFontPath(Environment.getRootDirectory().getPath() + "/fonts/NotoSansOriyaUI-Bold.ttf")//指定字体
                 .setFontAttrId(R.attr.fontPath)
                 .build());
-
+        JPushInterface.setDebugMode(true);//正式版的时候设置false，关闭调试
+        JPushInterface.init(this);
         initDate();
     }
 

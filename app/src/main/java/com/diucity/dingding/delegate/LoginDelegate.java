@@ -34,7 +34,7 @@ public class LoginDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        setText("182 4423 3734",R.id.edt_login_phone);
+        setText("139 9068 5003",R.id.edt_login_phone);
     }
 
     public void textChange(View v, boolean has) {

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.diucity.dingding.R;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -21,7 +23,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
 
     private IWXAPI api;
-    public static final String APP_ID = "your app id";
+    public static final String APP_ID = "wx2920e5b3cf5c3b39";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,5 +52,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onResp(BaseResp resp) {
         Log.d("ch", "onPayFinish, errCode = " + resp.errCode);// 支付结果码
+        TextView viewById = (TextView) findViewById(R.id.tv_zz);
+        viewById.setText(resp.errCode+"");
     }
 }

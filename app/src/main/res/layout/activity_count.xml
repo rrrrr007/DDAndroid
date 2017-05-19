@@ -51,7 +51,7 @@
 
     <ImageView
         android:id="@+id/iv_count_header"
-        android:layout_width="wrap_content"
+        android:layout_width="80px"
         android:layout_height="80px"
         android:layout_marginLeft="30px"
         android:layout_marginTop="108px"
@@ -89,6 +89,8 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_count"
+        android:paddingLeft="10px"
+        android:paddingRight="10px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="198px" />

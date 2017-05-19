@@ -100,6 +100,7 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     viewDelegate.setVisiable(false,R.id.progress_options);
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "清理成功");
                 });
     }
 

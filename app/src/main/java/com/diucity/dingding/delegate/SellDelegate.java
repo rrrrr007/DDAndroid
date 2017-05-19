@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.R;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
@@ -14,6 +15,7 @@ import com.uuzuche.lib_zxing.activity.CodeUtils;
  */
 
 public class SellDelegate extends AppDelegate {
+    public static final String str ="qrcode.dinghs.com/recycler/"+ App.user.getData().getRecycler_id();
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_sell;
@@ -29,7 +31,8 @@ public class SellDelegate extends AppDelegate {
         super.initWidget();
         WindowManager wm = getActivity().getWindowManager();
         int width = wm.getDefaultDisplay().getWidth();
-        Bitmap bitmap = CodeUtils.createImage("愿天堂没有代码", width-60, width-60, BitmapFactory.decodeResource(getActivity().getResources(), 0));
+
+        Bitmap bitmap = CodeUtils.createImage(str, width-60, width-60, BitmapFactory.decodeResource(getActivity().getResources(), 0));
         ((ImageView)get(R.id.iv_sell_qr)).setImageBitmap(bitmap);
     }
 }

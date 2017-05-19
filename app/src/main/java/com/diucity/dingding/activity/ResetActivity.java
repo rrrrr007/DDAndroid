@@ -3,6 +3,7 @@ package com.diucity.dingding.activity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.ResetBinder;
 import com.diucity.dingding.delegate.ResetDelegate;
 import com.diucity.dingding.persent.DataBinder;
@@ -40,7 +41,7 @@ public class ResetActivity extends BaseActivity<ResetDelegate> implements View.O
                     if (!nnew.equals(affirm)){
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "2次密码不一致");
                     }else {
-                        binder.work(viewDelegate ,new ChangeBean(1001,old,nnew));
+                        binder.work(viewDelegate ,new ChangeBean(App.user.getData().getRecycler_id(),old,nnew,App.user.getData().getAuth_token()));
                     }
 
 

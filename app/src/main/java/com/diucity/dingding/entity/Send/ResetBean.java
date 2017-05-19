@@ -18,7 +18,7 @@ public class ResetBean {
         this.nonce = SignUtils.getUUID();
         this.mobile = mobile;
         this.sms_code = sms_code;
-        this.login_code = SignUtils.loginCode(getTimestamp(),login_code);
+        this.login_code = login_code;
     }
 
     public long getTimestamp() {

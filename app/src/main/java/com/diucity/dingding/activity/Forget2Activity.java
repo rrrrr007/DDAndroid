@@ -1,7 +1,5 @@
 package com.diucity.dingding.activity;
 
-
-import android.view.View;
 import android.widget.EditText;
 
 import com.diucity.dingding.delegate.Forget2Delegate;

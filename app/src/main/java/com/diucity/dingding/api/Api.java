@@ -4,15 +4,18 @@ import com.diucity.dingding.entity.Back.BasketBack;
 import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.entity.Back.LoginBack;
 import com.diucity.dingding.entity.Back.NormalBack;
+import com.diucity.dingding.entity.Back.RequestBack;
 import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.SummaryBack;
 import com.diucity.dingding.entity.Back.TaskBack;
 import com.diucity.dingding.entity.Back.TodayBack;
 import com.diucity.dingding.entity.Send.BasketBean;
 import com.diucity.dingding.entity.Send.ChangeBean;
+import com.diucity.dingding.entity.Send.CreateBean;
 import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.entity.Send.LoginBean;
 import com.diucity.dingding.entity.Send.PaysetBean;
+import com.diucity.dingding.entity.Send.RequestBean;
 import com.diucity.dingding.entity.Send.ResetBean;
 import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.entity.Send.SmsBean;
@@ -71,5 +74,11 @@ public interface Api {
 
     @POST("recycler.notices")
     Observable<Object> notices(@Query("sign") String sign, @Body ListBean bean);
+
+    @POST("order.create")
+    Observable<Object> create(@Query("sign") String sign, @Body CreateBean bean);
+
+    @POST("payment.request")
+    Observable<RequestBack> request(@Query("sign") String sign, @Body RequestBean bean);
 
 }

@@ -13,10 +13,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
         ndk {
-            // 设置支持的 SO 库构架
-            abiFilters 'armeabi'// 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+            //选择要添加的对应cpu类型的.so库（不需要的删除即可）。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
         }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "2aa8d7a9bc2377edd2c43eea",
+                JPUSH_CHANNEL: "developer-default",
+        ]
     }
     buildTypes {
         release {
@@ -43,8 +49,8 @@ android {
 
 bugtags {
     //自动上传符号表功能配置，如果需要根据 build varint 配置，请参考帮助中心->符号表->Android 符号表->配置自动上传符号表
-    appKey "50138096331774a7804fb33c216e6a71"  //这里是你的 appKey
-    appSecret "3fafe13ec2458958e32a7cabe6e134bc"    //这里是你的 appSecret，管理员在设置页可以查看
+    appKey "fd226684be764561fb10cc01"  //这里是你的 appKey
+    appSecret "14766c8059f1b282e8624e9d"    //这里是你的 appSecret，管理员在设置页可以查看
     mappingUploadEnabled true
 
     //网络跟踪功能配置(企业版)
@@ -57,11 +63,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile files('libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar')
-
-
-
-
-
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'com.android.support:cardview-v7:25.1.0'
@@ -72,6 +73,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.YancyYe:GalleryPick:1.2.1'
     compile 'com.zhy:autolayout:1.4.5'
+
     compile 'com.liaoinstan.springview:library:1.2.6'
     compile 'cn.yipianfengye.android:zxing-library:2.1'
     compile 'com.bugtags.library:bugtags-lib:latest.integration'

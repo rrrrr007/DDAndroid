@@ -1,9 +1,7 @@
 package com.diucity.dingding.delegate;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.R;

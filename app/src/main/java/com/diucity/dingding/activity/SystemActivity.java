@@ -3,6 +3,7 @@ package com.diucity.dingding.activity;
 
 import android.widget.Toast;
 
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.SystemBinder;
 import com.diucity.dingding.delegate.SystemDelegate;
 import com.diucity.dingding.entity.Send.ListBean;
@@ -57,6 +58,6 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
 
     @Override
     public void initData() {
-        binder.work(viewDelegate,new ListBean(1001,"993jal-2lakd2sj",1,10));
+        binder.work(viewDelegate,new ListBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),1,10));
     }
 }
