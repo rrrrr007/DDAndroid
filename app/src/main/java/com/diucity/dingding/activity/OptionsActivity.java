@@ -37,15 +37,15 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
         super.bindEvenListener();
         //通知开关
         RxView.clicks(viewDelegate.get(R.id.rl_options_notification)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-            startActivity(new Intent(this, NotificationActivity.class));
+            viewDelegate.startActivity(NotificationActivity.class);
         });
         //重设密码
         RxView.clicks(viewDelegate.get(R.id.rl_options_resetPassword)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-            startActivity(new Intent(this, ResetActivity.class));
+            viewDelegate.startAcitityWithAnim(ResetActivity.class);
         });
         //忘记密码
         RxView.clicks(viewDelegate.get(R.id.rl_options_forgetPassword)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-            startActivity(new Intent(this, ForgetActivity.class));
+            viewDelegate.startActivity(ForgetActivity.class);
         });
         //清空缓存
         RxView.clicks(viewDelegate.get(R.id.rl_options_clearCache)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
@@ -57,7 +57,7 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
         });
         //关于APP
         RxView.clicks(viewDelegate.get(R.id.rl_options_about)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-            startActivity(new Intent(this, AboutActivity.class));
+            viewDelegate.startActivity(AboutActivity.class);
         });
         //功能介绍
         RxView.clicks(viewDelegate.get(R.id.rl_options_function)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {

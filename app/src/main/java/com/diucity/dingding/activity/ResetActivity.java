@@ -77,6 +77,12 @@ public class ResetActivity extends BaseActivity<ResetDelegate> implements View.O
     }
 
     @Override
+    public void finish() {
+        super.finish();
+        this.overridePendingTransition(R.anim.stay,R.anim.over);
+    }
+
+    @Override
     public void onFocusChange(View v, boolean hasFocus) {
         viewDelegate.lineChange(v,hasFocus);
     }

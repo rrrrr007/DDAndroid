@@ -74,10 +74,6 @@ public class SellActivity extends BaseActivity<SellDelegate> {
                 });
     }
 
-    @Override
-    public void initData() {
-        super.initData();
-    }
 
     LocationListener locationListener = new LocationListener() {
 
@@ -130,6 +126,12 @@ public class SellActivity extends BaseActivity<SellDelegate> {
             locationManager.removeUpdates(locationListener);
             locationManager = null;
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        this.overridePendingTransition(R.anim.stay,R.anim.over);
     }
 
     @Override

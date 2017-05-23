@@ -50,7 +50,7 @@
         android:layout_height="770px"
         android:layout_centerInParent="true"
         android:clickable="true"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         tools:targetApi="lollipop">

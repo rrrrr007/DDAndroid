@@ -6,11 +6,14 @@ import android.animation.Keyframe;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -29,7 +32,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.activity.ForgetActivity;
+import com.diucity.dingding.activity.LoginActivity;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
@@ -113,24 +120,24 @@ public abstract class AppDelegate implements IDelegate {
         return (T) rootView.getContext();
     }
 
-    public void setSrc(Drawable src,int id){
-        ((ImageView)get(id)).setImageDrawable(src);
+    public void setSrc(Drawable src, int id) {
+        ((ImageView) get(id)).setImageDrawable(src);
     }
 
-    public void setText(String str ,int id){
-        ((TextView)get(id)).setText(str);
+    public void setText(String str, int id) {
+        ((TextView) get(id)).setText(str);
     }
 
-    public void setText(SpannableString textSpan , int id){
-        ((TextView)get(id)).setText(textSpan);
+    public void setText(SpannableString textSpan, int id) {
+        ((TextView) get(id)).setText(textSpan);
     }
 
-    public String getText(int id){
-        return ((TextView)get(id)).getText().toString();
+    public String getText(int id) {
+        return ((TextView) get(id)).getText().toString();
     }
 
-    public void setVisiable(boolean is,int id){
-        get(id).setVisibility(is?View.VISIBLE:View.GONE);
+    public void setVisiable(boolean is, int id) {
+        get(id).setVisibility(is ? View.VISIBLE : View.GONE);
     }
 
 
@@ -143,9 +150,17 @@ public abstract class AppDelegate implements IDelegate {
         getActivity().finish();
     }
 
+
     public void startActivity(Class a) {
         getActivity().startActivity(new Intent(getActivity(), a));
     }
+
+    public void startAcitityWithAnim(Class a) {
+        startActivity(a);
+        getActivity().overridePendingTransition(R.anim.start,R.anim.stay);
+
+    }
+
     public void startActivity(Intent intent) {
         getActivity().startActivity(intent);
     }
@@ -186,18 +201,18 @@ public abstract class AppDelegate implements IDelegate {
         switch (pattern) {
             case 1:
                 tv.setTextColor(Color.parseColor("#F5F8F7"));
-                drawable = ContextCompat.getDrawable(getActivity(),R.mipmap.ic_cmm_success_small_white);
+                drawable = ContextCompat.getDrawable(getActivity(), R.mipmap.ic_cmm_success_small_white);
                 view.setBackgroundResource(R.drawable.normal_color1);
                 break;
             case 2:
                 tv.setTextColor(Color.parseColor("#031912"));
-                drawable = ContextCompat.getDrawable(getActivity(),R.mipmap.ic_cmm_remind_small);
+                drawable = ContextCompat.getDrawable(getActivity(), R.mipmap.ic_cmm_remind_small);
                 view.setBackgroundResource(R.drawable.normal_color2);
 
                 break;
             case 3:
                 tv.setTextColor(Color.parseColor("#031912"));
-                drawable = ContextCompat.getDrawable(getActivity(),R.mipmap.ic_cmm_error_small);
+                drawable = ContextCompat.getDrawable(getActivity(), R.mipmap.ic_cmm_error_small);
                 view.setBackgroundResource(R.drawable.normal_color3);
                 break;
         }

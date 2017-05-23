@@ -51,7 +51,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
 
     @Override
     public void getAllGrantedPermission() {
-        viewDelegate.startActivity(CaptureActivity.class);
+        viewDelegate.startAcitityWithAnim(CaptureActivity.class);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
         //卖
         RxView.clicks(viewDelegate.get(R.id.iv_home_sell)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(SellActivity.class);
+                    viewDelegate.startAcitityWithAnim(SellActivity.class);
                 });
 
         //vp滑动监听

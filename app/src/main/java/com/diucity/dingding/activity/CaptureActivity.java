@@ -92,5 +92,9 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
         }
     }
 
-
+    @Override
+    public void finish() {
+        super.finish();
+        this.overridePendingTransition(R.anim.stay,R.anim.over);
+    }
 }

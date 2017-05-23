@@ -1,15 +1,19 @@
 package com.diucity.dingding.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.transition.Slide;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.app.App;
+import com.diucity.dingding.persent.ActivityPresenter;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -184,6 +188,7 @@ public class ActivityUtils {
             e.printStackTrace();
         }
     }
+
 
     public static int px2sp(Context context, float pxValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;

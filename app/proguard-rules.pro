@@ -98,3 +98,11 @@
 
 -dontwarn cn.jiguang.**
 -keep class cn.jiguang.** { *; }
+
+#一网通sdk
+-keepclasseswithmembers class cmb.pb.util.CMBKeyboardFunc {
+    public <init>(android.app.Activity);
+    public boolean HandleUrlCall(android.webkit.WebView,java.lang.String);
+    public void callKeyBoardActivity();
+}
+

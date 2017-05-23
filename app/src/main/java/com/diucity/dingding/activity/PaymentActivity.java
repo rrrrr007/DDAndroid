@@ -47,7 +47,7 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         RxView.clicks(viewDelegate.get(R.id.iv_payment_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
 
-                    binder.work(viewDelegate,new RequestBean(278,1,"192.168.1.20"));
+                    binder.work(viewDelegate,new RequestBean(278,2,"192.168.1.20"));
                     //viewDelegate.finish();
                 });
         //支付选择
@@ -91,6 +91,8 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
                         pay.sign = bean.getSign();
                         Log.d("ch","sign"+bean.getSign());
                         api.sendReq(pay);
+                    }else if (choice==YWTPAY){
+                        viewDelegate.startActivity(YWTActivity.class);
                     }
                 });
     }

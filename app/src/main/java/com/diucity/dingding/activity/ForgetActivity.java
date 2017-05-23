@@ -1,6 +1,14 @@
 package com.diucity.dingding.activity;
 
 
+import android.os.Build;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.view.Window;
 import android.widget.EditText;
 
 import com.diucity.dingding.R;
@@ -30,13 +38,15 @@ public class ForgetActivity extends BaseActivity<ForgetDelegate> {
         return ForgetDelegate.class;
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     protected void bindEvenListener() {
 
         //发送短信
         RxView.clicks(viewDelegate.get(R.id.btn_forget_enter)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-
                     binder.work(viewDelegate,new SmsBean(getPhoneText()));
                 });
 

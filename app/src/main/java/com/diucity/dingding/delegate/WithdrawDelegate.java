@@ -13,11 +13,25 @@ import android.widget.TextView;
 import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.entity.Back.DataBack;
+import com.diucity.dingding.entity.User;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.GsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.tencent.smtt.sdk.TbsReaderView.TAG;
 
 /**
  * Created by Administrator on 2017/4/20 0020.
@@ -38,15 +52,6 @@ public class WithdrawDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-       /* DataBack bean = GsonUtils.GsonToBean(App.request.getData(), DataBack.class);
-        Log.d("ch","WithdrawDelegate"+GsonUtils.GsonString(bean));
-        WebView wv = get(R.id.webView_withdraw);
-        WebSettings set = wv.getSettings();
-        wv.addJavascriptInterface(WithdrawDelegate.this, "android");
-        set.setJavaScriptEnabled(true);
-        wv.setWebViewClient(new WebViewClient());
-        wv.setContentDescription("Content-Type:application/x-www-form-urlencoded");
-        wv.postUrl(bean.getUrl(),("jsonRequestData="+bean.getBody()).getBytes());*/
         WebView wv = get(R.id.webView_withdraw);
         WebSettings set = wv.getSettings();
         wv.loadUrl("http://192.168.3.18:8080/#/withdraw");
@@ -57,8 +62,9 @@ public class WithdrawDelegate extends AppDelegate {
 
 
     @JavascriptInterface
-    public String getToken(){
-        return App.user.getData().getAuth_token();
+    public String getUserData() {
+        String s = GsonUtils.GsonString(new User(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token()));
+        return s;
     }
 
     @JavascriptInterface

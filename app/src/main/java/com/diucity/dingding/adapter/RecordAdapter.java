@@ -22,6 +22,7 @@ public class RecordAdapter extends BaseAdapter<ListBack.DataBean.ItemsBean> {
 
     public RecordAdapter(Context context, ArrayList<ListBack.DataBean.ItemsBean> model) {
         super(context, model);
+        getModel().add(new ListBack.DataBean.ItemsBean());
     }
 
     @Override

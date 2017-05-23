@@ -1,5 +1,9 @@
 package com.diucity.dingding.activity;
 
+import android.annotation.TargetApi;
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.os.Build;
 import android.view.View;
 import android.widget.EditText;
 
@@ -30,6 +34,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         return new LoginBinder();
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void bindEvenListener() {
         //忘记密码

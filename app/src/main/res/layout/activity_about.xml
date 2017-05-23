@@ -4,7 +4,7 @@
     android:id="@+id/activity_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.diucity.dingding..activity.AboutActivity">
+    tools:context="com.diucity.dingding.activity.AboutActivity">
 
     <View
         android:layout_width="match_parent"
