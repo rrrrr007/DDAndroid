@@ -1,17 +1,15 @@
 package com.diucity.dingding.activity;
 
 import android.annotation.TargetApi;
-import android.app.ActivityOptions;
-import android.content.Intent;
 import android.os.Build;
 import android.view.View;
 import android.widget.EditText;
 
-import com.diucity.dingding.entity.Send.LoginBean;
-import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.LoginBinder;
 import com.diucity.dingding.delegate.LoginDelegate;
+import com.diucity.dingding.entity.Send.LoginBean;
+import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.VersonUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -40,7 +38,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         //忘记密码
         RxView.clicks(viewDelegate.get(R.id.tv_login_forget)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(PaymentActivity.class);
+                    viewDelegate.startActivity(CountActivity .class);
                 });
 
         //登录

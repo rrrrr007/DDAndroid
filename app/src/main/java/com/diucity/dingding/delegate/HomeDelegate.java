@@ -2,6 +2,7 @@ package com.diucity.dingding.delegate;
 
 import android.support.v4.view.ViewPager;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.AwardAdapter;
 import com.diucity.dingding.adapter.BasketAdapter;
 import com.diucity.dingding.adapter.HomeViewPager;
@@ -10,7 +11,6 @@ import com.diucity.dingding.entity.Back.BasketBack;
 import com.diucity.dingding.entity.Back.TaskBack;
 import com.diucity.dingding.entity.Back.TodayBack;
 import com.diucity.dingding.persent.AppDelegate;
-import com.diucity.dingding.R;
 
 import java.util.List;
 

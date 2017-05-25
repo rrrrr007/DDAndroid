@@ -3,26 +3,33 @@ package com.diucity.dingding.entity.Send;
 import com.diucity.dingding.utils.SignUtils;
 
 /**
- * Created by Administrator on 2017/5/3 0003.
+ * Created by Administrator on 2017/5/25 0025.
  */
 
-public class ListBean {
+public class SupplierBean {
+
+
+    public SupplierBean(int recycler_id, String auth_code, int supplier_id) {
+        this.timestamp = System.currentTimeMillis();
+        this.nonce = SignUtils.getUUID();
+        this.recycler_id = recycler_id;
+        this.auth_code = SignUtils.authCode(getTimestamp(),auth_code);
+        this.supplier_id = supplier_id;
+    }
+
+    /**
+     * timestamp : 373091747
+     * nonce : beab54a1-fd7a-442f-bb26-201f5b98eb69
+     * recycler_id : 1027301
+     * auth_code : sjsj2010A20suycxx
+     * supplier_id : 1280301
+     */
 
     private long timestamp;
     private String nonce;
     private int recycler_id;
     private String auth_code;
-    private int start;
-    private int limit;
-
-    public ListBean(int recycler_id, String taken, int start, int limit) {
-        this.timestamp = System.currentTimeMillis();
-        this.nonce = SignUtils.getUUID();
-        this.recycler_id = recycler_id;
-        this.auth_code = SignUtils.authCode(getTimestamp(),taken);
-        this.start = start;
-        this.limit = limit;
-    }
+    private int supplier_id;
 
     public long getTimestamp() {
         return timestamp;
@@ -56,19 +63,11 @@ public class ListBean {
         this.auth_code = auth_code;
     }
 
-    public int getStart() {
-        return start;
+    public int getSupplier_id() {
+        return supplier_id;
     }
 
-    public void setStart(int start) {
-        this.start = start;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
+    public void setSupplier_id(int supplier_id) {
+        this.supplier_id = supplier_id;
     }
 }

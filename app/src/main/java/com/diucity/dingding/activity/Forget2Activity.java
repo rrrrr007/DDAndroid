@@ -2,9 +2,9 @@ package com.diucity.dingding.activity;
 
 import android.widget.EditText;
 
-import com.diucity.dingding.delegate.Forget2Delegate;
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.Forget2Binder;
+import com.diucity.dingding.delegate.Forget2Delegate;
 import com.diucity.dingding.entity.Send.ResetBean;
 import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.persent.DataBinder;

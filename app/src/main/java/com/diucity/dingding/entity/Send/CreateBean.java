@@ -15,11 +15,10 @@ public class CreateBean {
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
         this.auth_code = SignUtils.authCode(getTimestamp(),auth_code);
-        this.supplier_id = 100001;
+        this.supplier_id = supplier_id;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.scraps = new ArrayList<>();
-        this.scraps.add(new ScrapsBean(1000,1));
+        this.scraps = scraps;
     }
 
     /**

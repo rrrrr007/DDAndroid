@@ -1,12 +1,15 @@
 package com.diucity.dingding.api;
 
 import com.diucity.dingding.entity.Back.BasketBack;
+import com.diucity.dingding.entity.Back.CreateBack;
 import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.entity.Back.LoginBack;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.RequestBack;
 import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.SummaryBack;
+import com.diucity.dingding.entity.Back.SupplierBack;
+import com.diucity.dingding.entity.Back.SystemBack;
 import com.diucity.dingding.entity.Back.TaskBack;
 import com.diucity.dingding.entity.Back.TodayBack;
 import com.diucity.dingding.entity.Send.BasketBean;
@@ -20,12 +23,12 @@ import com.diucity.dingding.entity.Send.ResetBean;
 import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.entity.Send.SummaryBean;
+import com.diucity.dingding.entity.Send.SupplierBean;
 import com.diucity.dingding.entity.Send.TaskBean;
 import com.diucity.dingding.entity.Send.TodayBean;
 
 import retrofit2.http.Body;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -33,10 +36,8 @@ import rx.Observable;
  * Created by sushuai on 2016/3/25.
  */
 public interface Api {
-    //String BASEURL = "http://www.diucity.com:1601/api/";
-    //String BASEURL = "https://api.dev.intranet/";
-    //String BASEURL = "https://recycleapi.dev.local:3030/";
     String BASEURL = "http://192.168.3.161:4443/recycler/";
+    String WEBURL = "http://192.168.3.161:4443/recycler/";
 
 
     @POST("sms.send")
@@ -73,12 +74,15 @@ public interface Api {
     Observable<ListBack> list(@Query("sign") String sign, @Body ListBean bean);
 
     @POST("recycler.notices")
-    Observable<Object> notices(@Query("sign") String sign, @Body ListBean bean);
+    Observable<SystemBack> notices(@Query("sign") String sign, @Body ListBean bean);
 
     @POST("order.create")
-    Observable<Object> create(@Query("sign") String sign, @Body CreateBean bean);
+    Observable<CreateBack> create(@Query("sign") String sign, @Body CreateBean bean);
 
     @POST("payment.request")
     Observable<RequestBack> request(@Query("sign") String sign, @Body RequestBean bean);
+
+    @POST("user.supplier")
+    Observable<SupplierBack> supplier(@Query("sign") String sign, @Body SupplierBean bean);
 
 }

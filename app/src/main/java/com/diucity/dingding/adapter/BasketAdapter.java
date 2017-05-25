@@ -9,13 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.diucity.dingding.entity.Back.ScrapsBack;
-import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.R;
 import com.diucity.dingding.entity.Back.BasketBack;
+import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.TodayBack;
+import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
+import com.diucity.dingding.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class BasketAdapter extends BaseAdapter<BasketBack.Data.DataBean> {
         TextView content = holder.getView(R.id.adapter_tv_price_content);
         double price = 0;
         price = getTodayItem(position)==null?0:getTodayItem(position).getSell_price();
-        content.setText("预估收益" + String.format("%.2f", (getModel().get(position).getQuantity() * price)));
+        content.setText("预估收益" + StringUtils.getDoubleString((getModel().get(position).getQuantity() * price)));
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
         tv.setText(textSpan(getModel().get(position).getQuantity() + getScrapItem(position).getUnit()));
         TextView title = holder.getView(R.id.adapter_tv_price_title);

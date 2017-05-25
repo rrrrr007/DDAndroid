@@ -8,12 +8,13 @@ import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.widget.TextView;
 
-import com.diucity.dingding.entity.Back.ScrapsBack;
-import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.R;
+import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.TodayBack;
+import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
+import com.diucity.dingding.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +43,9 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
         TextView name = holder.getView(R.id.adapter_tv_price_name);
         name.setText(getScrapItem(position).getName() + "/" + getScrapItem(position).getUnit());
         TextView content = holder.getView(R.id.adapter_tv_price_content);
-        content.setText("买 ￥" + getModel().get(position).getBuy_price() + "  卖 ￥" + getModel().get(position).getSell_price());
+        content.setText("买 ￥" + StringUtils.getDoubleString(getModel().get(position).getBuy_price()) + "  卖 ￥" + StringUtils.getDoubleString(getModel().get(position).getSell_price()));
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
-        tv.setText(textSpan(String.format("%.2f", getModel().get(position).getSell_price() - getModel().get(position).getBuy_price())+"元"));
+        tv.setText(textSpan(StringUtils.getDoubleString(getModel().get(position).getSell_price() - getModel().get(position).getBuy_price()))+"元");
 
     }
 

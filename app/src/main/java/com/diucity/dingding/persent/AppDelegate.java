@@ -6,14 +6,11 @@ import android.animation.Keyframe;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -32,11 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diucity.dingding.R;
-import com.diucity.dingding.activity.ForgetActivity;
-import com.diucity.dingding.activity.LoginActivity;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;

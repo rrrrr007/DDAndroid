@@ -12,7 +12,6 @@ import com.diucity.dingding.persent.AppDelegate;
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.widget.SpringView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

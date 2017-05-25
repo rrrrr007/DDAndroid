@@ -2,8 +2,8 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.activity.HomeActivity;
-import com.diucity.dingding.activity.PINActivity;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.LoginDelegate;
@@ -14,7 +14,6 @@ import com.diucity.dingding.entity.Send.TodayBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
-import com.diucity.dingding.R;
 import com.diucity.dingding.utils.SpUtils;
 
 import rx.Observer;

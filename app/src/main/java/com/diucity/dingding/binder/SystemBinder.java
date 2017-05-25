@@ -2,13 +2,16 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
+import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.SystemDelegate;
 import com.diucity.dingding.entity.Back.NormalBack;
+import com.diucity.dingding.entity.Back.SystemBack;
 import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.api.Network;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
+
+import java.util.List;
 
 import rx.Observer;
 
@@ -17,6 +20,7 @@ import rx.Observer;
  */
 
 public class SystemBinder implements DataBinder<SystemDelegate,NormalBack> {
+    private int i =1;
     @Override
     public void viewBindModel(SystemDelegate viewDelegate, NormalBack data) {
 
@@ -26,7 +30,8 @@ public class SystemBinder implements DataBinder<SystemDelegate,NormalBack> {
     public void work(SystemDelegate viewDelegate, Object object) {
         if (object instanceof ListBean) {
             ListBean bean = (ListBean) object;
-            Network.subscribe(Network.getApi().notices(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<Object>() {
+            bean.setStart(i);
+            Network.subscribe(Network.getApi().notices(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<SystemBack>() {
 
                 @Override
                 public void onCompleted() {
@@ -39,9 +44,13 @@ public class SystemBinder implements DataBinder<SystemDelegate,NormalBack> {
                 }
 
                 @Override
-                public void onNext(Object s) {
+                public void onNext(SystemBack s) {
                     Log.d("ch", GsonUtils.GsonString(s));
-
+                    if (s.getCode()==0){
+                        i+=1;
+                        List<SystemBack.DataBean.NoticesBean> notices = s.getData().getNotices();
+                        viewDelegate.notifyData(notices);
+                    }
                 }
             });
         }

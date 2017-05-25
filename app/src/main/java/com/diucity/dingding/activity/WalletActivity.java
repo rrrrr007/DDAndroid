@@ -1,11 +1,11 @@
 package com.diucity.dingding.activity;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.WalletBinder;
 import com.diucity.dingding.delegate.WalletDelegate;
 import com.diucity.dingding.entity.Send.SummaryBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.R;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.concurrent.TimeUnit;

@@ -2,6 +2,8 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
+import com.diucity.dingding.R;
+import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.Forget2Delegate;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Send.ResetBean;
@@ -9,8 +11,6 @@ import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
-import com.diucity.dingding.R;
-import com.diucity.dingding.api.Network;
 
 import rx.Observer;
 

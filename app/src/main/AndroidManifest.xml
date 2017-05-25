@@ -242,7 +242,7 @@
             android:name="JPUSH_CHANNEL"
             android:value="developer-default" />
 
-        <activity android:name=".activity.YWTActivity"></activity>
+        <activity android:name=".activity.YWTActivity"/>
     </application>
 
 </manifest>

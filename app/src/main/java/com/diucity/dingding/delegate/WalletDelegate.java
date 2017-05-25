@@ -1,7 +1,7 @@
 package com.diucity.dingding.delegate;
 
-import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.R;
+import com.diucity.dingding.persent.AppDelegate;
 
 /**
  * Created by Administrator on 2017/3/29 0029.

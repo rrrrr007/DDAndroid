@@ -15,7 +15,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
     private Context context;
     private List<T> model;
 
-    public BaseAdapter(Context context, ArrayList<T> model) {
+    public BaseAdapter(Context context, List<T> model) {
         this.context = context;
         this.model = new ArrayList<>();
         if (model!=null&&model.size()>0){
@@ -62,4 +62,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
         }
         notifyDataSetChanged();
     }
+
+
 }

@@ -4,19 +4,16 @@ import android.content.Context;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 
-
 import com.bugtags.library.Bugtags;
 import com.bugtags.library.BugtagsOptions;
+import com.diucity.dingding.R;
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.entity.Back.LoginBack;
 import com.diucity.dingding.entity.Back.RequestBack;
 import com.diucity.dingding.utils.FontUtils.CalligraphyConfig;
-import com.diucity.dingding.R;
 import com.diucity.dingding.utils.SpUtils;
 import com.google.gson.Gson;
 import com.squareup.leakcanary.LeakCanary;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.smtt.sdk.QbSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 

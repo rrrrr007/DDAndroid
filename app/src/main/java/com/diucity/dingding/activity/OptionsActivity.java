@@ -1,15 +1,14 @@
 package com.diucity.dingding.activity;
 
 
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.Window;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.OptionsDelegate;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.utils.SpUtils;
-import com.diucity.dingding.R;
 import com.diucity.dingding.utils.ClearUtils;
+import com.diucity.dingding.utils.SpUtils;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.concurrent.TimeUnit;

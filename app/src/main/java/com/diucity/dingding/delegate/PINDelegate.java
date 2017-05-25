@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.widget.InputView;
-import com.diucity.dingding.R;
 
 /**
  * Created by Administrator on 2017/3/16 0016.

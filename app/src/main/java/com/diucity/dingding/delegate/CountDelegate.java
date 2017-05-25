@@ -1,7 +1,6 @@
 package com.diucity.dingding.delegate;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,19 +9,21 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.CountAdapter;
+import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.ActivityUtils;
-import com.liaoinstan.springview.utils.DensityUtil;
-
-import java.util.ArrayList;
+import com.diucity.dingding.utils.GsonUtils;
+import com.diucity.dingding.utils.Picassoloader;
+import com.diucity.dingding.utils.SpUtils;
+import com.diucity.dingding.utils.StringUtils;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Administrator on 2017/4/18 0018.
@@ -31,6 +32,7 @@ public class CountDelegate extends AppDelegate {
     private int stua;
     private int height;
     private boolean needshow;
+    private ScrapsBack today;
 
     @Override
     public int getRootLayoutId() {
@@ -44,22 +46,25 @@ public class CountDelegate extends AppDelegate {
 
     @Override
     public void initWidget() {
-        ArrayList<String> i = new ArrayList<>();
-        for (int j = 0; j < 5; j++) {
-            i.add("1");
-        }
+        String s = SpUtils.getString(getActivity(), SpUtils.SCRAPS);
+        today = GsonUtils.GsonToBean(s,ScrapsBack.class);
         RecyclerView rv = get(R.id.rv_count);
         rv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        rv.setAdapter(new CountAdapter(getActivity(), i));
+        rv.setAdapter(new CountAdapter(getActivity(), today.getData().getScraps()));
+        setSumPrice(0);
+    }
 
-        String text = "和 XXX 交易中";
-        SpannableString textSpan = new SpannableString(text);
-        textSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#031912")), 1, text.length() - 3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        setText(textSpan, R.id.tv_count_name);
+    public SpannableString spite(String str) {
+        SpannableString textSpan = new SpannableString(str);
+        textSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#031912")), 3, str.length() - 1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        return textSpan;
+    }
 
-        String text1 = "0.00元";
-        SpannableString textSpan1 = new SpannableString(text1);
-        textSpan1.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getActivity(), 12)), text1.length() - 1, text1.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+    public void setSumPrice(double d){
+        String text = StringUtils.getDoubleString(d)+"元";
+        SpannableString textSpan1 = new SpannableString(text);
+        textSpan1.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getActivity(), 12)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         setText(textSpan1, R.id.tv_count_all);
     }
 
@@ -67,33 +72,21 @@ public class CountDelegate extends AppDelegate {
         if (!isSoftShowing()){
             stua = getSoftHeight();
         }
-        Log.d("ch", "g" + getSoftHeight());
         if (isSoftShowing() && !needshow) {
             View view = get(R.id.rl_count_edt);
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) view.getLayoutParams();
             lp.bottomMargin = height-stua;
             view.setLayoutParams(lp);
-            Log.d("ch", "往上移");
             needshow = true;
         } else if (!isSoftShowing() && needshow) {
             View view = get(R.id.rl_count_edt);
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) view.getLayoutParams();
             lp.bottomMargin = 0;
             view.setLayoutParams(lp);
-            Log.d("ch", "往下移");
             needshow = false;
         }
     }
 
-    private int getDaoHangHeight(Context context) {
-        int rid = context.getResources().getIdentifier("config_showNavigationBar","bool","android");
-        if (rid != 0) {
-            int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-            return context.getResources().getDimensionPixelSize(resourceId);
-        }else {
-            return 0;
-        }
-    }
 
 
     private boolean isSoftShowing() {
@@ -118,5 +111,13 @@ public class CountDelegate extends AppDelegate {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    public void setUserInfo(String name,String url){
+        String text = "和 "+name+" 交易中";
+        SpannableString textSpan = new SpannableString(text);
+        textSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#031912")), 1, text.length() - 3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        setText(textSpan, R.id.tv_count_name);
+        Picasso.with(getActivity()).load(url).resize(100,100).transform(new Picassoloader()).into((ImageView) get(R.id.iv_count_header));
     }
 }

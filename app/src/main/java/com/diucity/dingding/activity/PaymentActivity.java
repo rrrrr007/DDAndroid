@@ -2,21 +2,21 @@ package com.diucity.dingding.activity;
 
 
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.PaymentBinder;
+import com.diucity.dingding.delegate.PaymentDelegate;
 import com.diucity.dingding.entity.Back.WXBack;
 import com.diucity.dingding.entity.Send.RequestBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.R;
-import com.diucity.dingding.delegate.PaymentDelegate;
 import com.diucity.dingding.utils.GsonUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,9 +46,7 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_payment_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-
-                    binder.work(viewDelegate,new RequestBean(278,2,"192.168.1.20"));
-                    //viewDelegate.finish();
+                    viewDelegate.finish();
                 });
         //支付选择
         RxView.clicks(viewDelegate.get(R.id.iv_payment_wx)).subscribe(aVoid -> {
@@ -62,6 +60,10 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         RxView.clicks(viewDelegate.get(R.id.iv_payment_zfb)).subscribe(aVoid -> {
             choice = ZFBPAY;
             setPayIcon();
+        });
+        //展开详情
+        RxView.clicks(viewDelegate.get(R.id.tv_payment_detail)).subscribe(aVoid -> {
+            viewDelegate.setVisiable(viewDelegate.get(R.id.rv_payment).getVisibility()== View.GONE,R.id.rv_payment);
         });
         RxView.clicks(viewDelegate.get(R.id.btn_payment_pay)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
@@ -92,7 +94,11 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
                         Log.d("ch","sign"+bean.getSign());
                         api.sendReq(pay);
                     }else if (choice==YWTPAY){
-                        viewDelegate.startActivity(YWTActivity.class);
+                        int id = getIntent().getIntExtra("payId",-255);
+                        if (id==-255){
+                            viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
+                        }
+                        binder.work(viewDelegate,new RequestBean(id,2,"192.168.1.20"));
                     }
                 });
     }

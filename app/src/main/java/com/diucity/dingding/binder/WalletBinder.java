@@ -2,6 +2,8 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
+import com.diucity.dingding.R;
+import com.diucity.dingding.api.Network;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.WalletDelegate;
 import com.diucity.dingding.entity.Back.ListBack;
@@ -12,8 +14,6 @@ import com.diucity.dingding.entity.Send.SummaryBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
-import com.diucity.dingding.R;
-import com.diucity.dingding.api.Network;
 import com.diucity.dingding.utils.TimeUtils;
 
 import rx.Observer;

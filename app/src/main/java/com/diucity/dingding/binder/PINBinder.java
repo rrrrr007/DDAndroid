@@ -2,11 +2,11 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
-import com.diucity.dingding.activity.HomeActivity;
-import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.R;
+import com.diucity.dingding.activity.HomeActivity;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.PINDelegate;
+import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Send.PaysetBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;

@@ -2,7 +2,6 @@ package com.diucity.dingding.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.liaoinstan.springview.widget.SpringView;
@@ -25,7 +24,6 @@ public class MySpringView extends SpringView {
             y = getScrollY();
         }
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            Log.d("ch",y+"y"+getScrollY()+"sY");
             if (!footEnale) {
                 if (y<getScrollY()){
                     onFinishFreshAndLoad();

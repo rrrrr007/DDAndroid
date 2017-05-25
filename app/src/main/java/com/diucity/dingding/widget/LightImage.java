@@ -1,7 +1,6 @@
 package com.diucity.dingding.widget;
 
 import android.content.Context;
-
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.util.AttributeSet;

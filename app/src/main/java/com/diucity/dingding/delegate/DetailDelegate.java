@@ -1,10 +1,11 @@
 package com.diucity.dingding.delegate;
 
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.util.Log;
 
-import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.R;
+import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.widget.ProgressView;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
@@ -37,31 +38,34 @@ public class DetailDelegate extends AppDelegate {
         settings.setDisplayZoomControls(true);
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
-        webView.loadUrl("https://www.baidu.com/");
+        String url = getActivity().getIntent().getStringExtra("url");
+        if (!TextUtils.isEmpty(url))
+            webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient() {
             // 防止加载网页时调起系统浏览器
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
+
             @Override
             public void onPageFinished(WebView webView, String s) {
                 super.onPageFinished(webView, s);
-                ((ProgressView)get(R.id.pv_detail)).reset();
+                ((ProgressView) get(R.id.pv_detail)).reset();
             }
 
             @Override
             public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
                 super.onPageStarted(webView, s, bitmap);
-                ((ProgressView)get(R.id.pv_detail)).reset();
+                ((ProgressView) get(R.id.pv_detail)).reset();
             }
         });
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView webView, int i) {
-                Log.d("ch","i"+i);
+                Log.d("ch", "i" + i);
                 super.onProgressChanged(webView, i);
-                ((ProgressView)get(R.id.pv_detail)).setProgress(i);
+                ((ProgressView) get(R.id.pv_detail)).setProgress(i);
             }
         });
     }

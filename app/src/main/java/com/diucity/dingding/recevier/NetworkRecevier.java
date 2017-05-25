@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.app.App;
 

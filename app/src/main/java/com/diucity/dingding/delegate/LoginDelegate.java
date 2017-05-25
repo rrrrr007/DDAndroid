@@ -2,15 +2,12 @@ package com.diucity.dingding.delegate;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.View;
-
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
-import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.R;
+import com.diucity.dingding.persent.AppDelegate;
 
 
 /**

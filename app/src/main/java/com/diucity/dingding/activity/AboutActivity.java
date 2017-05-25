@@ -1,10 +1,9 @@
 package com.diucity.dingding.activity;
 
 
-
-import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.AboutDelegate;
+import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.concurrent.TimeUnit;

@@ -1,27 +1,26 @@
 package com.diucity.dingding.activity;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.AbsoluteSizeSpan;
-import android.text.style.ForegroundColorSpan;
 import android.view.Window;
 import android.widget.EditText;
 
-import com.diucity.dingding.adapter.CountAdapter;
-import com.diucity.dingding.delegate.CountDelegate;
 import com.diucity.dingding.R;
+import com.diucity.dingding.adapter.CountAdapter;
+import com.diucity.dingding.app.App;
+import com.diucity.dingding.binder.CountBinder;
+import com.diucity.dingding.delegate.CountDelegate;
+import com.diucity.dingding.entity.Back.TodayBack;
+import com.diucity.dingding.entity.Send.CreateBean;
+import com.diucity.dingding.entity.Send.SupplierBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.utils.ActivityUtils;
+import com.diucity.dingding.utils.StringUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -35,7 +34,7 @@ public class CountActivity extends BaseActivity<CountDelegate> {
 
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new CountBinder();
     }
 
     @Override
@@ -49,7 +48,8 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         //Item点击
         adapter.setListener(position -> {
             smoothMoveToPosition(position);
-            viewDelegate.setText((spite("单价\n0." + position + "0/斤")), R.id.tv_count_oneprice);
+            int id = adapter.getModel().get(position).getScrap_id();
+            viewDelegate.setText((viewDelegate.spite("单价\n" + StringUtils.getDoubleString(getPriceById(id)) + "/斤")), R.id.tv_count_oneprice);
             viewDelegate.setText(adapter.getText(), R.id.edt_count);
             viewDelegate.showSoft();
         });
@@ -57,9 +57,9 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         RxTextView.afterTextChangeEvents(edt).subscribe(textChangeEvent -> {
             if (!first) {
                 adapter.setText(textChangeEvent.editable().toString());
-                viewDelegate.setVisiable(textChangeEvent.editable().toString().length()==0,R.id.tv_count_hint);
+                viewDelegate.setVisiable(textChangeEvent.editable().toString().length() == 0, R.id.tv_count_hint);
                 edt.setSelection(edt.getText().length());
-
+                viewDelegate.setSumPrice(getall());
             } else
                 first = false;
 
@@ -87,16 +87,6 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         edt.requestFocus();
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    public SpannableString spite(String str) {
-        SpannableString textSpan = new SpannableString(str);
-        textSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#031912")), 3, str.length() - 1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        return textSpan;
-    }
 
     private void smoothMoveToPosition(int position) {
         int firstPosition = manager.findFirstVisibleItemPosition();
@@ -113,17 +103,24 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         manager = (GridLayoutManager) rv.getLayoutManager();
         adapter = (CountAdapter) rv.getAdapter();
         edt = viewDelegate.get(R.id.edt_count);
+        viewDelegate.setText((viewDelegate.spite("单价\n" + StringUtils.getDoubleString(getPriceById(adapter.getModel().get(0).getScrap_id())) + "/斤")), R.id.tv_count_oneprice);
+        binder.work(viewDelegate,new SupplierBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),100003));
     }
 
     public void showCallDialog() {
+        if (getall() < 1.0) {
+            viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "交易总金额低于1元");
+            return;
+        }
         if (alertDialog == null) {
             alertDialog = new AlertDialog.Builder(this)
                     .setTitle("提示")
                     .setMessage("是否生成订单，进行结算")
                     .setPositiveButton("结算", (dialog, which) -> {
+
                         alertDialog.dismiss();
-                        Intent intent = new Intent(this, PaymentActivity.class);
-                        viewDelegate.startActivity(intent);
+                        binder.work(viewDelegate,new CreateBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),100003,0,0,adapter.getCreate()));
+
                     })
                     .setNegativeButton("取消", (dialog2, which) -> alertDialog.dismiss())
                     .create();
@@ -133,14 +130,24 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         alertDialog.show();
     }
 
-    public void getall(){
 
+    public double getall() {
+        double a = 0;
+        ArrayList<CreateBean.ScrapsBean> create = adapter.getCreate();
+        for (CreateBean.ScrapsBean bean : create) {
+            a += bean.getQuantity() * getPriceById(bean.getScrap_id());
+        }
+        return a;
     }
 
-    public SpannableString textSpan(Double d){
-        String text = String.format("%.2f",d)+"元";
-        SpannableString textSpan = new SpannableString(text);
-        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(this, 12)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        return textSpan;
+
+    private double getPriceById(int id) {
+        List<TodayBack.DataBean.ScrapsBean> list = adapter.getTodayBack().getData().getScraps();
+        for (TodayBack.DataBean.ScrapsBean bean : list) {
+            if (bean.getScrap_id() == id) {
+                return bean.getBuy_price();
+            }
+        }
+        return 0;
     }
 }

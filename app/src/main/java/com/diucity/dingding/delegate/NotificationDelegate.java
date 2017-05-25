@@ -2,9 +2,9 @@ package com.diucity.dingding.delegate;
 
 import android.widget.Switch;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.SpUtils;
-import com.diucity.dingding.R;
 
 /**
  * Created by Administrator on 2017/3/23 0023.

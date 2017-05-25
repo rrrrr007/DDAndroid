@@ -2,19 +2,13 @@ package com.diucity.dingding.activity;
 
 
 import android.os.Build;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.transition.Explode;
-import android.transition.Slide;
-import android.view.Window;
 import android.widget.EditText;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.ForgetBinder;
-import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.delegate.ForgetDelegate;
+import com.diucity.dingding.entity.Send.SmsBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;

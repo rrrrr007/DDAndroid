@@ -1,12 +1,12 @@
 package com.diucity.dingding.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.R;
+import com.diucity.dingding.utils.ActivityUtils;
 
 public class SplashActivity extends AppCompatActivity {
 

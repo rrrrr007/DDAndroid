@@ -120,6 +120,9 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     public void getAllGrantedPermission() {
 
     }
+    public void getAllGrantedPermission2() {
+
+    }
 
 
 
@@ -152,6 +155,10 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         return null;
     }
 
+    public String[] getPermissions2() {
+        return null;
+    }
+
 
 
     protected void permission() {
@@ -160,6 +167,16 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
                 requestPermissions(getPermissions());     //去请求权限
             } else {
                 getAllGrantedPermission();
+            }
+        }
+    }
+
+    protected void permission2() {
+        if (getPermissions2() != null) {
+            if (PermissUtils.permissionSet(this, getPermissions2())) {
+                requestPermissions(getPermissions2());     //去请求权限
+            } else {
+                getAllGrantedPermission2();
             }
         }
     }

@@ -9,20 +9,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.entity.Back.ScrapsBack;
+import com.diucity.dingding.entity.Back.TodayBack;
+import com.diucity.dingding.entity.Send.CreateBean;
+import com.diucity.dingding.utils.GsonUtils;
+import com.diucity.dingding.utils.SpUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/18 0018.
  */
 
-public class CountAdapter extends BaseAdapter<String> {
+public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
     private Listener listener;
     private ViewHolder mholder;
     private int index =-1;
-    public CountAdapter(Context context, ArrayList<String> model) {
+    private int choice =0;
+    private TodayBack todayBack;
+    private ArrayList<CreateBean.ScrapsBean> create;
+    public CountAdapter(Context context, List<ScrapsBack.Data.Scraps> model) {
         super(context, model);
-
+        todayBack = GsonUtils.GsonToBean(SpUtils.getString(getContext(),SpUtils.TODAY),TodayBack.class);
+        create = new ArrayList<>();
+        for (int i = 0;i<getModel().size();i++){
+            create.add(new CreateBean.ScrapsBean(getModel().get(i).getScrap_id(),0));
+        }
     }
 
     @Override
@@ -42,6 +55,7 @@ public class CountAdapter extends BaseAdapter<String> {
             setEnabled(holder,true);
         }
         holder.itemView.setOnClickListener(v -> {
+            choice=position;
             index = position;
             if (mholder!=null){
                 setEnabled(mholder,true);
@@ -52,34 +66,29 @@ public class CountAdapter extends BaseAdapter<String> {
                 listener.showEdt(position);
             }
         });
-        ((TextView)holder.getView(R.id.adapter_tv_count_number)).setText("0个");
+        ((TextView)holder.getView(R.id.adapter_tv_count_number)).setText("0"+getModel().get(position).getUnit());
 
         Drawable drawable;
-        String str;
-        switch (position){
+
+        switch (getModel().get(position).getScrap_id()){
             case 0:
                 drawable= ContextCompat.getDrawable(getContext(),R.mipmap.img_recycle_paper);
-                str = "纸皮";
                 break;
             case 1:
                 drawable= ContextCompat.getDrawable(getContext(),R.mipmap.img_recycle_plastic);
-                str = "塑料";
                 break;
             case 2:
                 drawable= ContextCompat.getDrawable(getContext(),R.mipmap.img_recycle_metal);
-                str = "金属";
                 break;
             case 3:
                 drawable= ContextCompat.getDrawable(getContext(),R.mipmap.img_recycle_beer);
-                str = "啤酒瓶";
                 break;
             default:
                 drawable= ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher);
-                str = "种类";
                 break;
         }
         ((ImageView)holder.getView(R.id.adapter_iv_count_src)).setImageDrawable(drawable);
-        ((TextView)holder.getView(R.id.adapter_tv_count_kinds)).setText(str);
+        ((TextView)holder.getView(R.id.adapter_tv_count_kinds)).setText(getModel().get(position).getName());
     }
 
 
@@ -102,12 +111,29 @@ public class CountAdapter extends BaseAdapter<String> {
 
     public void setText(String str){
          str = TextUtils.isEmpty(str)?"0":str;
-        ((TextView)mholder.getView(R.id.adapter_tv_count_number)).setText(str+"个");
+        ((TextView)mholder.getView(R.id.adapter_tv_count_number)).setText(str+getModel().get(choice).getUnit());
+        create.get(choice).setQuantity(Double.parseDouble(str));
     }
 
     public String getText(){
         String text = ((TextView) mholder.getView(R.id.adapter_tv_count_number)).getText().toString();
         String str = text.substring(0,text.length()-1);
         return str.equals("0")?"":str;
+    }
+
+    public TodayBack getTodayBack() {
+        return todayBack;
+    }
+
+    public void setTodayBack(TodayBack todayBack) {
+        this.todayBack = todayBack;
+    }
+
+    public ArrayList<CreateBean.ScrapsBean> getCreate() {
+        return create;
+    }
+
+    public void setCreate(ArrayList<CreateBean.ScrapsBean> create) {
+        this.create = create;
     }
 }

@@ -6,11 +6,12 @@ import android.view.View;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.SystemAdapter;
+import com.diucity.dingding.entity.Back.SystemBack;
 import com.diucity.dingding.persent.AppDelegate;
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.widget.SpringView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -35,7 +36,6 @@ public class SystemDelegate extends AppDelegate {
         super.initWidget();
 
         sv = get(R.id.sv_system);
-        sv.setHeader(new DefaultFooter(getActivity()));
         sv.setFooter(new DefaultFooter(getActivity()));
         sv.setType(SpringView.Type.FOLLOW);
         sv.setEnable(false);
@@ -46,11 +46,8 @@ public class SystemDelegate extends AppDelegate {
         rv.setAdapter(adapter);
     }
 
-    public void notifyData(){
-        ArrayList<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("1");
-        list.add("1");
+    public void notifyData(List<SystemBack.DataBean.NoticesBean> list){
+
         adapter.adapterNotify(list);
         if (adapter.getItemCount()>0){
             get(R.id.ll_system_empty).setVisibility(View.GONE);

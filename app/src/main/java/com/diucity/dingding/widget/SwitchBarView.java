@@ -13,8 +13,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.R;
+import com.diucity.dingding.utils.ActivityUtils;
 import com.liaoinstan.springview.utils.DensityUtil;
 
 /**

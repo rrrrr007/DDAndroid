@@ -3,12 +3,12 @@ package com.diucity.dingding.activity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.ResetBinder;
 import com.diucity.dingding.delegate.ResetDelegate;
-import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.R;
 import com.diucity.dingding.entity.Send.ChangeBean;
+import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 

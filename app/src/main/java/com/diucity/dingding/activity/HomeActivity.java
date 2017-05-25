@@ -16,11 +16,11 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Window;
 
-import com.diucity.dingding.app.App;
-import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.R;
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.HomeBinder;
 import com.diucity.dingding.delegate.HomeDelegate;
+import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.widget.SwitchBarView;
 import com.jakewharton.rxbinding.view.RxView;
@@ -41,8 +41,18 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
             Manifest.permission.WRITE_EXTERNAL_STORAGE,// 写入权限
             Manifest.permission.READ_EXTERNAL_STORAGE, //相机
             Manifest.permission.CAMERA, //相机
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
 
     };
+
+    static final String[] permission2 = new String[]{
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,// 写入权限
+            Manifest.permission.READ_EXTERNAL_STORAGE, //相机
+            Manifest.permission.CAMERA, //相机
+    };
+
+
 
     @Override
     public String[] getPermissions() {
@@ -50,8 +60,18 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
     }
 
     @Override
-    public void getAllGrantedPermission() {
+    public String[] getPermissions2() {
+        return permission2;
+    }
+
+    @Override
+    public void getAllGrantedPermission2() {
         viewDelegate.startAcitityWithAnim(CaptureActivity.class);
+    }
+
+    @Override
+    public void getAllGrantedPermission() {
+        openLoaction();
     }
 
     @Override
@@ -87,8 +107,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
         //回收
         RxView.clicks(viewDelegate.get(R.id.iv_home_collect)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    permission();
-
+                    permission2();
                 });
         //卖
         RxView.clicks(viewDelegate.get(R.id.iv_home_sell)).throttleFirst(2, TimeUnit.SECONDS)
@@ -147,7 +166,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
         sbv = viewDelegate.get(R.id.sbv_home);
         vp = viewDelegate.get(R.id.vp_home);
         binder.work(viewDelegate, new ScrapsBean(App.user.getData().getRecycler_id()));
-        openLoaction();
+        permission();
     }
     public void openLoaction(){
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
