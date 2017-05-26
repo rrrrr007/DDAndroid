@@ -30,6 +30,7 @@
         android:src="@mipmap/ic_cmm_return_green" />
 
     <TextView
+        android:enabled="false"
         android:id="@+id/tv_count_payment"
         android:layout_width="wrap_content"
         android:layout_height="60px"

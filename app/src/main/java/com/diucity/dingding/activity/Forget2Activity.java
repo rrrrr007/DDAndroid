@@ -76,6 +76,7 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> {
                 .subscribe(aVoid -> {
                     viewDelegate.startActivity(ForgetActivity.class);
                     viewDelegate.finish();
+
                 });
     }
 

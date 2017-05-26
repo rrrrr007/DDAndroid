@@ -5,12 +5,14 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -24,6 +26,9 @@ import com.diucity.dingding.utils.Picassoloader;
 import com.diucity.dingding.utils.SpUtils;
 import com.diucity.dingding.utils.StringUtils;
 import com.squareup.picasso.Picasso;
+
+import static android.text.InputType.TYPE_CLASS_NUMBER;
+import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 
 /**
  * Created by Administrator on 2017/4/18 0018.
@@ -111,6 +116,12 @@ public class CountDelegate extends AppDelegate {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    public void setInputStyle(boolean isDouble){
+        EditText edt = get(R.id.edt_count);
+        edt.setInputType(isDouble?TYPE_CLASS_NUMBER |TYPE_NUMBER_FLAG_DECIMAL: TYPE_CLASS_NUMBER);
+
     }
 
     public void setUserInfo(String name,String url){

@@ -1,5 +1,7 @@
 package com.diucity.dingding.binder;
 
+import android.util.Log;
+
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.RecordDelegate;
 import com.diucity.dingding.entity.Back.ListBack;
@@ -36,11 +38,12 @@ public class RecordBinder implements DataBinder<RecordDelegate,NormalBack> {
 
                 @Override
                 public void onError(Throwable e) {
-
+                    e.printStackTrace();
                 }
 
                 @Override
                 public void onNext(ListBack listBack) {
+                    Log.d("ch",GsonUtils.GsonString(listBack));
                     if (listBack.getCode()==0){
                         List<ListBack.DataBean.ItemsBean> list = listBack.getData().getItems();
                         viewDelegate.notifyData(list);

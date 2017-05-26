@@ -3,6 +3,7 @@ package com.diucity.dingding.app;
 import android.content.Context;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.bugtags.library.Bugtags;
 import com.bugtags.library.BugtagsOptions;
@@ -10,6 +11,7 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.entity.Back.LoginBack;
 import com.diucity.dingding.entity.Back.RequestBack;
+import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.FontUtils.CalligraphyConfig;
 import com.diucity.dingding.utils.SpUtils;
 import com.google.gson.Gson;
@@ -105,6 +107,21 @@ public class App extends android.app.Application {
                 activity.finish();
             }
         }
+    }
+
+    private static List<BaseActivity> getActivities() {
+        return activities;
+    }
+
+    public static BaseActivity getAcitvity(String name){
+        List<BaseActivity> activities = getActivities();
+        for (BaseActivity activity : activities) {
+            Log.d("ch",activity.getLocalClassName());
+            if (activity.getLocalClassName().equals(name)){
+                return activity;
+            }
+        }
+        return null;
     }
 
     public static void quiteApplication() {

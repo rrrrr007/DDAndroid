@@ -81,11 +81,12 @@
             android:background="@drawable/line_shape" />
 
         <com.diucity.dingding.widget.LightText
+            android:padding="20px"
             android:id="@+id/tv_login_forget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="777px"
+            android:layout_marginTop="757px"
             android:gravity="center"
             android:text="忘记密码？"
             android:textColor="@color/text_green"

@@ -3,9 +3,11 @@ package com.diucity.dingding.widget;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -56,7 +58,6 @@ public class SwitchBarView extends View {
         outPaint.setStrokeWidth(DensityUtil.dip2px(context, 1));
         outPaint.setStyle(Paint.Style.STROKE);
         inPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        inPaint.setColor(ContextCompat.getColor(context,R.color.text_green));
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextSize(ActivityUtils.sp2px(context, 14));
         textPaint.setColor(ContextCompat.getColor(context,R.color.text_green));
@@ -69,19 +70,21 @@ public class SwitchBarView extends View {
         super.onDraw(canvas);
         width = getWidth();
         height = getHeight();
+
          padding = width*0.02f;
         oval = new RectF(0 + padding, 0 + padding, width - padding, height - padding);
         canvas.drawRoundRect(oval, height / 2, height / 2, outPaint);// 第二个参数是x半径，第三个参数是y半径
         if (type == 1) {
             oval = new RectF(0 + padding+offset, 0 + padding, (width - padding*2) / 3 + padding+offset, height - padding);
-            canvas.drawRoundRect(oval, height / 2, height / 2, inPaint);
         } else if (type == 2) {
             oval = new RectF((width - padding*2) / 3 + padding+offset, 0 + padding, (width - padding*2) / 3 * 2 + padding+offset, height - padding);
-            canvas.drawRoundRect(oval, height / 2, height / 2, inPaint);
         } else {
             oval = new RectF((width - padding*2) / 3 * 2 + padding+offset, 0 + padding, width - padding+offset, height - padding);
-            canvas.drawRoundRect(oval, height / 2, height / 2, inPaint);
+
         }
+        LinearGradient shader = new LinearGradient(oval.left, oval.top, oval.right,oval.bottom, Color.parseColor("#19b786"), Color.parseColor("#009479"), Shader.TileMode.MIRROR);
+        inPaint.setShader(shader);
+        canvas.drawRoundRect(oval, height / 2, height / 2, inPaint);
         Rect bounds = new Rect();
         textPaint.getTextBounds(a, 0, a.length(), bounds);
         Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();

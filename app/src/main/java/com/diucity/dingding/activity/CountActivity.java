@@ -49,9 +49,10 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         adapter.setListener(position -> {
             smoothMoveToPosition(position);
             int id = adapter.getModel().get(position).getScrap_id();
-            viewDelegate.setText((viewDelegate.spite("单价\n" + StringUtils.getDoubleString(getPriceById(id)) + "/斤")), R.id.tv_count_oneprice);
+            viewDelegate.setText((viewDelegate.spite("单价\n" + StringUtils.getDoubleString(getPriceById(id)) + adapter.getModel().get(position).getUnit())), R.id.tv_count_oneprice);
             viewDelegate.setText(adapter.getText(), R.id.edt_count);
             viewDelegate.showSoft();
+            viewDelegate.setInputStyle(adapter.getModel().get(position).getUnit().equals("斤"));
         });
         //edt内容改变item内容
         RxTextView.afterTextChangeEvents(edt).subscribe(textChangeEvent -> {
@@ -59,7 +60,9 @@ public class CountActivity extends BaseActivity<CountDelegate> {
                 adapter.setText(textChangeEvent.editable().toString());
                 viewDelegate.setVisiable(textChangeEvent.editable().toString().length() == 0, R.id.tv_count_hint);
                 edt.setSelection(edt.getText().length());
-                viewDelegate.setSumPrice(getall());
+                double all = getall();
+                viewDelegate.setSumPrice(all);
+                viewDelegate.setEnable(all>0,R.id.tv_count_payment);
             } else
                 first = false;
 
@@ -103,8 +106,10 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         manager = (GridLayoutManager) rv.getLayoutManager();
         adapter = (CountAdapter) rv.getAdapter();
         edt = viewDelegate.get(R.id.edt_count);
-        viewDelegate.setText((viewDelegate.spite("单价\n" + StringUtils.getDoubleString(getPriceById(adapter.getModel().get(0).getScrap_id())) + "/斤")), R.id.tv_count_oneprice);
         binder.work(viewDelegate,new SupplierBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),100003));
+        if (adapter.getModel().size()<=0)return;
+        viewDelegate.setText((viewDelegate.spite("单价\n" + StringUtils.getDoubleString(getPriceById(adapter.getModel().get(0).getScrap_id())) + adapter.getModel().get(0).getUnit())), R.id.tv_count_oneprice);
+        viewDelegate.setInputStyle(adapter.getModel().get(0).getUnit().equals("斤"));
     }
 
     public void showCallDialog() {
@@ -117,7 +122,6 @@ public class CountActivity extends BaseActivity<CountDelegate> {
                     .setTitle("提示")
                     .setMessage("是否生成订单，进行结算")
                     .setPositiveButton("结算", (dialog, which) -> {
-
                         alertDialog.dismiss();
                         binder.work(viewDelegate,new CreateBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),100003,0,0,adapter.getCreate()));
 

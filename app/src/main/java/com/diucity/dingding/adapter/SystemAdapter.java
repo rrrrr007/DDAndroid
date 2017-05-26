@@ -50,7 +50,7 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
         TextView time = holder.getView(R.id.adapter_tv_system_time);
         String str = getModel().get(position).getSend_time();
         time.setText(str);
-        holder.getView(R.id.adapter_tv_system_detail).setOnClickListener(v -> {
+        holder.getView(R.id.adapter_card).setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), DetailActivity.class);
             intent.putExtra("url", getModel().get(position).getTarget_uri());
             getContext().startActivity(intent);
@@ -68,7 +68,7 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
             holder.getView(R.id.adapter_iv_system).setVisibility(View.GONE);
         } else {
             holder.getView(R.id.adapter_iv_system).setVisibility(View.VISIBLE);
-            Picasso.with(getContext()).load(getModel().get(position).getCovers_uri() + crop).into((ImageView) holder.getView(R.id.adapter_iv_system));
+            Picasso.with(getContext()).load(getModel().get(position).getCovers_uri() + crop).placeholder(R.color.src_gray).into((ImageView) holder.getView(R.id.adapter_iv_system));
         }
         if (TextUtils.isEmpty(getModel().get(position).getTarget_uri())) {
             holder.getView(R.id.adapter_tv_system_detail).setVisibility(View.GONE);

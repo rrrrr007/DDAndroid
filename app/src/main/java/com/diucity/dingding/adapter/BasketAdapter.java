@@ -42,6 +42,7 @@ public class BasketAdapter extends BaseAdapter<BasketBack.Data.DataBean> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.getView(R.id.adapter_tv_price_title).setVisibility(position == 0 ? View.VISIBLE : View.GONE);
         TextView name = holder.getView(R.id.adapter_tv_price_name);
+        name.getPaint().setFakeBoldText(true);
         name.setText(getScrapItem(position).getName());
         TextView content = holder.getView(R.id.adapter_tv_price_content);
         double price = 0;

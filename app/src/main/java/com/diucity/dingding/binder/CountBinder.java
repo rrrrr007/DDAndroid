@@ -26,6 +26,7 @@ import rx.Observer;
  */
 
 public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
+    private String url;
     @Override
     public void viewBindModel(CountDelegate viewDelegate, NormalBack data) {
 
@@ -54,11 +55,13 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                     Log.d("ch", GsonUtils.GsonString(o));
                     if (o.getCode()==0){
                         Intent intent = new Intent(viewDelegate.getActivity(), PaymentActivity.class);
+                        intent.putExtra("orderId",o.getData().getOrder_id());
                         intent.putExtra("payId",o.getData().getOrder_id());
                         intent.putExtra("number",o.getData().getOrder_no());
                         intent.putExtra("total",o.getData().getTotal_price());
                         ArrayList<CreateBack.DataBean.ScrapsBean> list = (ArrayList<CreateBack.DataBean.ScrapsBean>) o.getData().getScraps();
-                        intent.putExtra("list", (list) );
+                        intent.putExtra("list", list);
+                        intent.putExtra("url",url);
 
                         viewDelegate.startActivity(intent);
                         viewDelegate.finish();
@@ -82,6 +85,7 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                 public void onNext(SupplierBack o) {
                     Log.d("ch", GsonUtils.GsonString(o));
                     if (o.getCode()==0){
+                        url = o.getData().getAvatar();
                         viewDelegate.setUserInfo(o.getData().getName(),o.getData().getAvatar());
                     }
                 }

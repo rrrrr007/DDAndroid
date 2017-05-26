@@ -52,6 +52,7 @@
         android:layout_marginTop="90px"
         android:background="@null"
         android:hint="输入短信验证码"
+        android:paddingLeft="36px"
         android:inputType="number"
         android:maxLength="6"
         android:textColor="@color/text_black"
@@ -75,10 +76,11 @@
         android:layout_marginTop="90px"
         android:gravity="center"
         android:text="重新发送"
-        android:textColor="@android:color/holo_green_dark"
+        android:textColor="@color/text_green"
         android:textSize="15sp" />
 
     <EditText
+        android:gravity="center"
         android:id="@+id/edt_forget2_password"
         android:layout_width="410px"
         android:layout_height="100px"

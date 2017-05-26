@@ -66,9 +66,22 @@ public class ResetActivity extends BaseActivity<ResetDelegate> implements View.O
 
 
         //下划线
-        viewDelegate.get(R.id.edt_reset_old).setOnFocusChangeListener(this);
-        viewDelegate.get(R.id.edt_reset_new).setOnFocusChangeListener(this);
-        viewDelegate.get(R.id.edt_reset_affirm).setOnFocusChangeListener(this);
+        viewDelegate.get(R.id.edt_reset_old).setOnFocusChangeListener((v, hasFocus) -> viewDelegate.setEnable(!hasFocus,R.id.view_reset_1));
+        viewDelegate.get(R.id.edt_reset_new).setOnFocusChangeListener((v, hasFocus) -> viewDelegate.setEnable(!hasFocus,R.id.view_reset_2));
+        viewDelegate.get(R.id.edt_reset_affirm).setOnFocusChangeListener((v, hasFocus) -> viewDelegate.setEnable(!hasFocus,R.id.view_reset_3));
+
+        RxView.clicks(viewDelegate.get(R.id.iv_reset_icon1)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.clearEdt();
+                });
+        RxView.clicks(viewDelegate.get(R.id.iv_reset_icon2)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.clearEdt();
+                });
+        RxView.clicks(viewDelegate.get(R.id.iv_reset_icon3)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.clearEdt();
+                });
         //返回
         RxView.clicks(viewDelegate.get(R.id.tv_reset_back)).throttleFirst(1, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {

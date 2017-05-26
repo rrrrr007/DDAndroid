@@ -22,7 +22,6 @@ public class RecordAdapter extends BaseAdapter<ListBack.DataBean.ItemsBean> {
 
     public RecordAdapter(Context context, ArrayList<ListBack.DataBean.ItemsBean> model) {
         super(context, model);
-        getModel().add(new ListBack.DataBean.ItemsBean());
     }
 
     @Override
@@ -34,7 +33,9 @@ public class RecordAdapter extends BaseAdapter<ListBack.DataBean.ItemsBean> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.itemView.setOnClickListener(v -> {
-            getContext().startActivity(new Intent(getContext(), WebActivity.class));
+            Intent intent = new Intent(getContext(), WebActivity.class);
+            intent.putExtra("billId",getModel().get(position).getBill_id());
+            getContext().startActivity(intent);
         });
         TextView month = holder.getView(R.id.adapter_tv_record_month);
         month.setText(TimeUtils.getMonth(getModel().get(position).getTime()));

@@ -17,7 +17,7 @@ public class CaptureDelegate extends AppDelegate {
 
     @Override
     public boolean needShow() {
-        return false;
+        return true;
     }
 
     @Override

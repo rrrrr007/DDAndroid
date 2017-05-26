@@ -8,9 +8,11 @@
     <color name="toolbar">#031912</color>
     <color name="selector_green">#069D7C</color>
     <color name="text_green">#009479</color>
+    <color name="text_orange">#f9960d</color>
     <color name="text_black">#031912</color>
     <color name="text_gray">#C0CCC8</color>
     <color name="text_gray3">#9aa3a0</color>
+    <color name="src_gray">#f5f7f7</color>
     <color name="line_gray">#d7dcda</color>
     <color name="text_blue">#1274E1</color>
     <color name="text_gray2">#606664</color>

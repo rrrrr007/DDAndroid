@@ -27,6 +27,12 @@ public class TimeUtils {
         return myFmt.format(time);
     }
 
+    public static String getMinute(long time) {
+        SimpleDateFormat myFmt = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return myFmt.format(time);
+    }
+
+
     public static String getHours(long time) {
         SimpleDateFormat myFmt = new SimpleDateFormat("MM-dd");
         return myFmt.format(time);

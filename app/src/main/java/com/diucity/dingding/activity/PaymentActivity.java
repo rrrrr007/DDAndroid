@@ -10,6 +10,7 @@ import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.PaymentBinder;
 import com.diucity.dingding.delegate.PaymentDelegate;
 import com.diucity.dingding.entity.Back.WXBack;
+import com.diucity.dingding.entity.Send.CheckBean;
 import com.diucity.dingding.entity.Send.RequestBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
@@ -20,12 +21,16 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import rx.Observable;
+import rx.Observer;
+import rx.Subscription;
+
 public class PaymentActivity extends BaseActivity<PaymentDelegate> {
-    private final int WXPAY =101;
-    private final int YWTPAY =102;
-    private final int ZFBPAY =103;
-    private int choice =WXPAY;
-    private static final String APP_ID ="wx2920e5b3cf5c3b39";
+    private final int WXPAY = 101;
+    private final int YWTPAY = 102;
+    private final int ZFBPAY = 103;
+    private int choice = WXPAY;
+    private static final String APP_ID = "wx2920e5b3cf5c3b39";
 
     private IWXAPI api;
 
@@ -48,6 +53,10 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
                 .subscribe(aVoid -> {
                     viewDelegate.finish();
                 });
+
+        RxView.clicks(viewDelegate.get(R.id.tv_payment_back)).subscribe(aVoid -> {
+                    viewDelegate.finish();
+                });
         //支付选择
         RxView.clicks(viewDelegate.get(R.id.iv_payment_wx)).subscribe(aVoid -> {
             choice = WXPAY;
@@ -63,42 +72,49 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         });
         //展开详情
         RxView.clicks(viewDelegate.get(R.id.tv_payment_detail)).subscribe(aVoid -> {
-            viewDelegate.setVisiable(viewDelegate.get(R.id.rv_payment).getVisibility()== View.GONE,R.id.rv_payment);
+            viewDelegate.setVisiable(viewDelegate.get(R.id.rv_payment).getVisibility() == View.GONE, R.id.rv_payment);
+            viewDelegate.setVisiable(viewDelegate.get(R.id.view_payment_line).getVisibility() == View.GONE, R.id.view_payment_line);
         });
         RxView.clicks(viewDelegate.get(R.id.btn_payment_pay)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    if (choice==WXPAY) {
-                        api= WXAPIFactory.createWXAPI(this,APP_ID,false);
-                        if (!api.isWXAppInstalled()){
+                    if (choice == WXPAY) {
+                        Toast.makeText(activity, "尽请期待", Toast.LENGTH_SHORT).show();
+                        return;
+                        /*api = WXAPIFactory.createWXAPI(this, APP_ID, false);
+                        if (!api.isWXAppInstalled()) {
                             Toast.makeText(this, "未安装微信", Toast.LENGTH_SHORT).show();
                             return;
                         }
+
                         boolean b = api.registerApp(APP_ID);
-                        Toast.makeText(this, "isssss"+b, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "isssss" + b, Toast.LENGTH_SHORT).show();
                         WXBack bean = GsonUtils.GsonToBean(App.request.getData(), WXBack.class);
-                        Log.d("ch","解析参数"+GsonUtils.GsonString(bean));
-                        PayReq pay =new PayReq();
+                        Log.d("ch", "解析参数" + GsonUtils.GsonString(bean));
+                        PayReq pay = new PayReq();
                         pay.appId = bean.getAppid();
-                        Log.d("ch","getAppid"+bean.getAppid());
-                        pay.partnerId =bean.getPartnerid();
-                        Log.d("ch","partnerId"+bean.getPartnerid());
-                        pay.prepayId =bean.getPrepayid();
-                        Log.d("ch","prepayId"+bean.getPrepayid());
+                        Log.d("ch", "getAppid" + bean.getAppid());
+                        pay.partnerId = bean.getPartnerid();
+                        Log.d("ch", "partnerId" + bean.getPartnerid());
+                        pay.prepayId = bean.getPrepayid();
+                        Log.d("ch", "prepayId" + bean.getPrepayid());
                         pay.packageValue = bean.getPackageX();
-                        Log.d("ch","packageValue"+bean.getPackageX());
+                        Log.d("ch", "packageValue" + bean.getPackageX());
                         pay.nonceStr = bean.getNoncestr();
-                        Log.d("ch","nonceStr"+bean.getNoncestr());
+                        Log.d("ch", "nonceStr" + bean.getNoncestr());
                         pay.timeStamp = bean.getTimestamp();
-                        Log.d("ch","timeStamp"+bean.getTimestamp());
+                        Log.d("ch", "timeStamp" + bean.getTimestamp());
                         pay.sign = bean.getSign();
-                        Log.d("ch","sign"+bean.getSign());
-                        api.sendReq(pay);
-                    }else if (choice==YWTPAY){
-                        int id = getIntent().getIntExtra("payId",-255);
-                        if (id==-255){
+                        Log.d("ch", "sign" + bean.getSign());
+                        api.sendReq(pay);*/
+                    } else if (choice == YWTPAY) {
+                        int id = getIntent().getIntExtra("payId", -255);
+                        if (id == -255) {
                             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
                         }
-                        binder.work(viewDelegate,new RequestBean(id,2,"192.168.1.20"));
+                        binder.work(viewDelegate, new RequestBean(id, 2, "192.168.1.20"));
+                    }else {
+                        Toast.makeText(activity, "尽请期待", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 });
     }
@@ -109,22 +125,51 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
 
     }
 
-    private void setPayIcon(){
-        switch (choice){
+    public void rollPoll(){
+        Subscription subscribe = Observable.interval(5, 5, TimeUnit.SECONDS).subscribe(new Observer<Long>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Long aLong) {
+                Log.d("ch", "along" + aLong);
+                if (aLong==3){
+                    viewDelegate.setVisiable(true,R.id.arl_payment);
+                    return;
+                }
+                orderCheck();
+            }
+        });
+        subscriptions.add(subscribe);
+    }
+
+    private void orderCheck(){
+        binder.work(viewDelegate,new CheckBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),getIntent().getIntExtra("orderId",0)));
+    }
+
+    private void setPayIcon() {
+        switch (choice) {
             case 101:
-                viewDelegate.setEnable(false,R.id.iv_payment_wx);
-                viewDelegate.setEnable(true,R.id.iv_payment_ywt);
-                viewDelegate.setEnable(true,R.id.iv_payment_zfb);
+                viewDelegate.setEnable(false, R.id.iv_payment_wx);
+                viewDelegate.setEnable(true, R.id.iv_payment_ywt);
+                viewDelegate.setEnable(true, R.id.iv_payment_zfb);
                 break;
             case 102:
-                viewDelegate.setEnable(false,R.id.iv_payment_ywt);
-                viewDelegate.setEnable(true,R.id.iv_payment_wx);
-                viewDelegate.setEnable(true,R.id.iv_payment_zfb);
+                viewDelegate.setEnable(false, R.id.iv_payment_ywt);
+                viewDelegate.setEnable(true, R.id.iv_payment_wx);
+                viewDelegate.setEnable(true, R.id.iv_payment_zfb);
                 break;
             case 103:
-                viewDelegate.setEnable(false,R.id.iv_payment_zfb);
-                viewDelegate.setEnable(true,R.id.iv_payment_wx);
-                viewDelegate.setEnable(true,R.id.iv_payment_ywt);
+                viewDelegate.setEnable(false, R.id.iv_payment_zfb);
+                viewDelegate.setEnable(true, R.id.iv_payment_wx);
+                viewDelegate.setEnable(true, R.id.iv_payment_ywt);
                 break;
         }
     }

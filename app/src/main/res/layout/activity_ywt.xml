@@ -30,7 +30,7 @@
             android:paddingLeft="20px"
             android:paddingRight="20px"
             android:scaleType="center"
-            android:src="@mipmap/ic_cmm_return_green" />
+            android:src="@mipmap/ic_cmm_close_green" />
     </com.zhy.autolayout.AutoRelativeLayout>
 
 

@@ -253,15 +253,16 @@ public abstract class AppDelegate implements IDelegate {
     public void showLoadingWarn(String str) {
         if (dialog == null) {
             View view = inflater.inflate(R.layout.dialog_login, null);
-            if (!TextUtils.isEmpty(str)) {
-                TextView text = (TextView) view.findViewById(R.id.tv_dialog_text);
-                text.setText(str);
-            }
+
             dialog = new Dialog(rootView.getContext(), R.style.dialog);
             dialog.setContentView(view);
             dialog.setCancelable(false);
             Window dialogWindow = dialog.getWindow();
             dialogWindow.setGravity(Gravity.CENTER);
+        }
+        if (!TextUtils.isEmpty(str)) {
+            TextView text = (TextView) dialog.findViewById(R.id.tv_dialog_text);
+            text.setText(str);
         }
         dialog.show();
     }

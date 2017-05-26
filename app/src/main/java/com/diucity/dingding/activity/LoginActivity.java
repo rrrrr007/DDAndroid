@@ -38,7 +38,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         //忘记密码
         RxView.clicks(viewDelegate.get(R.id.tv_login_forget)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(CountActivity .class);
+                    viewDelegate.startActivity(ForgetActivity .class);
                 });
 
         //登录
@@ -118,4 +118,10 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
             phone.setSelection(phone.getText().length());
         }
     }
+
+    public void showNormal(){
+        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "重置成功");
+    }
+
+
 }

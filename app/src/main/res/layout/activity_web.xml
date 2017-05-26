@@ -21,6 +21,7 @@
         android:textSize="17sp" />
 
     <com.diucity.dingding.widget.LightImage
+        android:id="@+id/iv_web_back"
         android:layout_width="wrap_content"
         android:layout_height="148px"
         android:paddingLeft="20px"

@@ -1,10 +1,12 @@
 package com.diucity.dingding.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,11 +43,11 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
         TextView title = holder.getView(R.id.adapter_tv_price_title);
         title.setText("今日最新报价");
         TextView name = holder.getView(R.id.adapter_tv_price_name);
-        name.setText(getScrapItem(position).getName() + "/" + getScrapItem(position).getUnit());
+        name.setText(nameSpan(getScrapItem(position).getName() + "/" + getScrapItem(position).getUnit()));
         TextView content = holder.getView(R.id.adapter_tv_price_content);
         content.setText("买 ￥" + StringUtils.getDoubleString(getModel().get(position).getBuy_price()) + "  卖 ￥" + StringUtils.getDoubleString(getModel().get(position).getSell_price()));
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
-        tv.setText(textSpan(StringUtils.getDoubleString(getModel().get(position).getSell_price() - getModel().get(position).getBuy_price()))+"元");
+        tv.setText(textSpan(StringUtils.getDoubleString(getModel().get(position).getSell_price() - getModel().get(position).getBuy_price())+"元"));
 
     }
 
@@ -70,6 +72,13 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
             if (scrap.getScrap_id()==getModel().get(position).getScrap_id()) return scrap;
         }
         return null;
+    }
+
+    private SpannableString nameSpan(String str) {
+        String text = str;
+        SpannableString textSpan = new SpannableString(text);
+        textSpan.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length() - 2, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        return textSpan;
     }
 
 

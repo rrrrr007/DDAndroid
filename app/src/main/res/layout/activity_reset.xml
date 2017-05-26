@@ -56,7 +56,7 @@
         android:layout_height="1px"
         android:layout_below="@id/edt_reset_old"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray" />
+        android:background="@drawable/line_shape" />
 
     <EditText
         android:id="@+id/edt_reset_new"
@@ -80,7 +80,7 @@
         android:layout_height="1px"
         android:layout_below="@id/edt_reset_new"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray" />
+        android:background="@drawable/line_shape" />
 
     <EditText
         android:id="@+id/edt_reset_affirm"
@@ -104,7 +104,7 @@
         android:layout_height="1px"
         android:layout_below="@id/edt_reset_affirm"
         android:layout_centerHorizontal="true"
-        android:background="@color/text_gray" />
+        android:background="@drawable/line_shape" />
 
     <ImageView
         android:id="@+id/iv_reset_icon1"

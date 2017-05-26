@@ -1,5 +1,10 @@
 package com.diucity.dingding.delegate;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.view.Window;
 import android.webkit.JavascriptInterface;
 
 import com.diucity.dingding.R;
@@ -17,7 +22,7 @@ import com.tencent.smtt.sdk.WebViewClient;
  */
 
 public class WebDelegate extends AppDelegate {
-
+    private AlertDialog alertDialog;
 
     @Override
     public int getRootLayoutId() {
@@ -47,7 +52,39 @@ public class WebDelegate extends AppDelegate {
     }
 
     @JavascriptInterface
-    public int getBillId() {
-        return 11;
+    public int getBillID() {
+        return getActivity().getIntent().getIntExtra("billId",0);
+    }
+
+    @JavascriptInterface
+    public void callService(String number){
+        showCallDialog(number);
+    }
+
+    public void showCallDialog(String string) {
+        Intent intent= new Intent(Intent.ACTION_DIAL);
+        if (alertDialog == null) {
+            alertDialog = new AlertDialog.Builder(getActivity())
+                    .setTitle("提示")
+
+                    .setPositiveButton("拨打", (dialog, which) -> {
+                        alertDialog.dismiss();
+
+                        startActivity(intent);
+                    })
+                    .setNegativeButton("取消", (dialog2, which) -> alertDialog.dismiss()).create();
+            Window window = alertDialog.getWindow();
+            window.setWindowAnimations(R.style.dialog_style);
+        }
+        if (!TextUtils.isEmpty(string)){
+            alertDialog.setMessage("联系客服（"+string+"）");
+            intent.setData(Uri.parse("tel:" + string));
+        }else {
+            alertDialog.setMessage("联系客服（400-8032039）");
+            intent.setData(Uri.parse("tel:" + "400-8032023"));
+        }
+        if (!alertDialog.isShowing()){
+            alertDialog.show();
+        }
     }
 }

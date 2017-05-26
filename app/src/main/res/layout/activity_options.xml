@@ -202,7 +202,9 @@
                         android:layout_height="60px"
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@id/tv_options_cache"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        android:indeterminateTint="@color/text_green"
+                        android:indeterminateTintMode="src_atop"/>
                 </com.zhy.autolayout.AutoRelativeLayout>
 
                 <View

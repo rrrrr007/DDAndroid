@@ -29,6 +29,8 @@
         android:layout_height="148px"
         android:layout_toLeftOf="@id/tv_home_title"
         android:paddingTop="60px"
+        android:indeterminateTint="@color/text_green"
+        android:indeterminateTintMode="src_atop"
         android:visibility="gone" />
 
     <com.diucity.dingding.widget.LightImage
