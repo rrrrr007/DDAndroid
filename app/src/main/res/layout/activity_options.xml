@@ -128,44 +128,6 @@
                     android:layout_marginRight="30px"
                     android:background="@drawable/toolbar_shape" />
 
-
-                <com.zhy.autolayout.AutoRelativeLayout
-                    android:id="@+id/rl_options_forgetPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_press_selector"
-                    android:orientation="horizontal"
-                    android:paddingLeft="30px"
-                    android:paddingRight="30px">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="40px"
-                        android:paddingTop="40px"
-                        android:text="忘记登录密码"
-                        android:textColor="#031912"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:drawablePadding="20px"
-                        android:drawableRight="@mipmap/ic_cmm_arrows_list"
-                        android:paddingBottom="40px"
-                        android:paddingTop="40px"
-                        android:textColor="#606664"
-                        android:textSize="16sp" />
-                </com.zhy.autolayout.AutoRelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginRight="30px"
-                    android:background="@drawable/toolbar_shape" />
-
                 <com.zhy.autolayout.AutoRelativeLayout
                     android:id="@+id/rl_options_clearCache"
                     android:layout_width="match_parent"

@@ -42,10 +42,6 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
         RxView.clicks(viewDelegate.get(R.id.rl_options_resetPassword)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
             viewDelegate.startAcitityWithAnim(ResetActivity.class);
         });
-        //忘记密码
-        RxView.clicks(viewDelegate.get(R.id.rl_options_forgetPassword)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-            viewDelegate.startActivity(ForgetActivity.class);
-        });
         //清空缓存
         RxView.clicks(viewDelegate.get(R.id.rl_options_clearCache)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
             clearCache();

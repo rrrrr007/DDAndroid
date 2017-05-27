@@ -12,11 +12,11 @@ public class BasketBean {
     private int recycler_id;
     private String auth_code;
 
-    public BasketBean(long timestamp, int recycler_id, String auth_code) {
-        this.timestamp = timestamp;
+    public BasketBean(int recycler_id, String auth_code) {
+        this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
-        this.auth_code = auth_code;
+        this.auth_code = SignUtils.authCode(getTimestamp(),auth_code);
     }
 
     public long getTimestamp() {

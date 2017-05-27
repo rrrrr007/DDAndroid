@@ -8,4 +8,8 @@ public class StringUtils {
     public static String getDoubleString(double b){
         return String.format("%.2f", b);
     }
+
+    public static String getIntString(double b){
+        return String.format("%.0f", b);
+    }
 }

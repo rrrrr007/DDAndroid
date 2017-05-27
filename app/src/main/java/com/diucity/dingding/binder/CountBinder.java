@@ -3,6 +3,7 @@ package com.diucity.dingding.binder;
 import android.content.Intent;
 import android.util.Log;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.activity.PaymentActivity;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.CountDelegate;
@@ -62,9 +63,10 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                         ArrayList<CreateBack.DataBean.ScrapsBean> list = (ArrayList<CreateBack.DataBean.ScrapsBean>) o.getData().getScraps();
                         intent.putExtra("list", list);
                         intent.putExtra("url",url);
-
                         viewDelegate.startActivity(intent);
                         viewDelegate.finish();
+                    }else {
+                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
                     }
                 }
             });
@@ -87,6 +89,8 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                     if (o.getCode()==0){
                         url = o.getData().getAvatar();
                         viewDelegate.setUserInfo(o.getData().getName(),o.getData().getAvatar());
+                    }else {
+                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
                     }
                 }
             });

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.activity.PaymentActivity;
 import com.diucity.dingding.activity.YWTActivity;
 import com.diucity.dingding.api.Network;
@@ -44,6 +45,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                 @Override
                 public void onError(Throwable e) {
                     e.printStackTrace();
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接错误");
                 }
 
                 @Override
@@ -55,6 +57,8 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                         PaymentActivity activity = viewDelegate.getActivity();
                         activity.rollPoll();
                         viewDelegate.startActivity(YWTActivity.class);
+                    }else {
+                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
                     }
                     Log.d("ch", GsonUtils.GsonString(o));
                 }

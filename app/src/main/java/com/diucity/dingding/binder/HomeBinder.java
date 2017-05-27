@@ -34,9 +34,9 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
     @Override
     public void work(HomeDelegate viewDelegate, Object object) {
-        viewDelegate.setText("更新中...",R.id.tv_home_title);
-        viewDelegate.setVisiable(true,R.id.progress_home);
         if (object instanceof ScrapsBean){
+            viewDelegate.setText("更新中...",R.id.tv_home_title);
+            viewDelegate.setVisiable(true,R.id.progress_home);
             ScrapsBean bean = (ScrapsBean) object;
             Network.subscribe(Network.getApi().scraps(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<ScrapsBack>() {
 
@@ -57,11 +57,12 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                 @Override
                 public void onNext(ScrapsBack s) {
                     if (s.getCode()==0){
+                        viewDelegate.getInsideAdapterNotify(1,s.getData().getScraps());
                         SpUtils.putString(viewDelegate.getActivity(),SpUtils.SCRAPS,GsonUtils.GsonString(s));
                         work(viewDelegate,new TodayBean(bean.getRecycler_id(),0,0));
                         work(viewDelegate,new TaskBean(bean.getRecycler_id()));
-                        long time = System.currentTimeMillis();
-                        work(viewDelegate,new BasketBean(time,bean.getRecycler_id(),SignUtils.authCode(time, App.user.getData().getAuth_token())));
+
+
                     }
                     Log.d("ch",GsonUtils.GsonString(s));
                     viewDelegate.setText("叮叮回收",R.id.tv_home_title);
@@ -92,6 +93,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                     if (s.getCode()==0){
                         viewDelegate.getInsideAdapterNotify(0,s.getData().getScraps());
                         SpUtils.putString(viewDelegate.getActivity(),SpUtils.TODAY,GsonUtils.GsonString(s));
+                        work(viewDelegate,new BasketBean(bean.getRecycler_id(),App.user.getData().getAuth_token()));
                     }
                     Log.d("ch",GsonUtils.GsonString(s));
                 }
@@ -136,9 +138,9 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                 @Override
                 public void onNext(BasketBack s) {
                     if (s.getCode()==0){
-                        viewDelegate.getInsideAdapterNotify(1,s.getData().getData());
+                        viewDelegate.setBasket(s);
                     }
-                    Log.d("ch",GsonUtils.GsonString(s));
+                    Log.d("ch","baseket"+GsonUtils.GsonString(s));
                 }
             });
         }

@@ -2,6 +2,7 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.RecordDelegate;
 import com.diucity.dingding.entity.Back.ListBack;
@@ -39,6 +40,7 @@ public class RecordBinder implements DataBinder<RecordDelegate,NormalBack> {
                 @Override
                 public void onError(Throwable e) {
                     e.printStackTrace();
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接错误");
                 }
 
                 @Override
@@ -47,6 +49,8 @@ public class RecordBinder implements DataBinder<RecordDelegate,NormalBack> {
                     if (listBack.getCode()==0){
                         List<ListBack.DataBean.ItemsBean> list = listBack.getData().getItems();
                         viewDelegate.notifyData(list);
+                    }else {
+                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, listBack.getMessage());
                     }
                 }
             });

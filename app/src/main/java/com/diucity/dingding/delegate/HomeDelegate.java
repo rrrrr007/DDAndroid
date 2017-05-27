@@ -8,9 +8,11 @@ import com.diucity.dingding.adapter.BasketAdapter;
 import com.diucity.dingding.adapter.HomeViewPager;
 import com.diucity.dingding.adapter.PriceAdapter;
 import com.diucity.dingding.entity.Back.BasketBack;
+import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.TaskBack;
 import com.diucity.dingding.entity.Back.TodayBack;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.widget.SwichBarView;
 
 import java.util.List;
 
@@ -39,6 +41,9 @@ public class HomeDelegate extends AppDelegate {
         vp = get(R.id.vp_home);
         adapter = new HomeViewPager(getActivity());
         vp.setAdapter(adapter);
+        SwichBarView sbv = get(R.id.sbv_home);
+        sbv.connectViewPager(vp);
+
     }
 
 
@@ -50,13 +55,18 @@ public class HomeDelegate extends AppDelegate {
                 break;
             case 1:
                 BasketAdapter adapter1 = (BasketAdapter) this.adapter.getModel().get(1).getAdapter();
-                adapter1.updateBySet((List<BasketBack.Data.DataBean>) o);
+                adapter1.updateBySet((List<ScrapsBack.Data.Scraps>) o);
                 break;
             case 2:
                 AwardAdapter adapter2 = (AwardAdapter) this.adapter.getModel().get(2).getAdapter();
                 adapter2.updateBySet((List<TaskBack.DataBean.TasksBean>) o);
                 break;
         }
+    }
+
+    public void setBasket(BasketBack back){
+        BasketAdapter adapter = (BasketAdapter) this.adapter.getModel().get(1).getAdapter();
+        adapter.setBasket(back);
     }
 
 

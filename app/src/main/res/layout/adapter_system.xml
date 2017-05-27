@@ -70,7 +70,6 @@
                 android:id="@+id/adapter_tv_system_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_press_selector"
                 android:drawableRight="@mipmap/ic_cmm_arrows_list"
                 android:padding="15dp"
                 android:text="查看详情"

@@ -22,7 +22,6 @@ import com.diucity.dingding.binder.HomeBinder;
 import com.diucity.dingding.delegate.HomeDelegate;
 import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.widget.SwitchBarView;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.io.IOException;
@@ -30,9 +29,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPager.OnPageChangeListener {
+public class HomeActivity extends BaseActivity<HomeDelegate> {
     private LocationManager locationManager;
-    private SwitchBarView sbv;
     private ViewPager vp;
     private AlertDialog alertDialog;
     private AlertDialog alertDialog2;
@@ -43,7 +41,6 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
             Manifest.permission.CAMERA, //相机
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
-
     };
 
     static final String[] permission2 = new String[]{
@@ -115,14 +112,6 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
                     viewDelegate.startAcitityWithAnim(SellActivity.class);
                 });
 
-        //vp滑动监听
-        vp.addOnPageChangeListener(this);
-
-        //选择器
-        sbv.setListener(i -> {
-            vp.setCurrentItem(i - 1);
-        });
-
     }
 
     LocationListener locationListener = new LocationListener() {
@@ -163,7 +152,6 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
 
     @Override
     public void initData() {
-        sbv = viewDelegate.get(R.id.sbv_home);
         vp = viewDelegate.get(R.id.vp_home);
         binder.work(viewDelegate, new ScrapsBean(App.user.getData().getRecycler_id()));
         permission();
@@ -203,20 +191,6 @@ public class HomeActivity extends BaseActivity<HomeDelegate> implements ViewPage
         }
     }
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        sbv.startAnim(position + 1);
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
 
     public void showCallDialog() {
         if (alertDialog == null) {

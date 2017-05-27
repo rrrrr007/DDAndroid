@@ -1,8 +1,10 @@
 package com.diucity.dingding.activity;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,7 +16,9 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.camera.CameraManager;
+import com.uuzuche.lib_zxing.decoding.CaptureActivityHandler;
 
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class CaptureActivity extends BaseActivity<CaptureDelegate> {
@@ -22,7 +26,7 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
     private Camera camera;
     private Camera.Parameters parameter;
     boolean isOpen ;
-
+    private final String url ="qrcode.dinghs.com/supplier/";
 
     @Override
     public DataBinder getDataBinder() {
@@ -42,9 +46,36 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
         captureFragment.setAnalyzeCallback(new CodeUtils.AnalyzeCallback() {
             @Override
             public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
+                int id =0;
                 viewDelegate.toast(result);
-                viewDelegate.startActivity(CountActivity.class);
-                viewDelegate.finish();
+                if (result.contains(url)){
+                    int i = result.indexOf(url);
+                    String s = result.substring(i+url.length(), result.length());
+                    int j = s.indexOf("?");
+                    if (j!=-1){
+                        s = s.substring(0,j);
+                    }
+                    try {
+                        id = Integer.parseInt(s);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }finally {
+                        if (id==0){
+                            viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "无效二维码");
+                            restart((CaptureActivityHandler) captureFragment.getHandler());
+                            return;
+                        }
+                        Log.d("ch",id+"...........id");
+                        Intent intent = new Intent(CaptureActivity.this, CountActivity.class);
+                        intent.putExtra("value",id);
+                        viewDelegate.startActivity(intent);
+                        viewDelegate.finish();
+                    }
+
+                }else {
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "无效二维码");
+                    restart((CaptureActivityHandler) captureFragment.getHandler());
+                }
             }
 
             @Override
@@ -90,6 +121,27 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
             viewDelegate.setSrc(ContextCompat.getDrawable(this,R.mipmap.ic_buy_navigation_light_off),R.id.iv_capture_flash);
             Log.d("ch","guan");
         }
+    }
+
+    private void restart(final CaptureActivityHandler a) {
+        if (a==null){
+            return;
+        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Class<CaptureActivityHandler> mClass = CaptureActivityHandler.class;
+                Method method = null;
+                try {
+                    method = mClass.getDeclaredMethod("restartPreviewAndDecode");
+                    method.setAccessible(true);
+                    method.invoke(a);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        },2000);
     }
 
     @Override

@@ -27,6 +27,7 @@ import com.diucity.dingding.utils.TimeUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/21 0021.
@@ -51,18 +52,37 @@ public class PaymentDelegate extends AppDelegate {
         setText(textSpan("支付 " + StringUtils.getDoubleString(getActivity().getIntent().getDoubleExtra("total", 0.0)) + "元"), R.id.tv_payment_pay);
         setText("确认支付 (" + StringUtils.getDoubleString(getActivity().getIntent().getDoubleExtra("total", 0.0)) + ")", R.id.btn_payment_pay);
         Picasso.with(getActivity()).load(getActivity().getIntent().getStringExtra("url")).resize(100, 100).transform(new Picassoloader()).into((ImageView) get(R.id.iv_payment_head));
-        ArrayList<CreateBack.DataBean.ScrapsBean> list = (ArrayList<CreateBack.DataBean.ScrapsBean>) getActivity().getIntent().getSerializableExtra("list");
         RecyclerView rv = get(R.id.rv_payment);
-        rv.setAdapter(new PaymentAdapter(getActivity(), list));
+        rv.setAdapter(new PaymentAdapter(getActivity(), getList()));
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    private ArrayList<CreateBack.DataBean.ScrapsBean> getList(){
+        ArrayList<CreateBack.DataBean.ScrapsBean> list = (ArrayList<CreateBack.DataBean.ScrapsBean>) getActivity().getIntent().getSerializableExtra("list");
+        ArrayList<CreateBack.DataBean.ScrapsBean> a = new ArrayList<>();
+        for (CreateBack.DataBean.ScrapsBean bean : list) {
+            if (bean.getQuantity()>0){
+                a.add(bean);
+            }
+        }
+        return a;
+    }
+    private List<InfoBack.DataBean.ScrapsBean> getList2(InfoBack info){
+        List<InfoBack.DataBean.ScrapsBean> list = info.getData().getScraps();
+        List<InfoBack.DataBean.ScrapsBean> a = new ArrayList<>();
+        for (InfoBack.DataBean.ScrapsBean bean : list) {
+            if (bean.getQuantity()>0){
+                a.add(bean);
+            }
+        }
+        return a;
+    }
     public void setDialog(InfoBack info) {
         setText(StringUtils.getDoubleString(info.getData().getAmount()), R.id.tv_payment_total);
         setText(TimeUtils.getMinute(info.getData().getTime()), R.id.tv_payment_time);
         setText("订单号：" + info.getData().getOrder_no(), R.id.tv_payment_orderNo);
         RecyclerView rv = get(R.id.rv_payment2);
-        rv.setAdapter(new DialogAdapter(getActivity(), info.getData().getScraps()));
+        rv.setAdapter(new DialogAdapter(getActivity(), getList2(info)));
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 

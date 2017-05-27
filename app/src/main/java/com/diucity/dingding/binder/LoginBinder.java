@@ -54,7 +54,7 @@ public class LoginBinder implements DataBinder<LoginDelegate, LoginBack> {
                         SpUtils.putString(viewDelegate.getActivity(), SpUtils.USER, GsonUtils.GsonString(back));
                         App.user = back;
                         viewDelegate.startActivity(HomeActivity.class);
-                        work(viewDelegate,new TodayBean(back.getData().getRecycler_id(),0,0));
+                        //work(viewDelegate,new TodayBean(back.getData().getRecycler_id(),0,0));
 
                     } else
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, back.getMessage());

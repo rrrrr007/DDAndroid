@@ -129,6 +129,6 @@ public class CountDelegate extends AppDelegate {
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#031912")), 1, text.length() - 3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         setText(textSpan, R.id.tv_count_name);
-        Picasso.with(getActivity()).load(url).resize(100,100).transform(new Picassoloader()).into((ImageView) get(R.id.iv_count_header));
+        Picasso.with(getActivity()).load(url).resize(100,100).transform(new Picassoloader()).placeholder(R.color.src_gray).into((ImageView) get(R.id.iv_count_header));
     }
 }

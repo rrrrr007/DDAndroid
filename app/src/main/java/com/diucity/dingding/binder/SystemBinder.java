@@ -2,6 +2,7 @@ package com.diucity.dingding.binder;
 
 import android.util.Log;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.SystemDelegate;
 import com.diucity.dingding.entity.Back.NormalBack;
@@ -41,6 +42,7 @@ public class SystemBinder implements DataBinder<SystemDelegate,NormalBack> {
                 @Override
                 public void onError(Throwable e) {
                     e.printStackTrace();
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接错误");
                 }
 
                 @Override
@@ -50,6 +52,8 @@ public class SystemBinder implements DataBinder<SystemDelegate,NormalBack> {
                         i+=1;
                         List<SystemBack.DataBean.NoticesBean> notices = s.getData().getNotices();
                         viewDelegate.notifyData(notices);
+                    }else {
+                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, s.getMessage());
                     }
                 }
             });
