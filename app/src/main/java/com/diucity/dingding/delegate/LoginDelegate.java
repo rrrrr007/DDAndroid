@@ -2,12 +2,17 @@ package com.diucity.dingding.delegate;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
 import android.view.View;
 import android.widget.EditText;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.recevier.MyReceiver;
+import com.diucity.dingding.recevier.NetworkRecevier;
 
 
 /**
@@ -31,7 +36,6 @@ public class LoginDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-
         setText("139 9068 5003",R.id.edt_login_phone);
     }
 

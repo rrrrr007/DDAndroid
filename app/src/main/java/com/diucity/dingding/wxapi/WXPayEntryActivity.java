@@ -3,10 +3,13 @@ package com.diucity.dingding.wxapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.activity.PaymentActivity;
+import com.diucity.dingding.app.App;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -28,7 +31,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wxpay_entry);
-
         api = WXAPIFactory.createWXAPI(this, APP_ID);
         api.handleIntent(getIntent(), this);
     }
@@ -52,6 +54,19 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onResp(BaseResp resp) {
         Log.d("ch", "onPayFinish, errCode = " + resp.errCode);// 支付结果码
         TextView viewById = (TextView) findViewById(R.id.tv_zz);
-        viewById.setText(resp.errCode+"");
+        if (resp.errCode==0){
+            viewById.setText("支付成功,3s后返回");
+            new Handler().postDelayed(() -> {
+                ((PaymentActivity)App.getAcitvity("activity.PaymentActivity")).showSuccess();
+                WXPayEntryActivity.this.finish();
+            },3000);
+        }else {
+            viewById.setText("支付失败,3s后返回");
+            new Handler().postDelayed(() -> {
+                ((PaymentActivity)App.getAcitvity("activity.PaymentActivity")).showFailure();
+                WXPayEntryActivity.this.finish();
+            },3000);
+        }
+
     }
 }

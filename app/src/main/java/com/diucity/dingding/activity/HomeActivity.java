@@ -34,6 +34,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
     private ViewPager vp;
     private AlertDialog alertDialog;
     private AlertDialog alertDialog2;
+    private
 
     static final String[] permission = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,// 写入权限
@@ -146,7 +147,10 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
             }
             Address address = locationList.get(0);
             String locality = address.getLocality() + address.getSubLocality();//得到城市名称，比如：北京市
-            Log.i("ch", "locality = " + locality);
+            Log.i("ch", "locality = " + locality+"纬度"+address.getLatitude()+"进度"+address.getLongitude());
+            App.latitude=address.getLatitude();
+            App.longitude=address.getLongitude();
+
         }
     };
 
@@ -156,6 +160,12 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
         binder.work(viewDelegate, new ScrapsBean(App.user.getData().getRecycler_id()));
         permission();
     }
+
+    @Override
+    protected void doAction1() {
+        binder.work(viewDelegate, new ScrapsBean(App.user.getData().getRecycler_id()));
+    }
+
     public void openLoaction(){
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         boolean ok=locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);

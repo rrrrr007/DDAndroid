@@ -57,6 +57,7 @@ public class CountDelegate extends AppDelegate {
         rv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rv.setAdapter(new CountAdapter(getActivity(), today.getData().getScraps()));
         setSumPrice(0);
+        setUserInfo(getActivity().getIntent().getStringExtra("name"),getActivity().getIntent().getStringExtra("url"));
     }
 
     public SpannableString spite(String str) {

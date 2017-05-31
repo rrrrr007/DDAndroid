@@ -10,7 +10,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.app.App;
+import com.diucity.dingding.binder.CaptureBinder;
 import com.diucity.dingding.delegate.CaptureDelegate;
+import com.diucity.dingding.entity.Send.SupplierBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
@@ -30,7 +33,7 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
 
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new CaptureBinder();
     }
 
     @Override
@@ -48,6 +51,11 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
             public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
                 int id =0;
                 viewDelegate.toast(result);
+                if (viewDelegate.isSmallWarnVisiable()){
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "当前网络不可用");
+                    return;
+                }
+
                 if (result.contains(url)){
                     int i = result.indexOf(url);
                     String s = result.substring(i+url.length(), result.length());
@@ -65,11 +73,7 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
                             restart((CaptureActivityHandler) captureFragment.getHandler());
                             return;
                         }
-                        Log.d("ch",id+"...........id");
-                        Intent intent = new Intent(CaptureActivity.this, CountActivity.class);
-                        intent.putExtra("value",id);
-                        viewDelegate.startActivity(intent);
-                        viewDelegate.finish();
+                       binder.work(viewDelegate,new SupplierBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),id));
                     }
 
                 }else {
@@ -127,21 +131,18 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
         if (a==null){
             return;
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Class<CaptureActivityHandler> mClass = CaptureActivityHandler.class;
-                Method method = null;
-                try {
-                    method = mClass.getDeclaredMethod("restartPreviewAndDecode");
-                    method.setAccessible(true);
-                    method.invoke(a);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+        new Handler().postDelayed(() -> {
+            Class<CaptureActivityHandler> mClass = CaptureActivityHandler.class;
+            Method method = null;
+            try {
+                method = mClass.getDeclaredMethod("restartPreviewAndDecode");
+                method.setAccessible(true);
+                method.invoke(a);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        },2000);
+
+        },3000);
     }
 
     @Override

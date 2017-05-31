@@ -239,6 +239,11 @@ public abstract class AppDelegate implements IDelegate {
         vg.addView(small);
     }
 
+    public boolean isSmallWarnVisiable(){
+        ViewGroup vg = get(R.id.notice);
+        return vg.getChildCount()>0;
+    }
+
     public void hideSmallWarn() {
         if (!needShow()) {
             return;

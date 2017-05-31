@@ -106,7 +106,6 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         manager = (GridLayoutManager) rv.getLayoutManager();
         adapter = (CountAdapter) rv.getAdapter();
         edt = viewDelegate.get(R.id.edt_count);
-        binder.work(viewDelegate, new SupplierBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), getIntent().getIntExtra("value", 0)));
         if (adapter.getModel().size() <= 0) return;
         viewDelegate.setText((viewDelegate.spite("单价\n" + StringUtils.getDoubleString(getPriceById(adapter.getModel().get(0).getScrap_id())) + adapter.getModel().get(0).getUnit())), R.id.tv_count_oneprice);
         viewDelegate.setInputStyle(adapter.getModel().get(0).getUnit().equals("斤"));
@@ -123,7 +122,7 @@ public class CountActivity extends BaseActivity<CountDelegate> {
                     .setMessage("是否生成订单，进行结算")
                     .setPositiveButton("结算", (dialog, which) -> {
                         alertDialog.dismiss();
-                        binder.work(viewDelegate, new CreateBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), getIntent().getIntExtra("value", 0), 0, 0, adapter.getCreate()));
+                        binder.work(viewDelegate, new CreateBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), getIntent().getIntExtra("value", 0), App.longitude, App.latitude, adapter.getCreate()));
 
                     })
                     .setNegativeButton("取消", (dialog2, which) -> alertDialog.dismiss())

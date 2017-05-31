@@ -51,4 +51,9 @@ public class RecordActivity extends BaseActivity<RecordDelegate> {
     public void initData() {
         binder.work(viewDelegate,new ListBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),0,10));
     }
+
+    @Override
+    protected void doAction1() {
+        binder.work(viewDelegate,new ListBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),0,10));
+    }
 }

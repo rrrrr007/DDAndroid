@@ -1,6 +1,7 @@
 package com.diucity.dingding.binder;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import com.diucity.dingding.activity.YWTActivity;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.PaymentDelegate;
+import com.diucity.dingding.entity.Back.CheckBack;
 import com.diucity.dingding.entity.Back.InfoBack;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.RequestBack;
@@ -51,12 +53,21 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                 @Override
                 public void onNext(RequestBack o) {
                     if (o.getCode() == 0) {
-                        App.request = o;
-                        Toast.makeText(viewDelegate.getActivity(), "获取订单", Toast.LENGTH_SHORT).show();
-                        work(viewDelegate, new InfoBean(bean.getOrder_id()));
-                        PaymentActivity activity = viewDelegate.getActivity();
-                        activity.rollPoll();
-                        viewDelegate.startActivity(YWTActivity.class);
+                        if (bean.getPayment_type()==1){
+                            work(viewDelegate, new InfoBean(bean.getOrder_id()));
+                            ((PaymentActivity)viewDelegate.getActivity()).wxPay(o.getData());
+                        }else if (bean.getPayment_type()==2){
+                            Toast.makeText(viewDelegate.getActivity(), "获取订单", Toast.LENGTH_SHORT).show();
+                            work(viewDelegate, new InfoBean(bean.getOrder_id()));
+                            PaymentActivity activity = viewDelegate.getActivity();
+                            activity.rollPoll();
+                            Intent intent = new Intent(viewDelegate.getActivity(),YWTActivity.class);
+                            intent.putExtra("request",o.getData());
+                            viewDelegate.startActivity(intent);
+                        }else if (bean.getPayment_type()==3){
+
+                        }
+
                     }else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
                     }
@@ -65,7 +76,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
             });
         }else if (object instanceof CheckBean){
             CheckBean bean = (CheckBean) object;
-            Network.subscribe(Network.getApi().check(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer() {
+            Network.subscribe(Network.getApi().check(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<CheckBack>() {
                 @Override
                 public void onCompleted() {
 
@@ -77,8 +88,14 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                 }
 
                 @Override
-                public void onNext(Object o) {
+                public void onNext(CheckBack o) {
                     Log.d("ch",GsonUtils.GsonString(o));
+                    if (o.getCode()==0){
+                        if(o.getData().getCheck_code()==0){
+                            viewDelegate.setVisiable(true,R.id.arl_payment);
+                        }
+                    }
+
                 }
             });
         }else if (object instanceof InfoBean){

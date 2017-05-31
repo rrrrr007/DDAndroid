@@ -27,7 +27,6 @@ import rx.Observer;
  */
 
 public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
-    private String url;
     @Override
     public void viewBindModel(CountDelegate viewDelegate, NormalBack data) {
 
@@ -62,33 +61,9 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                         intent.putExtra("total",o.getData().getTotal_price());
                         ArrayList<CreateBack.DataBean.ScrapsBean> list = (ArrayList<CreateBack.DataBean.ScrapsBean>) o.getData().getScraps();
                         intent.putExtra("list", list);
-                        intent.putExtra("url",url);
+                        intent.putExtra("url",viewDelegate.getActivity().getIntent().getStringExtra("url"));
                         viewDelegate.startActivity(intent);
                         viewDelegate.finish();
-                    }else {
-                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
-                    }
-                }
-            });
-        }else if (object instanceof SupplierBean){
-            SupplierBean bean = (SupplierBean) object;
-            Network.subscribe(Network.getApi().supplier(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<SupplierBack>() {
-                @Override
-                public void onCompleted() {
-
-                }
-
-                @Override
-                public void onError(Throwable e) {
-                    e.printStackTrace();
-                }
-
-                @Override
-                public void onNext(SupplierBack o) {
-                    Log.d("ch", GsonUtils.GsonString(o));
-                    if (o.getCode()==0){
-                        url = o.getData().getAvatar();
-                        viewDelegate.setUserInfo(o.getData().getName(),o.getData().getAvatar());
                     }else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
                     }

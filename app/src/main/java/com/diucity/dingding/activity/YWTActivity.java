@@ -23,7 +23,8 @@ public class YWTActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_ywt);
         findViewById(R.id.iv_ywt_back).setOnClickListener(v -> finish());
-        DataBack bean = GsonUtils.GsonToBean(App.request.getData(), DataBack.class);
+
+        DataBack bean = GsonUtils.GsonToBean(getIntent().getStringExtra("request"), DataBack.class);
         Log.d("ch", "WithdrawDelegate" + GsonUtils.GsonString(bean));
         WebView wv = (WebView) findViewById(R.id.webView_ywt);
         WebSettings set = wv.getSettings();

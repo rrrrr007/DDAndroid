@@ -1,7 +1,9 @@
 package com.diucity.dingding.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,6 +13,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.bugtags.library.Bugtags;
@@ -18,6 +21,7 @@ import com.diucity.dingding.app.App;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.persent.DataBindActivity;
 import com.diucity.dingding.persent.IDelegate;
+import com.diucity.dingding.recevier.NetworkRecevier;
 import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.utils.FontUtils.CalligraphyContextWrapper;
 import com.diucity.dingding.utils.PermissUtils;
@@ -38,6 +42,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     public static final int PERMISSION_DENIEG = 1;//权限不足，权限被拒绝的时候
     public static final int PERMISSION_REQUEST_CODE = 0;//系统授权管理页面时的结果参数
     public static final String PACKAGE_URL_SCHEME = "package:";//权限方案
+    private boolean mReceiverTag = false;   //广播接受者标识
 
 
     @Override
@@ -47,6 +52,12 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         activity = this;
         ((App) ActivityUtils.getContext()).addActivity(this);
         checkNet();
+        if (!mReceiverTag) {
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+            registerReceiver(receiver, intentFilter);
+            mReceiverTag = true;
+        }
     }
 
     public void isShowSmallWarn(boolean is) {
@@ -79,8 +90,31 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         return super.dispatchTouchEvent(ev);
     }
 
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager connectMgr = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
+            NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
+                Log.i("ch", "unconnect");
+
+            }else {
+                Log.i("ch", "connect");
+                doAction1();
+            }
+            isShowSmallWarn(!mobNetInfo.isConnected() && !wifiNetInfo.isConnected());
+        }
+    };
+
+    protected  void doAction1(){}
+
     @Override
     protected void onDestroy() {
+        if (mReceiverTag) {
+            unregisterReceiver(receiver);
+        }
         ((App) ActivityUtils.getContext()).removeActivity(this);
         for (Subscription subscription : subscriptions) {
             if (subscription != null && !subscription.isUnsubscribed()) {
@@ -188,6 +222,9 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+
+
+
     public void checkNet() {
         ConnectivityManager connectMgr = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -196,4 +233,6 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
             ((AppDelegate) viewDelegate).showSmallWarn();
         }
     }
+
+
 }

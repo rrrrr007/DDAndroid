@@ -1,6 +1,7 @@
 package com.diucity.dingding.api;
 
 import com.diucity.dingding.entity.Back.BasketBack;
+import com.diucity.dingding.entity.Back.CheckBack;
 import com.diucity.dingding.entity.Back.CreateBack;
 import com.diucity.dingding.entity.Back.InfoBack;
 import com.diucity.dingding.entity.Back.ListBack;
@@ -90,7 +91,7 @@ public interface Api {
     Observable<SupplierBack> supplier(@Query("sign") String sign, @Body SupplierBean bean);
 
     @POST("order.check")
-    Observable<Object> check(@Query("sign") String sign, @Body CheckBean bean);
+    Observable<CheckBack> check(@Query("sign") String sign, @Body CheckBean bean);
 
     @POST("order.information")
     Observable<InfoBack> info(@Query("sign") String sign, @Body InfoBean bean);

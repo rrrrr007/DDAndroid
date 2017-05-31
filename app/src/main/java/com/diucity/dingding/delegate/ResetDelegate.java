@@ -45,7 +45,4 @@ public class ResetDelegate extends AppDelegate {
         get(i).setVisibility(has? View.VISIBLE: View.GONE);
     }
 
-    public void clearEdt(){
-        ((EditText)get(R.id.edt_forget2_password)).setText("");
-    }
 }

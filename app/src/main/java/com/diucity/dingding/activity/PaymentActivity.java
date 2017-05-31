@@ -30,7 +30,8 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
     private final int YWTPAY = 102;
     private final int ZFBPAY = 103;
     private int choice = WXPAY;
-    private static final String APP_ID = "wx2920e5b3cf5c3b39";
+    private static final String APP_ID = "wx3ea5c30a2e13c752";
+    private Subscription subscribe;
 
     private IWXAPI api;
 
@@ -78,40 +79,21 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         RxView.clicks(viewDelegate.get(R.id.btn_payment_pay)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     if (choice == WXPAY) {
-                        Toast.makeText(activity, "尽请期待", Toast.LENGTH_SHORT).show();
-                        return;
-                        /*api = WXAPIFactory.createWXAPI(this, APP_ID, false);
-                        if (!api.isWXAppInstalled()) {
-                            Toast.makeText(this, "未安装微信", Toast.LENGTH_SHORT).show();
+                        int id = getIntent().getIntExtra("payId", -255);
+                        if (id == -255) {
+                            viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
                             return;
+                        }else {
+                            binder.work(viewDelegate, new RequestBean(id, 1, "192.168.3.11"));
                         }
-
-                        boolean b = api.registerApp(APP_ID);
-                        Toast.makeText(this, "isssss" + b, Toast.LENGTH_SHORT).show();
-                        WXBack bean = GsonUtils.GsonToBean(App.request.getData(), WXBack.class);
-                        Log.d("ch", "解析参数" + GsonUtils.GsonString(bean));
-                        PayReq pay = new PayReq();
-                        pay.appId = bean.getAppid();
-                        Log.d("ch", "getAppid" + bean.getAppid());
-                        pay.partnerId = bean.getPartnerid();
-                        Log.d("ch", "partnerId" + bean.getPartnerid());
-                        pay.prepayId = bean.getPrepayid();
-                        Log.d("ch", "prepayId" + bean.getPrepayid());
-                        pay.packageValue = bean.getPackageX();
-                        Log.d("ch", "packageValue" + bean.getPackageX());
-                        pay.nonceStr = bean.getNoncestr();
-                        Log.d("ch", "nonceStr" + bean.getNoncestr());
-                        pay.timeStamp = bean.getTimestamp();
-                        Log.d("ch", "timeStamp" + bean.getTimestamp());
-                        pay.sign = bean.getSign();
-                        Log.d("ch", "sign" + bean.getSign());
-                        api.sendReq(pay);*/
                     } else if (choice == YWTPAY) {
                         int id = getIntent().getIntExtra("payId", -255);
                         if (id == -255) {
                             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
+                        }else {
+                            binder.work(viewDelegate, new RequestBean(id, 2, " "));
                         }
-                        binder.work(viewDelegate, new RequestBean(id, 2, "192.168.1.20"));
+
                     }else {
                         Toast.makeText(activity, "尽请期待", Toast.LENGTH_SHORT).show();
                         return;
@@ -119,14 +101,38 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
                 });
     }
 
-    @Override
-    public void initData() {
+    public void wxPay(String str){
+        api = WXAPIFactory.createWXAPI(this, APP_ID, false);
+        if (!api.isWXAppInstalled()) {
+            Toast.makeText(this, "未安装微信", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-
+        boolean b = api.registerApp(APP_ID);
+        Toast.makeText(this, "注册到微信" + b, Toast.LENGTH_SHORT).show();
+        WXBack bean = GsonUtils.GsonToBean(str, WXBack.class);
+        Log.d("ch", "解析参数" + GsonUtils.GsonString(bean));
+        PayReq pay = new PayReq();
+        pay.appId = bean.getAppid();
+        Log.d("ch", "getAppid" + bean.getAppid());
+        pay.partnerId = bean.getPartnerid();
+        Log.d("ch", "partnerId" + bean.getPartnerid());
+        pay.prepayId = bean.getPrepayid();
+        Log.d("ch", "prepayId" + bean.getPrepayid());
+        pay.packageValue = bean.getPackageX();
+        Log.d("ch", "packageValue" + bean.getPackageX());
+        pay.nonceStr = bean.getNoncestr();
+        Log.d("ch", "nonceStr" + bean.getNoncestr());
+        pay.timeStamp = bean.getTimestamp();
+        Log.d("ch", "timeStamp" + bean.getTimestamp());
+        pay.sign = bean.getSign();
+        Log.d("ch", "sign" + bean.getSign());
+        api.sendReq(pay);
     }
 
     public void rollPoll(){
-        Subscription subscribe = Observable.interval(5, 5, TimeUnit.SECONDS).subscribe(new Observer<Long>() {
+        if (subscribe!=null)return;
+         subscribe= Observable.interval(5, 5, TimeUnit.SECONDS).subscribe(new Observer<Long>() {
             @Override
             public void onCompleted() {
 
@@ -140,8 +146,7 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
             @Override
             public void onNext(Long aLong) {
                 Log.d("ch", "along" + aLong);
-                if (aLong==3){
-                    viewDelegate.setVisiable(true,R.id.arl_payment);
+                if (viewDelegate.get(R.id.arl_payment).getVisibility()==View.VISIBLE){
                     return;
                 }
                 orderCheck();
@@ -172,5 +177,14 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
                 viewDelegate.setEnable(true, R.id.iv_payment_ywt);
                 break;
         }
+    }
+
+    public void showSuccess(){
+        viewDelegate.setVisiable(true,R.id.arl_payment);
+    }
+
+    public void showFailure(){
+        viewDelegate.setText(viewDelegate.getText(R.id.btn_payment_pay).replace("确认","重新"),R.id.btn_payment_pay);
+        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "支付失败");
     }
 }

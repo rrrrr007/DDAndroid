@@ -110,6 +110,7 @@
             android:gravity="right|center_vertical"
             android:inputType="numberDecimal"
             android:paddingRight="14px"
+            android:maxLength="7"
             android:textColor="@color/text_black"
             android:textColorHint="#c0ccc8"
             android:textCursorDrawable="@drawable/cursor"

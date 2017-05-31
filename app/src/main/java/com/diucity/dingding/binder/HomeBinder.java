@@ -59,7 +59,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                     if (s.getCode()==0){
                         viewDelegate.getInsideAdapterNotify(1,s.getData().getScraps());
                         SpUtils.putString(viewDelegate.getActivity(),SpUtils.SCRAPS,GsonUtils.GsonString(s));
-                        work(viewDelegate,new TodayBean(bean.getRecycler_id(),0,0));
+                        work(viewDelegate,new TodayBean(bean.getRecycler_id(),App.longitude,App.latitude));
                         work(viewDelegate,new TaskBean(bean.getRecycler_id()));
 
 

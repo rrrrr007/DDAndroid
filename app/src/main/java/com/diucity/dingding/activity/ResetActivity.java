@@ -72,15 +72,15 @@ public class ResetActivity extends BaseActivity<ResetDelegate> implements View.O
 
         RxView.clicks(viewDelegate.get(R.id.iv_reset_icon1)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.clearEdt();
+                    ((EditText)viewDelegate.get(R.id.edt_reset_old)).setText("");
                 });
         RxView.clicks(viewDelegate.get(R.id.iv_reset_icon2)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.clearEdt();
+                    ((EditText)viewDelegate.get(R.id.edt_reset_new)).setText("");
                 });
         RxView.clicks(viewDelegate.get(R.id.iv_reset_icon3)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.clearEdt();
+                    ((EditText)viewDelegate.get(R.id.edt_reset_affirm)).setText("");
                 });
         //返回
         RxView.clicks(viewDelegate.get(R.id.tv_reset_back)).throttleFirst(1, TimeUnit.SECONDS)

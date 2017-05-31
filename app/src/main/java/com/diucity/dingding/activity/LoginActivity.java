@@ -2,8 +2,10 @@ package com.diucity.dingding.activity;
 
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.LoginBinder;
@@ -38,7 +40,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         //忘记密码
         RxView.clicks(viewDelegate.get(R.id.tv_login_forget)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(ForgetActivity .class);
+                    viewDelegate.startActivity(ForgetActivity.class);
                 });
 
         //登录
@@ -51,14 +53,14 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         RxTextView.textChanges(viewDelegate.get(R.id.edt_login_phone)).subscribe(charSequence -> {
             phoneEnable = charSequence.length() > 0;
             viewDelegate.setEnable(phoneEnable && codeEnable, R.id.btn_login_enter);
-            viewDelegate.setVisiable(phoneEnable && phone.hasFocus(),R.id.iv_login_icon1);
-            setPhoneText();
+            viewDelegate.setVisiable(phoneEnable && phone.hasFocus(), R.id.iv_login_icon1);
+            setPhoneText(charSequence);
 
         });
         RxTextView.textChanges(viewDelegate.get(R.id.edt_login_code)).subscribe(charSequence -> {
             codeEnable = charSequence.length() > 0;
             viewDelegate.setEnable(phoneEnable && codeEnable, R.id.btn_login_enter);
-            viewDelegate.setVisiable(codeEnable && code.hasFocus(),R.id.iv_login_icon2);
+            viewDelegate.setVisiable(codeEnable && code.hasFocus(), R.id.iv_login_icon2);
         });
 
         //清除edt
@@ -79,18 +81,19 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
             viewDelegate.setWidgetHeight();
         });
 
+
     }
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.edt_login_phone:
-                viewDelegate.setEnable(!hasFocus,R.id.view_login_1);
-                viewDelegate.textChange(v,hasFocus&&phoneEnable);
+                viewDelegate.setEnable(!hasFocus, R.id.view_login_1);
+                viewDelegate.textChange(v, hasFocus && phoneEnable);
                 break;
             case R.id.edt_login_code:
-                viewDelegate.setEnable(!hasFocus,R.id.view_login_2);
-                viewDelegate.textChange(v,hasFocus&&codeEnable);
+                viewDelegate.setEnable(!hasFocus, R.id.view_login_2);
+                viewDelegate.textChange(v, hasFocus && codeEnable);
                 break;
         }
 
@@ -103,23 +106,21 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
     }
 
 
-    private String getPhoneText(){
-        return phone.getText().toString().replaceAll(" ","");
+    private String getPhoneText() {
+        return phone.getText().toString().replaceAll(" ", "");
     }
 
-    private void setPhoneText(){
-        if (phone.getText().length()<index){
-            index = phone.getText().length();
-            return;
-        }
-        index = phone.getText().length();
-        if (phone.getText().length()==3||phone.getText().length()==8){
-            phone.setText(phone.getText()+" ");
+    private void setPhoneText(CharSequence s) {
+        Log.d("ch","index"+s.length());
+        index = s.toString().length();
+        if (s.toString().length() == 3 || s.toString().length() == 8) {
+            phone.setText(phone.getText() + " ");
+            Log.d("ch","执行光标滞后"+s.toString().length());
             phone.setSelection(phone.getText().length());
         }
     }
 
-    public void showNormal(){
+    public void showNormal() {
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "重置成功");
     }
 

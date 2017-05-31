@@ -37,9 +37,7 @@ public class App extends android.app.Application {
     private static int mainTid;
     public static LoginBack user;
     public static List<BaseActivity> activities;
-
-    public static RequestBack request;
-
+    public static double latitude=0,longitude=0;
     static {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
     }
