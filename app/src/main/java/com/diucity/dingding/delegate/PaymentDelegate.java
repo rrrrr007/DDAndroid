@@ -49,8 +49,9 @@ public class PaymentDelegate extends AppDelegate {
     public void initWidget() {
         setEnable(false, R.id.iv_payment_wx);
         setText("订单号: " + getActivity().getIntent().getStringExtra("number"), R.id.tv_payment_number);
-        setText(textSpan("支付 " + StringUtils.getDoubleString(getActivity().getIntent().getDoubleExtra("total", 0.0)) + "元"), R.id.tv_payment_pay);
-        setText("确认支付 (" + StringUtils.getDoubleString(getActivity().getIntent().getDoubleExtra("total", 0.0)) + ")", R.id.btn_payment_pay);
+
+        setText(textSpan("支付 " + StringUtils.fmoney(getActivity().getIntent().getDoubleExtra("total", 0.0),2) + "元"), R.id.tv_payment_pay);
+        setText("确认支付 (" + StringUtils.fmoney(getActivity().getIntent().getDoubleExtra("total", 0.0),2) + ")", R.id.btn_payment_pay);
         Picasso.with(getActivity()).load(getActivity().getIntent().getStringExtra("url")).resize(100, 100).transform(new Picassoloader()).into((ImageView) get(R.id.iv_payment_head));
         RecyclerView rv = get(R.id.rv_payment);
         rv.setAdapter(new PaymentAdapter(getActivity(), getList()));
@@ -78,7 +79,7 @@ public class PaymentDelegate extends AppDelegate {
         return a;
     }
     public void setDialog(InfoBack info) {
-        setText(StringUtils.getDoubleString(info.getData().getAmount()), R.id.tv_payment_total);
+        setText(StringUtils.fmoney(info.getData().getAmount(),2), R.id.tv_payment_total);
         setText(TimeUtils.getMinute(info.getData().getTime()), R.id.tv_payment_time);
         setText("订单号：" + info.getData().getOrder_no(), R.id.tv_payment_orderNo);
         RecyclerView rv = get(R.id.rv_payment2);

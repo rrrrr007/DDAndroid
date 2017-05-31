@@ -45,7 +45,7 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         name.getPaint().setFakeBoldText(true);
         name.setText(getModel().get(position).getName());
         TextView content = holder.getView(R.id.adapter_tv_price_content);
-        content.setText("预估收益 ￥" + StringUtils.getDoubleString(getQuantity(position) * getPrice(position)));
+        content.setText("预估收益 ￥" + StringUtils.fmoney(getQuantity(position) * getPrice(position),2));
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
         if (getModel().get(position).getUnit().equals("斤")) {
             tv.setText(textSpan(StringUtils.getDoubleString(getQuantity(position)) + getModel().get(position).getUnit()));
@@ -99,7 +99,7 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         for (int i = 0; i < getModel().size() ;i++) {
             all += getQuantity(i) * getPrice(i);
         }
-        return String.format("%.2f", all);
+        return StringUtils.fmoney(all,2);
     }
 
 

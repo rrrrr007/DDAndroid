@@ -235,4 +235,21 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
         }
         alertDialog2.show();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (alertDialog == null) {
+            alertDialog = new AlertDialog.Builder(this)
+                    .setTitle("退出")
+                    .setMessage("是否退出叮叮")
+                    .setNegativeButton("是", (dialog, which) -> {
+                        alertDialog.dismiss();
+                        System.exit(0);
+                    })
+                    .setPositiveButton("否", (dialog2, which) -> alertDialog.dismiss()).create();
+            Window window = alertDialog.getWindow();
+            window.setWindowAnimations(R.style.dialog_style);
+        }
+        alertDialog.show();
+    }
 }

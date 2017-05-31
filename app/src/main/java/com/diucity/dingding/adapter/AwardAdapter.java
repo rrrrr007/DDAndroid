@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.diucity.dingding.R;
 import com.diucity.dingding.entity.Back.TaskBack;
 import com.diucity.dingding.utils.ActivityUtils;
+import com.diucity.dingding.utils.StringUtils;
 import com.liaoinstan.springview.utils.DensityUtil;
 
 import java.util.ArrayList;
@@ -77,6 +78,9 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
 
     public SpannableString textSpan(String str) {
         String text = str;
+        if (str.contains("元")){
+            text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元","")))+"元";
+        }
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -86,6 +90,9 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
 
     public SpannableString textSpan2(String str) {
         String text = str;
+        if (str.contains("元")){
+            text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元","")))+"元";
+        }
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);

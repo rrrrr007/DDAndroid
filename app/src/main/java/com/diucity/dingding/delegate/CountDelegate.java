@@ -68,7 +68,7 @@ public class CountDelegate extends AppDelegate {
 
 
     public void setSumPrice(double d){
-        String text = StringUtils.getDoubleString(d)+"元";
+        String text = StringUtils.fmoney(d,2)+"元";
         SpannableString textSpan1 = new SpannableString(text);
         textSpan1.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getActivity(), 12)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         setText(textSpan1, R.id.tv_count_all);

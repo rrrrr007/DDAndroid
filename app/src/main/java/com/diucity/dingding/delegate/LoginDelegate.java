@@ -37,6 +37,10 @@ public class LoginDelegate extends AppDelegate {
     public void initWidget() {
         super.initWidget();
         setText("139 9068 5003",R.id.edt_login_phone);
+        boolean reset = getActivity().getIntent().getBooleanExtra("reset", false);
+        if (reset){
+            showNormalWarn(get(R.id.fl_toolbar), 1, "修改密码成功,请重新登录");
+        }
     }
 
     public void textChange(View v, boolean has) {

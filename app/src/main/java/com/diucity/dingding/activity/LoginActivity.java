@@ -1,9 +1,13 @@
 package com.diucity.dingding.activity;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +27,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
     private boolean phoneEnable, codeEnable;
     private EditText phone, code;
     private int index = 0;
+    private AlertDialog alertDialog;
 
     @Override
     protected Class getDelegateClass() {
@@ -124,5 +129,25 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "重置成功");
     }
 
+    public void showNormal2() {
+        Log.d("ch","showNormal2");
+        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "重置成功,请重新登录");
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (alertDialog == null) {
+            alertDialog = new AlertDialog.Builder(this)
+                    .setTitle("退出")
+                    .setMessage("是否退出叮叮")
+                    .setNegativeButton("是", (dialog, which) -> {
+                        alertDialog.dismiss();
+                        super.onBackPressed();
+                    })
+                    .setPositiveButton("否", (dialog2, which) -> alertDialog.dismiss()).create();
+            Window window = alertDialog.getWindow();
+            window.setWindowAnimations(R.style.dialog_style);
+        }
+        alertDialog.show();
+    }
 }

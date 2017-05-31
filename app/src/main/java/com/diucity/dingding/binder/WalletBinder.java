@@ -14,6 +14,7 @@ import com.diucity.dingding.entity.Send.SummaryBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
+import com.diucity.dingding.utils.StringUtils;
 import com.diucity.dingding.utils.TimeUtils;
 
 import rx.Observer;
@@ -71,7 +72,7 @@ public class WalletBinder implements DataBinder<WalletDelegate,NormalBack> {
                 public void onNext(ListBack s) {
                     if (s.getCode()==0){
                         if (s.getData().getItems().size()>0)
-                        viewDelegate.setText((TimeUtils.getTime(s.getData().getItems().get(0).getTime())+" 收入 ￥"+s.getData().getItems().get(0).getAmount()),R.id.tv_wallet_time);
+                        viewDelegate.setText((TimeUtils.getTime(s.getData().getItems().get(0).getTime())+" 收入 ￥"+ StringUtils.fmoney(s.getData().getItems().get(0).getAmount(),2)),R.id.tv_wallet_time);
                     }
                     Log.d("ch", GsonUtils.GsonString(s));
                 }
