@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.activity.CountActivity;
 import com.diucity.dingding.activity.PaymentActivity;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.CountDelegate;
@@ -64,6 +65,8 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                         intent.putExtra("url",viewDelegate.getActivity().getIntent().getStringExtra("url"));
                         viewDelegate.startActivity(intent);
                         viewDelegate.finish();
+                    }else if (o.getCode()==-1||o.getCode()==-2){
+                        ((CountActivity)viewDelegate.getActivity()).showCallDialog2(o.getCode());
                     }else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
                     }

@@ -41,6 +41,7 @@ import rx.Observable;
  */
 public interface Api {
     String BASEURL = "https://debug.diucity.com/recycler/";
+    //String BASEURL = "https://zhoufeng.diucity.com:4443/recycler/";
     //String WEBURL = "http://192.168.3.18:8080/";
     String WEBURL = "https://debug.diucity.com/mobile";
 

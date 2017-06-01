@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.utils.ActivityUtils;
+import com.diucity.dingding.utils.SpUtils;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -20,9 +22,15 @@ public class SplashActivity extends AppCompatActivity {
 
     public void skip(){
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(SplashActivity.this,LoginActivity.class));
-            finish();
-        }, 1000 * 1);
+            if (!TextUtils.isEmpty(SpUtils.getString(this, SpUtils.USER))){
+                startActivity(new Intent(SplashActivity.this,HomeActivity.class));
+                finish();
+            }else {
+                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                finish();
+            }
+
+        }, 1000 * 3);
     }
 
     @Override

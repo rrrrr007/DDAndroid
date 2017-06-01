@@ -49,7 +49,7 @@ public class WalletBinder implements DataBinder<WalletDelegate,NormalBack> {
                 public void onNext(SummaryBack s) {
                     Log.d("ch", GsonUtils.GsonString(s));
                     if (s.getCode()==0){
-                        viewDelegate.setText(String.valueOf(s.getData().getIncome()), R.id.tv_wallet_money);
+                        viewDelegate.setText(StringUtils.fmoney(s.getData().getIncome(),2), R.id.tv_wallet_money);
                         work(viewDelegate,new ListBean(bean.getRecycler_id(), App.user.getData().getAuth_token(),0,10));
                     }
                 }

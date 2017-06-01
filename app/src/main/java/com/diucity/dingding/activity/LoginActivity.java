@@ -28,6 +28,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
     private EditText phone, code;
     private int index = 0;
     private AlertDialog alertDialog;
+    private boolean length;
 
     @Override
     protected Class getDelegateClass() {
@@ -64,7 +65,8 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         });
         RxTextView.textChanges(viewDelegate.get(R.id.edt_login_code)).subscribe(charSequence -> {
             codeEnable = charSequence.length() > 0;
-            viewDelegate.setEnable(phoneEnable && codeEnable, R.id.btn_login_enter);
+            length = charSequence.length() >= 6;
+            viewDelegate.setEnable(phoneEnable && length, R.id.btn_login_enter);
             viewDelegate.setVisiable(codeEnable && code.hasFocus(), R.id.iv_login_icon2);
         });
 

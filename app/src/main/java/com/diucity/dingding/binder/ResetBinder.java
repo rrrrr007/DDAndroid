@@ -15,6 +15,7 @@ import com.diucity.dingding.entity.Send.ChangeBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
+import com.diucity.dingding.utils.SpUtils;
 
 import rx.Observer;
 
@@ -50,14 +51,15 @@ public class ResetBinder implements DataBinder<ResetDelegate, NormalBack> {
                 public void onNext(NormalBack o) {
                     viewDelegate.hideLoadingWarn();
                     if (o.getCode() == 0) {
+                        /*SpUtils.putString(viewDelegate.getActivity(), SpUtils.USER,"");
                         App.getAcitvity("activity.OptionsActivity").finish();
                         App.getAcitvity("activity.WalletActivity").finish();
                         App.getAcitvity("activity.HomeActivity").finish();
                         Intent i = new Intent(viewDelegate.getActivity(),LoginActivity.class);
-                        i.putExtra("reset",true);
-                        viewDelegate.startActivity(i);
+                        i.putExtra("intent","reset");
+                        viewDelegate.startActivity(i);*/
                         viewDelegate.finish();
-
+                        ((OptionsActivity)App.getAcitvity("activity.OptionsActivity")).reset();
 
                     } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, o.getMessage());

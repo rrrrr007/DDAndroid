@@ -17,6 +17,7 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> {
     private String phone;
     private boolean codeEnable;
     private boolean passwordEnable;
+    private boolean length;
 
     @Override
     protected Class<Forget2Delegate> getDelegateClass() {
@@ -45,9 +46,10 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> {
             viewDelegate.setEnable(codeEnable&&passwordEnable,R.id.btn_forget2_finish);
         });
         RxTextView.textChanges(viewDelegate.get(R.id.edt_forget2_password)).subscribe(charSequence -> {
+            length = charSequence.length()>=6;
             passwordEnable = charSequence.length()>0;
             viewDelegate.textChange(charSequence.length()>0);
-            viewDelegate.setEnable(codeEnable&&passwordEnable,R.id.btn_forget2_finish);
+            viewDelegate.setEnable(codeEnable&&length,R.id.btn_forget2_finish);
         });
 
         //重新发送

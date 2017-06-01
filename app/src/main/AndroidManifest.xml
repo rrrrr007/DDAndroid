@@ -165,6 +165,7 @@
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:launchMode="singleTop" />
         <activity
             android:name=".activity.LoginActivity"
@@ -229,6 +230,10 @@
             android:name=".activity.PaymentActivity"
             android:screenOrientation="portrait" />
 
+
+        <activity android:name=".activity.YWTActivity"
+            android:screenOrientation="portrait"/>
+
         <meta-data
             android:name="design_width"
             android:value="750" />
@@ -242,7 +247,7 @@
             android:name="JPUSH_CHANNEL"
             android:value="developer-default" />
 
-        <activity android:name=".activity.YWTActivity"/>
+
     </application>
 
 </manifest>

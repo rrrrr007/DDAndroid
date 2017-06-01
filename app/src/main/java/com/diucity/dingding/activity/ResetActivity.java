@@ -18,7 +18,9 @@ public class ResetActivity extends BaseActivity<ResetDelegate> implements View.O
     private boolean oldEnable;
     private boolean mnewEnable;
     private boolean affirmEnable;
-
+    private boolean oldLength;
+    private boolean newLength;
+    private boolean affirmLength;
 
     @Override
     public DataBinder getDataBinder() {
@@ -50,25 +52,28 @@ public class ResetActivity extends BaseActivity<ResetDelegate> implements View.O
         //edt字段监听
         RxTextView.textChanges(viewDelegate.get(R.id.edt_reset_old)).subscribe(charSequence -> {
             oldEnable = charSequence.length()>0;
-            viewDelegate.textChange(R.id.iv_reset_icon1,charSequence.length()>0);
-            viewDelegate.setEnable(oldEnable&&mnewEnable&&affirmEnable,R.id.btn_reset_finish);
+            oldLength = charSequence.length()>=6;
+            viewDelegate.setEnable(oldLength&&newLength&&affirmLength,R.id.btn_reset_finish);
+            viewDelegate.setVisiable(oldEnable&&viewDelegate.get(R.id.edt_reset_old).hasFocus(),R.id.iv_reset_icon1);
         });
         RxTextView.textChanges(viewDelegate.get(R.id.edt_reset_new)).subscribe(charSequence -> {
             mnewEnable = charSequence.length()>0;
-            viewDelegate.textChange(R.id.iv_reset_icon2,charSequence.length()>0);
-            viewDelegate.setEnable(oldEnable&&mnewEnable&&affirmEnable,R.id.btn_reset_finish);
+            newLength = charSequence.length()>=6;
+            viewDelegate.setEnable(oldLength&&newLength&&affirmLength,R.id.btn_reset_finish);
+            viewDelegate.setVisiable(mnewEnable&&viewDelegate.get(R.id.edt_reset_new).hasFocus(),R.id.iv_reset_icon2);
         });
         RxTextView.textChanges(viewDelegate.get(R.id.edt_reset_affirm)).subscribe(charSequence -> {
             affirmEnable = charSequence.length()>0;
-            viewDelegate.textChange(R.id.iv_reset_icon3,charSequence.length()>0);
-            viewDelegate.setEnable(oldEnable&&mnewEnable&&affirmEnable,R.id.btn_reset_finish);
+            affirmLength = charSequence.length()>=6;
+            viewDelegate.setEnable(oldLength&&newLength&&affirmLength,R.id.btn_reset_finish);
+            viewDelegate.setVisiable(affirmEnable&&viewDelegate.get(R.id.edt_reset_affirm).hasFocus(),R.id.iv_reset_icon3);
         });
 
 
         //下划线
-        viewDelegate.get(R.id.edt_reset_old).setOnFocusChangeListener((v, hasFocus) -> viewDelegate.setEnable(!hasFocus,R.id.view_reset_1));
-        viewDelegate.get(R.id.edt_reset_new).setOnFocusChangeListener((v, hasFocus) -> viewDelegate.setEnable(!hasFocus,R.id.view_reset_2));
-        viewDelegate.get(R.id.edt_reset_affirm).setOnFocusChangeListener((v, hasFocus) -> viewDelegate.setEnable(!hasFocus,R.id.view_reset_3));
+        viewDelegate.get(R.id.edt_reset_old).setOnFocusChangeListener(this);
+        viewDelegate.get(R.id.edt_reset_new).setOnFocusChangeListener(this);
+        viewDelegate.get(R.id.edt_reset_affirm).setOnFocusChangeListener(this);
 
         RxView.clicks(viewDelegate.get(R.id.iv_reset_icon1)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
@@ -98,5 +103,6 @@ public class ResetActivity extends BaseActivity<ResetDelegate> implements View.O
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         viewDelegate.lineChange(v,hasFocus);
+        viewDelegate.textChange(v,hasFocus);
     }
 }

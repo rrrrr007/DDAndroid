@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:paddingTop="60px"
-        android:text="交易详情"
+        android:text="账单详情"
         android:textColor="@color/text_black"
         android:textSize="17sp" />
 

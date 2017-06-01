@@ -1,8 +1,12 @@
 package com.diucity.dingding.activity;
 
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diucity.dingding.R;
@@ -59,20 +63,21 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
                     viewDelegate.finish();
                 });
         //支付选择
-        RxView.clicks(viewDelegate.get(R.id.iv_payment_wx)).subscribe(aVoid -> {
+        RxView.clicks(viewDelegate.get(R.id.all_payment_wx)).subscribe(aVoid -> {
             choice = WXPAY;
             setPayIcon();
         });
-        RxView.clicks(viewDelegate.get(R.id.iv_payment_ywt)).subscribe(aVoid -> {
+        RxView.clicks(viewDelegate.get(R.id.all_payment_ywt)).subscribe(aVoid -> {
             choice = YWTPAY;
             setPayIcon();
         });
-        RxView.clicks(viewDelegate.get(R.id.iv_payment_zfb)).subscribe(aVoid -> {
+        RxView.clicks(viewDelegate.get(R.id.all_payment_zfb)).subscribe(aVoid -> {
             choice = ZFBPAY;
             setPayIcon();
         });
         //展开详情
         RxView.clicks(viewDelegate.get(R.id.tv_payment_detail)).subscribe(aVoid -> {
+            setImageRight(viewDelegate.get(R.id.rv_payment).getVisibility() == View.GONE);
             viewDelegate.setVisiable(viewDelegate.get(R.id.rv_payment).getVisibility() == View.GONE, R.id.rv_payment);
             viewDelegate.setVisiable(viewDelegate.get(R.id.view_payment_line).getVisibility() == View.GONE, R.id.view_payment_line);
         });
@@ -177,6 +182,18 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
                 viewDelegate.setEnable(true, R.id.iv_payment_ywt);
                 break;
         }
+    }
+
+    public void setImageRight(boolean open){
+        Drawable img;
+        if (open){
+            img = ContextCompat.getDrawable(this,R.mipmap.ic_buy_arrows_list_up);
+        }else {
+            img = ContextCompat.getDrawable(this,R.mipmap.ic_buy_arrows_list);
+        }
+
+        img.setBounds(0, 0, img.getMinimumWidth(), img.getMinimumHeight());
+        ((TextView)viewDelegate.get(R.id.tv_payment_detail)).setCompoundDrawables(null, null, img, null);
     }
 
     public void showSuccess(){

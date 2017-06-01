@@ -53,7 +53,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20px"
-        android:text="成都叮叮回收科技有限公司"
+        android:gravity="center"
+        android:text="Copyright @2016-2018\n成都叮叮回收科技有限公司"
         android:textColor="#606664"
         android:textSize="13sp" />
 

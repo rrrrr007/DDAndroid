@@ -37,7 +37,7 @@ public class PaymentAdapter extends BaseAdapter<CreateBack.DataBean.ScrapsBean> 
         TextView name = holder.getView(R.id.adapter_tv_payment_name);
         name.setText(getNameById(getModel().get(position).getScrap_id()));
         TextView weight = holder.getView(R.id.adapter_tv_payment_weight);
-        weight.setText(getModel().get(position).getQuantity()+getUnitById(getModel().get(position).getScrap_id()));
+        weight.setText(StringUtils.getIntString(getModel().get(position).getQuantity())+getUnitById(getModel().get(position).getScrap_id()));
         TextView much = holder.getView(R.id.adapter_tv_payment_much);
         much.setText(StringUtils.getDoubleString(getModel().get(position).getQuantity()*getModel().get(position).getUnit_price())+"元");
     }

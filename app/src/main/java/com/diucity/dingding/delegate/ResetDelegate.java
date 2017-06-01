@@ -41,8 +41,18 @@ public class ResetDelegate extends AppDelegate {
         view.setLayoutParams(params);
     }
 
-    public void textChange(int i ,boolean has){
-        get(i).setVisibility(has? View.VISIBLE: View.GONE);
+    public void textChange(View v ,boolean has){
+        switch (v.getId()){
+            case R.id.edt_reset_old:
+                get(R.id.iv_reset_icon1).setVisibility(has?View.VISIBLE: View.GONE);
+                break;
+            case R.id.edt_reset_new:
+                get(R.id.iv_reset_icon2).setVisibility(has?View.VISIBLE: View.GONE);
+                break;
+            case R.id.edt_reset_affirm:
+                get(R.id.view_reset_3).setVisibility(has?View.VISIBLE: View.GONE);
+                break;
+        }
     }
 
 }

@@ -45,13 +45,10 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         name.getPaint().setFakeBoldText(true);
         name.setText(getModel().get(position).getName());
         TextView content = holder.getView(R.id.adapter_tv_price_content);
-        content.setText("预估收益 ￥" + StringUtils.fmoney(getQuantity(position) * getPrice(position),2));
+        content.setText("预估收益 ￥" + StringUtils.fmoney(getQuantity(position) * getPrice(position), 2));
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
-        if (getModel().get(position).getUnit().equals("斤")) {
-            tv.setText(textSpan(StringUtils.getDoubleString(getQuantity(position)) + getModel().get(position).getUnit()));
-        } else {
-            tv.setText(textSpan(StringUtils.getIntString(getQuantity(position)) + getModel().get(position).getUnit()));
-        }
+
+        tv.setText(textSpan(StringUtils.getIntString(getQuantity(position)) + getModel().get(position).getUnit()));
 
         TextView title = holder.getView(R.id.adapter_tv_price_title);
         title.setText("预估总收益：" + getAll() + "元");
@@ -64,7 +61,7 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
     }
 
     private double getQuantity(int positon) {
-        if (basket==null) return 0;
+        if (basket == null) return 0;
         int id = getModel().get(positon).getScrap_id();
         for (BasketBack.Data.DataBean bean : basket.getData().getData()) {
             if (bean.getScrap_id() == id) {
@@ -75,7 +72,7 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
     }
 
     private double getPrice(int positon) {
-        if (today==null) return 0;
+        if (today == null) return 0;
         int id = getModel().get(positon).getScrap_id();
         for (TodayBack.DataBean.ScrapsBean bean : today.getData().getScraps()) {
             if (bean.getScrap_id() == id) {
@@ -96,12 +93,11 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
 
     private String getAll() {
         double all = 0;
-        for (int i = 0; i < getModel().size() ;i++) {
+        for (int i = 0; i < getModel().size(); i++) {
             all += getQuantity(i) * getPrice(i);
         }
-        return StringUtils.fmoney(all,2);
+        return StringUtils.fmoney(all, 2);
     }
-
 
 
     private void getToday() {

@@ -1,10 +1,12 @@
 package com.diucity.dingding.activity;
 
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.Window;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.OptionsDelegate;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.ClearUtils;
@@ -77,6 +79,14 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
                     .setMessage("是否退出当前账号")
                     .setPositiveButton("确定", (dialog, which) -> {
                         alertDialog.dismiss();
+                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.USER,"");
+                        App.getAcitvity("activity.OptionsActivity").finish();
+                        App.getAcitvity("activity.WalletActivity").finish();
+                        App.getAcitvity("activity.HomeActivity").finish();
+                        Intent i = new Intent(viewDelegate.getActivity(),LoginActivity.class);
+                        i.putExtra("intent","loginout");
+                        viewDelegate.startActivity(i);
+                        viewDelegate.finish();
                         //退出
                     })
                     .setNegativeButton("取消", (dialog2, which) -> alertDialog.dismiss()).create();
@@ -107,5 +117,9 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
         else
             viewDelegate.setText("未开启",R.id.tv_options_isNotification);
 
+    }
+
+    public void reset(){
+        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "修改密码成功");
     }
 }

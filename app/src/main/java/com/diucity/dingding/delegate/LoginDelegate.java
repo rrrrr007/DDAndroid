@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
@@ -37,8 +38,10 @@ public class LoginDelegate extends AppDelegate {
     public void initWidget() {
         super.initWidget();
         setText("139 9068 5003",R.id.edt_login_phone);
-        boolean reset = getActivity().getIntent().getBooleanExtra("reset", false);
-        if (reset){
+        String intent = getActivity().getIntent().getStringExtra("intent");
+        if (!TextUtils.isEmpty(intent)&&intent.equals("loginout")){
+            showNormalWarn(get(R.id.fl_toolbar), 1, "退出成功");
+        }else if (!TextUtils.isEmpty(intent)&&intent.equals("reset")){
             showNormalWarn(get(R.id.fl_toolbar), 1, "修改密码成功,请重新登录");
         }
     }

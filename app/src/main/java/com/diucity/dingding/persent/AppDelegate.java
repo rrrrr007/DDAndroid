@@ -137,6 +137,7 @@ public abstract class AppDelegate implements IDelegate {
     public void setEnable(boolean is, int id) {
         if (is != get(id).isEnabled())
             get(id).setEnabled(is);
+
     }
 
     public void finish() {

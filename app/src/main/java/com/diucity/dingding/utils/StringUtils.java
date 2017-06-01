@@ -12,7 +12,8 @@ public class StringUtils {
     }
 
     public static String getIntString(double b){
-        return String.format("%.0f", b);
+        DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
+        return decimalFormat.format(b);
     }
 
     public static String  fmoney(double d ,int n ){
@@ -29,4 +30,5 @@ public class StringUtils {
         }
         return format;
     }
+
 }

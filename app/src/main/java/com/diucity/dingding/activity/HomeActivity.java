@@ -161,6 +161,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
         permission();
     }
 
+
     @Override
     protected void doAction1() {
         binder.work(viewDelegate, new ScrapsBean(App.user.getData().getRecycler_id()));
@@ -182,6 +183,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
     protected void onResume() {
         super.onResume();
     }
+
 
     @Override
     protected void onPause() {

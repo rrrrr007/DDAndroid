@@ -6,7 +6,18 @@
     android:layout_height="match_parent"
     android:scrollbars="none"
     tools:context="com.diucity.dingding.activity.PaymentActivity">
-
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_payment_pay"
+        android:layout_width="match_parent"
+        android:layout_height="88px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:background="@drawable/button_selector"
+        android:textColor="@drawable/text_shape"
+        android:textSize="16sp"
+        android:layout_marginBottom="30px"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -103,7 +114,7 @@
                             android:id="@+id/view_payment_line"
                             android:layout_width="match_parent"
                             android:layout_height="1px"
-                            android:background="@color/line_gray"
+                            android:background="@drawable/toolbar_shape"
                             android:visibility="gone" />
 
                         <android.support.v7.widget.RecyclerView
@@ -116,7 +127,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1px"
-                            android:background="@color/line_gray" />
+                            android:background="@drawable/toolbar_shape" />
 
                         <com.diucity.dingding.widget.LightText
                             android:id="@+id/tv_payment_detail"
@@ -142,6 +153,7 @@
                     android:layout_marginBottom="10px"
                     android:layout_marginLeft="30px"
                     android:layout_marginTop="30px"
+
                     android:text="请选择支付方式"
                     android:textColor="@color/text_gray2"
                     android:textSize="13sp" />
@@ -149,6 +161,7 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/card_payment_ss2"
                     android:layout_width="690px"
+                    android:layout_marginBottom="100px"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_payment_ss"
                     android:layout_centerHorizontal="true"
@@ -163,6 +176,7 @@
                         android:orientation="vertical">
 
                         <com.zhy.autolayout.AutoLinearLayout
+                            android:id="@+id/all_payment_wx"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -196,9 +210,10 @@
                             android:layout_height="1px"
                             android:layout_marginLeft="30px"
                             android:layout_marginRight="30px"
-                            android:background="@color/line_gray" />
+                            android:background="@drawable/toolbar_shape" />
 
                         <com.zhy.autolayout.AutoLinearLayout
+                            android:id="@+id/all_payment_ywt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -232,9 +247,10 @@
                             android:layout_height="1px"
                             android:layout_marginLeft="30px"
                             android:layout_marginRight="30px"
-                            android:background="@color/line_gray" />
+                            android:background="@drawable/toolbar_shape" />
 
                         <com.zhy.autolayout.AutoLinearLayout
+                            android:id="@+id/all_payment_zfb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -265,19 +281,7 @@
                     </com.zhy.autolayout.AutoLinearLayout>
                 </android.support.v7.widget.CardView>
 
-                <Button
-                    android:id="@+id/btn_payment_pay"
-                    android:layout_width="match_parent"
-                    android:layout_height="88px"
-                    android:layout_below="@id/card_payment_ss2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginRight="30px"
-                    android:layout_marginTop="100px"
-                    android:background="@drawable/button_selector"
-                    android:textColor="@drawable/text_shape"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="30px"/>
+
 
                 <FrameLayout
                     android:id="@+id/fl_toolbar"
