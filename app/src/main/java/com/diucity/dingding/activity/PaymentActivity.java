@@ -1,7 +1,7 @@
 package com.diucity.dingding.activity;
 
 
-import android.content.res.Resources;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -54,14 +54,14 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
     protected void bindEvenListener() {
 
         //返回
-        RxView.clicks(viewDelegate.get(R.id.iv_payment_back)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    viewDelegate.finish();
-                });
+        RxView.clicks(viewDelegate.get(R.id.iv_payment_back)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid ->
+                viewDelegate.finish()
+        );
 
         RxView.clicks(viewDelegate.get(R.id.tv_payment_back)).subscribe(aVoid -> {
-                    viewDelegate.finish();
-                });
+            App.getAcitvity("activity.CountActivity").finish();
+            viewDelegate.finish();
+        });
         //支付选择
         RxView.clicks(viewDelegate.get(R.id.all_payment_wx)).subscribe(aVoid -> {
             choice = WXPAY;
@@ -81,32 +81,31 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
             viewDelegate.setVisiable(viewDelegate.get(R.id.rv_payment).getVisibility() == View.GONE, R.id.rv_payment);
             viewDelegate.setVisiable(viewDelegate.get(R.id.view_payment_line).getVisibility() == View.GONE, R.id.view_payment_line);
         });
-        RxView.clicks(viewDelegate.get(R.id.btn_payment_pay)).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(aVoid -> {
-                    if (choice == WXPAY) {
-                        int id = getIntent().getIntExtra("payId", -255);
-                        if (id == -255) {
-                            viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
-                            return;
-                        }else {
-                            binder.work(viewDelegate, new RequestBean(id, 1, "192.168.3.11"));
-                        }
-                    } else if (choice == YWTPAY) {
-                        int id = getIntent().getIntExtra("payId", -255);
-                        if (id == -255) {
-                            viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
-                        }else {
-                            binder.work(viewDelegate, new RequestBean(id, 2, " "));
-                        }
+        RxView.clicks(viewDelegate.get(R.id.btn_payment_pay)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
+            if (choice == WXPAY) {
+                int id = getIntent().getIntExtra("payId", -255);
+                if (id == -255) {
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
+                    return;
+                } else {
+                    binder.work(viewDelegate, new RequestBean(id, 1, "192.168.3.11"));
+                }
+            } else if (choice == YWTPAY) {
+                int id = getIntent().getIntExtra("payId", -255);
+                if (id == -255) {
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
+                } else {
+                    binder.work(viewDelegate, new RequestBean(id, 2, " "));
+                }
 
-                    }else {
-                        Toast.makeText(activity, "尽请期待", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                });
+            } else {
+                Toast.makeText(activity, "尽请期待", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
     }
 
-    public void wxPay(String str){
+    public void wxPay(String str) {
         api = WXAPIFactory.createWXAPI(this, APP_ID, false);
         if (!api.isWXAppInstalled()) {
             Toast.makeText(this, "未安装微信", Toast.LENGTH_SHORT).show();
@@ -135,9 +134,9 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         api.sendReq(pay);
     }
 
-    public void rollPoll(){
-        if (subscribe!=null)return;
-         subscribe= Observable.interval(5, 5, TimeUnit.SECONDS).subscribe(new Observer<Long>() {
+    public void rollPoll() {
+        if (subscribe != null) return;
+        subscribe = Observable.interval(5, 5, TimeUnit.SECONDS).subscribe(new Observer<Long>() {
             @Override
             public void onCompleted() {
 
@@ -151,7 +150,7 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
             @Override
             public void onNext(Long aLong) {
                 Log.d("ch", "along" + aLong);
-                if (viewDelegate.get(R.id.arl_payment).getVisibility()==View.VISIBLE){
+                if (viewDelegate.get(R.id.arl_payment).getVisibility() == View.VISIBLE) {
                     return;
                 }
                 orderCheck();
@@ -160,8 +159,8 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         subscriptions.add(subscribe);
     }
 
-    private void orderCheck(){
-        binder.work(viewDelegate,new CheckBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),getIntent().getIntExtra("orderId",0)));
+    private void orderCheck() {
+        binder.work(viewDelegate, new CheckBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), getIntent().getIntExtra("orderId", 0)));
     }
 
     private void setPayIcon() {
@@ -184,24 +183,40 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         }
     }
 
-    public void setImageRight(boolean open){
+    public void setImageRight(boolean open) {
         Drawable img;
-        if (open){
-            img = ContextCompat.getDrawable(this,R.mipmap.ic_buy_arrows_list_up);
-        }else {
-            img = ContextCompat.getDrawable(this,R.mipmap.ic_buy_arrows_list);
+        if (open) {
+            img = ContextCompat.getDrawable(this, R.mipmap.ic_buy_arrows_list_up);
+        } else {
+            img = ContextCompat.getDrawable(this, R.mipmap.ic_buy_arrows_list);
         }
 
         img.setBounds(0, 0, img.getMinimumWidth(), img.getMinimumHeight());
-        ((TextView)viewDelegate.get(R.id.tv_payment_detail)).setCompoundDrawables(null, null, img, null);
+        ((TextView) viewDelegate.get(R.id.tv_payment_detail)).setCompoundDrawables(null, null, img, null);
     }
 
-    public void showSuccess(){
-        viewDelegate.setVisiable(true,R.id.arl_payment);
+    public void showSuccess() {
+        viewDelegate.setVisiable(true, R.id.arl_payment);
+        viewDelegate.setVisiable(false, R.id.btn_payment_pay);
     }
 
-    public void showFailure(){
-        viewDelegate.setText(viewDelegate.getText(R.id.btn_payment_pay).replace("确认","重新"),R.id.btn_payment_pay);
+    public void showFailure() {
+        viewDelegate.setText(viewDelegate.getText(R.id.btn_payment_pay).replace("确认", "重新"), R.id.btn_payment_pay);
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "支付失败");
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 2:
+                boolean ok = data.getBooleanExtra("ok", false);
+                if (ok) {
+                    showSuccess();
+                } else {
+                    showFailure();
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

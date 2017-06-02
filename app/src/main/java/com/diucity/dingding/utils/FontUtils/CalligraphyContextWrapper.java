@@ -18,7 +18,6 @@ public class CalligraphyContextWrapper extends ContextWrapper {
     private final int mAttributeId;
 
     /**
-     *
      * Remember if you are defining default in the
      * the activity is created.
      *
@@ -34,7 +33,7 @@ public class CalligraphyContextWrapper extends ContextWrapper {
      * This will need to be called from the
      * {@link Activity#onCreateView(View, String, Context, AttributeSet)}
      * method to enable view font injection if the view is created inside the activity onCreateView.
-     *
+     * <p>
      * You would implement this method like so in you base activity.
      * <pre>
      * {@code
@@ -70,7 +69,6 @@ public class CalligraphyContextWrapper extends ContextWrapper {
     }
 
     /**
-     *
      * Remember if you are defining default in the
      * the activity is created.
      *
@@ -83,7 +81,7 @@ public class CalligraphyContextWrapper extends ContextWrapper {
 
     /**
      * Override the default AttributeId, this will always take the custom attribute defined here
-     *
+     * <p>
      * Remember if you are defining default in the
      * the activity is created.
      *

@@ -20,7 +20,7 @@ import rx.Observer;
  * Created by Administrator on 2017/5/18 0018.
  */
 
-public class RecordBinder implements DataBinder<RecordDelegate,NormalBack> {
+public class RecordBinder implements DataBinder<RecordDelegate, NormalBack> {
     @Override
     public void viewBindModel(RecordDelegate viewDelegate, NormalBack data) {
 
@@ -28,9 +28,9 @@ public class RecordBinder implements DataBinder<RecordDelegate,NormalBack> {
 
     @Override
     public void work(RecordDelegate viewDelegate, Object object) {
-        if (object instanceof ListBean){
+        if (object instanceof ListBean) {
             ListBean bean = (ListBean) object;
-            Network.subscribe(Network.getApi().list(SignUtils.sign(GsonUtils.GsonString(bean)),bean),new Observer<ListBack>(){
+            Network.subscribe(Network.getApi().list(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<ListBack>() {
 
                 @Override
                 public void onCompleted() {
@@ -45,11 +45,11 @@ public class RecordBinder implements DataBinder<RecordDelegate,NormalBack> {
 
                 @Override
                 public void onNext(ListBack listBack) {
-                    Log.d("ch",GsonUtils.GsonString(listBack));
-                    if (listBack.getCode()==0){
+                    Log.d("ch", GsonUtils.GsonString(listBack));
+                    if (listBack.getCode() == 0) {
                         List<ListBack.DataBean.ItemsBean> list = listBack.getData().getItems();
                         viewDelegate.notifyData(list);
-                    }else {
+                    } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, listBack.getMessage());
                     }
                 }

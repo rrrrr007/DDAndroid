@@ -21,6 +21,6 @@ public class AboutDelegate extends AppDelegate {
 
     @Override
     public void initWidget() {
-        setText("v"+ VersonUtils.getAppVersionName(getActivity())+"."+VersonUtils.getAppVersionCode(getActivity()),R.id.tv_about_version);
+        setText("v" + VersonUtils.getAppVersionName(getActivity()) + "." + VersonUtils.getAppVersionCode(getActivity()), R.id.tv_about_version);
     }
 }

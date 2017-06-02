@@ -18,7 +18,7 @@ import com.yancy.gallerypick.widget.GalleryImageView;
  * Created by Administrator on 2017/3/23 0023.
  */
 
-public class Picassoloader implements ImageLoader,Transformation {
+public class Picassoloader implements ImageLoader, Transformation {
     @Override
     public void displayImage(Activity activity, Context context, String path, GalleryImageView galleryImageView, int width, int height) {
         galleryImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

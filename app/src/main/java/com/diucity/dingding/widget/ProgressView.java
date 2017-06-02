@@ -17,7 +17,8 @@ import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 
 public class ProgressView extends View {
     private Paint paint;
-    private int progress =0;
+    private int progress = 0;
+
     public ProgressView(Context context) {
         super(context);
         init(context);
@@ -44,24 +45,24 @@ public class ProgressView extends View {
         super.onDraw(canvas);
         float height = getHeight();
         float width = getWidth();
-        RectF oval = new RectF(0,0,width*progress/100,height);
+        RectF oval = new RectF(0, 0, width * progress / 100, height);
         canvas.drawRect(oval, paint);
     }
 
     public void setProgress(int progress) {
-        if (progress>100&&progress<0)
+        if (progress > 100 && progress < 0)
             return;
-        if (progress==100){
-            new Handler().postDelayed(() -> ProgressView.this.setProgress(0),1000);
+        if (progress == 100) {
+            new Handler().postDelayed(() -> ProgressView.this.setProgress(0), 1000);
         }
-        if (progress<this.progress){
+        if (progress < this.progress) {
             return;
         }
         this.progress = progress;
         invalidate();
     }
 
-    public void reset(){
+    public void reset() {
         this.progress = 0;
         invalidate();
     }

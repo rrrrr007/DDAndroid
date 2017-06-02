@@ -36,27 +36,27 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> {
                 .subscribe(aVoid -> {
                     String code = ((EditText) viewDelegate.get(R.id.edt_forget2_code)).getText().toString();
                     String password = ((EditText) viewDelegate.get(R.id.edt_forget2_password)).getText().toString();
-                    binder.work(viewDelegate, new ResetBean(phone,code,password));
+                    binder.work(viewDelegate, new ResetBean(phone, code, password));
 
                 });
 
         //edt字段监听
         RxTextView.textChanges(viewDelegate.get(R.id.edt_forget2_code)).subscribe(charSequence -> {
-            codeEnable = charSequence.length()>0;
-            viewDelegate.setEnable(codeEnable&&passwordEnable,R.id.btn_forget2_finish);
+            codeEnable = charSequence.length() > 0;
+            viewDelegate.setEnable(codeEnable && passwordEnable, R.id.btn_forget2_finish);
         });
         RxTextView.textChanges(viewDelegate.get(R.id.edt_forget2_password)).subscribe(charSequence -> {
-            length = charSequence.length()>=6;
-            passwordEnable = charSequence.length()>0;
-            viewDelegate.textChange(charSequence.length()>0);
-            viewDelegate.setEnable(codeEnable&&length,R.id.btn_forget2_finish);
+            length = charSequence.length() >= 6;
+            passwordEnable = charSequence.length() > 0;
+            viewDelegate.textChange(charSequence.length() > 0);
+            viewDelegate.setEnable(codeEnable && length, R.id.btn_forget2_finish);
         });
 
         //重新发送
         RxView.clicks(viewDelegate.get(R.id.tv_forget2_timer)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     if (viewDelegate.timer())
-                        binder.work(viewDelegate,new SmsBean(phone));
+                        binder.work(viewDelegate, new SmsBean(phone));
                 });
 
         //清除Edt
@@ -67,10 +67,10 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> {
 
         //下划线
         viewDelegate.get(R.id.edt_forget2_code).setOnFocusChangeListener((v, hasFocus) -> {
-            viewDelegate.setEnable(!hasFocus,R.id.view_forget2_1);
+            viewDelegate.setEnable(!hasFocus, R.id.view_forget2_1);
         });
         viewDelegate.get(R.id.edt_forget2_password).setOnFocusChangeListener((v, hasFocus) -> {
-            viewDelegate.setEnable(!hasFocus,R.id.view_forget2_2);
+            viewDelegate.setEnable(!hasFocus, R.id.view_forget2_2);
         });
 
         //返回

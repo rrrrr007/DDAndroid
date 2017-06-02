@@ -20,7 +20,7 @@ public class LoginBean {
         this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.mobile = mobile;
-        this.auth_login_code = SignUtils.loginCode(getTimestamp(),auth_login_code);
+        this.auth_login_code = SignUtils.loginCode(getTimestamp(), auth_login_code);
         this.device_type = 11;
         this.device_model = VersonUtils.getSystemModel();
         this.client_version = client_version;

@@ -31,7 +31,7 @@ public class MissionDelegate extends AppDelegate {
         ((TextView) get(R.id.toolbar)).setText("任务列表");
         RecyclerView rv = get(R.id.rv_mission);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv.setAdapter(new MissionAdapter(getActivity(),null));
+        rv.setAdapter(new MissionAdapter(getActivity(), null));
         DefaultItemAnimator animator = new DefaultItemAnimator();
         animator.setAddDuration(2000);
         rv.setItemAnimator(animator);

@@ -18,7 +18,7 @@ import rx.Observer;
  * Created by Administrator on 2017/4/10 0010.
  */
 
-public class PINBinder implements DataBinder<PINDelegate,NormalBack> {
+public class PINBinder implements DataBinder<PINDelegate, NormalBack> {
     @Override
     public void viewBindModel(PINDelegate viewDelegate, NormalBack data) {
 
@@ -26,7 +26,7 @@ public class PINBinder implements DataBinder<PINDelegate,NormalBack> {
 
     @Override
     public void work(PINDelegate viewDelegate, Object object) {
-        if (object instanceof PaysetBean){
+        if (object instanceof PaysetBean) {
             PaysetBean bean = (PaysetBean) object;
             viewDelegate.showLoadingWarn("设置支付密码");
             Network.subscribe(Network.getApi().payset(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<NormalBack>() {
@@ -46,7 +46,7 @@ public class PINBinder implements DataBinder<PINDelegate,NormalBack> {
                 @Override
                 public void onNext(NormalBack back) {
                     viewDelegate.hideLoadingWarn();
-                    if (back.getCode()==0) {
+                    if (back.getCode() == 0) {
                         viewDelegate.startActivity(HomeActivity.class);
                         viewDelegate.finish();
                     } else

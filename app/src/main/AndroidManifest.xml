@@ -157,11 +157,13 @@
                  android:resource="@xml/filepaths" />
          </provider>
         -->
-        <service android:name="cmb.pb.cmbsafe.CmbService" android:exported="false"/>
+        <service
+            android:name="cmb.pb.cmbsafe.CmbService"
+            android:exported="false" />
+
         <activity
             android:name="cmb.pb.ui.PBKeyboardActivity"
-            android:theme="@style/CmbDialogStyleBottom" >
-        </activity>
+            android:theme="@style/CmbDialogStyleBottom"></activity>
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
@@ -231,8 +233,9 @@
             android:screenOrientation="portrait" />
 
 
-        <activity android:name=".activity.YWTActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.YWTActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="design_width"

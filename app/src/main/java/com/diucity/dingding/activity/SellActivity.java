@@ -47,8 +47,8 @@ public class SellActivity extends BaseActivity<SellDelegate> {
     @Override
     public void getAllGrantedPermission() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        boolean ok=locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if(!ok){
+        boolean ok = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (!ok) {
             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "定位功能未打开");
             viewDelegate.setText("点我设置", R.id.tv_sell_location);
             return;
@@ -131,7 +131,7 @@ public class SellActivity extends BaseActivity<SellDelegate> {
     @Override
     public void finish() {
         super.finish();
-        this.overridePendingTransition(R.anim.stay,R.anim.over);
+        this.overridePendingTransition(R.anim.stay, R.anim.over);
     }
 
     @Override

@@ -25,16 +25,17 @@ import java.util.List;
 public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
     private Listener listener;
     private ViewHolder mholder;
-    private int index =-1;
-    private int choice =0;
+    private int index = -1;
+    private int choice = 0;
     private TodayBack todayBack;
     private ArrayList<CreateBean.ScrapsBean> create;
+
     public CountAdapter(Context context, List<ScrapsBack.Data.Scraps> model) {
         super(context, model);
-        todayBack = GsonUtils.GsonToBean(SpUtils.getString(getContext(),SpUtils.TODAY),TodayBack.class);
+        todayBack = GsonUtils.GsonToBean(SpUtils.getString(getContext(), SpUtils.TODAY), TodayBack.class);
         create = new ArrayList<>();
-        for (int i = 0;i<getModel().size();i++){
-            create.add(new CreateBean.ScrapsBean(getModel().get(i).getScrap_id(),0));
+        for (int i = 0; i < getModel().size(); i++) {
+            create.add(new CreateBean.ScrapsBean(getModel().get(i).getScrap_id(), 0));
         }
     }
 
@@ -45,58 +46,58 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (position==index){
-            setEnabled(holder,false);
-            mholder =holder;
-        }else if(position==0&&index==-1) {
-            setEnabled(holder,false);
-            mholder =holder;
-        }else{
-            setEnabled(holder,true);
+        if (position == index) {
+            setEnabled(holder, false);
+            mholder = holder;
+        } else if (position == 0 && index == -1) {
+            setEnabled(holder, false);
+            mholder = holder;
+        } else {
+            setEnabled(holder, true);
         }
         holder.itemView.setOnClickListener(v -> {
-            choice=position;
+            choice = position;
             index = position;
-            if (mholder!=null){
-                setEnabled(mholder,true);
+            if (mholder != null) {
+                setEnabled(mholder, true);
             }
             mholder = holder;
-           setEnabled(holder,false);
-            if (listener!=null){
+            setEnabled(holder, false);
+            if (listener != null) {
                 listener.showEdt(position);
             }
         });
-        ((TextView)holder.getView(R.id.adapter_tv_count_number)).setText("0"+getModel().get(position).getUnit());
+        ((TextView) holder.getView(R.id.adapter_tv_count_number)).setText("0" + getModel().get(position).getUnit());
 
         Drawable drawable;
 
-        switch (getModel().get(position).getScrap_id()){
+        switch (getModel().get(position).getScrap_id()) {
             case 0:
-                drawable= ContextCompat.getDrawable(getContext(),R.mipmap.img_recycle_paper);
+                drawable = ContextCompat.getDrawable(getContext(), R.mipmap.img_recycle_paper);
                 break;
             case 1:
-                drawable= ContextCompat.getDrawable(getContext(),R.mipmap.img_recycle_plastic);
+                drawable = ContextCompat.getDrawable(getContext(), R.mipmap.img_recycle_plastic);
                 break;
             case 2:
-                drawable= ContextCompat.getDrawable(getContext(),R.mipmap.img_recycle_metal);
+                drawable = ContextCompat.getDrawable(getContext(), R.mipmap.img_recycle_metal);
                 break;
             case 3:
-                drawable= ContextCompat.getDrawable(getContext(),R.mipmap.img_recycle_beer);
+                drawable = ContextCompat.getDrawable(getContext(), R.mipmap.img_recycle_beer);
                 break;
             default:
-                drawable= ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher);
+                drawable = ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher);
                 break;
         }
-        ((ImageView)holder.getView(R.id.adapter_iv_count_src)).setImageDrawable(drawable);
-        ((TextView)holder.getView(R.id.adapter_tv_count_kinds)).setText(getModel().get(position).getName());
+        ((ImageView) holder.getView(R.id.adapter_iv_count_src)).setImageDrawable(drawable);
+        ((TextView) holder.getView(R.id.adapter_tv_count_kinds)).setText(getModel().get(position).getName());
     }
 
 
-    private void setEnabled(ViewHolder holder ,boolean is){
+    private void setEnabled(ViewHolder holder, boolean is) {
         holder.getView(R.id.adapter_tv_count_number).setEnabled(is);
         holder.getView(R.id.adapter_ll_count).setEnabled(is);
         holder.getView(R.id.adapter_tv_count_kinds).setEnabled(is);
-        holder.getView(R.id.adapter_iv_count_icon).setVisibility(is? View.GONE:View.VISIBLE);
+        holder.getView(R.id.adapter_iv_count_icon).setVisibility(is ? View.GONE : View.VISIBLE);
         TextView kind = holder.getView(R.id.adapter_tv_count_kinds);
         kind.getPaint().setFakeBoldText(!is);
     }
@@ -105,20 +106,20 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         this.listener = listener;
     }
 
-    public interface Listener{
+    public interface Listener {
         void showEdt(int position);
     }
 
-    public void setText(String str){
-         str = TextUtils.isEmpty(str)?"0":str;
-        ((TextView)mholder.getView(R.id.adapter_tv_count_number)).setText(str+getModel().get(choice).getUnit());
+    public void setText(String str) {
+        str = TextUtils.isEmpty(str) ? "0" : str;
+        ((TextView) mholder.getView(R.id.adapter_tv_count_number)).setText(str + getModel().get(choice).getUnit());
         create.get(choice).setQuantity(Double.parseDouble(str));
     }
 
-    public String getText(){
+    public String getText() {
         String text = ((TextView) mholder.getView(R.id.adapter_tv_count_number)).getText().toString();
-        String str = text.substring(0,text.length()-1);
-        return str.equals("0")?"":str;
+        String str = text.substring(0, text.length() - 1);
+        return str.equals("0") ? "" : str;
     }
 
     public TodayBack getTodayBack() {

@@ -47,8 +47,8 @@ public class HomeDelegate extends AppDelegate {
     }
 
 
-    public void getInsideAdapterNotify(int postion,Object o) {
-        switch (postion){
+    public void getInsideAdapterNotify(int postion, Object o) {
+        switch (postion) {
             case 0:
                 PriceAdapter adapter0 = (PriceAdapter) this.adapter.getModel().get(0).getAdapter();
                 adapter0.updateBySet((List<TodayBack.DataBean.ScrapsBean>) o);
@@ -64,7 +64,7 @@ public class HomeDelegate extends AppDelegate {
         }
     }
 
-    public void setBasket(BasketBack back){
+    public void setBasket(BasketBack back) {
         BasketAdapter adapter = (BasketAdapter) this.adapter.getModel().get(1).getAdapter();
         adapter.setBasket(back);
     }

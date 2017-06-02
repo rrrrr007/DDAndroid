@@ -1,11 +1,9 @@
 package com.diucity.dingding.adapter;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
-
 import com.diucity.dingding.entity.Back.CreateBack;
 import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.utils.GsonUtils;
@@ -24,7 +22,7 @@ public class PaymentAdapter extends BaseAdapter<CreateBack.DataBean.ScrapsBean> 
 
     public PaymentAdapter(Context context, ArrayList<CreateBack.DataBean.ScrapsBean> model) {
         super(context, model);
-        back = GsonUtils.GsonToBean(SpUtils.getString(getContext(),SpUtils.SCRAPS),ScrapsBack.class);
+        back = GsonUtils.GsonToBean(SpUtils.getString(getContext(), SpUtils.SCRAPS), ScrapsBack.class);
     }
 
     @Override
@@ -37,25 +35,25 @@ public class PaymentAdapter extends BaseAdapter<CreateBack.DataBean.ScrapsBean> 
         TextView name = holder.getView(R.id.adapter_tv_payment_name);
         name.setText(getNameById(getModel().get(position).getScrap_id()));
         TextView weight = holder.getView(R.id.adapter_tv_payment_weight);
-        weight.setText(StringUtils.getIntString(getModel().get(position).getQuantity())+getUnitById(getModel().get(position).getScrap_id()));
+        weight.setText(StringUtils.getIntString(getModel().get(position).getQuantity()) + getUnitById(getModel().get(position).getScrap_id()));
         TextView much = holder.getView(R.id.adapter_tv_payment_much);
-        much.setText(StringUtils.getDoubleString(getModel().get(position).getQuantity()*getModel().get(position).getUnit_price())+"元");
+        much.setText(StringUtils.getDoubleString(getModel().get(position).getQuantity() * getModel().get(position).getUnit_price()) + "元");
     }
 
-    private String getNameById(int id){
+    private String getNameById(int id) {
         List<ScrapsBack.Data.Scraps> list = back.getData().getScraps();
         for (ScrapsBack.Data.Scraps scraps : list) {
-            if (scraps.getScrap_id()==id){
+            if (scraps.getScrap_id() == id) {
                 return scraps.getName();
             }
         }
         return "";
     }
 
-    private String getUnitById(int id){
+    private String getUnitById(int id) {
         List<ScrapsBack.Data.Scraps> list = back.getData().getScraps();
         for (ScrapsBack.Data.Scraps scraps : list) {
-            if (scraps.getScrap_id()==id){
+            if (scraps.getScrap_id() == id) {
                 return scraps.getUnit();
             }
         }

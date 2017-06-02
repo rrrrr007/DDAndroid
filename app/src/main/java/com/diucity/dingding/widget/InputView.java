@@ -73,8 +73,7 @@ public class InputView extends EditText {
     protected void onDraw(Canvas canvas) {
         int width = getWidth();
         //int height = getHeight();
-        float height = 1f*width/6;
-
+        float height = 1f * width / 6;
 
 
         // 外边框
@@ -97,9 +96,9 @@ public class InputView extends EditText {
         }
 
         // 密码
-        float cx, cy = height/ 2;
+        float cx, cy = height / 2;
         float half = width / passwordLength / 2;
-        for(int i = 0; i < textLength; i++) {
+        for (int i = 0; i < textLength; i++) {
             cx = width * i / passwordLength + half;
             canvas.drawCircle(cx, cy, passwordWidth, passwordPaint);
         }
@@ -122,7 +121,7 @@ public class InputView extends EditText {
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
         this.textLength = text.toString().length();
-        content=text.toString();
+        content = text.toString();
         invalidate();
     }
 
@@ -192,7 +191,8 @@ public class InputView extends EditText {
         this.passwordRadius = passwordRadius;
         invalidate();
     }
-    public  void setEmpty(){
+
+    public void setEmpty() {
         setText("");
     }
 }

@@ -21,7 +21,7 @@ public class KeyboardChangeListener implements ViewTreeObserver.OnGlobalLayoutLi
         this.mKeyBoardListen = keyBoardListen;
     }
 
-    public  KeyboardChangeListener(Activity contextObj) {
+    public KeyboardChangeListener(Activity contextObj) {
         if (contextObj == null) {
             Log.i(TAG, "contextObj is null");
             return;

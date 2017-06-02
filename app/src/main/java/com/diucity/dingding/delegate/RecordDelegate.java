@@ -21,6 +21,7 @@ import java.util.List;
 public class RecordDelegate extends AppDelegate {
     private RecordAdapter adapter;
     private SpringView sv;
+
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_record;
@@ -41,16 +42,16 @@ public class RecordDelegate extends AppDelegate {
 
         RecyclerView rv = get(R.id.rv_record);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new RecordAdapter(getActivity(),null);
+        adapter = new RecordAdapter(getActivity(), null);
         rv.setAdapter(adapter);
         DefaultItemAnimator animator = new DefaultItemAnimator();
         animator.setAddDuration(500);
         rv.setItemAnimator(animator);
     }
 
-    public void notifyData(List<ListBack.DataBean.ItemsBean> list){
+    public void notifyData(List<ListBack.DataBean.ItemsBean> list) {
         adapter.adapterNotify(list);
-        if (adapter.getItemCount()>0){
+        if (adapter.getItemCount() > 0) {
             get(R.id.ll_record_empty).setVisibility(View.GONE);
             sv.setEnable(true);
         } else {
@@ -58,11 +59,12 @@ public class RecordDelegate extends AppDelegate {
             sv.setEnable(false);
         }
     }
-    public void isLoading(boolean is){
-        get(R.id.ll_record_loading).setVisibility(is?View.VISIBLE:View.GONE);
+
+    public void isLoading(boolean is) {
+        get(R.id.ll_record_loading).setVisibility(is ? View.VISIBLE : View.GONE);
     }
 
-    public void onFinishLoad(){
+    public void onFinishLoad() {
         sv.onFinishFreshAndLoad();
     }
 }

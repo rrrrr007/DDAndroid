@@ -23,8 +23,8 @@ public class NotificationDelegate extends AppDelegate {
 
     @Override
     public void initWidget() {
-        ((Switch)get(R.id.switch_notification_notify)).setChecked(SpUtils.getBoolean(getActivity(), SpUtils.NOTIFICATION,true));
-        ((Switch)get(R.id.switch_notification_sound)).setChecked(SpUtils.getBoolean(getActivity(), SpUtils.SOUND,true));
-        ((Switch)get(R.id.switch_notification_vibrate)).setChecked(SpUtils.getBoolean(getActivity(), SpUtils.VIBRATE,true));
+        ((Switch) get(R.id.switch_notification_notify)).setChecked(SpUtils.getBoolean(getActivity(), SpUtils.NOTIFICATION, true));
+        ((Switch) get(R.id.switch_notification_sound)).setChecked(SpUtils.getBoolean(getActivity(), SpUtils.SOUND, true));
+        ((Switch) get(R.id.switch_notification_vibrate)).setChecked(SpUtils.getBoolean(getActivity(), SpUtils.VIBRATE, true));
     }
 }

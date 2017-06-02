@@ -25,17 +25,18 @@ public class LightText extends android.support.v7.widget.AppCompatTextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction()==MotionEvent.ACTION_DOWN){
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             changeLight(-50);
-        }else if(event.getAction()==MotionEvent.ACTION_UP){
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
             changeLight(0);
         }
         return super.onTouchEvent(event);
     }
+
     private void changeLight(int brightness) {
         ColorMatrix cMatrix = new ColorMatrix();
-        cMatrix.set(new float[] { 1, 0, 0, 0, brightness, 0, 1, 0, 0, brightness, // 改变亮度
-                0, 0, 1, 0, brightness, 0, 0, 0, 1, 0 });
+        cMatrix.set(new float[]{1, 0, 0, 0, brightness, 0, 1, 0, 0, brightness, // 改变亮度
+                0, 0, 1, 0, brightness, 0, 0, 0, 1, 0});
         getPaint().setColorFilter(new ColorMatrixColorFilter(cMatrix));
         invalidate();
     }

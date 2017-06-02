@@ -17,19 +17,19 @@ public class ClearUtils {
         long fileSize = 0;
         String cacheSize = "0KB";
         fileSize += getDirSize(context.getCacheDir());
-        Log.d("ch",context.getCacheDir().getAbsolutePath());
+        Log.d("ch", context.getCacheDir().getAbsolutePath());
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             fileSize += getDirSize(context.getExternalCacheDir());
         }
-        if (fileSize==0){
+        if (fileSize == 0) {
             return "";
-        }else {
+        } else {
             return formatFileSize(fileSize);
         }
 
     }
 
-    public static void clearAppCache(Context context){
+    public static void clearAppCache(Context context) {
         deleteDir(context.getCacheDir());
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             deleteDir(context.getExternalCacheDir());

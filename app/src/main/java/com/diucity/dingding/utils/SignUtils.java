@@ -50,11 +50,11 @@ public class SignUtils {
     }
 
     public static String loginCode(long time, String code) {
-        Log.d("ch",""+time);
-        return md5(time+"login"+dbloginCode(code)).toUpperCase();
+        Log.d("ch", "" + time);
+        return md5(time + "login" + dbloginCode(code)).toUpperCase();
     }
 
-    public static String dbloginCode(String code){
+    public static String dbloginCode(String code) {
         return md5(code).toUpperCase();
     }
 

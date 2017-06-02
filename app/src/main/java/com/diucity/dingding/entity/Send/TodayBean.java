@@ -16,7 +16,7 @@ public class TodayBean {
 
     public TodayBean(int recycler_id, double longitude, double latitude) {
         this.timestamp = System.currentTimeMillis();
-        this.nonce =  SignUtils.getUUID();
+        this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
         this.longitude = longitude;
         this.latitude = latitude;

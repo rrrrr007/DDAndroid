@@ -151,7 +151,7 @@ public abstract class AppDelegate implements IDelegate {
 
     public void startAcitityWithAnim(Class a) {
         startActivity(a);
-        getActivity().overridePendingTransition(R.anim.start,R.anim.stay);
+        getActivity().overridePendingTransition(R.anim.start, R.anim.stay);
 
     }
 
@@ -191,6 +191,7 @@ public abstract class AppDelegate implements IDelegate {
         vg.setLayoutAnimation(new LayoutAnimationController(AnimationUtils.loadAnimation(
                 getActivity(), R.anim.list_animation), 0.5f));
         TextView tv = (TextView) view.findViewById(R.id.tv_notice_normal);
+        ImageView iv = (ImageView) view.findViewById(R.id.iv_notice_normal);
         Drawable drawable = null;
         switch (pattern) {
             case 1:
@@ -210,10 +211,9 @@ public abstract class AppDelegate implements IDelegate {
                 view.setBackgroundResource(R.drawable.normal_color3);
                 break;
         }
-        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-        tv.setCompoundDrawables(drawable, null, null, null);
         tv.getPaint().setFakeBoldText(true);
         tv.setText(content);
+        iv.setImageDrawable(drawable);
         vg.addView(view);
         if (observable == null)
             observable = Observable.timer(3, TimeUnit.SECONDS)
@@ -240,9 +240,9 @@ public abstract class AppDelegate implements IDelegate {
         vg.addView(small);
     }
 
-    public boolean isSmallWarnVisiable(){
+    public boolean isSmallWarnVisiable() {
         ViewGroup vg = get(R.id.notice);
-        return vg.getChildCount()>0;
+        return vg.getChildCount() > 0;
     }
 
     public void hideSmallWarn() {

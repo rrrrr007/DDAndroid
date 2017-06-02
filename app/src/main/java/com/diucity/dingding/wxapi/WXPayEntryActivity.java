@@ -54,18 +54,18 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onResp(BaseResp resp) {
         Log.d("ch", "onPayFinish, errCode = " + resp.errCode);// 支付结果码
         TextView viewById = (TextView) findViewById(R.id.tv_zz);
-        if (resp.errCode==0){
+        if (resp.errCode == 0) {
             viewById.setText("支付成功,3s后返回");
             new Handler().postDelayed(() -> {
-                ((PaymentActivity)App.getAcitvity("activity.PaymentActivity")).showSuccess();
+                ((PaymentActivity) App.getAcitvity("activity.PaymentActivity")).showSuccess();
                 WXPayEntryActivity.this.finish();
-            },3000);
-        }else {
+            }, 3000);
+        } else {
             viewById.setText("支付失败,3s后返回");
             new Handler().postDelayed(() -> {
-                ((PaymentActivity)App.getAcitvity("activity.PaymentActivity")).showFailure();
+                ((PaymentActivity) App.getAcitvity("activity.PaymentActivity")).showFailure();
                 WXPayEntryActivity.this.finish();
-            },3000);
+            }, 3000);
         }
 
     }

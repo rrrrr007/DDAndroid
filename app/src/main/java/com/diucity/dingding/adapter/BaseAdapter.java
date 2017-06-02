@@ -18,20 +18,20 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
     public BaseAdapter(Context context, List<T> model) {
         this.context = context;
         this.model = new ArrayList<>();
-        if (model!=null&&model.size()>0){
+        if (model != null && model.size() > 0) {
             this.model.addAll(model);
         }
     }
 
     public abstract int getId();
 
-    public boolean kinds(){
+    public boolean kinds() {
         return false;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return ViewHolder.get(context,parent,getId());
+        return ViewHolder.get(context, parent, getId());
 
     }
 
@@ -48,15 +48,15 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
         return model;
     }
 
-    public void updateByAdd(List<T> model){
-        if (model!=null&&model.size()>0){
+    public void updateByAdd(List<T> model) {
+        if (model != null && model.size() > 0) {
             this.model.addAll(model);
         }
         notifyDataSetChanged();
     }
 
-    public void updateBySet(List<T> model){
-        if (model!=null&&model.size()>0){
+    public void updateBySet(List<T> model) {
+        if (model != null && model.size() > 0) {
             this.model.clear();
             this.model.addAll(model);
         }

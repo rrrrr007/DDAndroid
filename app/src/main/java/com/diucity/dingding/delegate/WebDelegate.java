@@ -39,7 +39,7 @@ public class WebDelegate extends AppDelegate {
         super.initWidget();
         WebView wv = get(R.id.webView_web);
         WebSettings set = wv.getSettings();
-        wv.loadUrl(Api.WEBURL+"#/billing-details");
+        wv.loadUrl(Api.WEBURL + "#/billing-details");
         wv.addJavascriptInterface(WebDelegate.this, "android");
         set.setJavaScriptEnabled(true);
         wv.setWebViewClient(new WebViewClient());
@@ -53,16 +53,16 @@ public class WebDelegate extends AppDelegate {
 
     @JavascriptInterface
     public int getBillID() {
-        return getActivity().getIntent().getIntExtra("billId",0);
+        return getActivity().getIntent().getIntExtra("billId", 0);
     }
 
     @JavascriptInterface
-    public void callService(String number){
+    public void callService(String number) {
         showCallDialog(number);
     }
 
     public void showCallDialog(String string) {
-        Intent intent= new Intent(Intent.ACTION_DIAL);
+        Intent intent = new Intent(Intent.ACTION_DIAL);
         if (alertDialog == null) {
             alertDialog = new AlertDialog.Builder(getActivity())
                     .setTitle("提示")
@@ -76,14 +76,14 @@ public class WebDelegate extends AppDelegate {
             Window window = alertDialog.getWindow();
             window.setWindowAnimations(R.style.dialog_style);
         }
-        if (!TextUtils.isEmpty(string)){
-            alertDialog.setMessage("联系客服（"+string+"）");
+        if (!TextUtils.isEmpty(string)) {
+            alertDialog.setMessage("联系客服（" + string + "）");
             intent.setData(Uri.parse("tel:" + string));
-        }else {
+        } else {
             alertDialog.setMessage("联系客服（400-8032039）");
             intent.setData(Uri.parse("tel:" + "400-8032023"));
         }
-        if (!alertDialog.isShowing()){
+        if (!alertDialog.isShowing()) {
             alertDialog.show();
         }
     }

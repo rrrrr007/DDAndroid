@@ -11,13 +11,9 @@ import com.diucity.dingding.adapter.CountAdapter;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.CountBinder;
 import com.diucity.dingding.delegate.CountDelegate;
-import com.diucity.dingding.entity.Back.LoginBack;
 import com.diucity.dingding.entity.Back.TodayBack;
 import com.diucity.dingding.entity.Send.CreateBean;
-import com.diucity.dingding.entity.Send.SupplierBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.utils.GsonUtils;
-import com.diucity.dingding.utils.SpUtils;
 import com.diucity.dingding.utils.StringUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -72,7 +68,7 @@ public class CountActivity extends BaseActivity<CountDelegate> {
 
         });
         //结算
-        RxView.clicks(viewDelegate.get(R.id.tv_count_payment)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
+        RxView.clicks(viewDelegate.get(R.id.all_count_pay)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
             showCallDialog();
         });
 
@@ -153,7 +149,7 @@ public class CountActivity extends BaseActivity<CountDelegate> {
             Window window = alertDialog2.getWindow();
             window.setWindowAnimations(R.style.dialog_style);
         }
-        alertDialog2.setMessage(code==-1?"回收人员回收总金额已达到上限":"扫描的微信用户交易次数已达到上限");
+        alertDialog2.setMessage(code == -1 ? "回收人员回收总金额已达到上限" : "扫描的微信用户交易次数已达到上限");
         alertDialog2.show();
     }
 

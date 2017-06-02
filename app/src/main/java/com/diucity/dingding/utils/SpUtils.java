@@ -10,14 +10,15 @@ import android.util.Log;
 
 public class SpUtils {
     private static final String spFileName = "app";
-    public static final String NOTIFICATION  = "notification";
+    public static final String NOTIFICATION = "notification";
     public static final String VIBRATE = "vibrate";
     public static final String SOUND = "sound";
+
     public static final String UPDATE = "update";
     public static final String TODAY = "today";
     public static final String SCRAPS = "scraps";
     public static final String USER = "loginBack";
-
+    public static final String WALLET = "wallet";
 
 
     public static String getString(Context context, String strKey) {
@@ -101,7 +102,7 @@ public class SpUtils {
         SharedPreferences setPreferences = context.getSharedPreferences(
                 spFileName, Context.MODE_PRIVATE);
         long result = setPreferences.getLong(strKey, strDefault);
-        Log.d("ch",result+"");
+        Log.d("ch", result + "");
         return result;
     }
 

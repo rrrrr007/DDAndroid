@@ -235,7 +235,7 @@ public class CalligraphyConfig {
          * <p>Turn of the use of Reflection to inject the private factory.
          * This has operational consequences! Please read and understand before disabling.
          * <b>This is already disabled on pre Honeycomb devices. (API 11)</b></p>
-         *
+         * <p>
          * <p> If you disable this you will need to override your {@link android.app.Activity#onCreateView(View, String, android.content.Context, android.util.AttributeSet)}
          * as this is set as the {@link android.view.LayoutInflater} private factory.</p>
          * <br>
@@ -257,20 +257,20 @@ public class CalligraphyConfig {
          * Due to the poor inflation order where custom views are created and never returned inside an
          * {@code onCreateView(...)} method. We have to create CustomView's at the latest point in the
          * overrideable injection flow.
-         *
+         * <p>
          * On HoneyComb+ this is inside the {@link android.app.Activity#onCreateView(View, String, android.content.Context, android.util.AttributeSet)}
          * Pre HoneyComb this is in the {@link android.view.LayoutInflater.Factory#onCreateView(String, android.util.AttributeSet)}
-         *
+         * <p>
          * We wrap base implementations, so if you LayoutInflater/Factory/Activity creates the
          * custom view before we get to this point, your view is used. (Such is the case with the
          * TintEditText etc)
-         *
+         * <p>
          * The problem is, the native methods pass there parents context to the constructor in a really
          * To mimic this we have to use reflection as the Class constructor args are hidden to us.
-         *
+         * <p>
          * We have discussed other means of doing this but this is the only semi-clean way of doing it.
          * (Without having to do proxy classes etc).
-         *
+         * <p>
          * Calling this will of course speed up inflation by turning off reflection, but not by much,
          * But if you want Calligraphy to inject the correct typeface then you will need to make sure your CustomView's
          * are created before reaching the LayoutInflater onViewCreated.
@@ -283,13 +283,13 @@ public class CalligraphyConfig {
         /**
          * Add a custom style to get looked up. If you use a custom class that has a parent style
          * which is not part of the default android styles you will need to add it here.
-         *
+         * <p>
          * The Calligraphy inflater is unaware of custom styles in your custom classes. We use
          * the class type to look up the style attribute in the theme resources.
-         *
+         * <p>
          * So if you had a {@code MyTextField.class} which looked up it's default style as
          * {@code R.attr.textFieldStyle} you would add those here.
-         *
+         * <p>
          * {@code builder.addCustomStyle(MyTextField.class,R.attr.textFieldStyle}
          *
          * @param styleClass             the class that related to the parent styleResource. null is ignored.

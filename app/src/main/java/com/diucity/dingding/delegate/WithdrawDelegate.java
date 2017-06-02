@@ -40,7 +40,7 @@ public class WithdrawDelegate extends AppDelegate {
         super.initWidget();
         WebView wv = get(R.id.webView_withdraw);
         WebSettings set = wv.getSettings();
-        wv.loadUrl(Api.WEBURL+"#/withdraw");
+        wv.loadUrl(Api.WEBURL + "#/withdraw");
         wv.addJavascriptInterface(WithdrawDelegate.this, "android");
         set.setJavaScriptEnabled(true);
         set.setDomStorageEnabled(true);

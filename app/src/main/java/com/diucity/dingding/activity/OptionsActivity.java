@@ -62,12 +62,12 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
         });
         //切换账号
         RxView.clicks(viewDelegate.get(R.id.tv_options_change)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-                    showCallDialog();
-                });
+            showCallDialog();
+        });
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_options_back)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-                    finish();
-                });
+            finish();
+        });
 
 
     }
@@ -79,12 +79,12 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
                     .setMessage("是否退出当前账号")
                     .setPositiveButton("确定", (dialog, which) -> {
                         alertDialog.dismiss();
-                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.USER,"");
+                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.USER, "");
                         App.getAcitvity("activity.OptionsActivity").finish();
                         App.getAcitvity("activity.WalletActivity").finish();
                         App.getAcitvity("activity.HomeActivity").finish();
-                        Intent i = new Intent(viewDelegate.getActivity(),LoginActivity.class);
-                        i.putExtra("intent","loginout");
+                        Intent i = new Intent(viewDelegate.getActivity(), LoginActivity.class);
+                        i.putExtra("intent", "loginout");
                         viewDelegate.startActivity(i);
                         viewDelegate.finish();
                         //退出
@@ -96,15 +96,15 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
         alertDialog.show();
     }
 
-    private void clearCache(){
-        viewDelegate.setVisiable(true,R.id.progress_options);
+    private void clearCache() {
+        viewDelegate.setVisiable(true, R.id.progress_options);
         ClearUtils.clearAppCache(this);
-        viewDelegate.setText(ClearUtils.caculateCacheSize(this),R.id.tv_options_cache);
+        viewDelegate.setText(ClearUtils.caculateCacheSize(this), R.id.tv_options_cache);
         Observable.timer(2, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    viewDelegate.setVisiable(false,R.id.progress_options);
+                    viewDelegate.setVisiable(false, R.id.progress_options);
                     viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "清理成功");
                 });
     }
@@ -112,14 +112,14 @@ public class OptionsActivity extends BaseActivity<OptionsDelegate> {
     @Override
     protected void onResume() {
         super.onResume();
-        if(SpUtils.getBoolean(this,SpUtils.NOTIFICATION,true))
-            viewDelegate.setText("已开启",R.id.tv_options_isNotification);
+        if (SpUtils.getBoolean(this, SpUtils.NOTIFICATION, true))
+            viewDelegate.setText("已开启", R.id.tv_options_isNotification);
         else
-            viewDelegate.setText("未开启",R.id.tv_options_isNotification);
+            viewDelegate.setText("未开启", R.id.tv_options_isNotification);
 
     }
 
-    public void reset(){
+    public void reset() {
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "修改密码成功");
     }
 }

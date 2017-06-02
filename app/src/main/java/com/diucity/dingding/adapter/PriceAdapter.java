@@ -27,6 +27,7 @@ import java.util.List;
 
 public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
     private ScrapsBack scraps;
+
     public PriceAdapter(Context context, ArrayList<TodayBack.DataBean.ScrapsBean> model) {
         super(context, model);
     }
@@ -47,7 +48,7 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
         TextView content = holder.getView(R.id.adapter_tv_price_content);
         content.setText("买 ￥" + StringUtils.getDoubleString(getModel().get(position).getBuy_price()) + "  卖 ￥" + StringUtils.getDoubleString(getModel().get(position).getSell_price()));
         TextView tv = holder.getView(R.id.adapter_tv_price_difference);
-        tv.setText(textSpan(StringUtils.getDoubleString(getModel().get(position).getSell_price() - getModel().get(position).getBuy_price())+"元"));
+        tv.setText(textSpan(StringUtils.getDoubleString(getModel().get(position).getSell_price() - getModel().get(position).getBuy_price()) + "元"));
 
     }
 
@@ -65,11 +66,11 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
         scraps = GsonUtils.GsonToBean(today, ScrapsBack.class);
     }
 
-    public ScrapsBack.Data.Scraps getScrapItem(int position){
-        if (scraps==null) getScraps();
+    public ScrapsBack.Data.Scraps getScrapItem(int position) {
+        if (scraps == null) getScraps();
         List<ScrapsBack.Data.Scraps> list = this.scraps.getData().getScraps();
         for (ScrapsBack.Data.Scraps scrap : list) {
-            if (scrap.getScrap_id()==getModel().get(position).getScrap_id()) return scrap;
+            if (scrap.getScrap_id() == getModel().get(position).getScrap_id()) return scrap;
         }
         return null;
     }

@@ -14,6 +14,7 @@ import com.diucity.dingding.entity.Send.SummaryBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
+import com.diucity.dingding.utils.SpUtils;
 import com.diucity.dingding.utils.StringUtils;
 import com.diucity.dingding.utils.TimeUtils;
 
@@ -23,7 +24,7 @@ import rx.Observer;
  * Created by Administrator on 2017/5/3 0003.
  */
 
-public class WalletBinder implements DataBinder<WalletDelegate,NormalBack> {
+public class WalletBinder implements DataBinder<WalletDelegate, NormalBack> {
     @Override
     public void viewBindModel(WalletDelegate viewDelegate, NormalBack data) {
 
@@ -48,13 +49,14 @@ public class WalletBinder implements DataBinder<WalletDelegate,NormalBack> {
                 @Override
                 public void onNext(SummaryBack s) {
                     Log.d("ch", GsonUtils.GsonString(s));
-                    if (s.getCode()==0){
-                        viewDelegate.setText(StringUtils.fmoney(s.getData().getIncome(),2), R.id.tv_wallet_money);
-                        work(viewDelegate,new ListBean(bean.getRecycler_id(), App.user.getData().getAuth_token(),0,10));
+                    if (s.getCode() == 0) {
+                        viewDelegate.setText(StringUtils.fmoney(s.getData().getIncome(), 2), R.id.tv_wallet_money);
+                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.WALLET, StringUtils.fmoney(s.getData().getIncome(), 2));
+                        work(viewDelegate, new ListBean(bean.getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
                     }
                 }
             });
-        }else if (object instanceof ListBean){
+        } else if (object instanceof ListBean) {
             ListBean bean = (ListBean) object;
             Network.subscribe(Network.getApi().list(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<ListBack>() {
 
@@ -70,9 +72,10 @@ public class WalletBinder implements DataBinder<WalletDelegate,NormalBack> {
 
                 @Override
                 public void onNext(ListBack s) {
-                    if (s.getCode()==0){
-                        if (s.getData().getItems().size()>0)
-                        viewDelegate.setText((TimeUtils.getTime(s.getData().getItems().get(0).getTime())+" 收入 ￥"+ StringUtils.fmoney(s.getData().getItems().get(0).getAmount(),2)),R.id.tv_wallet_time);
+                    if (s.getCode() == 0) {
+                        if (s.getData().getItems().size() > 0)
+                            viewDelegate.setText((TimeUtils.getTime(s.getData().getItems().get(0).getTime()) + " 收入 ￥" + StringUtils.fmoney(s.getData().getItems().get(0).getAmount(), 2)), R.id.tv_wallet_time);
+                        App.loginOut("activity.WalletActivity");
                     }
                     Log.d("ch", GsonUtils.GsonString(s));
                 }

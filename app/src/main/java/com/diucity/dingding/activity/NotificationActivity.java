@@ -28,25 +28,24 @@ public class NotificationActivity extends BaseActivity<NotificationDelegate> {
     protected void bindEvenListener() {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_notify_back)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
-                    finish();
-                });
+            finish();
+        });
 
         //开关
         RxCompoundButton.checkedChanges(viewDelegate.get(R.id.switch_notification_notify)).subscribe(aBoolean -> {
-                    SpUtils.putBoolean(this,SpUtils.NOTIFICATION,aBoolean);
-                });
+            SpUtils.putBoolean(this, SpUtils.NOTIFICATION, aBoolean);
+        });
         RxCompoundButton.checkedChanges(viewDelegate.get(R.id.switch_notification_sound)).subscribe(aBoolean -> {
-                    SpUtils.putBoolean(this,SpUtils.SOUND,aBoolean);
-                });
+            SpUtils.putBoolean(this, SpUtils.SOUND, aBoolean);
+        });
         RxCompoundButton.checkedChanges(viewDelegate.get(R.id.switch_notification_vibrate)).subscribe(aBoolean -> {
-                    SpUtils.putBoolean(this,SpUtils.VIBRATE,aBoolean);
-                });
+            SpUtils.putBoolean(this, SpUtils.VIBRATE, aBoolean);
+        });
     }
 
     @Override
     public void initData() {
         super.initData();
-
 
 
     }

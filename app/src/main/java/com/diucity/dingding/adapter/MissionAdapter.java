@@ -36,9 +36,9 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.Holder> 
     public void adapterNotify(ArrayList<String> model) {
         int start = getItemCount();
         if (model != null && model.size() > 0) {
-           this.model.addAll(model);
+            this.model.addAll(model);
         }
-        notifyItemRangeInserted(start,getItemCount());
+        notifyItemRangeInserted(start, getItemCount());
 
 
     }
@@ -68,7 +68,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.Holder> 
                 holder.pcv.setPercent(0);
         }
         holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(activity, position+"", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, position + "", Toast.LENGTH_SHORT).show();
             holder.get.setVisibility(View.VISIBLE);
             showDialog();
         });

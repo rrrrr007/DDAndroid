@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 public class NotificationsUtils {
     private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
     private static final String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
+
     public static boolean isNotificationEnabled(Context context) {
         AppOpsManager mAppOps = (AppOpsManager)
                 context.getSystemService(Context.APP_OPS_SERVICE);
@@ -26,10 +27,9 @@ public class NotificationsUtils {
             appOpsClass = Class.forName(AppOpsManager.class.getName());
             Method checkOpNoThrowMethod = appOpsClass.getMethod(CHECK_OP_NO_THROW, Integer.TYPE, Integer.TYPE, String.class);
             Field opPostNotificationValue = appOpsClass.getDeclaredField(OP_POST_NOTIFICATION);
-            int value = (int)opPostNotificationValue.get(Integer.class);
-            return ((int)checkOpNoThrowMethod.invoke(mAppOps,value, uid, pkg) == AppOpsManager.MODE_ALLOWED);
-        }
-        catch (ClassNotFoundException e) {
+            int value = (int) opPostNotificationValue.get(Integer.class);
+            return ((int) checkOpNoThrowMethod.invoke(mAppOps, value, uid, pkg) == AppOpsManager.MODE_ALLOWED);
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

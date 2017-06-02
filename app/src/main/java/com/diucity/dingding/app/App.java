@@ -1,6 +1,7 @@
 package com.diucity.dingding.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,9 +10,8 @@ import com.bugtags.library.Bugtags;
 import com.bugtags.library.BugtagsOptions;
 import com.diucity.dingding.R;
 import com.diucity.dingding.activity.BaseActivity;
+import com.diucity.dingding.activity.LoginActivity;
 import com.diucity.dingding.entity.Back.LoginBack;
-import com.diucity.dingding.entity.Back.RequestBack;
-import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.FontUtils.CalligraphyConfig;
 import com.diucity.dingding.utils.SpUtils;
 import com.google.gson.Gson;
@@ -37,7 +37,8 @@ public class App extends android.app.Application {
     private static int mainTid;
     public static LoginBack user;
     public static List<BaseActivity> activities;
-    public static double latitude=0,longitude=0;
+    public static double latitude = 0, longitude = 0;
+
     static {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
     }
@@ -52,7 +53,7 @@ public class App extends android.app.Application {
         app = this;
         activities = new LinkedList<>();
         mainTid = android.os.Process.myTid();
-        QbSdk.initX5Environment(this,null);
+        QbSdk.initX5Environment(this, null);
         LeakCanary.install(this);
         ZXingLibrary.initDisplayOpinion(this);
         BugtagsOptions options = new BugtagsOptions.Builder().
@@ -62,7 +63,7 @@ public class App extends android.app.Application {
                 trackingUserSteps(true).//是否收集用户操作步骤，默认 true
                 build();
 
-        Bugtags.start("50138096331774a7804fb33c216e6a71", this, Bugtags.BTGInvocationEventBubble,options);
+        Bugtags.start("50138096331774a7804fb33c216e6a71", this, Bugtags.BTGInvocationEventBubble, options);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 //.setDefaultFontPath(Environment.getRootDirectory().getPath() + "/fonts/NotoSansOriyaUI-Bold.ttf")//指定字体
                 .setFontAttrId(R.attr.fontPath)
@@ -111,20 +112,33 @@ public class App extends android.app.Application {
         return activities;
     }
 
-    public static BaseActivity getAcitvity(String name){
+    public static BaseActivity getAcitvity(String name) {
         List<BaseActivity> activities = getActivities();
         for (BaseActivity activity : activities) {
-            Log.d("ch",activity.getLocalClassName());
-            if (activity.getLocalClassName().equals(name)){
+            Log.d("ch", activity.getLocalClassName());
+            if (activity.getLocalClassName().equals(name)) {
                 return activity;
             }
         }
         return null;
     }
 
-    public static void quiteApplication() {
-        clearActivities();
-        System.exit(0);
+    public static void loginOut(String name) {
+        List<BaseActivity> activities = getActivities();
+        BaseActivity a = null;
+        for (BaseActivity activity : activities) {
+            Log.d("ch", activity.getLocalClassName());
+            if (activity.getLocalClassName().equals(name)) {
+                a = activity;
+            } else {
+                activity.finish();
+            }
+        }
+        SpUtils.putString(getContext(), SpUtils.USER, "");
+        SpUtils.putString(getContext(), SpUtils.WALLET, "");
+        if (a == null) System.exit(0);
+        a.startActivity(new Intent(a, LoginActivity.class));
+        a.finish();
     }
 }
 

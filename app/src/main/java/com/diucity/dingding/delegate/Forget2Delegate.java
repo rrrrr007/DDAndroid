@@ -33,23 +33,23 @@ public class Forget2Delegate extends AppDelegate {
     public void initWidget() {
         String phone = getActivity().getIntent().getStringExtra("phone");
         TextView describe = get(R.id.tv_forget2_describe);
-        describe.setText(describe.getText().toString()+"\n"+phone);
+        describe.setText(describe.getText().toString() + "\n" + phone);
     }
 
-    public void textChange(boolean has){
-        get(R.id.iv_forget2_icon).setVisibility(has?View.VISIBLE: View.GONE);
+    public void textChange(boolean has) {
+        get(R.id.iv_forget2_icon).setVisibility(has ? View.VISIBLE : View.GONE);
     }
 
-    public void clearEdt(){
-        ((EditText)get(R.id.edt_forget2_password)).setText("");
+    public void clearEdt() {
+        ((EditText) get(R.id.edt_forget2_password)).setText("");
     }
 
-    public boolean timer(){
+    public boolean timer() {
         TextView timer = get(R.id.tv_forget2_timer);
         if (!timer.getText().toString().equals("重新发送"))
             return false;
         timer.setText("60s");
-        if (observable==null){
+        if (observable == null) {
             observable = Observable.interval(1, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .limit(60);

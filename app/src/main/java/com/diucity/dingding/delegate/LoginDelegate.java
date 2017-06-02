@@ -2,18 +2,13 @@ package com.diucity.dingding.delegate;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
 import android.graphics.Rect;
-import android.net.ConnectivityManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.persent.AppDelegate;
-import com.diucity.dingding.recevier.MyReceiver;
-import com.diucity.dingding.recevier.NetworkRecevier;
 
 
 /**
@@ -37,11 +32,11 @@ public class LoginDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        setText("139 9068 5003",R.id.edt_login_phone);
+        setText("139 9068 5003", R.id.edt_login_phone);
         String intent = getActivity().getIntent().getStringExtra("intent");
-        if (!TextUtils.isEmpty(intent)&&intent.equals("loginout")){
+        if (!TextUtils.isEmpty(intent) && intent.equals("loginout")) {
             showNormalWarn(get(R.id.fl_toolbar), 1, "退出成功");
-        }else if (!TextUtils.isEmpty(intent)&&intent.equals("reset")){
+        } else if (!TextUtils.isEmpty(intent) && intent.equals("reset")) {
             showNormalWarn(get(R.id.fl_toolbar), 1, "修改密码成功,请重新登录");
         }
     }
@@ -75,10 +70,10 @@ public class LoginDelegate extends AppDelegate {
     public void setWidgetHeight() {
         if (isSoftShowing()) {
             if (needshow) return;
-            zoomIn(get(R.id.iv_login_logo),get(R.id.activity_main));
+            zoomIn(get(R.id.iv_login_logo), get(R.id.activity_main));
         } else {
             if (!needshow) return;
-            zoomOut(get(R.id.iv_login_logo),get(R.id.activity_main));
+            zoomOut(get(R.id.iv_login_logo), get(R.id.activity_main));
         }
     }
 
@@ -87,20 +82,21 @@ public class LoginDelegate extends AppDelegate {
         Rect rect = new Rect();
         getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
         height = screenHeight - rect.bottom;
-        return height > screenHeight/3;
+        return height > screenHeight / 3;
     }
 
     /**
      * 缩小
+     *
      * @param view
      */
-    public void zoomIn(final View view,final View viewGroup) {
+    public void zoomIn(final View view, final View viewGroup) {
         view.setPivotY(view.getHeight());
         view.setPivotX(view.getWidth() / 2);
         AnimatorSet mAnimatorSet = new AnimatorSet();
         ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 0.0f);
         ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 0.0f);
-        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", 0.0f, -height/3);
+        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", 0.0f, -height / 3);
         mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
         mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
         mAnimatorSet.setDuration(300);
@@ -110,15 +106,16 @@ public class LoginDelegate extends AppDelegate {
 
     /**
      * f放大
+     *
      * @param view
      */
-    public void zoomOut(final View view,final View viewGroup) {
+    public void zoomOut(final View view, final View viewGroup) {
         view.setPivotY(0);
         view.setPivotX(view.getWidth() / 2);
         AnimatorSet mAnimatorSet = new AnimatorSet();
         ObjectAnimator mAnimatorScaleX = ObjectAnimator.ofFloat(view, "scaleX", 0.0f, 1.0f);
         ObjectAnimator mAnimatorScaleY = ObjectAnimator.ofFloat(view, "scaleY", 0.0f, 1.0f);
-        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", -height/3, 0.0f);
+        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(viewGroup, "translationY", -height / 3, 0.0f);
         mAnimatorSet.play(mAnimatorTranslateY).with(mAnimatorScaleX);
         mAnimatorSet.play(mAnimatorScaleX).with(mAnimatorScaleY);
         mAnimatorSet.setDuration(300);

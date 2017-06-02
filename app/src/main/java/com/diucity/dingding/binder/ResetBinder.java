@@ -1,11 +1,8 @@
 package com.diucity.dingding.binder;
 
-import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.diucity.dingding.R;
-import com.diucity.dingding.activity.LoginActivity;
 import com.diucity.dingding.activity.OptionsActivity;
 import com.diucity.dingding.api.Network;
 import com.diucity.dingding.app.App;
@@ -15,7 +12,6 @@ import com.diucity.dingding.entity.Send.ChangeBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
-import com.diucity.dingding.utils.SpUtils;
 
 import rx.Observer;
 
@@ -59,7 +55,7 @@ public class ResetBinder implements DataBinder<ResetDelegate, NormalBack> {
                         i.putExtra("intent","reset");
                         viewDelegate.startActivity(i);*/
                         viewDelegate.finish();
-                        ((OptionsActivity)App.getAcitvity("activity.OptionsActivity")).reset();
+                        ((OptionsActivity) App.getAcitvity("activity.OptionsActivity")).reset();
 
                     } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, o.getMessage());

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
- //视图层代理的接口协议
+//视图层代理的接口协议
 
 public interface IDelegate {
     void create(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);

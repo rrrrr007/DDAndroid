@@ -1,6 +1,5 @@
 package com.diucity.dingding.activity;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
@@ -28,8 +27,8 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
     CaptureFragment captureFragment;
     private Camera camera;
     private Camera.Parameters parameter;
-    boolean isOpen ;
-    private final String url ="qrcode.dinghs.com/supplier/";
+    boolean isOpen;
+    private final String url = "qrcode.dinghs.com/supplier/";
 
     @Override
     public DataBinder getDataBinder() {
@@ -49,34 +48,34 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
         captureFragment.setAnalyzeCallback(new CodeUtils.AnalyzeCallback() {
             @Override
             public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
-                int id =0;
+                int id = 0;
                 viewDelegate.toast(result);
-                if (viewDelegate.isSmallWarnVisiable()){
+                if (viewDelegate.isSmallWarnVisiable()) {
                     viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "当前网络不可用");
                     return;
                 }
 
-                if (result.contains(url)){
+                if (result.contains(url)) {
                     int i = result.indexOf(url);
-                    String s = result.substring(i+url.length(), result.length());
+                    String s = result.substring(i + url.length(), result.length());
                     int j = s.indexOf("?");
-                    if (j!=-1){
-                        s = s.substring(0,j);
+                    if (j != -1) {
+                        s = s.substring(0, j);
                     }
                     try {
                         id = Integer.parseInt(s);
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
-                    }finally {
-                        if (id==0){
+                    } finally {
+                        if (id == 0) {
                             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "无效二维码");
                             restart((CaptureActivityHandler) captureFragment.getHandler());
                             return;
                         }
-                       binder.work(viewDelegate,new SupplierBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),id));
+                        binder.work(viewDelegate, new SupplierBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), id));
                     }
 
-                }else {
+                } else {
                     viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "无效二维码");
                     restart((CaptureActivityHandler) captureFragment.getHandler());
                 }
@@ -101,7 +100,7 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
                 });
     }
 
-    private void flash(){
+    private void flash() {
         if (getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_CAMERA_FLASH)) {
         } else {
@@ -116,19 +115,19 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
             parameter.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             camera.setParameters(parameter);
             isOpen = true;
-            viewDelegate.setSrc(ContextCompat.getDrawable(this,R.mipmap.ic_buy_navigation_light_on),R.id.iv_capture_flash);
-            Log.d("ch","kai");
+            viewDelegate.setSrc(ContextCompat.getDrawable(this, R.mipmap.ic_buy_navigation_light_on), R.id.iv_capture_flash);
+            Log.d("ch", "kai");
         } else {  // 关灯
             parameter.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             camera.setParameters(parameter);
             isOpen = false;
-            viewDelegate.setSrc(ContextCompat.getDrawable(this,R.mipmap.ic_buy_navigation_light_off),R.id.iv_capture_flash);
-            Log.d("ch","guan");
+            viewDelegate.setSrc(ContextCompat.getDrawable(this, R.mipmap.ic_buy_navigation_light_off), R.id.iv_capture_flash);
+            Log.d("ch", "guan");
         }
     }
 
     private void restart(final CaptureActivityHandler a) {
-        if (a==null){
+        if (a == null) {
             return;
         }
         new Handler().postDelayed(() -> {
@@ -142,12 +141,12 @@ public class CaptureActivity extends BaseActivity<CaptureDelegate> {
                 e.printStackTrace();
             }
 
-        },3000);
+        }, 3000);
     }
 
     @Override
     public void finish() {
         super.finish();
-        this.overridePendingTransition(R.anim.stay,R.anim.over);
+        this.overridePendingTransition(R.anim.stay, R.anim.over);
     }
 }

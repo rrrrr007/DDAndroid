@@ -25,7 +25,7 @@ public class NetworkRecevier extends BroadcastReceiver {
         if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
             Log.i("ch", "unconnect");
             // unconnect network
-        }else {
+        } else {
             Log.i("ch", "connect");
             // connect network
         }

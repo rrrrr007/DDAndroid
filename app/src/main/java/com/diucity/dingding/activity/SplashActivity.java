@@ -20,13 +20,13 @@ public class SplashActivity extends AppCompatActivity {
         skip();
     }
 
-    public void skip(){
+    public void skip() {
         new Handler().postDelayed(() -> {
-            if (!TextUtils.isEmpty(SpUtils.getString(this, SpUtils.USER))){
-                startActivity(new Intent(SplashActivity.this,HomeActivity.class));
+            if (!TextUtils.isEmpty(SpUtils.getString(this, SpUtils.USER))) {
+                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                 finish();
-            }else {
-                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+            } else {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 finish();
             }
 

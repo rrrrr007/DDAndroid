@@ -221,7 +221,8 @@ class CalligraphyFactory {
         }
 
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-        @Override public void onGlobalLayout() {
+        @Override
+        public void onGlobalLayout() {
             final Toolbar toolbar = mToolbarReference.get();
             final Context context = mContextRef.get();
             final CalligraphyFactory factory = mCalligraphyFactory.get();

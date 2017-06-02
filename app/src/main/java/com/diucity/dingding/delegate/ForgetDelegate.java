@@ -26,11 +26,11 @@ public class ForgetDelegate extends AppDelegate {
         super.initWidget();
     }
 
-    public void clearEdt(){
-        ((EditText)get(R.id.edt_forget_phone)).setText("");
+    public void clearEdt() {
+        ((EditText) get(R.id.edt_forget_phone)).setText("");
     }
 
-    public void textChange(boolean has){
-        get(R.id.iv_forget_icon).setVisibility(has?View.VISIBLE: View.GONE);
+    public void textChange(boolean has) {
+        get(R.id.iv_forget_icon).setVisibility(has ? View.VISIBLE : View.GONE);
     }
 }

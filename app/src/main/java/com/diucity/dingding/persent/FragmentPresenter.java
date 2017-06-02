@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-
 //Presenter层的实现基类
 
 public abstract class FragmentPresenter<T extends IDelegate> extends Fragment {

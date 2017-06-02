@@ -20,14 +20,14 @@ public class HomeViewPager extends PagerAdapter {
     public HomeViewPager(Context context) {
         this.context = context;
         this.model = new ArrayList<>();
-        for (int i =0;i<3;i++){
+        for (int i = 0; i < 3; i++) {
             RecyclerView rv = new RecyclerView(context);
-            if (i==0){
-                rv.setAdapter(new PriceAdapter(context,null));
-            }else if (i==1){
-                rv.setAdapter(new BasketAdapter(context,null));
-            }else {
-                rv.setAdapter(new AwardAdapter(context,null));
+            if (i == 0) {
+                rv.setAdapter(new PriceAdapter(context, null));
+            } else if (i == 1) {
+                rv.setAdapter(new BasketAdapter(context, null));
+            } else {
+                rv.setAdapter(new AwardAdapter(context, null));
             }
             rv.setLayoutManager(new LinearLayoutManager(context));
             this.model.add(rv);
@@ -46,7 +46,7 @@ public class HomeViewPager extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view==object;
+        return view == object;
     }
 
     @Override

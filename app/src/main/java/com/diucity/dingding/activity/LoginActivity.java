@@ -1,15 +1,11 @@
 package com.diucity.dingding.activity;
 
 import android.annotation.TargetApi;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.binder.LoginBinder;
@@ -26,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends BaseActivity<LoginDelegate> implements View.OnFocusChangeListener {
     private boolean phoneEnable, codeEnable;
     private EditText phone, code;
-    private int index = 0;
     private AlertDialog alertDialog;
     private boolean length;
 
@@ -118,22 +113,33 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
     }
 
     private void setPhoneText(CharSequence s) {
-        Log.d("ch","index"+s.length());
-        index = s.toString().length();
-        if (s.toString().length() == 3 || s.toString().length() == 8) {
-            phone.setText(phone.getText() + " ");
-            Log.d("ch","执行光标滞后"+s.toString().length());
-            phone.setSelection(phone.getText().length());
+        String contents = s.toString();
+        int length = contents.length();
+        if (length == 4) {
+            if (contents.substring(3).equals(" ")) { // -
+                contents = contents.substring(0, 3);
+                phone.setText(contents);
+                phone.setSelection(contents.length());
+            } else { // +
+                contents = contents.substring(0, 3) + " " + contents.substring(3);
+                phone.setText(contents);
+                phone.setSelection(contents.length());
+            }
+        } else if (length == 9) {
+            if (contents.substring(8).equals(" ")) { // -
+                contents = contents.substring(0, 8);
+                phone.setText(contents);
+                phone.setSelection(contents.length());
+            } else {// +
+                contents = contents.substring(0, 8) + " " + contents.substring(8);
+                phone.setText(contents);
+                phone.setSelection(contents.length());
+            }
         }
     }
 
     public void showNormal() {
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "重置成功");
-    }
-
-    public void showNormal2() {
-        Log.d("ch","showNormal2");
-        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "重置成功,请重新登录");
     }
 
     @Override

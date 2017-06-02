@@ -36,7 +36,7 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
 
             @Override
             public void onLoadmore() {
-                binder.work(viewDelegate,new ListBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),0,10));
+                binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
                 viewDelegate.onFinishLoad();
             }
 
@@ -52,11 +52,11 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
 
     @Override
     public void initData() {
-        binder.work(viewDelegate,new ListBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),0,10));
+        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
     }
 
     @Override
     protected void doAction1() {
-        binder.work(viewDelegate,new ListBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token(),0,10));
+        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
     }
 }

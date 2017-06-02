@@ -25,9 +25,9 @@ public class LightImage extends android.support.v7.widget.AppCompatImageView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction()==MotionEvent.ACTION_DOWN){
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             setAlpha(0.4f);
-        }else if(event.getAction()==MotionEvent.ACTION_UP){
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
             setAlpha(1f);
         }
         return super.onTouchEvent(event);
@@ -37,8 +37,8 @@ public class LightImage extends android.support.v7.widget.AppCompatImageView {
     // 改变亮度
     private void changeLight(int brightness) {
         ColorMatrix cMatrix = new ColorMatrix();
-        cMatrix.set(new float[] { 1, 0, 0, 0, brightness, 0, 1, 0, 0, brightness,
-                0, 0, 1, 0, brightness, 0, 0, 0, 1, 0 });
+        cMatrix.set(new float[]{1, 0, 0, 0, brightness, 0, 1, 0, 0, brightness,
+                0, 0, 1, 0, brightness, 0, 0, 0, 1, 0});
         this.setColorFilter(new ColorMatrixColorFilter(cMatrix));
     }
 }

@@ -10,16 +10,12 @@ import com.diucity.dingding.api.Network;
 import com.diucity.dingding.delegate.CountDelegate;
 import com.diucity.dingding.entity.Back.CreateBack;
 import com.diucity.dingding.entity.Back.NormalBack;
-import com.diucity.dingding.entity.Back.SupplierBack;
 import com.diucity.dingding.entity.Send.CreateBean;
-import com.diucity.dingding.entity.Send.SupplierBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import rx.Observer;
 
@@ -54,20 +50,19 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                 public void onNext(CreateBack o) {
                     viewDelegate.hideLoadingWarn();
                     Log.d("ch", GsonUtils.GsonString(o));
-                    if (o.getCode()==0){
+                    if (o.getCode() == 0) {
                         Intent intent = new Intent(viewDelegate.getActivity(), PaymentActivity.class);
-                        intent.putExtra("orderId",o.getData().getOrder_id());
-                        intent.putExtra("payId",o.getData().getOrder_id());
-                        intent.putExtra("number",o.getData().getOrder_no());
-                        intent.putExtra("total",o.getData().getTotal_price());
+                        intent.putExtra("orderId", o.getData().getOrder_id());
+                        intent.putExtra("payId", o.getData().getOrder_id());
+                        intent.putExtra("number", o.getData().getOrder_no());
+                        intent.putExtra("total", o.getData().getTotal_price());
                         ArrayList<CreateBack.DataBean.ScrapsBean> list = (ArrayList<CreateBack.DataBean.ScrapsBean>) o.getData().getScraps();
                         intent.putExtra("list", list);
-                        intent.putExtra("url",viewDelegate.getActivity().getIntent().getStringExtra("url"));
+                        intent.putExtra("url", viewDelegate.getActivity().getIntent().getStringExtra("url"));
                         viewDelegate.startActivity(intent);
-                        viewDelegate.finish();
-                    }else if (o.getCode()==-1||o.getCode()==-2){
-                        ((CountActivity)viewDelegate.getActivity()).showCallDialog2(o.getCode());
-                    }else {
+                    } else if (o.getCode() == -1 || o.getCode() == -2) {
+                        ((CountActivity) viewDelegate.getActivity()).showCallDialog2(o.getCode());
+                    } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
                     }
                 }

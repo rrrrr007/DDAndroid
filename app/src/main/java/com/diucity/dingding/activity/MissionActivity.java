@@ -32,8 +32,8 @@ public class MissionActivity extends BaseActivity<MissionDelegate> {
                     ArrayList<String> a = new ArrayList<>();
                     a.add("1");
                     a.add("1");
-                    ((MissionAdapter)((RecyclerView)viewDelegate.get(R.id.rv_mission)).getAdapter()).adapterNotify(a);
-                    rv.scrollToPosition(rv.getAdapter().getItemCount()-1);
+                    ((MissionAdapter) ((RecyclerView) viewDelegate.get(R.id.rv_mission)).getAdapter()).adapterNotify(a);
+                    rv.scrollToPosition(rv.getAdapter().getItemCount() - 1);
                 });
     }
 }

@@ -62,7 +62,7 @@ public class LoginBinder implements DataBinder<LoginDelegate, LoginBack> {
                     Log.d("ch", GsonUtils.GsonString(back));
                 }
             });
-        }else if (object instanceof TodayBean){
+        } else if (object instanceof TodayBean) {
             TodayBean bean = (TodayBean) object;
             Network.subscribe(Network.getApi().today(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<TodayBack>() {
                 @Override
@@ -77,8 +77,8 @@ public class LoginBinder implements DataBinder<LoginDelegate, LoginBack> {
 
                 @Override
                 public void onNext(TodayBack o) {
-                    if (o.getCode()==0){
-                        SpUtils.putString(viewDelegate.getActivity(),SpUtils.TODAY,GsonUtils.GsonString(o));
+                    if (o.getCode() == 0) {
+                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.TODAY, GsonUtils.GsonString(o));
                     }
                 }
             });

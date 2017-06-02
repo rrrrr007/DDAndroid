@@ -2,7 +2,6 @@ package com.diucity.dingding.entity.Send;
 
 import com.diucity.dingding.utils.SignUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +13,7 @@ public class CreateBean {
         this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
-        this.auth_code = SignUtils.authCode(getTimestamp(),auth_code);
+        this.auth_code = SignUtils.authCode(getTimestamp(), auth_code);
         this.supplier_id = supplier_id;
         this.longitude = longitude;
         this.latitude = latitude;

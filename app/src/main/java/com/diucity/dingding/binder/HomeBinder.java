@@ -34,11 +34,11 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
     @Override
     public void work(HomeDelegate viewDelegate, Object object) {
-        if (object instanceof ScrapsBean){
-            viewDelegate.setText("更新中...",R.id.tv_home_title);
-            viewDelegate.setVisiable(true,R.id.progress_home);
+        if (object instanceof ScrapsBean) {
+            viewDelegate.setText("更新中...", R.id.tv_home_title);
+            viewDelegate.setVisiable(true, R.id.progress_home);
             ScrapsBean bean = (ScrapsBean) object;
-            Network.subscribe(Network.getApi().scraps(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<ScrapsBack>() {
+            Network.subscribe(Network.getApi().scraps(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<ScrapsBack>() {
 
                 @Override
                 public void onCompleted() {
@@ -48,32 +48,32 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                 @Override
                 public void onError(Throwable e) {
                     viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接出错");
-                    viewDelegate.setText("叮叮回收",R.id.tv_home_title);
-                    viewDelegate.setVisiable(false,R.id.progress_home);
+                    viewDelegate.setText("叮叮回收", R.id.tv_home_title);
+                    viewDelegate.setVisiable(false, R.id.progress_home);
                     e.printStackTrace();
 
                 }
 
                 @Override
                 public void onNext(ScrapsBack s) {
-                    if (s.getCode()==0){
-                        viewDelegate.getInsideAdapterNotify(1,s.getData().getScraps());
-                        SpUtils.putString(viewDelegate.getActivity(),SpUtils.SCRAPS,GsonUtils.GsonString(s));
-                        work(viewDelegate,new TodayBean(bean.getRecycler_id(),App.longitude,App.latitude));
-                        work(viewDelegate,new TaskBean(bean.getRecycler_id()));
+                    if (s.getCode() == 0) {
+                        viewDelegate.getInsideAdapterNotify(1, s.getData().getScraps());
+                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.SCRAPS, GsonUtils.GsonString(s));
+                        work(viewDelegate, new TodayBean(bean.getRecycler_id(), App.longitude, App.latitude));
+                        work(viewDelegate, new TaskBean(bean.getRecycler_id()));
 
 
                     }
-                    Log.d("ch",GsonUtils.GsonString(s));
-                    viewDelegate.setText("叮叮回收",R.id.tv_home_title);
-                    viewDelegate.setVisiable(false,R.id.progress_home);
+                    Log.d("ch", GsonUtils.GsonString(s));
+                    viewDelegate.setText("叮叮回收", R.id.tv_home_title);
+                    viewDelegate.setVisiable(false, R.id.progress_home);
 
 
                 }
             });
-        }else if (object instanceof TodayBean){
+        } else if (object instanceof TodayBean) {
             TodayBean bean = (TodayBean) object;
-            Network.subscribe(Network.getApi().today(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<TodayBack>() {
+            Network.subscribe(Network.getApi().today(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<TodayBack>() {
 
                 @Override
                 public void onCompleted() {
@@ -90,17 +90,17 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                    /* if (s.getCode()==0){
                         SpUtils.putLong(viewDelegate.getActivity(),SpUtils.UPDATE,System.currentTimeMillis());
                     }*/
-                    if (s.getCode()==0){
-                        viewDelegate.getInsideAdapterNotify(0,s.getData().getScraps());
-                        SpUtils.putString(viewDelegate.getActivity(),SpUtils.TODAY,GsonUtils.GsonString(s));
-                        work(viewDelegate,new BasketBean(bean.getRecycler_id(),App.user.getData().getAuth_token()));
+                    if (s.getCode() == 0) {
+                        viewDelegate.getInsideAdapterNotify(0, s.getData().getScraps());
+                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.TODAY, GsonUtils.GsonString(s));
+                        work(viewDelegate, new BasketBean(bean.getRecycler_id(), App.user.getData().getAuth_token()));
                     }
-                    Log.d("ch",GsonUtils.GsonString(s));
+                    Log.d("ch", GsonUtils.GsonString(s));
                 }
             });
-        }else if (object instanceof TaskBean){
+        } else if (object instanceof TaskBean) {
             TaskBean bean = (TaskBean) object;
-            Network.subscribe(Network.getApi().task(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<TaskBack>() {
+            Network.subscribe(Network.getApi().task(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<TaskBack>() {
 
                 @Override
                 public void onCompleted() {
@@ -114,16 +114,16 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 @Override
                 public void onNext(TaskBack s) {
-                    Log.d("ch",GsonUtils.GsonString(s));
-                    if (s.getCode()==0){
-                        viewDelegate.getInsideAdapterNotify(2,s.getData().getTasks());
+                    Log.d("ch", GsonUtils.GsonString(s));
+                    if (s.getCode() == 0) {
+                        viewDelegate.getInsideAdapterNotify(2, s.getData().getTasks());
                     }
                 }
             });
-        }else if (object instanceof BasketBean){
+        } else if (object instanceof BasketBean) {
             BasketBean bean = (BasketBean) object;
-            Log.d("ch",""+GsonUtils.GsonString(bean));
-            Network.subscribe(Network.getApi().basket(SignUtils.sign(GsonUtils.GsonString(bean)),bean), new Observer<BasketBack>() {
+            Log.d("ch", "" + GsonUtils.GsonString(bean));
+            Network.subscribe(Network.getApi().basket(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<BasketBack>() {
 
                 @Override
                 public void onCompleted() {
@@ -137,10 +137,10 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 @Override
                 public void onNext(BasketBack s) {
-                    if (s.getCode()==0){
+                    if (s.getCode() == 0) {
                         viewDelegate.setBasket(s);
                     }
-                    Log.d("ch","baseket"+GsonUtils.GsonString(s));
+                    Log.d("ch", "baseket" + GsonUtils.GsonString(s));
                 }
             });
         }

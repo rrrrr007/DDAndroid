@@ -19,7 +19,7 @@ public class ListBean {
         this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
-        this.auth_code = SignUtils.authCode(getTimestamp(),taken);
+        this.auth_code = SignUtils.authCode(getTimestamp(), taken);
         this.start = start;
         this.limit = limit;
     }

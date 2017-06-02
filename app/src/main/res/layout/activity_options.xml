@@ -166,7 +166,7 @@
                         android:layout_toLeftOf="@id/tv_options_cache"
                         android:visibility="gone"
                         android:indeterminateTint="@color/text_green"
-                        android:indeterminateTintMode="src_atop"/>
+                        android:indeterminateTintMode="src_atop" />
                 </com.zhy.autolayout.AutoRelativeLayout>
 
                 <View

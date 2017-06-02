@@ -1,6 +1,5 @@
 package com.diucity.dingding.binder;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
@@ -9,7 +8,6 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.activity.PaymentActivity;
 import com.diucity.dingding.activity.YWTActivity;
 import com.diucity.dingding.api.Network;
-import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.PaymentDelegate;
 import com.diucity.dingding.entity.Back.CheckBack;
 import com.diucity.dingding.entity.Back.InfoBack;
@@ -37,6 +35,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
     @Override
     public void work(PaymentDelegate viewDelegate, Object object) {
         if (object instanceof RequestBean) {
+            viewDelegate.showLoadingWarn("请求支付中");
             RequestBean bean = (RequestBean) object;
             Network.subscribe(Network.getApi().request(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<RequestBack>() {
                 @Override
@@ -48,33 +47,36 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                 public void onError(Throwable e) {
                     e.printStackTrace();
                     viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接错误");
+                    viewDelegate.hideLoadingWarn();
                 }
 
                 @Override
                 public void onNext(RequestBack o) {
                     if (o.getCode() == 0) {
-                        if (bean.getPayment_type()==1){
+                        if (bean.getPayment_type() == 1) {
                             work(viewDelegate, new InfoBean(bean.getOrder_id()));
-                            ((PaymentActivity)viewDelegate.getActivity()).wxPay(o.getData());
-                        }else if (bean.getPayment_type()==2){
+                            ((PaymentActivity) viewDelegate.getActivity()).wxPay(o.getData());
+                            viewDelegate.hideLoadingWarn();
+                        } else if (bean.getPayment_type() == 2) {
                             Toast.makeText(viewDelegate.getActivity(), "获取订单", Toast.LENGTH_SHORT).show();
                             work(viewDelegate, new InfoBean(bean.getOrder_id()));
-                            PaymentActivity activity = viewDelegate.getActivity();
-                            activity.rollPoll();
-                            Intent intent = new Intent(viewDelegate.getActivity(),YWTActivity.class);
-                            intent.putExtra("request",o.getData());
-                            viewDelegate.startActivity(intent);
-                        }else if (bean.getPayment_type()==3){
+                            //PaymentActivity activity = viewDelegate.getActivity();
+                            //activity.rollPoll();
+                            Intent intent = new Intent(viewDelegate.getActivity(), YWTActivity.class);
+                            intent.putExtra("request", o.getData());
+                            viewDelegate.hideLoadingWarn();
+                            viewDelegate.getActivity().startActivityForResult(intent, 2);
+                        } else if (bean.getPayment_type() == 3) {
 
                         }
 
-                    }else {
+                    } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, o.getMessage());
                     }
                     Log.d("ch", GsonUtils.GsonString(o));
                 }
             });
-        }else if (object instanceof CheckBean){
+        } else if (object instanceof CheckBean) {
             CheckBean bean = (CheckBean) object;
             Network.subscribe(Network.getApi().check(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<CheckBack>() {
                 @Override
@@ -89,16 +91,16 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
 
                 @Override
                 public void onNext(CheckBack o) {
-                    Log.d("ch",GsonUtils.GsonString(o));
-                    if (o.getCode()==0){
-                        if(o.getData().getCheck_code()==0){
-                            viewDelegate.setVisiable(true,R.id.arl_payment);
+                    Log.d("ch", GsonUtils.GsonString(o));
+                    if (o.getCode() == 0) {
+                        if (o.getData().getCheck_code() == 0) {
+                            viewDelegate.setVisiable(true, R.id.arl_payment);
                         }
                     }
 
                 }
             });
-        }else if (object instanceof InfoBean){
+        } else if (object instanceof InfoBean) {
             InfoBean bean = (InfoBean) object;
             Network.subscribe(Network.getApi().info(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<InfoBack>() {
                 @Override
@@ -113,8 +115,8 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
 
                 @Override
                 public void onNext(InfoBack o) {
-                    Log.d("ch",GsonUtils.GsonString(o));
-                    if (o.getCode()==0){
+                    Log.d("ch", GsonUtils.GsonString(o));
+                    if (o.getCode() == 0) {
                         viewDelegate.setDialog(o);
                     }
                 }

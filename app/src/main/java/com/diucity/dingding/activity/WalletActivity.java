@@ -57,11 +57,11 @@ public class WalletActivity extends BaseActivity<WalletDelegate> {
 
     @Override
     public void initData() {
-        binder.work(viewDelegate,new SummaryBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token()));
+        binder.work(viewDelegate, new SummaryBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token()));
     }
 
     @Override
     protected void doAction1() {
-        binder.work(viewDelegate,new SummaryBean(App.user.getData().getRecycler_id(),App.user.getData().getAuth_token()));
+        binder.work(viewDelegate, new SummaryBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token()));
     }
 }

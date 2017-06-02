@@ -43,37 +43,37 @@ public class VersonUtils {
     public static String getVersion(Context context) {
         String name = getAppVersionName(context);
         String code = String.valueOf(getAppVersionCode(context));
-        return name+code;
+        return name + code;
     }
 
-    public static void notice(final Activity activity, final String url, final versionEvent event,boolean is){
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle("更新提示");
-            if (is){
-                builder.setMessage("低于当前版本,是否更新最新版本(取消将无法使用丢丢)");
-            }else {
-                builder.setMessage("低于当前版本,是否更新最新版本");
+    public static void notice(final Activity activity, final String url, final versionEvent event, boolean is) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("更新提示");
+        if (is) {
+            builder.setMessage("低于当前版本,是否更新最新版本(取消将无法使用丢丢)");
+        } else {
+            builder.setMessage("低于当前版本,是否更新最新版本");
+        }
+        builder.setNegativeButton("是", (dialogInterface, i) -> {
+            dialogInterface.dismiss();
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(url));
+            activity.startActivity(intent);
+        });
+        builder.setPositiveButton("否", (dialogInterface, i) -> {
+
+            Toast.makeText(activity, "取消更新", Toast.LENGTH_SHORT).show();
+            dialogInterface.dismiss();
+            if (event != null) {
+                event.event();
             }
-            builder.setNegativeButton("是", (dialogInterface, i) -> {
-                dialogInterface.dismiss();
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse(url));
-                activity.startActivity(intent);
-            });
-            builder.setPositiveButton("否", (dialogInterface, i) -> {
-
-                Toast.makeText(activity, "取消更新", Toast.LENGTH_SHORT).show();
-                dialogInterface.dismiss();
-                if (event!=null){
-                    event.event();
-                }
 
 
-            });
-            builder.setCancelable(false);
-            builder.create().show();
+        });
+        builder.setCancelable(false);
+        builder.create().show();
 
     }
 
@@ -101,9 +101,11 @@ public class VersonUtils {
         intent.setData(uri);//设置获取到的URI
         context.startActivity(intent);
     }
-    public interface versionEvent{
+
+    public interface versionEvent {
         void event();
     }
+
     /**
      * 获取当前手机系统语言。
      *
@@ -116,7 +118,7 @@ public class VersonUtils {
     /**
      * 获取当前系统上的语言列表(Locale列表)
      *
-     * @return  语言列表
+     * @return 语言列表
      */
     public static Locale[] getSystemLanguageList() {
         return Locale.getAvailableLocales();
@@ -125,7 +127,7 @@ public class VersonUtils {
     /**
      * 获取当前手机系统版本号
      *
-     * @return  系统版本号 例如：5.0
+     * @return 系统版本号 例如：5.0
      */
     public static String getSystemVersion() {
         return android.os.Build.VERSION.RELEASE;
@@ -134,7 +136,7 @@ public class VersonUtils {
     /**
      * 获取手机型号
      *
-     * @return  手机型号  例如：SM-G9008W
+     * @return 手机型号  例如：SM-G9008W
      */
     public static String getSystemModel() {
         return android.os.Build.MODEL;
@@ -143,7 +145,7 @@ public class VersonUtils {
     /**
      * 获取手机厂商
      *
-     * @return  手机厂商 例如：samsung
+     * @return 手机厂商 例如：samsung
      */
     public static String getDeviceBrand() {
         return android.os.Build.BRAND;

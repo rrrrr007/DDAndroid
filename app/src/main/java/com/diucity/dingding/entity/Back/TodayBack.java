@@ -9,8 +9,6 @@ import java.util.List;
 public class TodayBack {
 
 
-
-
     private int code;
     private DataBean data;
     private String message;

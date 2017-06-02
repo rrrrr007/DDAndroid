@@ -30,10 +30,11 @@ public class CompatViewPager extends ViewPager {
 
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        listener.onScroll(l,t,oldl,oldt);
+        listener.onScroll(l, t, oldl, oldt);
         super.onScrollChanged(l, t, oldl, oldt);
     }
-    public interface ScrollListener{
+
+    public interface ScrollListener {
         void onScroll(int l, int t, int oldl, int oldt);
     }
 

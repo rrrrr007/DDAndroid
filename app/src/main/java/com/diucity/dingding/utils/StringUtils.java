@@ -7,26 +7,26 @@ import java.text.DecimalFormat;
  */
 
 public class StringUtils {
-    public static String getDoubleString(double b){
+    public static String getDoubleString(double b) {
         return String.format("%.2f", b);
     }
 
-    public static String getIntString(double b){
+    public static String getIntString(double b) {
         DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
         return decimalFormat.format(b);
     }
 
-    public static String  fmoney(double d ,int n ){
+    public static String fmoney(double d, int n) {
         n = n > 0 && n <= 20 ? n : 2;
         StringBuffer sb = new StringBuffer();
-        for(int i = 0;i<n; i++){
+        for (int i = 0; i < n; i++) {
             sb.append("0");
         }
         DecimalFormat myformat = new DecimalFormat();
-        myformat.applyPattern("##,###."+sb.toString());
+        myformat.applyPattern("##,###." + sb.toString());
         String format = myformat.format(d);
-        if (format.startsWith(".")){
-            format="0"+format;
+        if (format.startsWith(".")) {
+            format = "0" + format;
         }
         return format;
     }

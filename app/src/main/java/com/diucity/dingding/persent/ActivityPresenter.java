@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package com.diucity.dingding.persent;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,14 +46,12 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityUtils.show(this);
-        ActivityUtils.StatusBarLightMode(this,ActivityUtils.StatusBarLightMode(this));
+        ActivityUtils.StatusBarLightMode(this, ActivityUtils.StatusBarLightMode(this));
         viewDelegate.create(getLayoutInflater(), null, savedInstanceState);
         setContentView(viewDelegate.getRootView());
         initToolbar();
         viewDelegate.initWidget();
     }
-
-
 
 
     protected void initToolbar() {

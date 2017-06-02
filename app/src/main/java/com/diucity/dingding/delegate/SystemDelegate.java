@@ -21,6 +21,7 @@ import java.util.List;
 public class SystemDelegate extends AppDelegate {
     private SystemAdapter adapter;
     private SpringView sv;
+
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_system;
@@ -40,16 +41,16 @@ public class SystemDelegate extends AppDelegate {
         sv.setType(SpringView.Type.FOLLOW);
         sv.setEnable(false);
 
-        adapter = new SystemAdapter(getActivity(),null);
+        adapter = new SystemAdapter(getActivity(), null);
         RecyclerView rv = get(R.id.rv_system);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setAdapter(adapter);
     }
 
-    public void notifyData(List<SystemBack.DataBean.NoticesBean> list){
+    public void notifyData(List<SystemBack.DataBean.NoticesBean> list) {
 
         adapter.adapterNotify(list);
-        if (adapter.getItemCount()>0){
+        if (adapter.getItemCount() > 0) {
             get(R.id.ll_system_empty).setVisibility(View.GONE);
             sv.setEnable(true);
         } else {
@@ -58,11 +59,11 @@ public class SystemDelegate extends AppDelegate {
         }
     }
 
-    public void isLoading(boolean is){
-        get(R.id.ll_system_loading).setVisibility(is?View.VISIBLE:View.GONE);
+    public void isLoading(boolean is) {
+        get(R.id.ll_system_loading).setVisibility(is ? View.VISIBLE : View.GONE);
     }
 
-    public void onFinishLoad(){
+    public void onFinishLoad() {
         sv.onFinishFreshAndLoad();
     }
 

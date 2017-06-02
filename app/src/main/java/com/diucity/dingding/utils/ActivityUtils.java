@@ -65,7 +65,7 @@ public class ActivityUtils {
             FlymeSetStatusBarLightMode(activity.getWindow(), true);
         } else if (type == 3) {
             activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }else {
+        } else {
             setWindowStatusBarColor(activity, Color.parseColor("#FF4081"));
         }
 
@@ -136,6 +136,7 @@ public class ActivityUtils {
         }
         return result;
     }
+
     public static int getStatusBarHeight(Context context) {
         Class<?> c = null;
         Object obj = null;

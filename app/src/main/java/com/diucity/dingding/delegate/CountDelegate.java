@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
@@ -52,12 +51,12 @@ public class CountDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         String s = SpUtils.getString(getActivity(), SpUtils.SCRAPS);
-        today = GsonUtils.GsonToBean(s,ScrapsBack.class);
+        today = GsonUtils.GsonToBean(s, ScrapsBack.class);
         RecyclerView rv = get(R.id.rv_count);
         rv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rv.setAdapter(new CountAdapter(getActivity(), today.getData().getScraps()));
         setSumPrice(0);
-        setUserInfo(getActivity().getIntent().getStringExtra("name"),getActivity().getIntent().getStringExtra("url"));
+        setUserInfo(getActivity().getIntent().getStringExtra("name"), getActivity().getIntent().getStringExtra("url"));
     }
 
     public SpannableString spite(String str) {
@@ -67,21 +66,21 @@ public class CountDelegate extends AppDelegate {
     }
 
 
-    public void setSumPrice(double d){
-        String text = StringUtils.fmoney(d,2)+"元";
+    public void setSumPrice(double d) {
+        String text = StringUtils.fmoney(d, 2) + "元";
         SpannableString textSpan1 = new SpannableString(text);
         textSpan1.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getActivity(), 12)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         setText(textSpan1, R.id.tv_count_all);
     }
 
     public void setWidgetHeight() {
-        if (!isSoftShowing()){
+        if (!isSoftShowing()) {
             stua = getSoftHeight();
         }
         if (isSoftShowing() && !needshow) {
             View view = get(R.id.rl_count_edt);
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) view.getLayoutParams();
-            lp.bottomMargin = height-stua;
+            lp.bottomMargin = height - stua;
             view.setLayoutParams(lp);
             needshow = true;
         } else if (!isSoftShowing() && needshow) {
@@ -94,7 +93,6 @@ public class CountDelegate extends AppDelegate {
     }
 
 
-
     private boolean isSoftShowing() {
         int screenHeight = getActivity().getWindow().getDecorView().getHeight();
         Rect rect = new Rect();
@@ -103,7 +101,7 @@ public class CountDelegate extends AppDelegate {
         return height > screenHeight / 3;
     }
 
-    private int getSoftHeight(){
+    private int getSoftHeight() {
         int h;
         int screenHeight = getActivity().getWindow().getDecorView().getHeight();
         Rect rect = new Rect();
@@ -119,17 +117,17 @@ public class CountDelegate extends AppDelegate {
         }
     }
 
-    public void setInputStyle(boolean isDouble){
+    public void setInputStyle(boolean isDouble) {
         EditText edt = get(R.id.edt_count);
-        edt.setInputType(isDouble?TYPE_CLASS_NUMBER |TYPE_NUMBER_FLAG_DECIMAL: TYPE_CLASS_NUMBER);
+        edt.setInputType(isDouble ? TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL : TYPE_CLASS_NUMBER);
 
     }
 
-    public void setUserInfo(String name,String url){
-        String text = "和 "+name+" 交易中";
+    public void setUserInfo(String name, String url) {
+        String text = "和 " + name + " 交易中";
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#031912")), 1, text.length() - 3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         setText(textSpan, R.id.tv_count_name);
-        Picasso.with(getActivity()).load(url).resize(100,100).transform(new Picassoloader()).placeholder(R.color.src_gray).into((ImageView) get(R.id.iv_count_header));
+        Picasso.with(getActivity()).load(url).resize(100, 100).transform(new Picassoloader()).placeholder(R.color.src_gray).into((ImageView) get(R.id.iv_count_header));
     }
 }

@@ -5,7 +5,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 

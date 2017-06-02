@@ -21,6 +21,6 @@ public class OptionsDelegate extends AppDelegate {
 
     @Override
     public void initWidget() {
-        setText(ClearUtils.caculateCacheSize(getActivity()),R.id.tv_options_cache);
+        setText(ClearUtils.caculateCacheSize(getActivity()), R.id.tv_options_cache);
     }
 }

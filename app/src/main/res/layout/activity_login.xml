@@ -125,9 +125,11 @@
             android:textSize="16sp" />
 
     </com.zhy.autolayout.AutoRelativeLayout>
+
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <FrameLayout
             android:id="@+id/fl_toolbar"
             android:layout_width="match_parent"

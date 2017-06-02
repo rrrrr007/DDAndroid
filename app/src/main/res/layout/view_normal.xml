@@ -4,12 +4,19 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_centerInParent="true"
         android:id="@+id/tv_notice_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:gravity="center"
-        android:drawablePadding="20px"
         android:text="提示"
         android:textSize="17sp" />
+
+    <ImageView
+        android:id="@+id/iv_notice_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20px"
+        android:layout_toLeftOf="@id/tv_notice_normal" />
 </RelativeLayout>

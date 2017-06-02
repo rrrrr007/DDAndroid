@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class PINActivity extends BaseActivity<PINDelegate> {
     private String first, second;
+
     @Override
     public DataBinder getDataBinder() {
         return new PINBinder();
@@ -30,12 +31,12 @@ public class PINActivity extends BaseActivity<PINDelegate> {
     protected void bindEvenListener() {
         super.bindEvenListener();
         //完成PIN设置
-        RxView.clicks(viewDelegate.get(R.id.btn_pin_finish)).throttleFirst( 2 , TimeUnit.SECONDS )
+        RxView.clicks(viewDelegate.get(R.id.btn_pin_finish)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     if (first.equals(second)) {
-                        binder.work(viewDelegate,new PaysetBean(0,"1",second));
-                    }else {
-                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar),3,"2次交易密码不一致");
+                        binder.work(viewDelegate, new PaysetBean(0, "1", second));
+                    } else {
+                        viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "2次交易密码不一致");
                         viewDelegate.setSecondPin();
                     }
                 });

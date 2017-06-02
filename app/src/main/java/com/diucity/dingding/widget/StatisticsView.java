@@ -11,7 +11,7 @@ import android.view.View;
  */
 
 public class StatisticsView extends View {
-    private String first,second,third;
+    private String first, second, third;
     private Paint textPaint;
     private int max;
 
@@ -29,7 +29,8 @@ public class StatisticsView extends View {
         super(context, attrs, defStyleAttr);
         init(context);
     }
-    public void init(Context context){
+
+    public void init(Context context) {
         textPaint = new Paint();
         first = "500";
         second = "300";

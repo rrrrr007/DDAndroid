@@ -64,9 +64,9 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
         title.setText(position == 0 ? "单次交易奖励" : "累计交易奖励");
 
         TextView content = holder.getView(R.id.adapter_tv_price_difference);
-        if (getModel().get(position).getType()==1){
+        if (getModel().get(position).getType() == 1) {
             content.setText(textSpan2(getModel().get(position).getContent()));
-        }else if (getModel().get(position).getType()==2){
+        } else if (getModel().get(position).getType() == 2) {
             content.setText(textSpan(getModel().get(position).getContent()));
         }
         TextView explain = holder.getView(R.id.adapter_tv_price_content);
@@ -78,20 +78,20 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
 
     public SpannableString textSpan(String str) {
         String text = str;
-        if (str.contains("元")){
-            text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元","")))+"元";
+        if (str.contains("元")) {
+            text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元", ""))) + "元";
         }
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        textSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(),R.color.text_black)),text.length() - 1, text.length(),Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        textSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.text_black)), text.length() - 1, text.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return textSpan;
     }
 
     public SpannableString textSpan2(String str) {
         String text = str;
-        if (str.contains("元")){
-            text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元","")))+"元";
+        if (str.contains("元")) {
+            text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元", ""))) + "元";
         }
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);

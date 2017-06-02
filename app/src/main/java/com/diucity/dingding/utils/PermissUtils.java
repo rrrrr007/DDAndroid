@@ -10,10 +10,10 @@ import android.util.Log;
  */
 
 public class PermissUtils {
-    public static boolean permissionSet(Context context,String... permissions) {
+    public static boolean permissionSet(Context context, String... permissions) {
         for (String permission : permissions) {
-            if (isLackPermission(permission,context)) {//是否添加完全部权限集合
-                Log.d("ch",permission);
+            if (isLackPermission(permission, context)) {//是否添加完全部权限集合
+                Log.d("ch", permission);
                 return true;
             }
         }

@@ -25,19 +25,19 @@ public class MySpringView extends SpringView {
         }
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             if (!footEnale) {
-                if (y<getScrollY()){
+                if (y < getScrollY()) {
                     onFinishFreshAndLoad();
                     return true;
-                }else {
+                } else {
                     return super.onTouchEvent(event);
                 }
 
             }
-            if (!headEnable){
-                if (y>getScrollY()){
+            if (!headEnable) {
+                if (y > getScrollY()) {
                     onFinishFreshAndLoad();
                     return true;
-                }else {
+                } else {
                     return super.onTouchEvent(event);
                 }
             }
@@ -48,26 +48,26 @@ public class MySpringView extends SpringView {
 
     public void setFootEnale(boolean footEnale) {
         this.footEnale = footEnale;
-        if (footEnale&&headEnable){
+        if (footEnale && headEnable) {
             setGive(Give.BOTH);
-        }else if (!headEnable&&footEnale){
+        } else if (!headEnable && footEnale) {
             setGive(Give.TOP);
-        }else if (headEnable&&!footEnale){
+        } else if (headEnable && !footEnale) {
             setGive(Give.BOTTOM);
-        }else {
+        } else {
             setGive(Give.NONE);
         }
     }
 
     public void setHeadEnable(boolean headEnable) {
         this.headEnable = headEnable;
-        if (footEnale&&headEnable){
+        if (footEnale && headEnable) {
             setGive(Give.BOTH);
-        }else if (!footEnale&&headEnable){
+        } else if (!footEnale && headEnable) {
             setGive(Give.BOTTOM);
-        }else if(footEnale&&!headEnable){
+        } else if (footEnale && !headEnable) {
             setGive(Give.TOP);
-        }else {
+        } else {
             setGive(Give.NONE);
         }
     }

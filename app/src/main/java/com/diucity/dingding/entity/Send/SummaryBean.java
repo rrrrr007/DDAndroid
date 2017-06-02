@@ -16,7 +16,7 @@ public class SummaryBean {
         this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
-        this.auth_code = SignUtils.authCode(getTimestamp(),taken);
+        this.auth_code = SignUtils.authCode(getTimestamp(), taken);
     }
 
     public long getTimestamp() {

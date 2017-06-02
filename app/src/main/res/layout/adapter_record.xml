@@ -25,6 +25,7 @@
         android:paddingRight="15dp"
         android:paddingTop="13dp"
         android:layout_marginBottom="5px">
+
         <LinearLayout
             android:id="@+id/adapter_ll_record_time"
             android:layout_width="wrap_content"
@@ -47,6 +48,7 @@
                 android:textColor="@color/text_gray3"
                 android:textSize="12sp" />
         </LinearLayout>
+
         <ImageView
             android:id="@+id/adapter_iv_record_src"
             android:layout_toRightOf="@id/adapter_ll_record_time"
@@ -55,6 +57,7 @@
             android:src="@mipmap/ic_logo_wei_30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <LinearLayout
             android:layout_toRightOf="@id/adapter_iv_record_src"
             android:layout_marginLeft="15dp"
@@ -79,6 +82,7 @@
                 android:textColor="@color/text_gray2"
                 android:textSize="12sp" />
         </LinearLayout>
+
         <ImageView
             android:layout_alignParentRight="true"
             android:id="@+id/adapter_iv_record_icon"

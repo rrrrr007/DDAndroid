@@ -8,11 +8,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
-import android.view.Gravity;
-import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.DialogAdapter;
@@ -50,36 +46,38 @@ public class PaymentDelegate extends AppDelegate {
         setEnable(false, R.id.iv_payment_wx);
         setText("订单号: " + getActivity().getIntent().getStringExtra("number"), R.id.tv_payment_number);
 
-        setText(textSpan("支付 " + StringUtils.fmoney(getActivity().getIntent().getDoubleExtra("total", 0.0),2) + "元"), R.id.tv_payment_pay);
-        setText("确认支付 (" + StringUtils.fmoney(getActivity().getIntent().getDoubleExtra("total", 0.0),2) + ")", R.id.btn_payment_pay);
+        setText(textSpan("支付 " + StringUtils.fmoney(getActivity().getIntent().getDoubleExtra("total", 0.0), 2) + "元"), R.id.tv_payment_pay);
+        setText("确认支付 (" + StringUtils.fmoney(getActivity().getIntent().getDoubleExtra("total", 0.0), 2) + ")", R.id.btn_payment_pay);
         Picasso.with(getActivity()).load(getActivity().getIntent().getStringExtra("url")).resize(100, 100).transform(new Picassoloader()).into((ImageView) get(R.id.iv_payment_head));
         RecyclerView rv = get(R.id.rv_payment);
         rv.setAdapter(new PaymentAdapter(getActivity(), getList()));
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    private ArrayList<CreateBack.DataBean.ScrapsBean> getList(){
+    private ArrayList<CreateBack.DataBean.ScrapsBean> getList() {
         ArrayList<CreateBack.DataBean.ScrapsBean> list = (ArrayList<CreateBack.DataBean.ScrapsBean>) getActivity().getIntent().getSerializableExtra("list");
         ArrayList<CreateBack.DataBean.ScrapsBean> a = new ArrayList<>();
         for (CreateBack.DataBean.ScrapsBean bean : list) {
-            if (bean.getQuantity()>0){
+            if (bean.getQuantity() > 0) {
                 a.add(bean);
             }
         }
         return a;
     }
-    private List<InfoBack.DataBean.ScrapsBean> getList2(InfoBack info){
+
+    private List<InfoBack.DataBean.ScrapsBean> getList2(InfoBack info) {
         List<InfoBack.DataBean.ScrapsBean> list = info.getData().getScraps();
         List<InfoBack.DataBean.ScrapsBean> a = new ArrayList<>();
         for (InfoBack.DataBean.ScrapsBean bean : list) {
-            if (bean.getQuantity()>0){
+            if (bean.getQuantity() > 0) {
                 a.add(bean);
             }
         }
         return a;
     }
+
     public void setDialog(InfoBack info) {
-        setText(StringUtils.fmoney(info.getData().getAmount(),2), R.id.tv_payment_total);
+        setText(StringUtils.fmoney(info.getData().getAmount(), 2), R.id.tv_payment_total);
         setText(TimeUtils.getMinute(info.getData().getTime()), R.id.tv_payment_time);
         setText("订单号：" + info.getData().getOrder_no(), R.id.tv_payment_orderNo);
         RecyclerView rv = get(R.id.rv_payment2);
@@ -87,11 +85,11 @@ public class PaymentDelegate extends AppDelegate {
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    private SpannableString textSpan(String str){
+    private SpannableString textSpan(String str) {
         String text = str;
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getActivity(), 20)), 3, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        textSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity(),R.color.text_orange)),3, text.length(),Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        textSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity(), R.color.text_orange)), 3, text.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return textSpan;
     }
 }

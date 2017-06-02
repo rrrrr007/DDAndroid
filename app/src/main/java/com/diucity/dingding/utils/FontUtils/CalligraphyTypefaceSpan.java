@@ -12,7 +12,7 @@ public class CalligraphyTypefaceSpan extends MetricAffectingSpan {
         if (typeface == null) {
             throw new IllegalArgumentException("typeface is null");
         }
-        
+
         this.typeface = typeface;
     }
 

@@ -34,7 +34,7 @@ public class RecordAdapter extends BaseAdapter<ListBack.DataBean.ItemsBean> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), WebActivity.class);
-            intent.putExtra("billId",getModel().get(position).getBill_id());
+            intent.putExtra("billId", getModel().get(position).getBill_id());
             getContext().startActivity(intent);
         });
         TextView month = holder.getView(R.id.adapter_tv_record_month);
@@ -45,18 +45,15 @@ public class RecordAdapter extends BaseAdapter<ListBack.DataBean.ItemsBean> {
         days.setText(TimeUtils.getHours(getModel().get(position).getTime()));
         if (position == 0) {
             month.setVisibility(View.VISIBLE);
-        } else if (TimeUtils.getMonth(getModel().get(position-1).getTime()).equals(TimeUtils.getMonth(getModel().get(position).getTime()))){
+        } else if (TimeUtils.getMonth(getModel().get(position - 1).getTime()).equals(TimeUtils.getMonth(getModel().get(position).getTime()))) {
             month.setVisibility(View.GONE);
-        }else {
+        } else {
             month.setVisibility(View.GONE);
         }
-
         ImageView icon = holder.getView(R.id.adapter_iv_record_src);
-
-
         TextView moneny = holder.getView(R.id.adapter_tv_record_money);
         moneny.setText(String.format("%.2f", getModel().get(position).getAmount()));
-        TextView describe =holder.getView(R.id.adapter_tv_record_describe);
+        TextView describe = holder.getView(R.id.adapter_tv_record_describe);
         describe.setText(getModel().get(position).getExplain());
     }
 

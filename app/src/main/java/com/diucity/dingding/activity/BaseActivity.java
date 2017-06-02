@@ -21,7 +21,6 @@ import com.diucity.dingding.app.App;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.persent.DataBindActivity;
 import com.diucity.dingding.persent.IDelegate;
-import com.diucity.dingding.recevier.NetworkRecevier;
 import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.utils.FontUtils.CalligraphyContextWrapper;
 import com.diucity.dingding.utils.PermissUtils;
@@ -100,7 +99,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
             if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
                 Log.i("ch", "unconnect");
 
-            }else {
+            } else {
                 Log.i("ch", "connect");
                 doAction1();
             }
@@ -108,7 +107,8 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         }
     };
 
-    protected  void doAction1(){}
+    protected void doAction1() {
+    }
 
     @Override
     protected void onDestroy() {
@@ -133,8 +133,8 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         builder.setMessage("缺少权限");
         //如果是拒绝授权，则退出应用
         //退出
-        builder.setNegativeButton("取消", (dialog, which) ->{
-                    dialog.dismiss();
+        builder.setNegativeButton("取消", (dialog, which) -> {
+            dialog.dismiss();
         });
         //打开设置，让用户选择打开权限
         builder.setPositiveButton("设置", (dialog, which) -> {
@@ -155,10 +155,10 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     public void getAllGrantedPermission() {
 
     }
+
     public void getAllGrantedPermission2() {
 
     }
-
 
 
     @Override
@@ -195,7 +195,6 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     }
 
 
-
     protected void permission() {
         if (getPermissions() != null) {
             if (PermissUtils.permissionSet(this, getPermissions())) {
@@ -221,8 +220,6 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-
-
 
 
     public void checkNet() {
