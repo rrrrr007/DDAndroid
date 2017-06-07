@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
 
@@ -13,6 +14,8 @@ import com.diucity.dingding.app.App;
 import com.diucity.dingding.entity.User;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.GsonUtils;
+import com.diucity.dingding.widget.ProgressView;
+import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -23,6 +26,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 
 public class WebDelegate extends AppDelegate {
     private AlertDialog alertDialog;
+    private ProgressView pv;
 
     @Override
     public int getRootLayoutId() {
@@ -37,12 +41,36 @@ public class WebDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
+        pv = get(R.id.pv_web);
         WebView wv = get(R.id.webView_web);
         WebSettings set = wv.getSettings();
         wv.loadUrl(Api.WEBURL + "#/billing-details");
         wv.addJavascriptInterface(WebDelegate.this, "android");
         set.setJavaScriptEnabled(true);
-        wv.setWebViewClient(new WebViewClient());
+        set.setBuiltInZoomControls(true);
+        set.setUseWideViewPort(true);
+        set.setLoadWithOverviewMode(true);
+        set.setSaveFormData(false);
+        set.setSavePassword(false);
+        set.setSupportZoom(false);
+        wv.requestFocus();
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView webView, String s) {
+                if (s.contains("trade-details")){
+                    setText("交易详情",R.id.tv_detail_title);
+                }
+                super.onPageFinished(webView, s);
+            }
+        });
+        wv.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                pv.setProgress(newProgress);
+                super.onProgressChanged(view, newProgress);
+            }
+        });
+
     }
 
     @JavascriptInterface

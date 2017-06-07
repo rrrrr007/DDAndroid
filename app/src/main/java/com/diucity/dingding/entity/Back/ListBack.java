@@ -85,7 +85,7 @@ public class ListBack {
             }
 
             public long getTime() {
-                return time;
+                return time*1000;
             }
 
             public void setTime(long time) {

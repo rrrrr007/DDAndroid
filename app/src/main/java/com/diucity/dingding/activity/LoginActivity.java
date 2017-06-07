@@ -1,6 +1,7 @@
 package com.diucity.dingding.activity;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -158,4 +159,6 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
         }
         alertDialog.show();
     }
+
+
 }

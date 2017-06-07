@@ -1,6 +1,7 @@
 package com.diucity.dingding.activity;
 
 
+
 import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.RecordBinder;
@@ -13,8 +14,6 @@ import com.liaoinstan.springview.widget.SpringView;
 import java.util.concurrent.TimeUnit;
 
 public class RecordActivity extends BaseActivity<RecordDelegate> {
-
-
     @Override
     public DataBinder getDataBinder() {
         return new RecordBinder();
@@ -31,11 +30,12 @@ public class RecordActivity extends BaseActivity<RecordDelegate> {
         ((SpringView) viewDelegate.get(R.id.sv_record)).setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
+                binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -1, 10));
             }
 
             @Override
             public void onLoadmore() {
-                viewDelegate.onFinishLoad();
+                binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 1, 10));
             }
         });
 
@@ -44,16 +44,5 @@ public class RecordActivity extends BaseActivity<RecordDelegate> {
                 .subscribe(aVoid -> {
                     finish();
                 });
-
-    }
-
-    @Override
-    public void initData() {
-        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
-    }
-
-    @Override
-    protected void doAction1() {
-        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
     }
 }

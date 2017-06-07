@@ -1,5 +1,7 @@
 package com.diucity.dingding.activity;
 
+import android.support.v4.content.ContextCompat;
+
 import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.WalletBinder;
@@ -22,6 +24,7 @@ public class WalletActivity extends BaseActivity<WalletDelegate> {
     public DataBinder getDataBinder() {
         return new WalletBinder();
     }
+
 
     @Override
     protected void bindEvenListener() {

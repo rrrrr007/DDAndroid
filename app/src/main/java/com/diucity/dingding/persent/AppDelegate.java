@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
@@ -44,11 +45,8 @@ public abstract class AppDelegate implements IDelegate {
     private LayoutInflater inflater;
     protected View rootView;
     private Dialog dialog;
-    private View view;
     private TextView small;
     private LayoutTransition mTransition;
-    private Observable<Long> observable;
-    private Subscription subscribe;
 
     public abstract int getRootLayoutId();
 
@@ -171,25 +169,24 @@ public abstract class AppDelegate implements IDelegate {
     }
 
     public void showNormalWarn(ViewGroup vg, int pattern, String content) {
+        if (mTransition == null) {
+            setupCustomAnimations(vg.getHeight());
+            vg.setLayoutTransition(mTransition);
+           /* vg.setLayoutAnimation(new LayoutAnimationController(AnimationUtils.loadAnimation(
+                    getActivity(), R.anim.list_animation), 0.5f));*/
+        }
         if (vg.getChildCount() > 0) {
             return;
         }
         vg.getHeight();
-        if (view == null) {
-            view = inflater.inflate(R.layout.view_normal, null);
+
+        View view = inflater.inflate(R.layout.view_normal, null);
             view.setOnTouchListener((v, event) -> {
-                if (subscribe != null && !subscribe.isUnsubscribed())
-                    subscribe.unsubscribe();
-                vg.removeView(view);
+                if (vg.getChildCount() > 0)
+                    vg.removeView(view);
                 return false;
             });
-        }
-        if (mTransition == null) {
-            setupCustomAnimations(vg.getHeight());
-        }
-        vg.setLayoutTransition(mTransition);
-        vg.setLayoutAnimation(new LayoutAnimationController(AnimationUtils.loadAnimation(
-                getActivity(), R.anim.list_animation), 0.5f));
+
         TextView tv = (TextView) view.findViewById(R.id.tv_notice_normal);
         ImageView iv = (ImageView) view.findViewById(R.id.iv_notice_normal);
         Drawable drawable = null;
@@ -215,12 +212,12 @@ public abstract class AppDelegate implements IDelegate {
         tv.setText(content);
         iv.setImageDrawable(drawable);
         vg.addView(view);
-        if (observable == null)
-            observable = Observable.timer(3, TimeUnit.SECONDS)
-                    .observeOn(AndroidSchedulers.mainThread());
-        subscribe = observable.subscribe(aLong -> {
-            vg.removeView(view);
-        });
+        new Handler().postDelayed(() -> {
+            if (vg.getChildCount() > 0)
+                vg.removeView(view);
+        },3000);
+
+
     }
 
     public void showSmallWarn() {

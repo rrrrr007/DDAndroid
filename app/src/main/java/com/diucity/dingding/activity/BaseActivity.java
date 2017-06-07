@@ -42,6 +42,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     public static final int PERMISSION_REQUEST_CODE = 0;//系统授权管理页面时的结果参数
     public static final String PACKAGE_URL_SCHEME = "package:";//权限方案
     private boolean mReceiverTag = false;   //广播接受者标识
+    private boolean first = false;
 
 
     @Override
@@ -101,7 +102,12 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
 
             } else {
                 Log.i("ch", "connect");
-                doAction1();
+                if (first) {
+                    doAction1();
+                } else {
+                    first = true;
+                }
+
             }
             isShowSmallWarn(!mobNetInfo.isConnected() && !wifiNetInfo.isConnected());
         }

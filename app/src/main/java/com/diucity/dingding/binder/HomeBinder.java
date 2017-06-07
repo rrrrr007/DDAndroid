@@ -137,6 +137,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 @Override
                 public void onNext(BasketBack s) {
+
                     if (s.getCode() == 0) {
                         viewDelegate.setBasket(s);
                     }

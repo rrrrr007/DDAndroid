@@ -8,7 +8,9 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.SystemAdapter;
 import com.diucity.dingding.entity.Back.SystemBack;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.widget.ProgressView;
 import com.liaoinstan.springview.container.DefaultFooter;
+import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.List;
@@ -37,6 +39,7 @@ public class SystemDelegate extends AppDelegate {
         super.initWidget();
 
         sv = get(R.id.sv_system);
+        sv.setHeader(new DefaultHeader(getActivity()));
         sv.setFooter(new DefaultFooter(getActivity()));
         sv.setType(SpringView.Type.FOLLOW);
         sv.setEnable(false);
@@ -45,6 +48,7 @@ public class SystemDelegate extends AppDelegate {
         RecyclerView rv = get(R.id.rv_system);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setAdapter(adapter);
+
     }
 
     public void notifyData(List<SystemBack.DataBean.NoticesBean> list) {

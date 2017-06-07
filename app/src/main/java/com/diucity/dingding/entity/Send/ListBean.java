@@ -12,16 +12,27 @@ public class ListBean {
     private String nonce;
     private int recycler_id;
     private String auth_code;
-    private int start;
-    private int limit;
+    private int bill_id;
+    private int bill_count;
+    private int notice_id;
+    private int notice_count;
 
-    public ListBean(int recycler_id, String taken, int start, int limit) {
+    public ListBean(int recycler_id, String taken, int bill_id, int bill_count) {
         this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
         this.auth_code = SignUtils.authCode(getTimestamp(), taken);
-        this.start = start;
-        this.limit = limit;
+        this.bill_id = bill_id;
+        this.bill_count = bill_count;
+    }
+
+    public ListBean(int recycler_id, String taken, int notice_id, int notice_count,int type) {
+        this.timestamp = System.currentTimeMillis();
+        this.nonce = SignUtils.getUUID();
+        this.recycler_id = recycler_id;
+        this.auth_code = SignUtils.authCode(getTimestamp(), taken);
+        this.notice_id = notice_id;
+        this.notice_count = notice_count;
     }
 
     public long getTimestamp() {
@@ -56,19 +67,35 @@ public class ListBean {
         this.auth_code = auth_code;
     }
 
-    public int getStart() {
-        return start;
+    public int getBill_id() {
+        return bill_id;
     }
 
-    public void setStart(int start) {
-        this.start = start;
+    public void setBill_id(int bill_id) {
+        this.bill_id = bill_id;
     }
 
-    public int getLimit() {
-        return limit;
+    public int getBill_count() {
+        return bill_count;
     }
 
-    public void setLimit(int limit) {
-        this.limit = limit;
+    public void setBill_count(int bill_count) {
+        this.bill_count = bill_count;
+    }
+
+    public int getNotice_id() {
+        return notice_id;
+    }
+
+    public void setNotice_id(int notice_id) {
+        this.notice_id = notice_id;
+    }
+
+    public int getNotice_count() {
+        return notice_count;
+    }
+
+    public void setNotice_count(int notice_count) {
+        this.notice_count = notice_count;
     }
 }

@@ -12,6 +12,7 @@
         android:background="@drawable/toolbar_shape" />
 
     <TextView
+        android:id="@+id/tv_detail_title"
         android:layout_width="wrap_content"
         android:layout_height="148px"
         android:layout_centerHorizontal="true"
@@ -29,9 +30,13 @@
         android:paddingRight="20px"
         android:paddingTop="60px"
         android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_green" />
+        android:src="@mipmap/ic_cmm_close_green" />
 
-
+    <com.diucity.dingding.widget.ProgressView
+        android:id="@+id/pv_web"
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_marginTop="145px"/>
     <com.tencent.smtt.sdk.WebView
         android:layout_marginTop="148px"
         android:id="@+id/webView_web"

@@ -5,10 +5,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 
 import java.lang.reflect.Field;
@@ -26,7 +28,12 @@ public class ActivityUtils {
     }
 
     public static void show(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            Window window = activity.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(getContext(), R.color.transparent));
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
@@ -52,6 +59,8 @@ public class ActivityUtils {
         }
         return result;
     }
+
+
 
     /**
      * 适配4.4以上版本MIUIV、Flyme和6.0以上版本其他Android

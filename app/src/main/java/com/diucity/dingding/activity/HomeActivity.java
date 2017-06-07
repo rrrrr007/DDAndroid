@@ -22,6 +22,7 @@ import com.diucity.dingding.binder.HomeBinder;
 import com.diucity.dingding.delegate.HomeDelegate;
 import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.persent.DataBinder;
+import com.diucity.dingding.utils.TimeUtils;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
     private ViewPager vp;
     private AlertDialog alertDialog;
     private AlertDialog alertDialog2;
+    private AlertDialog alertDialog3;
     private
 
     static final String[] permission = new String[]{
@@ -86,7 +88,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
         //我的钱包
         RxView.clicks(viewDelegate.get(R.id.iv_home_wallet)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(WalletActivity.class);
+                  viewDelegate.startActivity(WalletActivity.class);
                 });
 
         //联系客服
@@ -144,12 +146,15 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Address address = locationList.get(0);
-            String locality = address.getLocality() + address.getSubLocality();//得到城市名称，比如：北京市
-            Log.i("ch", "locality = " + locality + "纬度" + address.getLatitude() + "进度" + address.getLongitude());
-            App.latitude = address.getLatitude();
-            App.longitude = address.getLongitude();
-
+            if (locationList.size()==0){
+                return;
+            }else {
+                Address address = locationList.get(0);
+                String locality = address.getLocality() + address.getSubLocality();//得到城市名称，比如：北京市
+                Log.i("ch", "locality = " + locality + "纬度" + address.getLatitude() + "进度" + address.getLongitude());
+                App.latitude = address.getLatitude();
+                App.longitude = address.getLongitude();
+            }
         }
     };
 
@@ -235,18 +240,18 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
 
     @Override
     public void onBackPressed() {
-        if (alertDialog == null) {
-            alertDialog = new AlertDialog.Builder(this)
+        if (alertDialog3 == null) {
+            alertDialog3 = new AlertDialog.Builder(this)
                     .setTitle("退出")
                     .setMessage("是否退出叮叮")
                     .setNegativeButton("是", (dialog, which) -> {
-                        alertDialog.dismiss();
+                        alertDialog3.dismiss();
                         System.exit(0);
                     })
-                    .setPositiveButton("否", (dialog2, which) -> alertDialog.dismiss()).create();
-            Window window = alertDialog.getWindow();
+                    .setPositiveButton("否", (dialog2, which) -> alertDialog3.dismiss()).create();
+            Window window = alertDialog3.getWindow();
             window.setWindowAnimations(R.style.dialog_style);
         }
-        alertDialog.show();
+        alertDialog3.show();
     }
 }

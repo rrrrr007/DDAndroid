@@ -49,10 +49,13 @@ public class WalletBinder implements DataBinder<WalletDelegate, NormalBack> {
                 @Override
                 public void onNext(SummaryBack s) {
                     Log.d("ch", GsonUtils.GsonString(s));
+                    if (s.getCode() == 103 ){
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (s.getCode() == 0) {
                         viewDelegate.setText(StringUtils.fmoney(s.getData().getIncome(), 2), R.id.tv_wallet_money);
                         SpUtils.putString(viewDelegate.getActivity(), SpUtils.WALLET, StringUtils.fmoney(s.getData().getIncome(), 2));
-                        work(viewDelegate, new ListBean(bean.getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
+                        work(viewDelegate, new ListBean(bean.getRecycler_id(), App.user.getData().getAuth_token(), -1, 10));
                     }
                 }
             });
@@ -72,10 +75,14 @@ public class WalletBinder implements DataBinder<WalletDelegate, NormalBack> {
 
                 @Override
                 public void onNext(ListBack s) {
+                    if (s.getCode() == 103 ){
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (s.getCode() == 0) {
-                        if (s.getData().getItems().size() > 0)
+                        if (s.getData().getItems().size() > 0) {
                             viewDelegate.setText((TimeUtils.getTime(s.getData().getItems().get(0).getTime()) + " 收入 ￥" + StringUtils.fmoney(s.getData().getItems().get(0).getAmount(), 2)), R.id.tv_wallet_time);
-                        App.loginOut("activity.WalletActivity");
+                            SpUtils.putString(viewDelegate.getActivity(),SpUtils.RECORD,GsonUtils.GsonString(s));
+                        }
                     }
                     Log.d("ch", GsonUtils.GsonString(s));
                 }

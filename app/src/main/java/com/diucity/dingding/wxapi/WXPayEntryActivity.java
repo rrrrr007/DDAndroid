@@ -22,7 +22,6 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
-    private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
 
     private IWXAPI api;
     public static final String APP_ID = "wx2920e5b3cf5c3b39";
@@ -53,19 +52,12 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onResp(BaseResp resp) {
         Log.d("ch", "onPayFinish, errCode = " + resp.errCode);// 支付结果码
-        TextView viewById = (TextView) findViewById(R.id.tv_zz);
         if (resp.errCode == 0) {
-            viewById.setText("支付成功,3s后返回");
-            new Handler().postDelayed(() -> {
-                ((PaymentActivity) App.getAcitvity("activity.PaymentActivity")).showSuccess();
-                WXPayEntryActivity.this.finish();
-            }, 3000);
+            WXPayEntryActivity.this.finish();
+            ((PaymentActivity) App.getAcitvity("activity.PaymentActivity")).showSuccess();
         } else {
-            viewById.setText("支付失败,3s后返回");
-            new Handler().postDelayed(() -> {
-                ((PaymentActivity) App.getAcitvity("activity.PaymentActivity")).showFailure();
-                WXPayEntryActivity.this.finish();
-            }, 3000);
+            WXPayEntryActivity.this.finish();
+            ((PaymentActivity) App.getAcitvity("activity.PaymentActivity")).showFailure();
         }
 
     }

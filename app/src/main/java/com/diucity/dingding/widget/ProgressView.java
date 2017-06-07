@@ -53,7 +53,8 @@ public class ProgressView extends View {
         if (progress > 100 && progress < 0)
             return;
         if (progress == 100) {
-            new Handler().postDelayed(() -> ProgressView.this.setProgress(0), 1000);
+            reset();
+            return;
         }
         if (progress < this.progress) {
             return;

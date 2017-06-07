@@ -1,7 +1,6 @@
 package com.diucity.dingding.activity;
 
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -56,6 +55,7 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_payment_back)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid ->
                 viewDelegate.finish()
+                //viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "支付失败")
         );
 
         RxView.clicks(viewDelegate.get(R.id.tv_payment_back)).subscribe(aVoid -> {
@@ -84,6 +84,7 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         RxView.clicks(viewDelegate.get(R.id.btn_payment_pay)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> {
             if (choice == WXPAY) {
                 int id = getIntent().getIntExtra("payId", -255);
+
                 if (id == -255) {
                     viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "订单生成失败");
                     return;
@@ -201,22 +202,7 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
     }
 
     public void showFailure() {
-        viewDelegate.setText(viewDelegate.getText(R.id.btn_payment_pay).replace("确认", "重新"), R.id.btn_payment_pay);
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "支付失败");
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 2:
-                boolean ok = data.getBooleanExtra("ok", false);
-                if (ok) {
-                    showSuccess();
-                } else {
-                    showFailure();
-                }
-                break;
-            default:
-                break;
-        }
+        viewDelegate.setText(viewDelegate.getText(R.id.btn_payment_pay).replace("确认", "重新"), R.id.btn_payment_pay);
     }
 }

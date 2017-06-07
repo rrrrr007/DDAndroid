@@ -8,7 +8,7 @@ public class LoginBack {
     private int code;
     private DataBean data;
     private String message;
-    private int money_max;
+
 
     public int getCode() {
         return code;
@@ -30,25 +30,27 @@ public class LoginBack {
         return message;
     }
 
-    public int getMoney_max() {
-        return money_max;
-    }
-
-    public void setMoney_max(int money_max) {
-        this.money_max = money_max;
-    }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
     public static class DataBean {
+        private int money_max;
         private int recycler_id;
         private String auth_token;
         private String name;
         private String mobile;
         private double score;
         private int pay_security;
+
+        public int getMoney_max() {
+            return money_max;
+        }
+
+        public void setMoney_max(int money_max) {
+            this.money_max = money_max;
+        }
 
         public int getRecycler_id() {
             return recycler_id;

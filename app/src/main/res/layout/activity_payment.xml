@@ -341,7 +341,7 @@
             android:layout_below="@id/tv_payment_back"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60px"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_cmm_success_big" />
 
         <TextView
             android:id="@+id/tv_payment_success"

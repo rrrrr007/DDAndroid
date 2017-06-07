@@ -6,6 +6,7 @@ import android.util.Log;
 import com.diucity.dingding.R;
 import com.diucity.dingding.activity.CountActivity;
 import com.diucity.dingding.api.Network;
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.CaptureDelegate;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.SupplierBack;
@@ -46,6 +47,9 @@ public class CaptureBinder implements DataBinder<CaptureDelegate, NormalBack> {
                 @Override
                 public void onNext(SupplierBack o) {
                     Log.d("ch", GsonUtils.GsonString(o));
+                    if (o.getCode() == 103 ){
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (o.getCode() == 0) {
                         Intent intent = new Intent(viewDelegate.getActivity(), CountActivity.class);
                         intent.putExtra("url", o.getData().getAvatar());

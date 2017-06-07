@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.api.Network;
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.RecordDelegate;
 import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.entity.Back.NormalBack;
@@ -11,6 +12,7 @@ import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
+import com.diucity.dingding.utils.SpUtils;
 
 import java.util.List;
 
@@ -30,6 +32,9 @@ public class RecordBinder implements DataBinder<RecordDelegate, NormalBack> {
     public void work(RecordDelegate viewDelegate, Object object) {
         if (object instanceof ListBean) {
             ListBean bean = (ListBean) object;
+            if (bean.getBill_id() != -1) {
+                bean.setBill_id(viewDelegate.getAdapterBillId());
+            }
             Network.subscribe(Network.getApi().list(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<ListBack>() {
 
                 @Override
@@ -46,9 +51,23 @@ public class RecordBinder implements DataBinder<RecordDelegate, NormalBack> {
                 @Override
                 public void onNext(ListBack listBack) {
                     Log.d("ch", GsonUtils.GsonString(listBack));
+                    if (listBack.getCode() == 103) {
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (listBack.getCode() == 0) {
                         List<ListBack.DataBean.ItemsBean> list = listBack.getData().getItems();
-                        viewDelegate.notifyData(list);
+                        Log.d("ch", "size" + list.size());
+                        viewDelegate.onFinishLoad();
+                        if (list.size() == 0) {
+                            viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "没有更多了");
+                        } else {
+                            if (bean.getBill_id() == -1) {
+                                viewDelegate.notifyDataSet(list);
+                                SpUtils.putString(viewDelegate.getActivity(),SpUtils.RECORD,GsonUtils.GsonString(listBack));
+                            }
+                            else
+                                viewDelegate.notifyDataAdd(list);
+                        }
                     } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, listBack.getMessage());
                     }

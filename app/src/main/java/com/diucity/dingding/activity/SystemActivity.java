@@ -31,13 +31,12 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
         ((MySpringView) viewDelegate.get(R.id.sv_system)).setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                viewDelegate.onFinishLoad();
+                binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -1, 10, 2));
             }
 
             @Override
             public void onLoadmore() {
-                binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
-                viewDelegate.onFinishLoad();
+                binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 2, 10, 2));
             }
 
         });
@@ -52,11 +51,11 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
 
     @Override
     public void initData() {
-        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
+        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -1, 10, 2));
     }
 
     @Override
     protected void doAction1() {
-        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), 0, 10));
+        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -1, 10, 2));
     }
 }

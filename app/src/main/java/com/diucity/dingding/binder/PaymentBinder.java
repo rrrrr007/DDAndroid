@@ -8,6 +8,7 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.activity.PaymentActivity;
 import com.diucity.dingding.activity.YWTActivity;
 import com.diucity.dingding.api.Network;
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.PaymentDelegate;
 import com.diucity.dingding.entity.Back.CheckBack;
 import com.diucity.dingding.entity.Back.InfoBack;
@@ -52,6 +53,9 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
 
                 @Override
                 public void onNext(RequestBack o) {
+                    if (o.getCode() == 103 ){
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (o.getCode() == 0) {
                         if (bean.getPayment_type() == 1) {
                             work(viewDelegate, new InfoBean(bean.getOrder_id()));
@@ -92,6 +96,9 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                 @Override
                 public void onNext(CheckBack o) {
                     Log.d("ch", GsonUtils.GsonString(o));
+                    if (o.getCode() == 103 ){
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (o.getCode() == 0) {
                         if (o.getData().getCheck_code() == 0) {
                             viewDelegate.setVisiable(true, R.id.arl_payment);
@@ -102,6 +109,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
             });
         } else if (object instanceof InfoBean) {
             InfoBean bean = (InfoBean) object;
+            Log.d("ch,","InfoBean"+GsonUtils.GsonString(bean));
             Network.subscribe(Network.getApi().info(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<InfoBack>() {
                 @Override
                 public void onCompleted() {
@@ -115,6 +123,9 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
 
                 @Override
                 public void onNext(InfoBack o) {
+                    if (o.getCode() == 103 ){
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     Log.d("ch", GsonUtils.GsonString(o));
                     if (o.getCode() == 0) {
                         viewDelegate.setDialog(o);

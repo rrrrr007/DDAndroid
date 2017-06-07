@@ -131,7 +131,13 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
     }
 
     public ArrayList<CreateBean.ScrapsBean> getCreate() {
-        return create;
+        ArrayList<CreateBean.ScrapsBean> a = new ArrayList<>();
+        for (CreateBean.ScrapsBean bean : create) {
+            if (bean.getQuantity()!=0){
+                a.add(bean);
+            }
+        }
+        return a;
     }
 
     public void setCreate(ArrayList<CreateBean.ScrapsBean> create) {

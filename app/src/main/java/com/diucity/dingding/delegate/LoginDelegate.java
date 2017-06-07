@@ -32,12 +32,13 @@ public class LoginDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        setText("139 9068 5003", R.id.edt_login_phone);
         String intent = getActivity().getIntent().getStringExtra("intent");
         if (!TextUtils.isEmpty(intent) && intent.equals("loginout")) {
             showNormalWarn(get(R.id.fl_toolbar), 1, "退出成功");
         } else if (!TextUtils.isEmpty(intent) && intent.equals("reset")) {
             showNormalWarn(get(R.id.fl_toolbar), 1, "修改密码成功,请重新登录");
+        } else if (!TextUtils.isEmpty(intent) && intent.equals("haslogin")){
+            showNormalWarn(get(R.id.fl_toolbar), 1, "该账号在其他设备登录,请重新登录");
         }
     }
 

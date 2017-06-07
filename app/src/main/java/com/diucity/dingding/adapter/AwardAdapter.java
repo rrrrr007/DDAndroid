@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
@@ -64,9 +65,9 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
         title.setText(position == 0 ? "单次交易奖励" : "累计交易奖励");
 
         TextView content = holder.getView(R.id.adapter_tv_price_difference);
-        if (getModel().get(position).getType() == 1) {
+        if (getModel().get(position).getType() == 1&&!TextUtils.isEmpty(getModel().get(position).getContent())) {
             content.setText(textSpan2(getModel().get(position).getContent()));
-        } else if (getModel().get(position).getType() == 2) {
+        } else if (getModel().get(position).getType() == 2&&!TextUtils.isEmpty(getModel().get(position).getContent())) {
             content.setText(textSpan(getModel().get(position).getContent()));
         }
         TextView explain = holder.getView(R.id.adapter_tv_price_content);

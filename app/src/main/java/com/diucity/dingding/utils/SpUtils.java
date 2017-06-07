@@ -19,6 +19,7 @@ public class SpUtils {
     public static final String SCRAPS = "scraps";
     public static final String USER = "loginBack";
     public static final String WALLET = "wallet";
+    public static final String RECORD = "record";
 
 
     public static String getString(Context context, String strKey) {

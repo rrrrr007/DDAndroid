@@ -7,6 +7,7 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.activity.CountActivity;
 import com.diucity.dingding.activity.PaymentActivity;
 import com.diucity.dingding.api.Network;
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.CountDelegate;
 import com.diucity.dingding.entity.Back.CreateBack;
 import com.diucity.dingding.entity.Back.NormalBack;
@@ -43,6 +44,7 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                 @Override
                 public void onError(Throwable e) {
                     e.printStackTrace();
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接错误");
                     viewDelegate.hideLoadingWarn();
                 }
 
@@ -50,6 +52,9 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                 public void onNext(CreateBack o) {
                     viewDelegate.hideLoadingWarn();
                     Log.d("ch", GsonUtils.GsonString(o));
+                    if (o.getCode() == 103 ){
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (o.getCode() == 0) {
                         Intent intent = new Intent(viewDelegate.getActivity(), PaymentActivity.class);
                         intent.putExtra("orderId", o.getData().getOrder_id());

@@ -1,5 +1,6 @@
 package com.diucity.dingding.app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatDelegate;
@@ -123,12 +124,12 @@ public class App extends android.app.Application {
         return null;
     }
 
-    public static void loginOut(String name) {
+    public static void loginOut(Activity x) {
         List<BaseActivity> activities = getActivities();
         BaseActivity a = null;
         for (BaseActivity activity : activities) {
             Log.d("ch", activity.getLocalClassName());
-            if (activity.getLocalClassName().equals(name)) {
+            if (activity.getLocalClassName().equals(x.getLocalClassName())) {
                 a = activity;
             } else {
                 activity.finish();
@@ -137,7 +138,8 @@ public class App extends android.app.Application {
         SpUtils.putString(getContext(), SpUtils.USER, "");
         SpUtils.putString(getContext(), SpUtils.WALLET, "");
         if (a == null) System.exit(0);
-        a.startActivity(new Intent(a, LoginActivity.class));
+        Intent intent = new Intent(a, LoginActivity.class);
+        a.startActivity(intent.putExtra("intent","haslogin"));
         a.finish();
     }
 }

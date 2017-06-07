@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.api.Network;
+import com.diucity.dingding.app.App;
 import com.diucity.dingding.delegate.SystemDelegate;
 import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.SystemBack;
@@ -32,7 +33,7 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
     public void work(SystemDelegate viewDelegate, Object object) {
         if (object instanceof ListBean) {
             ListBean bean = (ListBean) object;
-            bean.setStart(i);
+            Log.d("ch",GsonUtils.GsonString(bean));
             Network.subscribe(Network.getApi().notices(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<SystemBack>() {
 
                 @Override
@@ -49,6 +50,9 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
                 @Override
                 public void onNext(SystemBack s) {
                     Log.d("ch", GsonUtils.GsonString(s));
+                    if (s.getCode() == 103 ){
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (s.getCode() == 0) {
                         i += 1;
                         List<SystemBack.DataBean.NoticesBean> notices = s.getData().getNotices();

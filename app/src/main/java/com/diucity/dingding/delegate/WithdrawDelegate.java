@@ -2,6 +2,7 @@ package com.diucity.dingding.delegate;
 
 import android.app.Dialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.diucity.dingding.app.App;
 import com.diucity.dingding.entity.User;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.GsonUtils;
+import com.diucity.dingding.widget.ProgressView;
+import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -24,7 +27,7 @@ import com.tencent.smtt.sdk.WebViewClient;
  */
 public class WithdrawDelegate extends AppDelegate {
     Dialog dialog;
-
+    private ProgressView pv;
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_withdraw;
@@ -38,13 +41,29 @@ public class WithdrawDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
+        pv = get(R.id.pv_withdraw);
         WebView wv = get(R.id.webView_withdraw);
         WebSettings set = wv.getSettings();
         wv.loadUrl(Api.WEBURL + "#/withdraw");
         wv.addJavascriptInterface(WithdrawDelegate.this, "android");
         set.setJavaScriptEnabled(true);
         set.setDomStorageEnabled(true);
+        set.setBuiltInZoomControls(true);
+        set.setUseWideViewPort(true);
+        set.setLoadWithOverviewMode(true);
+        set.setSaveFormData(false);
+        set.setSavePassword(false);
+        set.setSupportZoom(false);
+        wv.requestFocus();
         wv.setWebViewClient(new WebViewClient());
+        wv.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                Log.d("ch","p"+newProgress);
+                pv.setProgress(newProgress);
+                super.onProgressChanged(view, newProgress);
+            }
+        });
     }
 
 

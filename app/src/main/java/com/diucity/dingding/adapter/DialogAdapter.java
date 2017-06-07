@@ -32,18 +32,34 @@ public class DialogAdapter extends BaseAdapter<InfoBack.DataBean.ScrapsBean> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TextView name = holder.getView(R.id.adapter_tv_payment_name);
-        name.setText(getModel().get(position).getName());
+        name.setText(getNameById(getModel().get(position).getScrap_id()));
         TextView weight = holder.getView(R.id.adapter_tv_payment_weight);
-        weight.setText(StringUtils.getIntString(getModel().get(position).getQuantity()) + getModel().get(position).getUnit());
+        weight.setText(StringUtils.getIntString(getModel().get(position).getQuantity()) + getUnitById(getModel().get(position).getScrap_id()));
         TextView much = holder.getView(R.id.adapter_tv_payment_much);
         much.setText(StringUtils.getDoubleString(getModel().get(position).getAmount()) + "元");
     }
 
     private String getNameById(int id) {
+        if (back==null){
+            return "";
+        }
         List<ScrapsBack.Data.Scraps> list = back.getData().getScraps();
         for (ScrapsBack.Data.Scraps scraps : list) {
             if (scraps.getScrap_id() == id) {
                 return scraps.getName();
+            }
+        }
+        return "";
+    }
+
+    private String getUnitById(int id) {
+        if (back==null){
+            return "";
+        }
+        List<ScrapsBack.Data.Scraps> list = back.getData().getScraps();
+        for (ScrapsBack.Data.Scraps scraps : list) {
+            if (scraps.getScrap_id() == id) {
+                return scraps.getUnit();
             }
         }
         return "";
