@@ -73,6 +73,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
             });
         } else if (object instanceof TodayBean) {
             TodayBean bean = (TodayBean) object;
+            Log.d("ch","long"+bean.getLongitude()+"latitude"+bean.getLatitude());
             Network.subscribe(Network.getApi().today(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<TodayBack>() {
 
                 @Override

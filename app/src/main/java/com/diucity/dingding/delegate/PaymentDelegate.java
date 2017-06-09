@@ -1,6 +1,7 @@
 package com.diucity.dingding.delegate;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.DialogAdapter;
@@ -91,5 +93,23 @@ public class PaymentDelegate extends AppDelegate {
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getActivity(), 20)), 3, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity(), R.color.text_orange)), 3, text.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return textSpan;
+    }
+
+    public void showResult(boolean is){
+
+        setVisiable(false, R.id.arl_payment_pay);
+        if (!is){
+           setSrc(ContextCompat.getDrawable(getActivity(),R.mipmap.ic_cmm_error_big),R.id.iv_payment_src);
+            TextView tv = get(R.id.tv_payment_success);
+            tv.setTextColor(Color.parseColor("#F74C31"));
+            setText("支付失败",R.id.tv_payment_success);
+            setText("如果你的支付已到账\n24小时后内会回原路退回",R.id.tv_payment_total);
+            setVisiable(false,R.id.tv_payment_time);
+            setVisiable(false,R.id.ard_payment_detail);
+            setVisiable(false,R.id.tv_payment_back);
+            setVisiable(true,R.id.btn_payment_failed);
+
+        }
+        setVisiable(true, R.id.arl_payment);
     }
 }

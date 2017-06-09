@@ -1,10 +1,15 @@
 package com.diucity.dingding.activity;
 
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +19,7 @@ import com.diucity.dingding.binder.PaymentBinder;
 import com.diucity.dingding.delegate.PaymentDelegate;
 import com.diucity.dingding.entity.Back.WXBack;
 import com.diucity.dingding.entity.Send.CheckBean;
+import com.diucity.dingding.entity.Send.NotifyBean;
 import com.diucity.dingding.entity.Send.RequestBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
@@ -29,12 +35,13 @@ import rx.Observer;
 import rx.Subscription;
 
 public class PaymentActivity extends BaseActivity<PaymentDelegate> {
-    private final int WXPAY = 101;
-    private final int YWTPAY = 102;
-    private final int ZFBPAY = 103;
+    private final int WXPAY = 1;
+    private final int YWTPAY = 2;
+    private final int ZFBPAY = 3;
     private int choice = WXPAY;
     private static final String APP_ID = "wx3ea5c30a2e13c752";
     private Subscription subscribe;
+    private AlertDialog alertDialog;
 
     private IWXAPI api;
 
@@ -51,16 +58,31 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
 
     @Override
     protected void bindEvenListener() {
+        //开关
+        RxView.clicks(viewDelegate.get(R.id.tv_payment_title)).subscribe(aVoid -> {
+            PaymentBinder binder = (PaymentBinder) this.binder;
+            binder.is = !binder.is;
+            if (binder.is) {
+                Toast.makeText(activity, "支付会成功", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(activity, "支付绝B失败", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_payment_back)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid ->
-                viewDelegate.finish()
-                //viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "支付失败")
+                showDialog()
         );
 
+        //失败
+        RxView.clicks(viewDelegate.get(R.id.btn_payment_failed)).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid ->
+                viewDelegate.finish()
+        );
+        //关闭
         RxView.clicks(viewDelegate.get(R.id.tv_payment_back)).subscribe(aVoid -> {
             App.getAcitvity("activity.CountActivity").finish();
             viewDelegate.finish();
+            ((HomeActivity) App.getAcitvity("activity.HomeActivity")).notifyBasket();
         });
         //支付选择
         RxView.clicks(viewDelegate.get(R.id.all_payment_wx)).subscribe(aVoid -> {
@@ -166,22 +188,48 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
 
     private void setPayIcon() {
         switch (choice) {
-            case 101:
+            case 1:
                 viewDelegate.setEnable(false, R.id.iv_payment_wx);
                 viewDelegate.setEnable(true, R.id.iv_payment_ywt);
                 viewDelegate.setEnable(true, R.id.iv_payment_zfb);
                 break;
-            case 102:
+            case 2:
                 viewDelegate.setEnable(false, R.id.iv_payment_ywt);
                 viewDelegate.setEnable(true, R.id.iv_payment_wx);
                 viewDelegate.setEnable(true, R.id.iv_payment_zfb);
                 break;
-            case 103:
+            case 3:
                 viewDelegate.setEnable(false, R.id.iv_payment_zfb);
                 viewDelegate.setEnable(true, R.id.iv_payment_wx);
                 viewDelegate.setEnable(true, R.id.iv_payment_ywt);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (viewDelegate.get(R.id.arl_payment_pay).getVisibility()==View.GONE){
+            super.onBackPressed();
+        }else {
+            showDialog();
+        }
+
+    }
+
+    public void showDialog() {
+        if (alertDialog == null) {
+            alertDialog = new AlertDialog.Builder(this)
+                    .setTitle("提示")
+                    .setMessage("确认取消本次订单结算吗？")
+                    .setNegativeButton("取消结算", (dialog, which) -> {
+                        alertDialog.dismiss();
+                        viewDelegate.finish();
+                    })
+                    .setPositiveButton("继续支付", (dialog2, which) -> alertDialog.dismiss()).create();
+            Window window = alertDialog.getWindow();
+            window.setWindowAnimations(R.style.dialog_style);
+        }
+        alertDialog.show();
     }
 
     public void setImageRight(boolean open) {
@@ -197,9 +245,9 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
     }
 
     public void showSuccess() {
-        viewDelegate.setVisiable(true, R.id.arl_payment);
-        viewDelegate.setVisiable(false, R.id.btn_payment_pay);
+        binder.work(viewDelegate, new NotifyBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), getIntent().getIntExtra("payId", -255), choice));
     }
+
 
     public void showFailure() {
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "支付失败");

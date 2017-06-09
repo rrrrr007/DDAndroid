@@ -78,9 +78,7 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
     }
 
 
-    public void adapterNotify(List<SystemBack.DataBean.NoticesBean> model) {
-        if (model != null && model.size() > 0)
-            getModel().addAll(model);
-        notifyDataSetChanged();
-    }
+
+
+
 }

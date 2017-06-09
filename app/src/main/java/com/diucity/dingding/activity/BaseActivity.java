@@ -63,6 +63,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     public void isShowSmallWarn(boolean is) {
         if (is) {
             //show
+
             ((AppDelegate) viewDelegate).showSmallWarn();
         } else {
             //noshow
@@ -98,10 +99,8 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
             NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
             NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
-                Log.i("ch", "unconnect");
-
+                first = true;
             } else {
-                Log.i("ch", "connect");
                 if (first) {
                     doAction1();
                 } else {
@@ -113,7 +112,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
         }
     };
 
-    protected void doAction1() {
+    public void doAction1() {
     }
 
     @Override

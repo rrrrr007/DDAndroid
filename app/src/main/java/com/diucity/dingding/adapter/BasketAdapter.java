@@ -1,10 +1,7 @@
 package com.diucity.dingding.adapter;
 
 import android.content.Context;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,10 +9,10 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.entity.Back.BasketBack;
 import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.TodayBack;
-import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
 import com.diucity.dingding.utils.StringUtils;
+import com.diucity.dingding.widget.CounterView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +31,7 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
 
     @Override
     public int getId() {
-        return R.layout.adapter_price;
+        return R.layout.adapter_basket;
     }
 
     @Override
@@ -45,10 +42,15 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         name.setText(getModel().get(position).getName());
         TextView content = holder.getView(R.id.adapter_tv_price_content);
         content.setText("预估收益 ￥" + StringUtils.fmoney(getQuantity(position) * getPrice(position), 2));
-        TextView tv = holder.getView(R.id.adapter_tv_price_difference);
-
-        tv.setText(textSpan(StringUtils.getIntString(getQuantity(position)) + getModel().get(position).getUnit()));
-
+        TextView unit = holder.getView(R.id.adapter_tv_price_unit);
+        unit.setText(getModel().get(position).getUnit());
+        CounterView cv = holder.getView(R.id.adapter_tv_price_difference);
+        int i = 0;
+        String quantity = StringUtils.getIntString(getQuantity(position));
+        if (quantity.contains(".")){
+            i = quantity.length() - 1 - quantity.indexOf(".");
+        }
+        cv.showAnimation(Float.parseFloat(cv.getText().toString()),Float.parseFloat(StringUtils.getIntString(getQuantity(position))),1000,CounterView.getDecimalFormat(i));
         TextView title = holder.getView(R.id.adapter_tv_price_title);
         title.setText("预估总收益：" + getAll() + "元");
     }
@@ -80,15 +82,6 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         }
         return 0;
     }
-
-    private SpannableString textSpan(String str) {
-        String text = str;
-        SpannableString textSpan = new SpannableString(text);
-        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        return textSpan;
-    }
-
 
     private String getAll() {
         double all = 0;

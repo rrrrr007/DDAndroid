@@ -1,6 +1,7 @@
 package com.diucity.dingding.activity;
 
 
+import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
@@ -26,11 +27,15 @@ public class RecordActivity extends BaseActivity<RecordDelegate> {
 
     @Override
     protected void bindEvenListener() {
-        //下拉刷新
+
+        //上啦刷新
+        SwipeRefreshLayout srl = viewDelegate.get(R.id.srl_record);
+        srl.setOnRefreshListener(() -> binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -1, 10)));
+        //下拉加载
         ((SpringView) viewDelegate.get(R.id.sv_record)).setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -1, 10));
+                //binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -1, 10));
             }
 
             @Override
@@ -44,5 +49,15 @@ public class RecordActivity extends BaseActivity<RecordDelegate> {
                 .subscribe(aVoid -> {
                     finish();
                 });
+    }
+
+    @Override
+    public void initData() {
+        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -2, 10));
+    }
+
+    @Override
+    public void doAction1() {
+        binder.work(viewDelegate, new ListBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token(), -2, 10));
     }
 }

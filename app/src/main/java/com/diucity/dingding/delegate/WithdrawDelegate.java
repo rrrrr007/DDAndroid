@@ -28,6 +28,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 public class WithdrawDelegate extends AppDelegate {
     Dialog dialog;
     private ProgressView pv;
+
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_withdraw;
@@ -35,7 +36,7 @@ public class WithdrawDelegate extends AppDelegate {
 
     @Override
     public boolean needShow() {
-        return false;
+        return true;
     }
 
     @Override
@@ -54,14 +55,23 @@ public class WithdrawDelegate extends AppDelegate {
         set.setSaveFormData(false);
         set.setSavePassword(false);
         set.setSupportZoom(false);
+        set.setCacheMode(WebSettings.LOAD_NO_CACHE);
         wv.requestFocus();
-        wv.setWebViewClient(new WebViewClient());
         wv.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                Log.d("ch","p"+newProgress);
+                Log.d("ch", "p" + newProgress);
                 pv.setProgress(newProgress);
                 super.onProgressChanged(view, newProgress);
+            }
+        });
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView webView, String s) {
+                if (s.contains("details")) {
+                    App.getAcitvity("activity.WalletActivity").doAction1();
+                }
+                super.onPageFinished(webView, s);
             }
         });
     }

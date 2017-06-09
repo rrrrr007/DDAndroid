@@ -35,7 +35,7 @@ public class WebDelegate extends AppDelegate {
 
     @Override
     public boolean needShow() {
-        return false;
+        return true;
     }
 
     @Override
@@ -53,12 +53,15 @@ public class WebDelegate extends AppDelegate {
         set.setSaveFormData(false);
         set.setSavePassword(false);
         set.setSupportZoom(false);
+        set.setCacheMode(WebSettings.LOAD_NO_CACHE);
         wv.requestFocus();
         wv.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView webView, String s) {
                 if (s.contains("trade-details")){
                     setText("交易详情",R.id.tv_detail_title);
+                }else {
+                    setText("账单详情",R.id.tv_detail_title);
                 }
                 super.onPageFinished(webView, s);
             }

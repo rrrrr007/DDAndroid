@@ -33,21 +33,18 @@
         android:id="@+id/all_count_pay"
         android:layout_width="wrap_content"
         android:layout_height="88px"
+        android:layout_marginRight="20px"
         android:layout_alignParentRight="true">
 
-        <com.diucity.dingding.widget.LightText
-            android:id="@+id/tv_count_payment"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_count_payment"
+            android:layout_width="100px"
             android:layout_height="60px"
-            android:layout_marginRight="20px"
-            android:layout_marginTop="14px"
-            android:background="@drawable/btn_title_press_selector"
+            android:background="@drawable/button_selector"
             android:enabled="false"
+            android:clickable="false"
             android:gravity="center"
-            android:paddingEnd="30px"
-            android:paddingLeft="20px"
-            android:paddingRight="20px"
-            android:paddingStart="30px"
+            android:layout_centerInParent="true"
             android:text="结算"
             android:textColor="@color/selector_white"
             android:textSize="12sp" />

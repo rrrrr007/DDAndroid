@@ -43,19 +43,7 @@ public class InfoBack {
     }
 
     public static class DataBean {
-        /**
-         * amount : 1.4
-         * bonus : 0.0
-         * bonuses : []
-         * order_id : 610.0
-         * order_no : 1495769174934710842
-         * scraps : [{"scrap_id":398,"name":"","unit":"","quantity":1,"amount":0.2},{"scrap_id":399,"name":"","unit":"","quantity":2,"amount":0.6},{"scrap_id":400,"name":"","unit":"","quantity":3,"amount":0.6000000000000001}]
-         * supplier_icon : http://wx.qlogo.cn/mmopen/vi_32/dTyEibufUO2hTjbA0vF4cByND3N9vIxiac32C2uvibqo6KcsfPpeXpfd89ldWOhLibyQqic1ZiaSgHLUck8xhpvDydxQ/0
-         * supplier_id : 100003.0
-         * supplier_name : 西门大官银
-         * time : 1.49576918E9
-         * type : 1.0
-         */
+
 
         private double amount;
         private double bonus;
@@ -126,7 +114,7 @@ public class InfoBack {
         }
 
         public long getTime() {
-            return time;
+            return time*1000;
         }
 
         public void setTime(long time) {

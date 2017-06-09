@@ -21,6 +21,7 @@ import com.diucity.dingding.entity.Send.CreateBean;
 import com.diucity.dingding.entity.Send.InfoBean;
 import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.entity.Send.LoginBean;
+import com.diucity.dingding.entity.Send.NotifyBean;
 import com.diucity.dingding.entity.Send.PaysetBean;
 import com.diucity.dingding.entity.Send.RequestBean;
 import com.diucity.dingding.entity.Send.ResetBean;
@@ -94,6 +95,9 @@ public interface Api {
 
     @POST("order.check")
     Observable<CheckBack> check(@Query("sign") String sign, @Body CheckBean bean);
+
+    @POST("order.notify")
+    Observable<NormalBack> notify(@Query("sign") String sign, @Body NotifyBean bean);
 
     @POST("order.information")
     Observable<InfoBack> info(@Query("sign") String sign, @Body InfoBean bean);

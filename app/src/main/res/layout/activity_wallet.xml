@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70px"
-                android:text="当前余额（元）"
+                android:text="当前收入（元）"
                 android:textColor="#606664"
                 android:textSize="14sp" />
 

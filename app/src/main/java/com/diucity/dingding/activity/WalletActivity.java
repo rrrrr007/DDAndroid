@@ -64,7 +64,7 @@ public class WalletActivity extends BaseActivity<WalletDelegate> {
     }
 
     @Override
-    protected void doAction1() {
+    public void doAction1() {
         binder.work(viewDelegate, new SummaryBean(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token()));
     }
 }

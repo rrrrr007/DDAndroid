@@ -152,8 +152,14 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
                 Address address = locationList.get(0);
                 String locality = address.getLocality() + address.getSubLocality();//得到城市名称，比如：北京市
                 Log.i("ch", "locality = " + locality + "纬度" + address.getLatitude() + "进度" + address.getLongitude());
+                if (App.longitude==0&&address.getLongitude()!=0){
+                    App.latitude = address.getLatitude();
+                    App.longitude = address.getLongitude();
+                    doAction1();
+                }
                 App.latitude = address.getLatitude();
                 App.longitude = address.getLongitude();
+
             }
         }
     };
@@ -167,7 +173,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
 
 
     @Override
-    protected void doAction1() {
+    public void doAction1() {
         binder.work(viewDelegate, new ScrapsBean(App.user.getData().getRecycler_id()));
     }
 
@@ -182,6 +188,11 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 1, locationListener);
         } else {
         }
+    }
+
+    public void notifyBasket(){
+        vp.setCurrentItem(1);
+        doAction1();
     }
 
 

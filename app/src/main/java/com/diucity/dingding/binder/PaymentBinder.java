@@ -16,6 +16,7 @@ import com.diucity.dingding.entity.Back.NormalBack;
 import com.diucity.dingding.entity.Back.RequestBack;
 import com.diucity.dingding.entity.Send.CheckBean;
 import com.diucity.dingding.entity.Send.InfoBean;
+import com.diucity.dingding.entity.Send.NotifyBean;
 import com.diucity.dingding.entity.Send.RequestBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
@@ -28,6 +29,7 @@ import rx.Observer;
  */
 
 public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
+    public boolean is =true;
     @Override
     public void viewBindModel(PaymentDelegate viewDelegate, NormalBack data) {
 
@@ -81,6 +83,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                 }
             });
         } else if (object instanceof CheckBean) {
+
             CheckBean bean = (CheckBean) object;
             Network.subscribe(Network.getApi().check(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<CheckBack>() {
                 @Override
@@ -108,6 +111,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                 }
             });
         } else if (object instanceof InfoBean) {
+
             InfoBean bean = (InfoBean) object;
             Log.d("ch,","InfoBean"+GsonUtils.GsonString(bean));
             Network.subscribe(Network.getApi().info(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<InfoBack>() {
@@ -130,6 +134,34 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                     if (o.getCode() == 0) {
                         viewDelegate.setDialog(o);
                     }
+                }
+            });
+        }else if (object instanceof NotifyBean){
+            viewDelegate.showLoadingWarn("请求支付结果");
+            NotifyBean bean = (NotifyBean) object;
+            Network.subscribe(Network.getApi().notify(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<NormalBack>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    e.printStackTrace();
+                    viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "请求支付结果失败");
+                    viewDelegate.hideLoadingWarn();
+                }
+
+                @Override
+                public void onNext(NormalBack o) {
+                    Log.d("ch",GsonUtils.GsonString(o));
+                    viewDelegate.hideLoadingWarn();
+                    if (o.getCode()==0){
+                        viewDelegate.showResult(is);
+                    }else {
+                        viewDelegate.showResult(false);
+                    }
+
                 }
             });
         }

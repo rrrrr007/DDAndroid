@@ -22,7 +22,6 @@ import rx.Observer;
  */
 
 public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
-    private int i = 1;
 
     @Override
     public void viewBindModel(SystemDelegate viewDelegate, NormalBack data) {
@@ -33,7 +32,13 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
     public void work(SystemDelegate viewDelegate, Object object) {
         if (object instanceof ListBean) {
             ListBean bean = (ListBean) object;
-            Log.d("ch",GsonUtils.GsonString(bean));
+            if (bean.getNotice_id()==-1){
+            }else if (bean.getNotice_id()==-2){
+                bean.setNotice_id(-1);
+                viewDelegate.isLoading(true);
+            }else {
+                bean.setNotice_id(viewDelegate.getNoticeId());
+            }
             Network.subscribe(Network.getApi().notices(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<SystemBack>() {
 
                 @Override
@@ -45,18 +50,25 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
                 public void onError(Throwable e) {
                     e.printStackTrace();
                     viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "网络连接错误");
+                    viewDelegate.onFinishLoad();
+                    viewDelegate.isLoading(false);
                 }
 
                 @Override
                 public void onNext(SystemBack s) {
+                    viewDelegate.onFinishLoad();
+                    viewDelegate.isLoading(false);
                     Log.d("ch", GsonUtils.GsonString(s));
                     if (s.getCode() == 103 ){
                         App.loginOut(viewDelegate.getActivity());
                     }
                     if (s.getCode() == 0) {
-                        i += 1;
                         List<SystemBack.DataBean.NoticesBean> notices = s.getData().getNotices();
-                        viewDelegate.notifyData(notices);
+                        if (bean.getNotice_id()==-1){
+                            viewDelegate.notifyDataSet(notices);
+                        }else {
+                            viewDelegate.notifyDataAdd(notices);
+                        }
                     } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, s.getMessage());
                     }

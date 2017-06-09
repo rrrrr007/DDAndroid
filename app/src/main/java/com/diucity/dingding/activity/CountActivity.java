@@ -65,7 +65,7 @@ public class CountActivity extends BaseActivity<CountDelegate> {
                 edt.setSelection(edt.getText().length());
                 double all = getall();
                 viewDelegate.setSumPrice(all);
-                viewDelegate.setEnable(all > 0, R.id.tv_count_payment);
+                viewDelegate.setEnable(all > 0, R.id.btn_count_payment);
             } else
                 first = false;
 

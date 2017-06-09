@@ -77,6 +77,7 @@ public class Forget2Binder implements DataBinder<Forget2Delegate, NormalBack> {
                     Log.d("ch", GsonUtils.GsonString(normalBack));
                     viewDelegate.hideLoadingWarn();
                     if (normalBack.getCode() == 0) {
+                        App.getAcitvity("activity.ForgetActivity").finish();
                         ((LoginActivity) App.getAcitvity("activity.LoginActivity")).showNormal();
                         viewDelegate.finish();
                     } else {

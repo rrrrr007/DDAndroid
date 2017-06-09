@@ -1,5 +1,6 @@
 package com.diucity.dingding.delegate;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,6 +24,7 @@ import java.util.List;
 public class SystemDelegate extends AppDelegate {
     private SystemAdapter adapter;
     private SpringView sv;
+    private SwipeRefreshLayout srl;
 
     @Override
     public int getRootLayoutId() {
@@ -37,9 +39,10 @@ public class SystemDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
+        srl = get(R.id.srl_system);
+        srl.setColorSchemeResources(R.color.text_green);
 
         sv = get(R.id.sv_system);
-        sv.setHeader(new DefaultHeader(getActivity()));
         sv.setFooter(new DefaultFooter(getActivity()));
         sv.setType(SpringView.Type.FOLLOW);
         sv.setEnable(false);
@@ -51,9 +54,20 @@ public class SystemDelegate extends AppDelegate {
 
     }
 
-    public void notifyData(List<SystemBack.DataBean.NoticesBean> list) {
+    public void notifyDataAdd(List<SystemBack.DataBean.NoticesBean> list) {
 
-        adapter.adapterNotify(list);
+        adapter.updateByAdd(list);
+        if (adapter.getItemCount() > 0) {
+            get(R.id.ll_system_empty).setVisibility(View.GONE);
+            sv.setEnable(true);
+        } else {
+            get(R.id.ll_system_empty).setVisibility(View.VISIBLE);
+            sv.setEnable(false);
+        }
+    }
+
+    public void notifyDataSet(List<SystemBack.DataBean.NoticesBean> list) {
+        adapter.updateBySet(list);
         if (adapter.getItemCount() > 0) {
             get(R.id.ll_system_empty).setVisibility(View.GONE);
             sv.setEnable(true);
@@ -64,11 +78,27 @@ public class SystemDelegate extends AppDelegate {
     }
 
     public void isLoading(boolean is) {
-        get(R.id.ll_system_loading).setVisibility(is ? View.VISIBLE : View.GONE);
+        get(R.id.progress_system).setVisibility(is ? View.VISIBLE : View.GONE);
+        if (is){
+            setText("更新中...",R.id.tv_system_title);
+        }else {
+            setText("账单明细",R.id.tv_system_title);
+        }
+
     }
 
     public void onFinishLoad() {
+        if (srl.isRefreshing()){
+            srl.setRefreshing(false);
+        }
         sv.onFinishFreshAndLoad();
     }
 
+    public int getNoticeId(){
+        if (adapter.getModel().size()>0){
+            return  adapter.getModel().get(adapter.getModel().size()-1).getNotice_id();
+        }else {
+            return -1;
+        }
+    }
 }
