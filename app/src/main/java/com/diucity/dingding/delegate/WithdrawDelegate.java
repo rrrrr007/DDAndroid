@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.api.Api;
@@ -28,6 +29,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 public class WithdrawDelegate extends AppDelegate {
     Dialog dialog;
     private ProgressView pv;
+    private WebView wv;
 
     @Override
     public int getRootLayoutId() {
@@ -43,7 +45,7 @@ public class WithdrawDelegate extends AppDelegate {
     public void initWidget() {
         super.initWidget();
         pv = get(R.id.pv_withdraw);
-        WebView wv = get(R.id.webView_withdraw);
+        wv = get(R.id.webView_withdraw);
         WebSettings set = wv.getSettings();
         wv.loadUrl(Api.WEBURL + "#/withdraw");
         wv.addJavascriptInterface(WithdrawDelegate.this, "android");
@@ -81,6 +83,12 @@ public class WithdrawDelegate extends AppDelegate {
     public String getUserData() {
         String s = GsonUtils.GsonString(new User(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token()));
         return s;
+    }
+
+    @JavascriptInterface
+    public void reload() {
+        Toast.makeText(getActivity(), "reload", Toast.LENGTH_SHORT).show();
+        wv.reload();
     }
 
     @JavascriptInterface
