@@ -12,6 +12,7 @@ import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
+import com.diucity.dingding.utils.SpUtils;
 
 import java.util.List;
 
@@ -32,11 +33,11 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
     public void work(SystemDelegate viewDelegate, Object object) {
         if (object instanceof ListBean) {
             ListBean bean = (ListBean) object;
-            if (bean.getNotice_id()==-1){
-            }else if (bean.getNotice_id()==-2){
+            if (bean.getNotice_id() == -1) {
+            } else if (bean.getNotice_id() == -2) {
                 bean.setNotice_id(-1);
                 viewDelegate.isLoading(true);
-            }else {
+            } else {
                 bean.setNotice_id(viewDelegate.getNoticeId());
             }
             Network.subscribe(Network.getApi().notices(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<SystemBack>() {
@@ -59,15 +60,21 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
                     viewDelegate.onFinishLoad();
                     viewDelegate.isLoading(false);
                     Log.d("ch", GsonUtils.GsonString(s));
-                    if (s.getCode() == 103 ){
+                    if (s.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
                     }
+
                     if (s.getCode() == 0) {
                         List<SystemBack.DataBean.NoticesBean> notices = s.getData().getNotices();
-                        if (bean.getNotice_id()==-1){
-                            viewDelegate.notifyDataSet(notices);
-                        }else {
-                            viewDelegate.notifyDataAdd(notices);
+                        if (notices.size() == 0) {
+                            viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "没有更多了");
+                        } else {
+                            if (bean.getNotice_id() == -1) {
+                                SpUtils.putString(viewDelegate.getActivity(),SpUtils.SYSTEM,GsonUtils.GsonString(s));
+                                viewDelegate.notifyDataSet(notices);
+                            } else {
+                                viewDelegate.notifyDataAdd(notices);
+                            }
                         }
                     } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, s.getMessage());

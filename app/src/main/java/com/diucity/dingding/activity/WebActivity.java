@@ -27,7 +27,9 @@ public class WebActivity extends BaseActivity<WebDelegate> {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_web_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    finish();
+                    WebView wv = viewDelegate.get(R.id.webView_web);
+                    //finish();
+                    wv.reload();
                 });
     }
 
@@ -35,11 +37,12 @@ public class WebActivity extends BaseActivity<WebDelegate> {
     @Override
     public void onBackPressed() {
         WebView wv = viewDelegate.get(R.id.webView_web);
-        if (wv.canGoBack()){
+        if (wv.canGoBack()) {
             wv.goBack();
-        }else {
+        } else {
             super.onBackPressed();
         }
-
     }
+
+
 }

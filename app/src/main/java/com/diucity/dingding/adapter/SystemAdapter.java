@@ -14,6 +14,7 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.activity.DetailActivity;
 import com.diucity.dingding.entity.Back.SystemBack;
+import com.diucity.dingding.utils.TimeUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
     private String w;
     private String crop;
 
-    public SystemAdapter(Context context, ArrayList<SystemBack.DataBean.NoticesBean> model) {
+    public SystemAdapter(Context context, List<SystemBack.DataBean.NoticesBean> model) {
         super(context, model);
         WindowManager manager = ((BaseActivity) context).getWindowManager();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -48,7 +49,7 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         TextView time = holder.getView(R.id.adapter_tv_system_time);
-        String str = getModel().get(position).getSend_time();
+        String str = TimeUtils.getTime(getModel().get(position).getSend_time());
         time.setText(str);
         holder.getView(R.id.adapter_card).setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), DetailActivity.class);

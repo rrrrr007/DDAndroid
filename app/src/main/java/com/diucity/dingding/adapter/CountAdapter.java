@@ -3,9 +3,12 @@ package com.diucity.dingding.adapter;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
@@ -14,6 +17,7 @@ import com.diucity.dingding.entity.Back.TodayBack;
 import com.diucity.dingding.entity.Send.CreateBean;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
+import com.liaoinstan.springview.utils.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +50,14 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        View view = holder.itemView;
+        GridLayoutManager.LayoutParams lp = (GridLayoutManager.LayoutParams) view.getLayoutParams();
+        if ((position+1)%3==0){
+            lp.rightMargin=0;
+        }else {
+            lp.rightMargin = DensityUtil.dip2px(getContext(), 5);
+        }
+
         if (position == index) {
             setEnabled(holder, false);
             mholder = holder;

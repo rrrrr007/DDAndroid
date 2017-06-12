@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
@@ -17,6 +18,7 @@ import com.diucity.dingding.utils.ActivityUtils;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
 import com.diucity.dingding.utils.StringUtils;
+import com.liaoinstan.springview.utils.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +41,14 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        View view = holder.getView(R.id.adapter_cv_price);
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
+        if (position==getItemCount()-1){
+            lp.bottomMargin = DensityUtil.dip2px(getContext(), 100);
+        }else {
+            lp.bottomMargin = 0;
+        }
 
-        holder.getView(R.id.adapter_tv_price_title).setVisibility(position == 0 ? View.VISIBLE : View.GONE);
-        TextView title = holder.getView(R.id.adapter_tv_price_title);
-        title.setText("今日最新报价");
         TextView name = holder.getView(R.id.adapter_tv_price_name);
         name.setText(nameSpan(getScrapItem(position).getName() + "/" + getScrapItem(position).getUnit()));
         TextView content = holder.getView(R.id.adapter_tv_price_content);

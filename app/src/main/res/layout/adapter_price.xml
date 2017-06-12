@@ -6,17 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/adapter_tv_price_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="13dp"
-        android:text="今日最新报价"
-        android:textColor="#606664"
-        android:textSize="13sp" />
-
     <android.support.v7.widget.CardView
         android:id="@+id/adapter_cv_price"
         android:layout_width="match_parent"

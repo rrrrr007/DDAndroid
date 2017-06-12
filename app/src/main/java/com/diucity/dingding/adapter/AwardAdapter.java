@@ -54,15 +54,16 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
         View view = holder.getView(R.id.adapter_cv_price);
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
         if (position == 1)
-            lp.bottomMargin = DensityUtil.dip2px(getContext(), 0);
+            lp.bottomMargin = 0;
         else
             lp.bottomMargin = DensityUtil.dip2px(getContext(), 5);
         view.setLayoutParams(lp);
 
-        holder.getView(R.id.adapter_tv_price_title).setVisibility((position == 0 || position == 2) ? View.VISIBLE : View.GONE);
-
-        TextView title = holder.getView(R.id.adapter_tv_price_title);
-        title.setText(position == 0 ? "单次交易奖励" : "累计交易奖励");
+        if (position==getItemCount()-1){
+            lp.bottomMargin = DensityUtil.dip2px(getContext(), 100);
+        }else {
+            lp.bottomMargin = 0;
+        }
 
         TextView content = holder.getView(R.id.adapter_tv_price_difference);
         if (getModel().get(position).getType() == 1&&!TextUtils.isEmpty(getModel().get(position).getContent())) {
@@ -83,7 +84,7 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
             text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元", ""))) + "元";
         }
         SpannableString textSpan = new SpannableString(text);
-        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 30)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.text_black)), text.length() - 1, text.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return textSpan;

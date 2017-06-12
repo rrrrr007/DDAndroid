@@ -63,5 +63,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
         notifyDataSetChanged();
     }
 
-
+    public String decorrationString(){
+        return "";
+    }
 }

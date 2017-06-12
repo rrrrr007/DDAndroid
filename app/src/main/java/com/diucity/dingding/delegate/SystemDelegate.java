@@ -3,12 +3,15 @@ package com.diucity.dingding.delegate;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.SystemAdapter;
 import com.diucity.dingding.entity.Back.SystemBack;
 import com.diucity.dingding.persent.AppDelegate;
+import com.diucity.dingding.utils.GsonUtils;
+import com.diucity.dingding.utils.SpUtils;
 import com.diucity.dingding.widget.ProgressView;
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
@@ -52,6 +55,11 @@ public class SystemDelegate extends AppDelegate {
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setAdapter(adapter);
 
+        String s = SpUtils.getString(getActivity(), SpUtils.SYSTEM);
+        if (!TextUtils.isEmpty(s)) {
+            notifyDataSet(GsonUtils.GsonToBean(s, SystemBack.class).getData().getNotices());
+        }
+
     }
 
     public void notifyDataAdd(List<SystemBack.DataBean.NoticesBean> list) {
@@ -79,25 +87,25 @@ public class SystemDelegate extends AppDelegate {
 
     public void isLoading(boolean is) {
         get(R.id.progress_system).setVisibility(is ? View.VISIBLE : View.GONE);
-        if (is){
-            setText("更新中...",R.id.tv_system_title);
-        }else {
-            setText("账单明细",R.id.tv_system_title);
+        if (is) {
+            setText("更新中...", R.id.tv_system_title);
+        } else {
+            setText("系统消息", R.id.tv_system_title);
         }
 
     }
 
     public void onFinishLoad() {
-        if (srl.isRefreshing()){
+        if (srl.isRefreshing()) {
             srl.setRefreshing(false);
         }
         sv.onFinishFreshAndLoad();
     }
 
-    public int getNoticeId(){
-        if (adapter.getModel().size()>0){
-            return  adapter.getModel().get(adapter.getModel().size()-1).getNotice_id();
-        }else {
+    public int getNoticeId() {
+        if (adapter.getModel().size() > 0) {
+            return adapter.getModel().get(adapter.getModel().size() - 1).getNotice_id();
+        } else {
             return -1;
         }
     }

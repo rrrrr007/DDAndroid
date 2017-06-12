@@ -43,6 +43,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     public static final String PACKAGE_URL_SCHEME = "package:";//权限方案
     private boolean mReceiverTag = false;   //广播接受者标识
     private boolean first = false;
+    private boolean network = false; //网络状态
 
 
     @Override
@@ -100,7 +101,9 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
             NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
                 first = true;
+                network = false;
             } else {
+                network = true;
                 if (first) {
                     doAction1();
                 } else {
@@ -113,6 +116,12 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     };
 
     public void doAction1() {
+    }
+    public void doAction2() {
+    }
+
+    public boolean isNetwork() {
+        return network;
     }
 
     @Override

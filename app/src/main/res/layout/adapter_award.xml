@@ -6,17 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/adapter_tv_price_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="13dp"
-        android:text="累计交易奖励"
-        android:textColor="#606664"
-        android:textSize="13sp" />
-
     <android.support.v7.widget.CardView
         android:id="@+id/adapter_cv_price"
         android:layout_width="match_parent"
@@ -34,10 +23,10 @@
             android:layout_height="wrap_content"
             android:background="@color/selector_white"
             android:orientation="vertical"
-            android:paddingBottom="8dp"
+            android:paddingBottom="12dp"
             android:paddingLeft="10dp"
             android:paddingRight="15dp"
-            android:paddingTop="8dp">
+            android:paddingTop="12dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -63,9 +52,6 @@
             </LinearLayout>
 
             <TextView
-                android:maxLines="1"
-                android:maxEms="3"
-                android:ellipsize="end"
                 android:id="@+id/adapter_tv_price_difference"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

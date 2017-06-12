@@ -3,6 +3,7 @@ package com.diucity.dingding.adapter;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
@@ -13,6 +14,7 @@ import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
 import com.diucity.dingding.utils.StringUtils;
 import com.diucity.dingding.widget.CounterView;
+import com.liaoinstan.springview.utils.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,14 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.getView(R.id.adapter_tv_price_title).setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+        View view = holder.getView(R.id.adapter_cv_price);
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
+        if (position==getItemCount()-1){
+            lp.bottomMargin = DensityUtil.dip2px(getContext(), 100);
+        }else {
+            lp.bottomMargin = 0;
+        }
+
         TextView name = holder.getView(R.id.adapter_tv_price_name);
         name.getPaint().setFakeBoldText(true);
         name.setText(getModel().get(position).getName());
@@ -51,8 +60,7 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
             i = quantity.length() - 1 - quantity.indexOf(".");
         }
         cv.showAnimation(Float.parseFloat(cv.getText().toString()),Float.parseFloat(StringUtils.getIntString(getQuantity(position))),1000,CounterView.getDecimalFormat(i));
-        TextView title = holder.getView(R.id.adapter_tv_price_title);
-        title.setText("预估总收益：" + getAll() + "元");
+
     }
 
     @Override
@@ -102,6 +110,11 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         this.basket = basket;
         getToday();
         notifyDataSetChanged();
+    }
+
+    @Override
+    public String decorrationString() {
+        return "预估总收益：" + getAll() + "元";
     }
 
     @Override

@@ -44,8 +44,8 @@ public interface Api {
     //String BASEURL = "https://debug.diucity.com/recycler/";
     String BASEURL = "https://api.dinghs.com/recycler/";
     //String BASEURL = "https://zhoufeng.diucity.com:4443/recycler/";
-    //String WEBURL = "http://192.168.3.18:8080/";
-    String WEBURL = "https://api.dinghs.com/mobile/";
+    String WEBURL = "http://192.168.3.18:8080/";
+    //String WEBURL = "https://api.dinghs.com/mobile/";
 
 
     @POST("sms.send")

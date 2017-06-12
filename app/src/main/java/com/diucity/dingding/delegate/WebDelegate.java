@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
+import android.widget.Toast;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.api.Api;
@@ -27,6 +28,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 public class WebDelegate extends AppDelegate {
     private AlertDialog alertDialog;
     private ProgressView pv;
+    WebView wv;
 
     @Override
     public int getRootLayoutId() {
@@ -42,7 +44,7 @@ public class WebDelegate extends AppDelegate {
     public void initWidget() {
         super.initWidget();
         pv = get(R.id.pv_web);
-        WebView wv = get(R.id.webView_web);
+        wv = get(R.id.webView_web);
         WebSettings set = wv.getSettings();
         wv.loadUrl(Api.WEBURL + "#/billing-details");
         wv.addJavascriptInterface(WebDelegate.this, "android");
@@ -80,6 +82,12 @@ public class WebDelegate extends AppDelegate {
     public String getUserData() {
         String s = GsonUtils.GsonString(new User(App.user.getData().getRecycler_id(), App.user.getData().getAuth_token()));
         return s;
+    }
+
+    @JavascriptInterface
+    public void reload() {
+        Toast.makeText(getActivity(), "reload", Toast.LENGTH_SHORT).show();
+        wv.reload();
     }
 
     @JavascriptInterface

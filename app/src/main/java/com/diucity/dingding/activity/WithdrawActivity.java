@@ -1,9 +1,12 @@
 package com.diucity.dingding.activity;
 
+import android.view.View;
+
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.WithdrawDelegate;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
+import com.tencent.smtt.sdk.WebView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,4 +31,9 @@ public class WithdrawActivity extends BaseActivity<WithdrawDelegate> {
                     finish();
                 });
     }
+
+
+
+
+
 }

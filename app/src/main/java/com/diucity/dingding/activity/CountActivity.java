@@ -56,6 +56,8 @@ public class CountActivity extends BaseActivity<CountDelegate> {
             viewDelegate.setText(adapter.getText(), R.id.edt_count);
             viewDelegate.showSoft();
             viewDelegate.setInputStyle(adapter.getModel().get(position).getUnit().equals("斤"));
+            /*mLayoutManager.scrollToPositionWithOffset(position, 0);
+            mLayoutManager.setStackFromEnd(true);*/
         });
         //edt内容改变item内容
         RxTextView.afterTextChangeEvents(edt).subscribe(textChangeEvent -> {

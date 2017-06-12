@@ -35,6 +35,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:gravity="center_vertical"
                 android:id="@+id/adapter_tv_system_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,11 +47,13 @@
             <ImageView
                 android:id="@+id/adapter_iv_system"
                 android:layout_width="match_parent"
+                android:scaleType="centerCrop"
                 android:layout_height="180dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp" />
 
             <TextView
+                android:gravity="center_vertical"
                 android:id="@+id/adapter_tv_system_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

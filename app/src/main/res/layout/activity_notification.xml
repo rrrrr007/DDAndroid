@@ -1,134 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_notification"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.diucity.dingding.activity.NotificationActivity">
+    android:layout_height="match_parent">
 
-    <View
+    <com.zhy.autolayout.AutoRelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
         android:layout_width="match_parent"
-        android:layout_height="148px"
-        android:background="@drawable/toolbar_shape" />
+        android:layout_height="match_parent"
+        tools:context="com.diucity.dingding.activity.NotificationActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="148px"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:paddingTop="60px"
-        android:text="新消息设置"
-        android:textColor="@color/text_black"
-        android:textSize="17sp" />
-
-    <com.diucity.dingding.widget.LightImage
-        android:id="@+id/iv_notify_back"
-        android:layout_width="wrap_content"
-        android:layout_height="148px"
-        android:paddingLeft="20px"
-        android:paddingRight="20px"
-        android:paddingTop="60px"
-        android:scaleType="center"
-        android:src="@mipmap/ic_cmm_return_green" />
-
-
-    <android.support.v7.widget.CardView
-        android:layout_width="690px"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="178px"
-        android:clickable="true"
-        app:cardCornerRadius="10dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        tools:targetApi="lollipop">
-
-        <com.zhy.autolayout.AutoLinearLayout
+        <View
             android:layout_width="match_parent"
+            android:layout_height="148px"
+            android:background="@drawable/toolbar_shape" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="148px"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:paddingTop="60px"
+            android:text="新消息设置"
+            android:textColor="@color/text_black"
+            android:textSize="17sp" />
+
+        <com.diucity.dingding.widget.LightImage
+            android:id="@+id/iv_notify_back"
+            android:layout_width="wrap_content"
+            android:layout_height="148px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:paddingTop="60px"
+            android:scaleType="center"
+            android:src="@mipmap/ic_cmm_return_green" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="690px"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="30px"
-            android:paddingRight="30px">
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="178px"
+            android:clickable="true"
+            app:cardCornerRadius="10dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            tools:targetApi="lollipop">
 
-            <com.zhy.autolayout.AutoRelativeLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="30px"
+                android:paddingRight="30px">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingBottom="40px"
-                    android:paddingTop="40px"
-                    android:text="开启消息提醒"
-                    android:textColor="@color/text_black"
-                    android:textSize="16sp" />
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <Switch
-                    android:id="@+id/switch_notification_notify"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="开启消息提醒"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
 
-            </com.zhy.autolayout.AutoRelativeLayout>
+                    <Switch
+                        android:id="@+id/switch_notification_notify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@drawable/line_shape" />
+                </com.zhy.autolayout.AutoRelativeLayout>
 
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/line_shape" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingBottom="40px"
-                    android:paddingTop="40px"
-                    android:text="声音"
-                    android:textColor="@color/text_black"
-                    android:textSize="16sp" />
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <Switch
-                    android:id="@+id/switch_notification_sound"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="声音"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
 
-            </com.zhy.autolayout.AutoRelativeLayout>
+                    <Switch
+                        android:id="@+id/switch_notification_sound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@drawable/line_shape" />
+                </com.zhy.autolayout.AutoRelativeLayout>
 
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/line_shape" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="40px"
-                    android:paddingTop="40px"
-                    android:text="震动"
-                    android:textColor="@color/text_black"
-                    android:textSize="16sp" />
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <Switch
-                    android:id="@+id/switch_notification_vibrate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true" />
-            </com.zhy.autolayout.AutoRelativeLayout>
-        </com.zhy.autolayout.AutoLinearLayout>
-    </android.support.v7.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="40px"
+                        android:paddingTop="40px"
+                        android:text="震动"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <Switch
+                        android:id="@+id/switch_notification_vibrate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
 
     <FrameLayout
         android:id="@+id/fl_toolbar"

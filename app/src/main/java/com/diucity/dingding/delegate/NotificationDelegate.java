@@ -18,7 +18,7 @@ public class NotificationDelegate extends AppDelegate {
 
     @Override
     public boolean needShow() {
-        return false;
+        return true;
     }
 
     @Override

@@ -93,8 +93,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="178px"
-        android:paddingLeft="10px"
-        android:paddingRight="10px" />
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px" />
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/rl_count_edt"
