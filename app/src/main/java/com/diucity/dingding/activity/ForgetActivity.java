@@ -6,7 +6,6 @@ import android.support.annotation.RequiresApi;
 import android.widget.EditText;
 
 import com.diucity.dingding.R;
-import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.ForgetBinder;
 import com.diucity.dingding.delegate.ForgetDelegate;
 import com.diucity.dingding.entity.Send.SmsBean;

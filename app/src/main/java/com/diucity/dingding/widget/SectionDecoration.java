@@ -6,21 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
-
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.adapter.BaseAdapter;
 import com.diucity.dingding.utils.ActivityUtils;
-
-import static android.R.attr.windowBackground;
-import static android.support.v7.appcompat.R.color.abc_background_cache_hint_selector_material_light;
-import static android.support.v7.appcompat.R.drawable.abc_dialog_material_background;
 
 
 /**

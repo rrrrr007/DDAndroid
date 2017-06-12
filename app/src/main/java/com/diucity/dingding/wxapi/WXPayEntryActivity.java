@@ -3,9 +3,7 @@ package com.diucity.dingding.wxapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.activity.PaymentActivity;

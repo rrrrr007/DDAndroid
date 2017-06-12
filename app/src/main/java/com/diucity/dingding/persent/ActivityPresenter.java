@@ -16,12 +16,10 @@
 package com.diucity.dingding.persent;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-import com.diucity.dingding.R;
 import com.diucity.dingding.utils.ActivityUtils;
 
 

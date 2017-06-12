@@ -12,9 +12,7 @@ import com.diucity.dingding.entity.Back.SystemBack;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
-import com.diucity.dingding.widget.ProgressView;
 import com.liaoinstan.springview.container.DefaultFooter;
-import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.List;

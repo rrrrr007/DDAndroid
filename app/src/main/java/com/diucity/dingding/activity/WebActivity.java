@@ -1,7 +1,5 @@
 package com.diucity.dingding.activity;
 
-import android.view.View;
-
 import com.diucity.dingding.R;
 import com.diucity.dingding.delegate.WebDelegate;
 import com.diucity.dingding.persent.DataBinder;

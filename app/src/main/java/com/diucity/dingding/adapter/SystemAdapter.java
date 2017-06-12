@@ -17,7 +17,6 @@ import com.diucity.dingding.entity.Back.SystemBack;
 import com.diucity.dingding.utils.TimeUtils;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

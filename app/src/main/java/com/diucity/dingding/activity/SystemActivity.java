@@ -2,7 +2,6 @@ package com.diucity.dingding.activity;
 
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;

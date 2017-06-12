@@ -23,19 +23,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diucity.dingding.R;
-
-import java.util.concurrent.TimeUnit;
-
-import rx.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
 
 import static android.provider.Settings.ACTION_SETTINGS;
 

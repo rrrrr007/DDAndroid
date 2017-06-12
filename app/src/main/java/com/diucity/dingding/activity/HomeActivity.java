@@ -22,7 +22,6 @@ import com.diucity.dingding.binder.HomeBinder;
 import com.diucity.dingding.delegate.HomeDelegate;
 import com.diucity.dingding.entity.Send.ScrapsBean;
 import com.diucity.dingding.persent.DataBinder;
-import com.diucity.dingding.utils.TimeUtils;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.io.IOException;

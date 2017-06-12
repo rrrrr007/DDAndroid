@@ -1,7 +1,5 @@
 package com.diucity.dingding.activity;
 
-import android.support.v4.content.ContextCompat;
-
 import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.binder.WalletBinder;
