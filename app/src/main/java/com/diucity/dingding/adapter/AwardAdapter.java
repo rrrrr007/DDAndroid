@@ -59,16 +59,16 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
             lp.bottomMargin = DensityUtil.dip2px(getContext(), 5);
         view.setLayoutParams(lp);
 
-        if (position==getItemCount()-1){
-            lp.bottomMargin = DensityUtil.dip2px(getContext(), 100);
-        }else {
+        if (position == getItemCount() - 1) {
+            lp.bottomMargin = DensityUtil.dip2px(getContext(), 200);
+        } else {
             lp.bottomMargin = 0;
         }
 
         TextView content = holder.getView(R.id.adapter_tv_price_difference);
-        if (getModel().get(position).getType() == 1&&!TextUtils.isEmpty(getModel().get(position).getContent())) {
+        if (getModel().get(position).getType() == 1 && !TextUtils.isEmpty(getModel().get(position).getContent())) {
             content.setText(textSpan2(getModel().get(position).getContent()));
-        } else if (getModel().get(position).getType() == 2&&!TextUtils.isEmpty(getModel().get(position).getContent())) {
+        } else if (getModel().get(position).getType() == 2 && !TextUtils.isEmpty(getModel().get(position).getContent())) {
             content.setText(textSpan(getModel().get(position).getContent()));
         }
         TextView explain = holder.getView(R.id.adapter_tv_price_content);
@@ -78,11 +78,8 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
         name.setText(getModel().get(position).getName());
     }
 
-    public SpannableString textSpan(String str) {
-        String text = str;
-        if (str.contains("元")) {
-            text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元", ""))) + "元";
-        }
+    public SpannableString textSpan(String text) {
+
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 30)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);

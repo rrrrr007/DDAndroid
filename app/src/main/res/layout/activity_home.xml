@@ -67,6 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rl_home_ss" />
+
     <ImageView
         android:id="@+id/iv_home_sell"
         android:layout_width="wrap_content"
@@ -95,7 +96,13 @@
         android:padding="20px"
         android:scaleType="center"
         android:src="@drawable/icon_call_selector" />
-
+    <FrameLayout
+        android:id="@+id/fl_status"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginLeft="37px"
+        android:layout_marginRight="37px"
+        android:layout_marginTop="240px" />
     <FrameLayout
         android:id="@+id/fl_toolbar"
         android:layout_width="match_parent"

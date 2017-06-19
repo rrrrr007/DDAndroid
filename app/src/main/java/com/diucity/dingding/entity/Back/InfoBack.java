@@ -114,7 +114,7 @@ public class InfoBack {
         }
 
         public long getTime() {
-            return time*1000;
+            return time * 1000;
         }
 
         public void setTime(long time) {

@@ -139,7 +139,7 @@ public class App extends android.app.Application {
         SpUtils.putString(getContext(), SpUtils.WALLET, "");
         if (a == null) System.exit(0);
         Intent intent = new Intent(a, LoginActivity.class);
-        a.startActivity(intent.putExtra("intent","haslogin"));
+        a.startActivity(intent.putExtra("intent", "haslogin"));
         a.finish();
     }
 }

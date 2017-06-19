@@ -25,9 +25,7 @@ public class WebActivity extends BaseActivity<WebDelegate> {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_web_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    WebView wv = viewDelegate.get(R.id.webView_web);
-                    //finish();
-                    wv.reload();
+                    finish();
                 });
     }
 

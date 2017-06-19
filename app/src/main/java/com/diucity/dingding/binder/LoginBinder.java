@@ -1,5 +1,6 @@
 package com.diucity.dingding.binder;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.diucity.dingding.R;
@@ -53,9 +54,10 @@ public class LoginBinder implements DataBinder<LoginDelegate, LoginBack> {
                     if (back.getCode() == 0) {
                         SpUtils.putString(viewDelegate.getActivity(), SpUtils.USER, GsonUtils.GsonString(back));
                         App.user = back;
-                        viewDelegate.startActivity(HomeActivity.class);
+                        Intent intent = new Intent(viewDelegate.getActivity(), HomeActivity.class);
+                        intent.putExtra("state",bean.getAuth_login_code().equals(SignUtils.loginCode(bean.getTimestamp(),"123456")));
+                        viewDelegate.startActivity(intent);
                         viewDelegate.finish();
-                        //work(viewDelegate,nexw TodayBean(back.getData().getRecycler_id(),0,0));
 
                     } else
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, back.getMessage());

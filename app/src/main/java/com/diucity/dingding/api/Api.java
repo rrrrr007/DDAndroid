@@ -3,6 +3,7 @@ package com.diucity.dingding.api;
 import com.diucity.dingding.entity.Back.BasketBack;
 import com.diucity.dingding.entity.Back.CheckBack;
 import com.diucity.dingding.entity.Back.CreateBack;
+import com.diucity.dingding.entity.Back.DescBack;
 import com.diucity.dingding.entity.Back.InfoBack;
 import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.entity.Back.LoginBack;
@@ -18,6 +19,7 @@ import com.diucity.dingding.entity.Send.BasketBean;
 import com.diucity.dingding.entity.Send.ChangeBean;
 import com.diucity.dingding.entity.Send.CheckBean;
 import com.diucity.dingding.entity.Send.CreateBean;
+import com.diucity.dingding.entity.Send.DescBean;
 import com.diucity.dingding.entity.Send.InfoBean;
 import com.diucity.dingding.entity.Send.ListBean;
 import com.diucity.dingding.entity.Send.LoginBean;
@@ -43,9 +45,11 @@ import rx.Observable;
 public interface Api {
     //String BASEURL = "https://debug.diucity.com/recycler/";
     String BASEURL = "https://api.dinghs.com/recycler/";
+    //String BASEURL = "http:/192.168.3.126:4443/recycler/";
+
     //String BASEURL = "https://zhoufeng.diucity.com:4443/recycler/";
-    String WEBURL = "http://192.168.3.18:8080/";
-    //String WEBURL = "https://api.dinghs.com/mobile/";
+    //String WEBURL = "http://192.168.3.18:8080/";
+    String WEBURL = "https://api.dinghs.com/mobile/";
 
 
     @POST("sms.send")
@@ -101,5 +105,8 @@ public interface Api {
 
     @POST("order.information")
     Observable<InfoBack> info(@Query("sign") String sign, @Body InfoBean bean);
+
+    @POST("order.desc")
+    Observable<DescBack> desc(@Query("sign") String sign, @Body DescBean bean);
 
 }

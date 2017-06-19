@@ -47,7 +47,7 @@ public class CaptureBinder implements DataBinder<CaptureDelegate, NormalBack> {
                 @Override
                 public void onNext(SupplierBack o) {
                     Log.d("ch", GsonUtils.GsonString(o));
-                    if (o.getCode() == 103 ){
+                    if (o.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
                     }
                     if (o.getCode() == 0) {
@@ -55,6 +55,7 @@ public class CaptureBinder implements DataBinder<CaptureDelegate, NormalBack> {
                         intent.putExtra("url", o.getData().getAvatar());
                         intent.putExtra("name", o.getData().getName());
                         intent.putExtra("value", o.getData().getSupplier_id());
+                        intent.putExtra("status", o.getData().getSell_status());
                         viewDelegate.startActivity(intent);
                         viewDelegate.finish();
                     } else {

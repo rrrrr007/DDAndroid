@@ -13,7 +13,7 @@ import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
-import com.liaoinstan.springview.container.DefaultFooter;
+import com.diucity.dingding.widget.MyFooter;
 import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.List;
@@ -44,7 +44,7 @@ public class RecordDelegate extends AppDelegate {
         srl.setColorSchemeResources(R.color.text_green);
 
         sv = get(R.id.sv_record);
-        sv.setFooter(new DefaultFooter(getActivity()));
+        sv.setFooter(new MyFooter(getActivity()));
         sv.setType(SpringView.Type.FOLLOW);
         sv.setEnable(false);
 
@@ -57,7 +57,7 @@ public class RecordDelegate extends AppDelegate {
         rv.setItemAnimator(animator);
 
         String string = SpUtils.getString(getActivity(), SpUtils.RECORD);
-        if (!TextUtils.isEmpty(string)){
+        if (!TextUtils.isEmpty(string)) {
             ListBack back = GsonUtils.GsonToBean(string, ListBack.class);
             notifyDataSet(back.getData().getItems());
         }
@@ -88,25 +88,25 @@ public class RecordDelegate extends AppDelegate {
 
     public void isLoading(boolean is) {
         get(R.id.progress_record).setVisibility(is ? View.VISIBLE : View.GONE);
-        if (is){
-            setText("更新中...",R.id.tv_record_title);
-        }else {
-            setText("账单明细",R.id.tv_record_title);
+        if (is) {
+            setText("更新中...", R.id.tv_record_title);
+        } else {
+            setText("账单明细", R.id.tv_record_title);
         }
 
     }
 
     public void onFinishLoad() {
-        if (srl.isRefreshing()){
+        if (srl.isRefreshing()) {
             srl.setRefreshing(false);
         }
         sv.onFinishFreshAndLoad();
     }
 
-    public int getAdapterBillId(){
-        if (adapter.getModel().size()==0){
+    public int getAdapterBillId() {
+        if (adapter.getModel().size() == 0) {
             return -1;
         }
-        return adapter.getModel().get(adapter.getModel().size()-1).getBill_id();
+        return adapter.getModel().get(adapter.getModel().size() - 1).getBill_id();
     }
 }

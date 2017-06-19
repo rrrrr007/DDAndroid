@@ -61,8 +61,10 @@ public class RecordAdapter extends BaseAdapter<ListBack.DataBean.ItemsBean> {
             case 1:
                 break;
             case 2:
+                drawable = ContextCompat.getDrawable(getContext(), R.mipmap.ic_me_money30);
                 break;
             case 3:
+                drawable = ContextCompat.getDrawable(getContext(), R.mipmap.ic_me_task30);
                 break;
             case 4:
                 if (getModel().get(position).getExplain().contains("北京银行")) {

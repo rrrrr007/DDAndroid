@@ -5,4 +5,5 @@ package com.diucity.dingding.app;
  */
 
 public class Configure {
+    public static final String url = "qrcode.dinghs.com/supplier/";
 }

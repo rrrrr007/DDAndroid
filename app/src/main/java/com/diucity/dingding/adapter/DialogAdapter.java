@@ -40,7 +40,7 @@ public class DialogAdapter extends BaseAdapter<InfoBack.DataBean.ScrapsBean> {
     }
 
     private String getNameById(int id) {
-        if (back==null){
+        if (back == null) {
             return "";
         }
         List<ScrapsBack.Data.Scraps> list = back.getData().getScraps();
@@ -53,7 +53,7 @@ public class DialogAdapter extends BaseAdapter<InfoBack.DataBean.ScrapsBean> {
     }
 
     private String getUnitById(int id) {
-        if (back==null){
+        if (back == null) {
             return "";
         }
         List<ScrapsBack.Data.Scraps> list = back.getData().getScraps();

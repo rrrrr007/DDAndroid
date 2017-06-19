@@ -56,8 +56,6 @@ public class CountActivity extends BaseActivity<CountDelegate> {
             viewDelegate.setText(adapter.getText(), R.id.edt_count);
             viewDelegate.showSoft();
             viewDelegate.setInputStyle(adapter.getModel().get(position).getUnit().equals("斤"));
-            /*mLayoutManager.scrollToPositionWithOffset(position, 0);
-            mLayoutManager.setStackFromEnd(true);*/
         });
         //edt内容改变item内容
         RxTextView.afterTextChangeEvents(edt).subscribe(textChangeEvent -> {
@@ -80,8 +78,9 @@ public class CountActivity extends BaseActivity<CountDelegate> {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_count_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(CaptureActivity.class);
-                    viewDelegate.finish();
+                   /* viewDelegate.startActivity(CaptureActivity.class);
+                    viewDelegate.finish();*/
+                    viewDelegate.showStatus(viewDelegate.get(R.id.fl_status));
                 });
 
         viewDelegate.getRootView().addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
@@ -121,7 +120,7 @@ public class CountActivity extends BaseActivity<CountDelegate> {
             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "交易总金额低于1元");
             return;
         }
-        if (getall() > GsonUtils.GsonToBean(SpUtils.getString(CountActivity.this, SpUtils.USER), LoginBack.class).getData().getMoney_max()){
+        if (getall() > GsonUtils.GsonToBean(SpUtils.getString(CountActivity.this, SpUtils.USER), LoginBack.class).getData().getMoney_max()) {
             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "交易总金额超出限制");
             return;
         }

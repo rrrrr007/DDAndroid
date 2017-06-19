@@ -95,19 +95,20 @@ public class PaymentDelegate extends AppDelegate {
         return textSpan;
     }
 
-    public void showResult(boolean is){
+    public void showResult(boolean is) {
 
         setVisiable(false, R.id.arl_payment_pay);
-        if (!is){
-           setSrc(ContextCompat.getDrawable(getActivity(),R.mipmap.ic_cmm_error_big),R.id.iv_payment_src);
+        if (!is) {
+            setSrc(ContextCompat.getDrawable(getActivity(), R.mipmap.ic_cmm_error_big), R.id.iv_payment_src);
             TextView tv = get(R.id.tv_payment_success);
             tv.setTextColor(Color.parseColor("#F74C31"));
-            setText("支付失败",R.id.tv_payment_success);
-            setText("如果你的支付已到账\n24小时后内会回原路退回",R.id.tv_payment_total);
-            setVisiable(false,R.id.tv_payment_time);
-            setVisiable(false,R.id.ard_payment_detail);
-            setVisiable(false,R.id.tv_payment_back);
-            setVisiable(true,R.id.btn_payment_failed);
+            setText("支付失败", R.id.tv_payment_success);
+            setText("如果你的支付已到账\n24小时后内会回原路退回", R.id.tv_payment_total);
+            setVisiable(false, R.id.tv_payment_time);
+            setVisiable(false, R.id.ard_payment_detail);
+            setVisiable(false, R.id.tv_payment_back);
+            setVisiable(true, R.id.btn_payment_failed);
+            setVisiable(false, R.id.tv_payment_result_title);
 
         }
         setVisiable(true, R.id.arl_payment);

@@ -30,16 +30,19 @@
         android:paddingTop="60px"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_close_green" />
+
     <com.diucity.dingding.widget.ProgressView
         android:id="@+id/pv_withdraw"
         android:layout_width="match_parent"
         android:layout_height="3px"
-        android:layout_marginTop="145px"/>
+        android:layout_marginTop="145px" />
+
     <com.tencent.smtt.sdk.WebView
         android:id="@+id/webView_withdraw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="148px" />
+
     <FrameLayout
         android:id="@+id/fl_toolbar"
         android:layout_width="match_parent"

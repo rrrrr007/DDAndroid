@@ -26,13 +26,13 @@ public class HomeViewPager extends PagerAdapter {
             RecyclerView rv = new RecyclerView(context);
             if (i == 0) {
                 rv.setAdapter(new PriceAdapter(context, null));
-                rv.addItemDecoration(new SectionDecoration(context,"今日最新报价"));
+                rv.addItemDecoration(new SectionDecoration(context, "今日最新报价"));
             } else if (i == 1) {
                 rv.setAdapter(new BasketAdapter(context, null));
                 rv.addItemDecoration(new SectionDecoration(context));
             } else {
                 rv.setAdapter(new AwardAdapter(context, null));
-                rv.addItemDecoration(new SectionDecoration(context,"单次交易奖励","累计交易奖励"));
+                rv.addItemDecoration(new SectionDecoration(context, "单次交易奖励", "累计交易奖励"));
             }
             rv.setLayoutManager(new LinearLayoutManager(context));
             this.model.add(rv);

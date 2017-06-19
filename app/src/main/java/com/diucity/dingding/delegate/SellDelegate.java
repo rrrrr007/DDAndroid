@@ -10,12 +10,14 @@ import com.diucity.dingding.app.App;
 import com.diucity.dingding.persent.AppDelegate;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by Administrator on 2017/3/29 0029.
  */
 
 public class SellDelegate extends AppDelegate {
-    public static final String str = "qrcode.dinghs.com/recycler/" + App.user.getData().getRecycler_id();
+    public String str = "qrcode.dinghs.com/recycler/" + App.user.getData().getRecycler_id();
 
     @Override
     public int getRootLayoutId() {
@@ -29,6 +31,9 @@ public class SellDelegate extends AppDelegate {
 
     @Override
     public void initWidget() {
+        if (JPushInterface.getRegistrationID(getActivity()).length() > 0) {
+            str += "?registration=" + JPushInterface.getRegistrationID(getActivity());
+        }
         super.initWidget();
         WindowManager wm = getActivity().getWindowManager();
         int width = wm.getDefaultDisplay().getWidth();

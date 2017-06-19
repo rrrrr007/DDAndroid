@@ -13,6 +13,8 @@ import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
 import com.diucity.dingding.utils.SpUtils;
+import com.diucity.dingding.widget.MyFooter;
+import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.List;
 
@@ -33,10 +35,10 @@ public class RecordBinder implements DataBinder<RecordDelegate, NormalBack> {
         if (object instanceof ListBean) {
             ListBean bean = (ListBean) object;
             if (bean.getBill_id() == -1) {
-            }else if(bean.getBill_id() ==-2){
+            } else if (bean.getBill_id() == -2) {
                 bean.setBill_id(-1);
                 viewDelegate.isLoading(true);
-            }else {
+            } else {
                 bean.setBill_id(viewDelegate.getAdapterBillId());
             }
             Network.subscribe(Network.getApi().list(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<ListBack>() {
@@ -67,6 +69,7 @@ public class RecordBinder implements DataBinder<RecordDelegate, NormalBack> {
                         Log.d("ch", "size" + list.size());
 
                         if (list.size() == 0) {
+                            ((MyFooter) (((SpringView) viewDelegate.get(R.id.sv_system)).getFooter())).setOver(true);
                             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "没有更多了");
                         } else {
                             if (bean.getBill_id() == -1) {

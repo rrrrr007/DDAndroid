@@ -1,5 +1,7 @@
 package com.diucity.dingding.delegate;
 
+import android.animation.LayoutTransition;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -10,6 +12,7 @@ import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,6 +40,7 @@ public class CountDelegate extends AppDelegate {
     private int height;
     private boolean needshow;
     private ScrapsBack today;
+    private LayoutTransition transition;
 
     @Override
     public int getRootLayoutId() {
@@ -57,6 +61,10 @@ public class CountDelegate extends AppDelegate {
         rv.setAdapter(new CountAdapter(getActivity(), today.getData().getScraps()));
         setSumPrice(0);
         setUserInfo(getActivity().getIntent().getStringExtra("name"), getActivity().getIntent().getStringExtra("url"));
+        int status = getActivity().getIntent().getIntExtra("status", 1);
+        if (status == 0) {
+            showStatus(get(R.id.fl_status));
+        }
     }
 
     public SpannableString spite(String str) {
@@ -129,5 +137,37 @@ public class CountDelegate extends AppDelegate {
         textSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#031912")), 1, text.length() - 3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         setText(textSpan, R.id.tv_count_name);
         Picasso.with(getActivity()).load(url).resize(100, 100).transform(new Picassoloader()).placeholder(R.color.src_gray).into((ImageView) get(R.id.iv_count_header));
+    }
+
+    public void showStatus(ViewGroup vg) {
+        if (transition == null) {
+            setupAnimations(100);
+            vg.setLayoutTransition(transition);
+        }
+        if (vg.getChildCount() > 0) {
+            return;
+        }
+        vg.getHeight();
+        View view = getInflater().inflate(R.layout.view_status, null);
+        view.setOnTouchListener((v, event) -> {
+            if (vg.getChildCount() > 0)
+                vg.removeView(view);
+            return true;
+        });
+        vg.addView(view);
+    }
+
+    private void setupAnimations(float height) {
+        transition = new LayoutTransition();
+        // Adding
+        ObjectAnimator animIn = ObjectAnimator.ofFloat(null, "translationY", -height,
+                0).setDuration(
+                transition.getDuration(LayoutTransition.APPEARING));
+        transition.setAnimator(LayoutTransition.APPEARING, animIn);
+        // Removing
+        ObjectAnimator animOut = ObjectAnimator.ofFloat(null, "translationY", 0,
+                -height).setDuration(
+                transition.getDuration(LayoutTransition.DISAPPEARING));
+        transition.setAnimator(LayoutTransition.DISAPPEARING, animOut);
     }
 }

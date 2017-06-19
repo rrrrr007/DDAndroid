@@ -47,13 +47,6 @@ public class ResetBinder implements DataBinder<ResetDelegate, NormalBack> {
                 public void onNext(NormalBack o) {
                     viewDelegate.hideLoadingWarn();
                     if (o.getCode() == 0) {
-                        /*SpUtils.putString(viewDelegate.getActivity(), SpUtils.USER,"");
-                        App.getAcitvity("activity.OptionsActivity").finish();
-                        App.getAcitvity("activity.WalletActivity").finish();
-                        App.getAcitvity("activity.HomeActivity").finish();
-                        Intent i = new Intent(viewDelegate.getActivity(),LoginActivity.class);
-                        i.putExtra("intent","reset");
-                        viewDelegate.startActivity(i);*/
                         viewDelegate.finish();
                         ((OptionsActivity) App.getAcitvity("activity.OptionsActivity")).reset();
 

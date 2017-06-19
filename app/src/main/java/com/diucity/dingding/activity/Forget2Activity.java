@@ -76,7 +76,6 @@ public class Forget2Activity extends BaseActivity<Forget2Delegate> {
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_forget2_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    viewDelegate.startActivity(ForgetActivity.class);
                     viewDelegate.finish();
 
                 });

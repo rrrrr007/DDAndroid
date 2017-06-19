@@ -33,7 +33,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
     public SectionDecoration(Context context) {
         this.context = context;
         paint = new Paint();
-        TypedArray array = context.getTheme().obtainStyledAttributes(new int[] {
+        TypedArray array = context.getTheme().obtainStyledAttributes(new int[]{
                 android.R.attr.colorBackground,
         });
         int backgroundColor = array.getColor(0, 0xFF00FF);
@@ -44,7 +44,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
         textPaint.setAntiAlias(true);
         textPaint.setTextSize(ActivityUtils.sp2px(context, 13));
         textPaint.setColor(Color.parseColor("#606664"));
-        topGap = ActivityUtils.dip2px(context,34);
+        topGap = ActivityUtils.dip2px(context, 34);
         y = topGap;
         single = true;
 
@@ -56,8 +56,8 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
         this.str = str;
     }
 
-    public SectionDecoration(Context context, String str,String str2) {
-        this(context,str);
+    public SectionDecoration(Context context, String str, String str2) {
+        this(context, str);
         this.str2 = str2;
         single = false;
     }
@@ -95,7 +95,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
                     float top = view.getTop();
                     float bottom = view.getTop();
                     Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();
-                    float baseline = (bottom - top - topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top + top+15;
+                    float baseline = (bottom - top - topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top + top + 15;
                     c.drawText(position == 0 ? str : str2, ActivityUtils.dip2px(context, 25), baseline, textPaint);
                 }
             }
@@ -108,15 +108,19 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
         int childCount = parent.getChildCount();
         if (childCount <= 0) return;
         if (single) {
-            if (TextUtils.isEmpty(str)){
-                str = getString(parent);
-            }
+
             int left = parent.getPaddingLeft();
             int right = parent.getWidth() - parent.getPaddingRight();
             Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();
-            float baseline = (topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top+15;
+            float baseline = (topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top + 15;
             c.drawRect(left, 0, right, topGap - y, paint);
-            c.drawText(str, ActivityUtils.dip2px(context, 25), baseline, textPaint);
+            if (TextUtils.isEmpty(str)) {
+                c.drawText(getString(parent), ActivityUtils.dip2px(context, 25), baseline, textPaint);
+
+            } else {
+                c.drawText(str, ActivityUtils.dip2px(context, 25), baseline, textPaint);
+            }
+
         } else {
             String s = str;
             for (int i = 0; i < childCount; i++) {
@@ -128,22 +132,22 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
                 } else if (position == 1 && position + 1 < childCount && view.getBottom() >= topGap) {
                     y = topGap;
                     break;
-                } else if (position == 2 ) {
+                } else if (position == 2) {
                     y = topGap;
-                    s =str2;
+                    s = str2;
                     break;
                 }
             }
             int left = parent.getPaddingLeft();
             int right = parent.getWidth() - parent.getPaddingRight();
             Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();
-            float baseline = (topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top - topGap + y+15;
+            float baseline = (topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top - topGap + y + 15;
             c.drawRect(left, 0, right, y, paint);
             c.drawText(s, ActivityUtils.dip2px(context, 25), baseline, textPaint);
         }
     }
 
-    private String getString(RecyclerView rv){
-        return ((BaseAdapter)rv.getAdapter()).decorrationString();
+    private String getString(RecyclerView rv) {
+        return ((BaseAdapter) rv.getAdapter()).decorrationString();
     }
 }

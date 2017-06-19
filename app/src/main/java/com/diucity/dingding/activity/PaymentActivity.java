@@ -205,9 +205,9 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
 
     @Override
     public void onBackPressed() {
-        if (viewDelegate.get(R.id.arl_payment_pay).getVisibility()==View.GONE){
+        if (viewDelegate.get(R.id.arl_payment_pay).getVisibility() == View.GONE) {
             super.onBackPressed();
-        }else {
+        } else {
             showDialog();
         }
 

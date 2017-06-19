@@ -36,7 +36,8 @@
         android:id="@+id/pv_web"
         android:layout_width="match_parent"
         android:layout_height="3px"
-        android:layout_marginTop="145px"/>
+        android:layout_marginTop="145px" />
+
     <com.tencent.smtt.sdk.WebView
         android:layout_marginTop="148px"
         android:id="@+id/webView_web"

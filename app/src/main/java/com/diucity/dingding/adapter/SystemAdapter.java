@@ -14,7 +14,6 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.activity.DetailActivity;
 import com.diucity.dingding.entity.Back.SystemBack;
-import com.diucity.dingding.utils.TimeUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -48,9 +47,9 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         TextView time = holder.getView(R.id.adapter_tv_system_time);
-        String str = TimeUtils.getTime(getModel().get(position).getSend_time());
-        time.setText(str);
+        time.setText(getModel().get(position).getSend_time());
         holder.getView(R.id.adapter_card).setOnClickListener(v -> {
+            if (TextUtils.isEmpty(getModel().get(position).getTarget_uri())) return;
             Intent intent = new Intent(getContext(), DetailActivity.class);
             intent.putExtra("url", getModel().get(position).getTarget_uri());
             getContext().startActivity(intent);
@@ -76,9 +75,6 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
             holder.getView(R.id.adapter_tv_system_detail).setVisibility(View.VISIBLE);
         }
     }
-
-
-
 
 
 }

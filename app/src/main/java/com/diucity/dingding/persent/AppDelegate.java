@@ -1,11 +1,7 @@
 package com.diucity.dingding.persent;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.Keyframe;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -164,8 +160,7 @@ public abstract class AppDelegate implements IDelegate {
         if (mTransition == null) {
             setupCustomAnimations(vg.getHeight());
             vg.setLayoutTransition(mTransition);
-           /* vg.setLayoutAnimation(new LayoutAnimationController(AnimationUtils.loadAnimation(
-                    getActivity(), R.anim.list_animation), 0.5f));*/
+
         }
         if (vg.getChildCount() > 0) {
             return;
@@ -173,11 +168,11 @@ public abstract class AppDelegate implements IDelegate {
         vg.getHeight();
 
         View view = inflater.inflate(R.layout.view_normal, null);
-            view.setOnTouchListener((v, event) -> {
-                if (vg.getChildCount() > 0)
-                    vg.removeView(view);
-                return false;
-            });
+        view.setOnTouchListener((v, event) -> {
+            if (vg.getChildCount() > 0)
+                vg.removeView(view);
+            return true;
+        });
 
         TextView tv = (TextView) view.findViewById(R.id.tv_notice_normal);
         ImageView iv = (ImageView) view.findViewById(R.id.iv_notice_normal);
@@ -207,7 +202,7 @@ public abstract class AppDelegate implements IDelegate {
         new Handler().postDelayed(() -> {
             if (vg.getChildCount() > 0)
                 vg.removeView(view);
-        },3000);
+        }, 3000);
 
 
     }
@@ -267,63 +262,14 @@ public abstract class AppDelegate implements IDelegate {
             dialog.dismiss();
     }
 
+
     private void setupCustomAnimations(float height) {
-        // Changing while Adding
         mTransition = new LayoutTransition();
-        PropertyValuesHolder pvhLeft = PropertyValuesHolder.ofInt("left", 0, 1);
-        PropertyValuesHolder pvhTop = PropertyValuesHolder.ofInt("top", 0, 1);
-        PropertyValuesHolder pvhRight = PropertyValuesHolder.ofInt("right", 0, 1);
-        PropertyValuesHolder pvhBottom = PropertyValuesHolder.ofInt("bottom", 0, 1);
-        PropertyValuesHolder pvhScaleX = PropertyValuesHolder.ofFloat("scaleX", 1f, 0f, 1f);
-        PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofFloat("scaleY", 1f, 0f, 1f);
-
-        final ObjectAnimator changeIn = ObjectAnimator.ofPropertyValuesHolder(
-                this, pvhLeft, pvhTop, pvhRight, pvhBottom, pvhScaleX,
-                pvhScaleY).setDuration(
-                mTransition.getDuration(LayoutTransition.CHANGE_APPEARING));
-        mTransition.setAnimator(LayoutTransition.CHANGE_APPEARING, changeIn);
-        changeIn.addListener(new AnimatorListenerAdapter() {
-            public void onAnimationEnd(Animator anim) {
-                View view = (View) ((ObjectAnimator) anim).getTarget();
-                // View也支持此种动画执行方式了
-                view.setScaleX(1f);
-                view.setScaleY(1f);
-            }
-        });
-        // 动画：CHANGE_DISAPPEARING
-        // Changing while Removing
-        Keyframe kf0 = Keyframe.ofFloat(0f, 0f);
-        Keyframe kf1 = Keyframe.ofFloat(.9999f, 360f);
-        Keyframe kf2 = Keyframe.ofFloat(1f, 0f);
-        PropertyValuesHolder pvhRotation = PropertyValuesHolder.ofKeyframe(
-                "rotation", kf0, kf1, kf2);
-        final ObjectAnimator changeOut = ObjectAnimator
-                .ofPropertyValuesHolder(this, pvhLeft, pvhTop, pvhRight,
-                        pvhBottom, pvhRotation)
-                .setDuration(
-                        mTransition
-                                .getDuration(LayoutTransition.CHANGE_DISAPPEARING));
-        mTransition
-                .setAnimator(LayoutTransition.CHANGE_DISAPPEARING, changeOut);
-        changeOut.addListener(new AnimatorListenerAdapter() {
-            public void onAnimationEnd(Animator anim) {
-                View view = (View) ((ObjectAnimator) anim).getTarget();
-                view.setRotation(0f);
-            }
-        });
-
-        // 动画：APPEARING
         // Adding
         ObjectAnimator animIn = ObjectAnimator.ofFloat(null, "translationY", -height,
                 0).setDuration(
                 mTransition.getDuration(LayoutTransition.APPEARING));
         mTransition.setAnimator(LayoutTransition.APPEARING, animIn);
-        animIn.addListener(new AnimatorListenerAdapter() {
-            public void onAnimationEnd(Animator anim) {
-                View view = (View) ((ObjectAnimator) anim).getTarget();
-                view.setRotationY(0f);
-            }
-        });
 
         // 动画：DISAPPEARING
         // Removing
@@ -331,11 +277,6 @@ public abstract class AppDelegate implements IDelegate {
                 -height).setDuration(
                 mTransition.getDuration(LayoutTransition.DISAPPEARING));
         mTransition.setAnimator(LayoutTransition.DISAPPEARING, animOut);
-        animOut.addListener(new AnimatorListenerAdapter() {
-            public void onAnimationEnd(Animator anim) {
-                View view = (View) ((ObjectAnimator) anim).getTarget();
-                view.setRotationX(0f);
-            }
-        });
+
     }
 }

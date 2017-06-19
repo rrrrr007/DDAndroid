@@ -29,6 +29,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class HomeActivity extends BaseActivity<HomeDelegate> {
     private LocationManager locationManager;
     private ViewPager vp;
@@ -87,7 +89,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
         //我的钱包
         RxView.clicks(viewDelegate.get(R.id.iv_home_wallet)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                  viewDelegate.startActivity(WalletActivity.class);
+                    viewDelegate.startActivity(WalletActivity.class);
                 });
 
         //联系客服
@@ -145,13 +147,13 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (locationList.size()==0){
+            if (locationList.size() == 0) {
                 return;
-            }else {
+            } else {
                 Address address = locationList.get(0);
                 String locality = address.getLocality() + address.getSubLocality();//得到城市名称，比如：北京市
                 Log.i("ch", "locality = " + locality + "纬度" + address.getLatitude() + "进度" + address.getLongitude());
-                if (App.longitude==0&&address.getLongitude()!=0){
+                if (App.longitude == 0 && address.getLongitude() != 0) {
                     App.latitude = address.getLatitude();
                     App.longitude = address.getLongitude();
                     doAction1();
@@ -165,11 +167,20 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
 
     @Override
     public void initData() {
+        Log.d("ch", JPushInterface.getRegistrationID(this) + "ididididi0");
         vp = viewDelegate.get(R.id.vp_home);
         binder.work(viewDelegate, new ScrapsBean(App.user.getData().getRecycler_id()));
         permission();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        boolean state = getIntent().getBooleanExtra("status", false);
+        if (!state) {
+            viewDelegate.showStatus(viewDelegate.get(R.id.fl_status));
+        }
+    }
 
     @Override
     public void doAction1() {
@@ -189,7 +200,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
         }
     }
 
-    public void notifyBasket(){
+    public void notifyBasket() {
         vp.setCurrentItem(1);
         doAction1();
     }

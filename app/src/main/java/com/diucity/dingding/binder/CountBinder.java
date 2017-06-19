@@ -52,7 +52,7 @@ public class CountBinder implements DataBinder<CountDelegate, NormalBack> {
                 public void onNext(CreateBack o) {
                     viewDelegate.hideLoadingWarn();
                     Log.d("ch", GsonUtils.GsonString(o));
-                    if (o.getCode() == 103 ){
+                    if (o.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
                     }
                     if (o.getCode() == 0) {

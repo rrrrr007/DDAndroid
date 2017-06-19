@@ -163,7 +163,7 @@
 
         <activity
             android:name="cmb.pb.ui.PBKeyboardActivity"
-            android:theme="@style/CmbDialogStyleBottom"/>
+            android:theme="@style/CmbDialogStyleBottom" />
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
@@ -181,7 +181,7 @@
         <activity
             android:name=".activity.HomeActivity"
             android:screenOrientation="portrait"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.Forget2Activity"
             android:screenOrientation="portrait" />

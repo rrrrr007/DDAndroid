@@ -33,12 +33,12 @@ public class CounterView extends android.support.v7.widget.AppCompatTextView {
 
     private OnUpdateListener mOnUpdateListener;
 
-    public interface OnUpdateListener{
+    public interface OnUpdateListener {
         boolean onUpdate(float curValue);
     }
 
     public CounterView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public CounterView(Context context, @Nullable AttributeSet attrs) {
@@ -47,10 +47,10 @@ public class CounterView extends android.support.v7.widget.AppCompatTextView {
 
     public CounterView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context,attrs);
+        init(context, attrs);
     }
 
-    private void init(Context context,AttributeSet attrs){
+    private void init(Context context, AttributeSet attrs) {
         interpolator = new AccelerateDecelerateInterpolator();
 
     }
@@ -63,40 +63,40 @@ public class CounterView extends android.support.v7.widget.AppCompatTextView {
         this.mOnUpdateListener = onUpdateListener;
     }
 
-    public void setInterpolator(TimeInterpolator interpolator){
+    public void setInterpolator(TimeInterpolator interpolator) {
         this.interpolator = interpolator;
     }
 
-    public void showAnimation(float number){
-        showAnimation(0,number,mDuration,mFormat);
+    public void showAnimation(float number) {
+        showAnimation(0, number, mDuration, mFormat);
     }
 
-    public void showAnimation(float number,String format){
-        showAnimation(0,number,mDuration,format);
+    public void showAnimation(float number, String format) {
+        showAnimation(0, number, mDuration, format);
     }
 
-    public void showAnimation(float from,float to,int duration){
-        showAnimation(from,to,duration,mFormat);
+    public void showAnimation(float from, float to, int duration) {
+        showAnimation(from, to, duration, mFormat);
     }
 
-    public void showAnimation(float number,int duration,String format){
-        showAnimation(0,number,duration,format);
+    public void showAnimation(float number, int duration, String format) {
+        showAnimation(0, number, duration, format);
     }
 
-    public void showAnimation(float from,float to,int duration,String format){
+    public void showAnimation(float from, float to, int duration, String format) {
         this.mNumber = to;
         this.mDuration = duration;
         this.mFormat = (format == null ? DEFAULT_INT_FORMAT : format);
 
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(from,to);
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(from, to);
         valueAnimator.setDuration(duration);
         valueAnimator.setInterpolator(interpolator);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                float curValue = (float)animation.getAnimatedValue();
+                float curValue = (float) animation.getAnimatedValue();
 
-                if(mOnUpdateListener==null || !mOnUpdateListener.onUpdate(curValue)){
+                if (mOnUpdateListener == null || !mOnUpdateListener.onUpdate(curValue)) {
                     updateNumber(curValue);
                 }
 
@@ -105,36 +105,34 @@ public class CounterView extends android.support.v7.widget.AppCompatTextView {
         valueAnimator.start();
     }
 
-    public void setFormat(int decimals){
+    public void setFormat(int decimals) {
         this.mFormat = getDecimalFormat(decimals);
     }
 
     /**
-     *
-     * @param format  default %1$.0f
+     * @param format default %1$.0f
      */
-    public void setFormat(String format){
+    public void setFormat(String format) {
         this.mFormat = format;
     }
 
-    public void setDuration(int duration){
+    public void setDuration(int duration) {
         this.mDuration = duration;
     }
 
-    private void updateNumber(float number){
-        updateNumber(number,mFormat);
+    private void updateNumber(float number) {
+        updateNumber(number, mFormat);
     }
 
-    private void updateNumber(float number,String format){
-        setText(String.format(format,number));
+    private void updateNumber(float number, String format) {
+        setText(String.format(format, number));
     }
 
     /**
-     *
      * @param decimals
-     * @return  "%1$." + decimals + "f"
+     * @return "%1$." + decimals + "f"
      */
-    public static String getDecimalFormat(int decimals){
+    public static String getDecimalFormat(int decimals) {
         return "%1$." + decimals + "f";
     }
 

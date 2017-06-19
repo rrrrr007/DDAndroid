@@ -63,7 +63,6 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
     public void isShowSmallWarn(boolean is) {
         if (is) {
             //show
-
             ((AppDelegate) viewDelegate).showSmallWarn();
         } else {
             //noshow
@@ -116,6 +115,7 @@ public abstract class BaseActivity<T extends IDelegate> extends DataBindActivity
 
     public void doAction1() {
     }
+
     public void doAction2() {
     }
 

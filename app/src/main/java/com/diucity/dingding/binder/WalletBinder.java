@@ -49,7 +49,7 @@ public class WalletBinder implements DataBinder<WalletDelegate, NormalBack> {
                 @Override
                 public void onNext(SummaryBack s) {
                     Log.d("ch", GsonUtils.GsonString(s));
-                    if (s.getCode() == 103 ){
+                    if (s.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
                     }
                     if (s.getCode() == 0) {
@@ -75,13 +75,13 @@ public class WalletBinder implements DataBinder<WalletDelegate, NormalBack> {
 
                 @Override
                 public void onNext(ListBack s) {
-                    if (s.getCode() == 103 ){
+                    if (s.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
                     }
                     if (s.getCode() == 0) {
                         if (s.getData().getItems().size() > 0) {
                             viewDelegate.setText((TimeUtils.getTime(s.getData().getItems().get(0).getTime()) + " 收入 ￥" + StringUtils.fmoney(s.getData().getItems().get(0).getAmount(), 2)), R.id.tv_wallet_time);
-                            SpUtils.putString(viewDelegate.getActivity(),SpUtils.RECORD,GsonUtils.GsonString(s));
+                            SpUtils.putString(viewDelegate.getActivity(), SpUtils.RECORD, GsonUtils.GsonString(s));
                         }
                     }
                     Log.d("ch", GsonUtils.GsonString(s));

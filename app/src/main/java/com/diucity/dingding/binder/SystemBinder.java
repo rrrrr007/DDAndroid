@@ -13,6 +13,8 @@ import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SignUtils;
 import com.diucity.dingding.utils.SpUtils;
+import com.diucity.dingding.widget.MyFooter;
+import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
             } else {
                 bean.setNotice_id(viewDelegate.getNoticeId());
             }
+            Log.d("ch", "我的请求" + GsonUtils.GsonString(bean));
             Network.subscribe(Network.getApi().notices(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<SystemBack>() {
 
                 @Override
@@ -67,10 +70,11 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
                     if (s.getCode() == 0) {
                         List<SystemBack.DataBean.NoticesBean> notices = s.getData().getNotices();
                         if (notices.size() == 0) {
+                            ((MyFooter) (((SpringView) viewDelegate.get(R.id.sv_system)).getFooter())).setOver(true);
                             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "没有更多了");
                         } else {
                             if (bean.getNotice_id() == -1) {
-                                SpUtils.putString(viewDelegate.getActivity(),SpUtils.SYSTEM,GsonUtils.GsonString(s));
+                                SpUtils.putString(viewDelegate.getActivity(), SpUtils.SYSTEM, GsonUtils.GsonString(s));
                                 viewDelegate.notifyDataSet(notices);
                             } else {
                                 viewDelegate.notifyDataAdd(notices);

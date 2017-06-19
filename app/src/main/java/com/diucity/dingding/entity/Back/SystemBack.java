@@ -65,7 +65,7 @@ public class SystemBack {
              */
 
             private int notice_id;
-            private long send_time;
+            private String send_time;
             private String title;
             private String description;
             private String covers_uri;
@@ -80,11 +80,11 @@ public class SystemBack {
                 this.notice_id = notice_id;
             }
 
-            public long getSend_time() {
-                return send_time*1000;
+            public String getSend_time() {
+                return send_time;
             }
 
-            public void setSend_time(long send_time) {
+            public void setSend_time(String send_time) {
                 this.send_time = send_time;
             }
 

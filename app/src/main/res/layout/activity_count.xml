@@ -33,18 +33,18 @@
         android:id="@+id/all_count_pay"
         android:layout_width="wrap_content"
         android:layout_height="88px"
-        android:layout_marginRight="20px"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20px">
 
         <Button
             android:id="@+id/btn_count_payment"
             android:layout_width="100px"
             android:layout_height="60px"
-            android:background="@drawable/button_selector"
-            android:enabled="false"
-            android:clickable="false"
-            android:gravity="center"
             android:layout_centerInParent="true"
+            android:background="@drawable/button_selector"
+            android:clickable="false"
+            android:enabled="false"
+            android:gravity="center"
             android:text="结算"
             android:textColor="@color/selector_white"
             android:textSize="12sp" />
@@ -92,9 +92,9 @@
         android:id="@+id/rv_count"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="178px"
         android:layout_marginLeft="25px"
-        android:layout_marginRight="25px" />
+        android:layout_marginRight="25px"
+        android:layout_marginTop="178px" />
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/rl_count_edt"
@@ -152,6 +152,14 @@
             android:layout_toRightOf="@id/tv_count_oneprice"
             android:background="#eef0ef" />
     </com.zhy.autolayout.AutoRelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_status"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginLeft="37px"
+        android:layout_marginRight="37px"
+        android:layout_marginTop="190px" />
 
     <FrameLayout
         android:id="@+id/fl_toolbar"

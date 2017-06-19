@@ -12,7 +12,7 @@ import com.diucity.dingding.entity.Back.SystemBack;
 import com.diucity.dingding.persent.AppDelegate;
 import com.diucity.dingding.utils.GsonUtils;
 import com.diucity.dingding.utils.SpUtils;
-import com.liaoinstan.springview.container.DefaultFooter;
+import com.diucity.dingding.widget.MyFooter;
 import com.liaoinstan.springview.widget.SpringView;
 
 import java.util.List;
@@ -44,7 +44,7 @@ public class SystemDelegate extends AppDelegate {
         srl.setColorSchemeResources(R.color.text_green);
 
         sv = get(R.id.sv_system);
-        sv.setFooter(new DefaultFooter(getActivity()));
+        sv.setFooter(new MyFooter(getActivity()));
         sv.setType(SpringView.Type.FOLLOW);
         sv.setEnable(false);
 

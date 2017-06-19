@@ -29,7 +29,8 @@ import rx.Observer;
  */
 
 public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
-    public boolean is =true;
+    public boolean is = true;
+
     @Override
     public void viewBindModel(PaymentDelegate viewDelegate, NormalBack data) {
 
@@ -55,7 +56,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
 
                 @Override
                 public void onNext(RequestBack o) {
-                    if (o.getCode() == 103 ){
+                    if (o.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
                     }
                     if (o.getCode() == 0) {
@@ -99,7 +100,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                 @Override
                 public void onNext(CheckBack o) {
                     Log.d("ch", GsonUtils.GsonString(o));
-                    if (o.getCode() == 103 ){
+                    if (o.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
                     }
                     if (o.getCode() == 0) {
@@ -113,7 +114,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
         } else if (object instanceof InfoBean) {
 
             InfoBean bean = (InfoBean) object;
-            Log.d("ch,","InfoBean"+GsonUtils.GsonString(bean));
+            Log.d("ch,", "InfoBean" + GsonUtils.GsonString(bean));
             Network.subscribe(Network.getApi().info(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<InfoBack>() {
                 @Override
                 public void onCompleted() {
@@ -127,7 +128,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
 
                 @Override
                 public void onNext(InfoBack o) {
-                    if (o.getCode() == 103 ){
+                    if (o.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
                     }
                     Log.d("ch", GsonUtils.GsonString(o));
@@ -136,7 +137,7 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
                     }
                 }
             });
-        }else if (object instanceof NotifyBean){
+        } else if (object instanceof NotifyBean) {
             viewDelegate.showLoadingWarn("请求支付结果");
             NotifyBean bean = (NotifyBean) object;
             Network.subscribe(Network.getApi().notify(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<NormalBack>() {
@@ -154,11 +155,11 @@ public class PaymentBinder implements DataBinder<PaymentDelegate, NormalBack> {
 
                 @Override
                 public void onNext(NormalBack o) {
-                    Log.d("ch",GsonUtils.GsonString(o));
+                    Log.d("ch", GsonUtils.GsonString(o));
                     viewDelegate.hideLoadingWarn();
-                    if (o.getCode()==0){
+                    if (o.getCode() == 0) {
                         viewDelegate.showResult(is);
-                    }else {
+                    } else {
                         viewDelegate.showResult(false);
                     }
 

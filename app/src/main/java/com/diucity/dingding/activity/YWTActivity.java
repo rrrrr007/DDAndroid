@@ -3,7 +3,6 @@ package com.diucity.dingding.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -16,12 +15,11 @@ import com.diucity.dingding.utils.GsonUtils;
 import cmb.pb.util.CMBKeyboardFunc;
 
 public class YWTActivity extends AppCompatActivity {
-    private boolean ok =false;
+    private boolean ok = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_ywt);
         findViewById(R.id.iv_ywt_back).setOnClickListener(v -> {
             YWTActivity.this.finish();
@@ -33,7 +31,6 @@ public class YWTActivity extends AppCompatActivity {
         });
 
         DataBack bean = GsonUtils.GsonToBean(getIntent().getStringExtra("request"), DataBack.class);
-        Log.d("ch", "WithdrawDelegate" + GsonUtils.GsonString(bean));
         WebView wv = (WebView) findViewById(R.id.webView_ywt);
         WebSettings set = wv.getSettings();
         set.setBuiltInZoomControls(true);

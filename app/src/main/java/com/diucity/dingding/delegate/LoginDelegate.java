@@ -37,7 +37,7 @@ public class LoginDelegate extends AppDelegate {
             showNormalWarn(get(R.id.fl_toolbar), 1, "退出成功");
         } else if (!TextUtils.isEmpty(intent) && intent.equals("reset")) {
             showNormalWarn(get(R.id.fl_toolbar), 1, "修改密码成功,请重新登录");
-        } else if (!TextUtils.isEmpty(intent) && intent.equals("haslogin")){
+        } else if (!TextUtils.isEmpty(intent) && intent.equals("haslogin")) {
             showNormalWarn(get(R.id.fl_toolbar), 1, "该账号在其他设备登录,请重新登录");
         }
     }

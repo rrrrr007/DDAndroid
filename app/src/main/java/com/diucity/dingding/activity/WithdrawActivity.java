@@ -30,7 +30,4 @@ public class WithdrawActivity extends BaseActivity<WithdrawDelegate> {
     }
 
 
-
-
-
 }

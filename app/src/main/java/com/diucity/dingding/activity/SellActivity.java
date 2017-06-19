@@ -11,9 +11,13 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.app.App;
+import com.diucity.dingding.binder.SellBinder;
 import com.diucity.dingding.delegate.SellDelegate;
+import com.diucity.dingding.entity.Send.DescBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -36,7 +40,7 @@ public class SellActivity extends BaseActivity<SellDelegate> {
 
     @Override
     public DataBinder getDataBinder() {
-        return null;
+        return new SellBinder();
     }
 
     @Override
@@ -67,10 +71,19 @@ public class SellActivity extends BaseActivity<SellDelegate> {
         RxView.clicks(viewDelegate.get(R.id.tv_sell_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     viewDelegate.finish();
+                    if (viewDelegate.get(R.id.card_sell_success).getVisibility() == View.VISIBLE) {
+                        ((HomeActivity) (App.getAcitvity("activity.HomeActivity"))).notifyBasket();
+                    }
+
                 });
         RxView.clicks(viewDelegate.get(R.id.tv_sell_location)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
                     startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                });
+        RxView.clicks(viewDelegate.get(R.id.btn_sell_success)).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(aVoid -> {
+                    viewDelegate.finish();
+                    ((HomeActivity) (App.getAcitvity("activity.HomeActivity"))).notifyBasket();
                 });
     }
 
@@ -126,6 +139,10 @@ public class SellActivity extends BaseActivity<SellDelegate> {
             locationManager.removeUpdates(locationListener);
             locationManager = null;
         }
+    }
+
+    public void showSuccess() {
+        binder.work(viewDelegate, new DescBean(App.user.getData().getRecycler_id()));
     }
 
     @Override

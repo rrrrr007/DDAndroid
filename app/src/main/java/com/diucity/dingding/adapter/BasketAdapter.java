@@ -40,9 +40,9 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         View view = holder.getView(R.id.adapter_cv_price);
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
-        if (position==getItemCount()-1){
+        if (position == getItemCount() - 1) {
             lp.bottomMargin = DensityUtil.dip2px(getContext(), 100);
-        }else {
+        } else {
             lp.bottomMargin = 0;
         }
 
@@ -56,10 +56,10 @@ public class BasketAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         CounterView cv = holder.getView(R.id.adapter_tv_price_difference);
         int i = 0;
         String quantity = StringUtils.getIntString(getQuantity(position));
-        if (quantity.contains(".")){
+        if (quantity.contains(".")) {
             i = quantity.length() - 1 - quantity.indexOf(".");
         }
-        cv.showAnimation(Float.parseFloat(cv.getText().toString()),Float.parseFloat(StringUtils.getIntString(getQuantity(position))),1000,CounterView.getDecimalFormat(i));
+        cv.showAnimation(Float.parseFloat(cv.getText().toString()), Float.parseFloat(StringUtils.getIntString(getQuantity(position))), 1000, CounterView.getDecimalFormat(i));
 
     }
 

@@ -1,5 +1,6 @@
 package com.diucity.dingding.binder;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.diucity.dingding.R;
@@ -51,18 +52,22 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                     viewDelegate.setText("叮叮回收", R.id.tv_home_title);
                     viewDelegate.setVisiable(false, R.id.progress_home);
                     e.printStackTrace();
+                    readCache(viewDelegate);
+
 
                 }
 
                 @Override
                 public void onNext(ScrapsBack s) {
                     if (s.getCode() == 0) {
-                        viewDelegate.getInsideAdapterNotify(1, s.getData().getScraps());
-                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.SCRAPS, GsonUtils.GsonString(s));
-                        work(viewDelegate, new TodayBean(bean.getRecycler_id(), App.longitude, App.latitude));
+                        if (s.getData().getScraps().size() > 0) {
+                            viewDelegate.getInsideAdapterNotify(1, s.getData().getScraps());
+                            SpUtils.putString(viewDelegate.getActivity(), SpUtils.SCRAPS, GsonUtils.GsonString(s));
+                            work(viewDelegate, new TodayBean(bean.getRecycler_id(), App.longitude, App.latitude));
+                        }
                         work(viewDelegate, new TaskBean(bean.getRecycler_id()));
-
-
+                    } else {
+                        readCache(viewDelegate);
                     }
                     Log.d("ch", GsonUtils.GsonString(s));
                     viewDelegate.setText("叮叮回收", R.id.tv_home_title);
@@ -73,7 +78,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
             });
         } else if (object instanceof TodayBean) {
             TodayBean bean = (TodayBean) object;
-            Log.d("ch","long"+bean.getLongitude()+"latitude"+bean.getLatitude());
+            Log.d("ch", "long" + bean.getLongitude() + "latitude" + bean.getLatitude());
             Network.subscribe(Network.getApi().today(SignUtils.sign(GsonUtils.GsonString(bean)), bean), new Observer<TodayBack>() {
 
                 @Override
@@ -84,13 +89,11 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                 @Override
                 public void onError(Throwable e) {
                     e.printStackTrace();
+
                 }
 
                 @Override
                 public void onNext(TodayBack s) {
-                   /* if (s.getCode()==0){
-                        SpUtils.putLong(viewDelegate.getActivity(),SpUtils.UPDATE,System.currentTimeMillis());
-                    }*/
                     if (s.getCode() == 0) {
                         viewDelegate.getInsideAdapterNotify(0, s.getData().getScraps());
                         SpUtils.putString(viewDelegate.getActivity(), SpUtils.TODAY, GsonUtils.GsonString(s));
@@ -118,6 +121,7 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
                     Log.d("ch", GsonUtils.GsonString(s));
                     if (s.getCode() == 0) {
                         viewDelegate.getInsideAdapterNotify(2, s.getData().getTasks());
+                        SpUtils.putString(viewDelegate.getActivity(), SpUtils.TASK, GsonUtils.GsonString(s));
                     }
                 }
             });
@@ -138,13 +142,31 @@ public class HomeBinder implements DataBinder<HomeDelegate, NormalBack> {
 
                 @Override
                 public void onNext(BasketBack s) {
-
+                    if (s.getCode() == 103) {
+                        App.loginOut(viewDelegate.getActivity());
+                    }
                     if (s.getCode() == 0) {
                         viewDelegate.setBasket(s);
                     }
+
                     Log.d("ch", "baseket" + GsonUtils.GsonString(s));
                 }
             });
+        }
+    }
+
+    private void readCache(HomeDelegate a) {
+        String s = SpUtils.getString(a.getActivity(), SpUtils.SCRAPS);
+        if (!TextUtils.isEmpty(s)) {
+            a.getInsideAdapterNotify(1, GsonUtils.GsonToBean(s, ScrapsBack.class).getData().getScraps());
+        }
+        String t = SpUtils.getString(a.getActivity(), SpUtils.TODAY);
+        if (!TextUtils.isEmpty(t)) {
+            a.getInsideAdapterNotify(0, GsonUtils.GsonToBean(t, TodayBack.class).getData().getScraps());
+        }
+        String k = SpUtils.getString(a.getActivity(), SpUtils.TASK);
+        if (!TextUtils.isEmpty(k)) {
+            a.getInsideAdapterNotify(2, GsonUtils.GsonToBean(k, TaskBack.class).getData().getTasks());
         }
     }
 }

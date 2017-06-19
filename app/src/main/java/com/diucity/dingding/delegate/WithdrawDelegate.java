@@ -27,8 +27,7 @@ import com.tencent.smtt.sdk.WebViewClient;
  * Created by Administrator on 2017/4/20 0020.
  */
 public class WithdrawDelegate extends AppDelegate {
-    Dialog dialog;
-    private ProgressView pv;
+    private Dialog dialog;
     private WebView wv;
 
     @Override
@@ -44,7 +43,7 @@ public class WithdrawDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        pv = get(R.id.pv_withdraw);
+        ProgressView pv = get(R.id.pv_withdraw);
         wv = get(R.id.webView_withdraw);
         WebSettings set = wv.getSettings();
         wv.loadUrl(Api.WEBURL + "#/withdraw");

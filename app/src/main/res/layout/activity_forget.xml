@@ -55,7 +55,7 @@
         android:textColor="@color/text_black"
         android:textSize="17sp" />
 
-    <EditText
+    <com.diucity.dingding.widget.PhoneEditText
         android:id="@+id/edt_forget_phone"
         android:layout_width="410px"
         android:layout_height="100px"

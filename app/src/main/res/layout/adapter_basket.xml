@@ -64,6 +64,7 @@
                 android:layout_marginRight="42px"
                 android:textColor="@color/selector_white"
                 android:textSize="40sp" />
+
             <TextView
                 android:id="@+id/adapter_tv_price_unit"
                 android:layout_alignParentRight="true"

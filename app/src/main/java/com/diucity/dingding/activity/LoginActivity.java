@@ -13,6 +13,7 @@ import com.diucity.dingding.delegate.LoginDelegate;
 import com.diucity.dingding.entity.Send.LoginBean;
 import com.diucity.dingding.persent.DataBinder;
 import com.diucity.dingding.utils.VersonUtils;
+import com.diucity.dingding.widget.PhoneEditText;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
@@ -21,7 +22,8 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends BaseActivity<LoginDelegate> implements View.OnFocusChangeListener {
     private boolean phoneEnable, codeEnable;
-    private EditText phone, code;
+    private EditText code;
+    private PhoneEditText phone;
     private AlertDialog alertDialog;
     private boolean length;
 
@@ -51,12 +53,10 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
                 });
 
         //Edt字段监听
-        RxTextView.textChanges(viewDelegate.get(R.id.edt_login_phone)).subscribe(charSequence -> {
-            phoneEnable = charSequence.length() > 0;
+        phone.setListener(s -> {
+            phoneEnable = s.length() > 0;
             viewDelegate.setEnable(phoneEnable && codeEnable, R.id.btn_login_enter);
             viewDelegate.setVisiable(phoneEnable && phone.hasFocus(), R.id.iv_login_icon1);
-            setPhoneText(charSequence);
-
         });
         RxTextView.textChanges(viewDelegate.get(R.id.edt_login_code)).subscribe(charSequence -> {
             codeEnable = charSequence.length() > 0;
@@ -64,6 +64,7 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
             viewDelegate.setEnable(phoneEnable && length, R.id.btn_login_enter);
             viewDelegate.setVisiable(codeEnable && code.hasFocus(), R.id.iv_login_icon2);
         });
+
 
         //清除edt
         RxView.clicks(viewDelegate.get(R.id.iv_login_icon1)).throttleFirst(2, TimeUnit.SECONDS)
@@ -109,34 +110,9 @@ public class LoginActivity extends BaseActivity<LoginDelegate> implements View.O
 
 
     private String getPhoneText() {
-        return phone.getText().toString().replaceAll(" ", "");
+        return phone.getTextString();
     }
 
-    private void setPhoneText(CharSequence s) {
-        String contents = s.toString();
-        int length = contents.length();
-        if (length == 4) {
-            if (contents.substring(3).equals(" ")) { // -
-                contents = contents.substring(0, 3);
-                phone.setText(contents);
-                phone.setSelection(contents.length());
-            } else { // +
-                contents = contents.substring(0, 3) + " " + contents.substring(3);
-                phone.setText(contents);
-                phone.setSelection(contents.length());
-            }
-        } else if (length == 9) {
-            if (contents.substring(8).equals(" ")) { // -
-                contents = contents.substring(0, 8);
-                phone.setText(contents);
-                phone.setSelection(contents.length());
-            } else {// +
-                contents = contents.substring(0, 8) + " " + contents.substring(8);
-                phone.setText(contents);
-                phone.setSelection(contents.length());
-            }
-        }
-    }
 
     public void showNormal() {
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 1, "重置成功");

@@ -43,9 +43,9 @@ public class PriceAdapter extends BaseAdapter<TodayBack.DataBean.ScrapsBean> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         View view = holder.getView(R.id.adapter_cv_price);
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
-        if (position==getItemCount()-1){
+        if (position == getItemCount() - 1) {
             lp.bottomMargin = DensityUtil.dip2px(getContext(), 100);
-        }else {
+        } else {
             lp.bottomMargin = 0;
         }
 

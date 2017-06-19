@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
+import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.entity.Back.ScrapsBack;
 import com.diucity.dingding.entity.Back.TodayBack;
 import com.diucity.dingding.entity.Send.CreateBean;
@@ -34,11 +35,13 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
 
     public CountAdapter(Context context, List<ScrapsBack.Data.Scraps> model) {
         super(context, model);
+
         todayBack = GsonUtils.GsonToBean(SpUtils.getString(getContext(), SpUtils.TODAY), TodayBack.class);
         create = new ArrayList<>();
         for (int i = 0; i < getModel().size(); i++) {
             create.add(new CreateBean.ScrapsBean(getModel().get(i).getScrap_id(), 0));
         }
+
     }
 
     @Override
@@ -50,10 +53,15 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         View view = holder.itemView;
         GridLayoutManager.LayoutParams lp = (GridLayoutManager.LayoutParams) view.getLayoutParams();
-        if ((position+1)%3==0){
-            lp.rightMargin=0;
-        }else {
+        if ((position + 1) % 3 == 0) {
+            lp.rightMargin = 0;
+        } else {
             lp.rightMargin = DensityUtil.dip2px(getContext(), 5);
+        }
+        if (position == getItemCount() - 1) {
+            lp.bottomMargin = ((BaseActivity) getContext()).getWindow().getDecorView().getHeight() / 2;
+        } else {
+            lp.bottomMargin = 0;
         }
 
         if (position == index) {
@@ -82,7 +90,7 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
         Drawable drawable;
 
         switch (getModel().get(position).getScrap_id()) {
-            case 0:
+            case 20001:
                 drawable = ContextCompat.getDrawable(getContext(), R.mipmap.img_recycle_paper);
                 break;
             case 1:
@@ -91,8 +99,11 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
             case 2:
                 drawable = ContextCompat.getDrawable(getContext(), R.mipmap.img_recycle_metal);
                 break;
-            case 3:
+            case 20002:
                 drawable = ContextCompat.getDrawable(getContext(), R.mipmap.img_recycle_beer);
+                break;
+            case 20003:
+                drawable = ContextCompat.getDrawable(getContext(), R.mipmap.img_recycle_cans);
                 break;
             default:
                 drawable = ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher);
@@ -143,7 +154,7 @@ public class CountAdapter extends BaseAdapter<ScrapsBack.Data.Scraps> {
     public ArrayList<CreateBean.ScrapsBean> getCreate() {
         ArrayList<CreateBean.ScrapsBean> a = new ArrayList<>();
         for (CreateBean.ScrapsBean bean : create) {
-            if (bean.getQuantity()!=0){
+            if (bean.getQuantity() != 0) {
                 a.add(bean);
             }
         }

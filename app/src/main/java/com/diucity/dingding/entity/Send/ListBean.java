@@ -26,7 +26,7 @@ public class ListBean {
         this.bill_count = bill_count;
     }
 
-    public ListBean(int recycler_id, String taken, int notice_id, int notice_count,int type) {
+    public ListBean(int recycler_id, String taken, int notice_id, int notice_count, int type) {
         this.timestamp = System.currentTimeMillis();
         this.nonce = SignUtils.getUUID();
         this.recycler_id = recycler_id;
