@@ -250,4 +250,12 @@ public class PaymentActivity extends BaseActivity<PaymentDelegate> {
         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, "支付失败");
         viewDelegate.setText(viewDelegate.getText(R.id.btn_payment_pay).replace("确认", "重新"), R.id.btn_payment_pay);
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        if (viewDelegate.get(R.id.arl_payment).getVisibility()==View.VISIBLE){
+            this.overridePendingTransition(R.anim.stay, R.anim.over);
+        }
+    }
 }

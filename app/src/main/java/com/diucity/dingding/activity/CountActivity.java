@@ -34,6 +34,7 @@ public class CountActivity extends BaseActivity<CountDelegate> {
     private GridLayoutManager manager;
     private CountAdapter adapter;
     private EditText edt;
+    private boolean state = true;
 
     @Override
     public DataBinder getDataBinder() {
@@ -176,5 +177,17 @@ public class CountActivity extends BaseActivity<CountDelegate> {
             }
         }
         return 0;
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus&&state){
+            this.state = false;
+            int status = getIntent().getIntExtra("status", 1);
+            if (status == 0) {
+                viewDelegate.showStatus(viewDelegate.get(R.id.fl_status));
+            }
+        }
     }
 }

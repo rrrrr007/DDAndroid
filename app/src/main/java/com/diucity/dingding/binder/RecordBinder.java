@@ -20,10 +20,6 @@ import java.util.List;
 
 import rx.Observer;
 
-/**
- * Created by Administrator on 2017/5/18 0018.
- */
-
 public class RecordBinder implements DataBinder<RecordDelegate, NormalBack> {
     @Override
     public void viewBindModel(RecordDelegate viewDelegate, NormalBack data) {
@@ -67,9 +63,8 @@ public class RecordBinder implements DataBinder<RecordDelegate, NormalBack> {
                     if (listBack.getCode() == 0) {
                         List<ListBack.DataBean.ItemsBean> list = listBack.getData().getItems();
                         Log.d("ch", "size" + list.size());
-
                         if (list.size() == 0) {
-                            ((MyFooter) (((SpringView) viewDelegate.get(R.id.sv_system)).getFooter())).setOver(true);
+                            ((SpringView) viewDelegate.get(R.id.sv_record)).setEnable(false);
                             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "没有更多了");
                         } else {
                             if (bean.getBill_id() == -1) {

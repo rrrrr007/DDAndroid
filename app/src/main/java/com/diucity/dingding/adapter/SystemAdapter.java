@@ -14,8 +14,10 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.activity.BaseActivity;
 import com.diucity.dingding.activity.DetailActivity;
 import com.diucity.dingding.entity.Back.SystemBack;
+import com.diucity.dingding.utils.TimeUtils;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -23,10 +25,8 @@ import java.util.List;
  */
 
 public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> {
-    private String h;
-    private String w;
     private String crop;
-
+    private boolean over;
     public SystemAdapter(Context context, List<SystemBack.DataBean.NoticesBean> model) {
         super(context, model);
         WindowManager manager = ((BaseActivity) context).getWindowManager();
@@ -44,10 +44,18 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
     }
 
     @Override
+    public int getItemCount() {
+        return super.getItemCount();
+    }
+
+    @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         TextView time = holder.getView(R.id.adapter_tv_system_time);
-        time.setText(getModel().get(position).getSend_time());
+        String send_time = getModel().get(position).getSend_time();
+        if (!TextUtils.isEmpty(send_time)){
+            time.setText(getTime(send_time.substring(0,send_time.length()-3)));
+        }
         holder.getView(R.id.adapter_card).setOnClickListener(v -> {
             if (TextUtils.isEmpty(getModel().get(position).getTarget_uri())) return;
             Intent intent = new Intent(getContext(), DetailActivity.class);
@@ -74,6 +82,31 @@ public class SystemAdapter extends BaseAdapter<SystemBack.DataBean.NoticesBean> 
         } else {
             holder.getView(R.id.adapter_tv_system_detail).setVisibility(View.VISIBLE);
         }
+    }
+
+
+    public String getTime(String str){
+        String time = TimeUtils.getTime(System.currentTimeMillis());
+        String year = TimeUtils.getYear(System.currentTimeMillis());
+        SimpleDateFormat myFmt = new SimpleDateFormat("yyyy-MM");
+        String yesterday = myFmt.format(System.currentTimeMillis());
+        SimpleDateFormat myFmt2 = new SimpleDateFormat("dd");
+        int day = Integer.parseInt(myFmt2.format(System.currentTimeMillis()));
+        if (str.equals(time)) {
+            return "今天";
+        }else if (str.contains(yesterday)){
+            if (Integer.parseInt(str.substring(8,10))+1==day){
+                return "昨天";
+            }else {
+                return str.substring(5);
+            }
+
+        }else if (str.contains(year)){
+            return str.substring(5);
+        }else {
+            return str;
+        }
+
     }
 
 

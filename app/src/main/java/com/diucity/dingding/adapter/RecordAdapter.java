@@ -6,12 +6,14 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.diucity.dingding.R;
 import com.diucity.dingding.activity.WebActivity;
 import com.diucity.dingding.entity.Back.ListBack;
 import com.diucity.dingding.utils.TimeUtils;
+import com.liaoinstan.springview.utils.DensityUtil;
 
 import java.util.List;
 
@@ -118,6 +120,13 @@ public class RecordAdapter extends BaseAdapter<ListBack.DataBean.ItemsBean> {
         }
         icon.setImageDrawable(drawable);
 
+        View view = holder.getView(R.id.adapter_view_record);
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
+        if (position == getItemCount()-1)
+            lp.leftMargin = 0;
+        else
+            lp.leftMargin = 30;
+        view.setLayoutParams(lp);
     }
 
     public void adapterNotifySet(List<ListBack.DataBean.ItemsBean> model) {

@@ -79,22 +79,17 @@ public class AwardAdapter extends BaseAdapter<TaskBack.DataBean.TasksBean> {
     }
 
     public SpannableString textSpan(String text) {
-
         SpannableString textSpan = new SpannableString(text);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 30)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        textSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.text_black)), text.length() - 1, text.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        textSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.text_gray2)), text.length() - 1, text.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return textSpan;
     }
 
     public SpannableString textSpan2(String str) {
-        String text = str;
-        if (str.contains("元")) {
-            text = StringUtils.getDoubleString(Double.parseDouble(str.replace("元", ""))) + "元";
-        }
-        SpannableString textSpan = new SpannableString(text);
-        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, text.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), text.length() - 1, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        SpannableString textSpan = new SpannableString(str);
+        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 40)), 0, str.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        textSpan.setSpan(new AbsoluteSizeSpan(ActivityUtils.sp2px(getContext(), 15)), str.length() - 1, str.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         return textSpan;
     }
 }

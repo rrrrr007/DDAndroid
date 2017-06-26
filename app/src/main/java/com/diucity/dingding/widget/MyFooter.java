@@ -18,7 +18,6 @@ public class MyFooter extends BaseFooter {
     private Context context;
     private TextView footerTitle;
     private ProgressBar footerProgressbar;
-    private boolean over;
 
 
     public MyFooter(Context context) {
@@ -43,16 +42,11 @@ public class MyFooter extends BaseFooter {
 
     @Override
     public void onLimitDes(View rootView, boolean upORdown) {
-        if (!over) {
-            if (upORdown) {
-                footerTitle.setText("松开载入更多");
-            } else {
-                footerTitle.setText("查看更多");
-            }
+        if (upORdown) {
+            footerTitle.setText("松开载入更多");
         } else {
-            footerTitle.setText("没有更多了");
+            footerTitle.setText("查看更多");
         }
-
     }
 
     @Override
@@ -63,17 +57,10 @@ public class MyFooter extends BaseFooter {
 
     @Override
     public void onFinishAnim() {
-        if (!over) {
-            footerTitle.setText("查看更多");
-        } else {
-            footerTitle.setText("没有更多了");
-        }
-
+        footerTitle.setText("查看更多");
         footerTitle.setVisibility(View.VISIBLE);
         footerProgressbar.setVisibility(View.INVISIBLE);
     }
 
-    public void setOver(boolean over) {
-        this.over = over;
-    }
+
 }

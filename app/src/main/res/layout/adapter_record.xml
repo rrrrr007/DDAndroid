@@ -92,9 +92,9 @@
     </RelativeLayout>
 
     <View
+        android:id="@+id/adapter_view_record"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginLeft="30px"
         android:background="@drawable/toolbar_shape" />
 </LinearLayout>
 

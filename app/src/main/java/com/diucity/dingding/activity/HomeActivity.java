@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 
 import com.diucity.dingding.R;
@@ -37,8 +38,7 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
     private AlertDialog alertDialog;
     private AlertDialog alertDialog2;
     private AlertDialog alertDialog3;
-    private
-
+    private boolean state = true;
     static final String[] permission = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,// 写入权限
             Manifest.permission.READ_EXTERNAL_STORAGE, //相机
@@ -114,7 +114,6 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
                 .subscribe(aVoid -> {
                     viewDelegate.startAcitityWithAnim(SellActivity.class);
                 });
-
     }
 
     LocationListener locationListener = new LocationListener() {
@@ -173,14 +172,6 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
         permission();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        boolean state = getIntent().getBooleanExtra("status", false);
-        if (!state) {
-            viewDelegate.showStatus(viewDelegate.get(R.id.fl_status));
-        }
-    }
 
     @Override
     public void doAction1() {
@@ -275,4 +266,17 @@ public class HomeActivity extends BaseActivity<HomeDelegate> {
         }
         alertDialog3.show();
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus&&state){
+            this.state = false;
+            boolean state = getIntent().getBooleanExtra("status", false);
+            if (!state) {
+                viewDelegate.showStatus(viewDelegate.get(R.id.fl_status));
+            }
+        }
+    }
+
 }

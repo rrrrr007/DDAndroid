@@ -17,7 +17,7 @@
         android:layout_height="148px"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:paddingTop="60px"
+        android:paddingTop="50px"
         android:text="重设密码"
         android:textColor="@color/text_black"
         android:textSize="17sp" />
@@ -28,7 +28,7 @@
         android:layout_height="148px"
         android:paddingLeft="20px"
         android:paddingRight="20px"
-        android:paddingTop="60px"
+        android:paddingTop="50px"
         android:scaleType="center"
         android:src="@mipmap/ic_cmm_return_green" />
 
@@ -128,11 +128,11 @@
     <FrameLayout
         android:id="@+id/fl_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="150px" />
+        android:layout_height="160px" />
 
     <include
         layout="@layout/notice_small"
         android:layout_width="match_parent"
         android:layout_height="80px"
-        android:layout_marginTop="150px" />
+        android:layout_marginTop="160px" />
 </com.zhy.autolayout.AutoRelativeLayout>

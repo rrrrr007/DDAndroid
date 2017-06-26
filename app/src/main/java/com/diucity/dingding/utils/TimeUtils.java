@@ -32,6 +32,11 @@ public class TimeUtils {
         return myFmt.format(time);
     }
 
+    public static String getYear(long time) {
+        SimpleDateFormat myFmt = new SimpleDateFormat("yyyy");
+        return myFmt.format(time);
+    }
+
 
     public static String getHours(long time) {
         SimpleDateFormat myFmt = new SimpleDateFormat("MM-dd");

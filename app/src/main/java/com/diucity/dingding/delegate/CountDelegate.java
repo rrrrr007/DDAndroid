@@ -32,9 +32,7 @@ import com.squareup.picasso.Picasso;
 import static android.text.InputType.TYPE_CLASS_NUMBER;
 import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 
-/**
- * Created by Administrator on 2017/4/18 0018.
- */
+
 public class CountDelegate extends AppDelegate {
     private int stua;
     private int height;
@@ -61,10 +59,6 @@ public class CountDelegate extends AppDelegate {
         rv.setAdapter(new CountAdapter(getActivity(), today.getData().getScraps()));
         setSumPrice(0);
         setUserInfo(getActivity().getIntent().getStringExtra("name"), getActivity().getIntent().getStringExtra("url"));
-        int status = getActivity().getIntent().getIntExtra("status", 1);
-        if (status == 0) {
-            showStatus(get(R.id.fl_status));
-        }
     }
 
     public SpannableString spite(String str) {
@@ -141,7 +135,7 @@ public class CountDelegate extends AppDelegate {
 
     public void showStatus(ViewGroup vg) {
         if (transition == null) {
-            setupAnimations(100);
+            setupAnimations(vg.getHeight());
             vg.setLayoutTransition(transition);
         }
         if (vg.getChildCount() > 0) {

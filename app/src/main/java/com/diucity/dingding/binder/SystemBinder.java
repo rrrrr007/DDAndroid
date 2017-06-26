@@ -70,7 +70,7 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
                     if (s.getCode() == 0) {
                         List<SystemBack.DataBean.NoticesBean> notices = s.getData().getNotices();
                         if (notices.size() == 0) {
-                            ((MyFooter) (((SpringView) viewDelegate.get(R.id.sv_system)).getFooter())).setOver(true);
+                            ((SpringView) viewDelegate.get(R.id.sv_system)).setEnable(false);
                             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "没有更多了");
                         } else {
                             if (bean.getNotice_id() == -1) {

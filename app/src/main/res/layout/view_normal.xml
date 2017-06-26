@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:maxWidth="650px"
         android:id="@+id/tv_notice_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:gravity="center"
-        android:text="提示"
         android:textSize="17sp" />
 
     <ImageView
@@ -19,4 +21,4 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="20px"
         android:layout_toLeftOf="@id/tv_notice_normal" />
-</RelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

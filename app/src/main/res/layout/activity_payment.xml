@@ -33,7 +33,7 @@
                     android:layout_height="148px"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:paddingTop="60px"
+                    android:paddingTop="50px"
                     android:text="结算"
                     android:textColor="@color/text_black"
                     android:textSize="17sp" />
@@ -44,7 +44,7 @@
                     android:layout_height="148px"
                     android:paddingLeft="20px"
                     android:paddingRight="20px"
-                    android:paddingTop="60px"
+                    android:paddingTop="50px"
                     android:scaleType="center"
                     android:src="@mipmap/ic_cmm_return_green" />
 
@@ -281,7 +281,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#f5f7f7"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <View
             android:layout_width="match_parent"
@@ -294,7 +295,7 @@
             android:layout_height="148px"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:paddingTop="60px"
+            android:paddingTop="50px"
             android:text="支付结果"
             android:textColor="@color/text_black"
             android:textSize="17sp" />
@@ -307,7 +308,7 @@
             android:gravity="center"
             android:paddingLeft="20px"
             android:paddingRight="20px"
-            android:paddingTop="60px"
+            android:paddingTop="50px"
             android:text="完成"
             android:textColor="@color/text_green"
             android:textSize="14sp" />
@@ -410,13 +411,13 @@
         <FrameLayout
             android:id="@+id/fl_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="150px" />
+            android:layout_height="160px" />
 
         <include
             layout="@layout/notice_small"
             android:layout_width="match_parent"
             android:layout_height="80px"
-            android:layout_marginTop="150px" />
+            android:layout_marginTop="160px" />
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <com.zhy.autolayout.AutoRelativeLayout

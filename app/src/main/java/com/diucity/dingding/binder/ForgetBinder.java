@@ -45,7 +45,7 @@ public class ForgetBinder implements DataBinder<ForgetDelegate, NormalBack> {
                 @Override
                 public void onNext(NormalBack back) {
                     viewDelegate.hideLoadingWarn();
-                    if (back.getCode() == 0) {
+                    if (back.getCode() == 0||back.getCode()==100400) {
                         viewDelegate.startActivity(Forget2Activity.class, "phone", bean.getMobile());
                     } else
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 3, back.getMessage());

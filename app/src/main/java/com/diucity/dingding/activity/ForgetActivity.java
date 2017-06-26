@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 public class ForgetActivity extends BaseActivity<ForgetDelegate> {
     private boolean enable;
     private PhoneEditText phone;
-    private String number;
 
 
     @Override
@@ -40,13 +39,7 @@ public class ForgetActivity extends BaseActivity<ForgetDelegate> {
         //发送短信
         RxView.clicks(viewDelegate.get(R.id.btn_forget_enter)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
-                    if (phone.getTextString().equals(number)) {
-                        viewDelegate.startActivity(Forget2Activity.class, "phone", phone.getTextString());
-                    } else {
-                        number = phone.getTextString();
-                        binder.work(viewDelegate, new SmsBean(phone.getTextString()));
-                    }
-
+                    binder.work(viewDelegate, new SmsBean(phone.getTextString()));
                 });
 
         //清除Edt

@@ -175,7 +175,6 @@ public abstract class AppDelegate implements IDelegate {
         });
 
         TextView tv = (TextView) view.findViewById(R.id.tv_notice_normal);
-        ImageView iv = (ImageView) view.findViewById(R.id.iv_notice_normal);
         Drawable drawable = null;
         switch (pattern) {
             case 1:
@@ -197,7 +196,8 @@ public abstract class AppDelegate implements IDelegate {
         }
         tv.getPaint().setFakeBoldText(true);
         tv.setText(content);
-        iv.setImageDrawable(drawable);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        tv.setCompoundDrawables(drawable,null,null,null);
         vg.addView(view);
         new Handler().postDelayed(() -> {
             if (vg.getChildCount() > 0)
