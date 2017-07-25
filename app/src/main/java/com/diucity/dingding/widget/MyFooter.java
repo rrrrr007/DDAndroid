@@ -19,7 +19,6 @@ public class MyFooter extends BaseFooter {
     private TextView footerTitle;
     private ProgressBar footerProgressbar;
 
-
     public MyFooter(Context context) {
         this.context = context;
     }
@@ -47,6 +46,7 @@ public class MyFooter extends BaseFooter {
         } else {
             footerTitle.setText("查看更多");
         }
+
     }
 
     @Override
@@ -61,6 +61,4 @@ public class MyFooter extends BaseFooter {
         footerTitle.setVisibility(View.VISIBLE);
         footerProgressbar.setVisibility(View.INVISIBLE);
     }
-
-
 }

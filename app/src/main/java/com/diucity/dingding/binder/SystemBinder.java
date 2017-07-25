@@ -60,18 +60,16 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
 
                 @Override
                 public void onNext(SystemBack s) {
-                    viewDelegate.onFinishLoad();
                     viewDelegate.isLoading(false);
+                    viewDelegate.onFinishLoad();
                     Log.d("ch", GsonUtils.GsonString(s));
                     if (s.getCode() == 103) {
                         App.loginOut(viewDelegate.getActivity());
-                    }
-
-                    if (s.getCode() == 0) {
+                    }else if (s.getCode() == 0) {
                         List<SystemBack.DataBean.NoticesBean> notices = s.getData().getNotices();
                         if (notices.size() == 0) {
-                            ((SpringView) viewDelegate.get(R.id.sv_system)).setEnable(false);
                             viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, "没有更多了");
+                            return;
                         } else {
                             if (bean.getNotice_id() == -1) {
                                 SpUtils.putString(viewDelegate.getActivity(), SpUtils.SYSTEM, GsonUtils.GsonString(s));
@@ -83,6 +81,8 @@ public class SystemBinder implements DataBinder<SystemDelegate, NormalBack> {
                     } else {
                         viewDelegate.showNormalWarn(viewDelegate.get(R.id.fl_toolbar), 2, s.getMessage());
                     }
+
+
                 }
             });
         }

@@ -26,6 +26,7 @@ public class SystemDelegate extends AppDelegate {
     private SystemAdapter adapter;
     private SpringView sv;
     private SwipeRefreshLayout srl;
+    private MyFooter footer;
 
     @Override
     public int getRootLayoutId() {
@@ -44,7 +45,8 @@ public class SystemDelegate extends AppDelegate {
         srl.setColorSchemeResources(R.color.text_green);
 
         sv = get(R.id.sv_system);
-        sv.setFooter(new MyFooter(getActivity()));
+        footer = new MyFooter(getActivity());
+        sv.setFooter(footer);
         sv.setType(SpringView.Type.FOLLOW);
         sv.setEnable(false);
 
@@ -98,6 +100,7 @@ public class SystemDelegate extends AppDelegate {
             srl.setRefreshing(false);
         }
         sv.onFinishFreshAndLoad();
+
     }
 
     public int getNoticeId() {

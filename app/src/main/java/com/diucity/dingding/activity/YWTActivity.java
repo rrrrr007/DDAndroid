@@ -3,6 +3,7 @@ package com.diucity.dingding.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -11,6 +12,7 @@ import com.diucity.dingding.R;
 import com.diucity.dingding.app.App;
 import com.diucity.dingding.entity.Back.DataBack;
 import com.diucity.dingding.utils.GsonUtils;
+import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 
 import cmb.pb.util.CMBKeyboardFunc;
 

@@ -46,7 +46,6 @@ public class SystemActivity extends BaseActivity<SystemDelegate> {
 
         });
 
-
         //返回
         RxView.clicks(viewDelegate.get(R.id.iv_system_back)).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(aVoid -> {
